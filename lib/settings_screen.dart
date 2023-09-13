@@ -1,83 +1,104 @@
-import 'package:colorguesser/constants.dart';
 import 'package:flutter/material.dart';
-import 'main.dart';
-import 'package:hive_flutter/hive_flutter.dart';
+import 'package:hive/hive.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SettingsScreen extends StatefulWidget {
-  const SettingsScreen({super.key});
+  const SettingsScreen({Key? key}) : super(key: key);
 
   @override
-  State<SettingsScreen> createState() => _SettingsScreenState();
+  _SettingsScreenState createState() => _SettingsScreenState();
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
+  final Box<dynamic> _generalBox = Hive.box('generalBoxString');
+  bool _useSystemDefaultLanguage = true;
+  String _selectedLanguage = 'English';
+
+  @override
+  void initState() {
+    super.initState();
+    _loadSettings();
+  }
+
+  Future<void> _loadSettings() async {
+    setState(() {
+      _useSystemDefaultLanguage =
+          _generalBox.get('useSystemDefaultLanguage', defaultValue: true);
+      _selectedLanguage =
+          _generalBox.get('selectedLanguage', defaultValue: 'English');
+    });
+  }
+
+  void _saveSettings() {
+    _generalBox.put('useSystemDefaultLanguage', _useSystemDefaultLanguage);
+    _generalBox.put('selectedLanguage', _selectedLanguage);
+  }
+
   @override
   Widget build(BuildContext context) {
-    return ValueListenableBuilder(
-      valueListenable: Hive.box(generalBox).listenable(),
-      builder: (context, box, widget) {
-        return Center(
-          child: NiceButton(
-            onPressed: () {
-              // Show the confirmation dialog
-              showDialog(
-                context: context,
-                builder: (BuildContext context) {
-                  return AlertDialog(
-                    backgroundColor: backgroundColor,
-                    title: const Text(
-                      'Delete Saved highscore?',
-                      style: TextStyle(color: lightColor),
-                    ),
-                    content: const Text(
-                      'This cannot be reversed?',
-                      style: TextStyle(color: lightColor),
-                    ),
-                    actions: <Widget>[
-                      NiceButton(
-                        child: const Padding(
-                          padding: EdgeInsets.all(8.0),
-                          child: Text(
-                            'Yes',
-                            style: TextStyle(color: lightColor),
-                          ),
-                        ),
-                        onPressed: () {
-                          // Perform the delete action here
-                          // For now, just close the dialog
-                          box.delete('highscore');
-                          box.delete('highscoreNew');
-                          Navigator.of(context).pop();
-                        },
-                      ),
-                      NiceButton(
-                        child: const Padding(
-                          padding: EdgeInsets.all(8.0),
-                          child: Text(
-                            'No',
-                            style: TextStyle(color: lightColor),
-                          ),
-                        ),
-                        onPressed: () {
-                          // Close the dialog
-                          Navigator.of(context).pop();
-                        },
-                      ),
-                    ],
-                  );
-                },
-              );
-            },
-            child: const Padding(
-              padding: EdgeInsets.all(8.0),
-              child: Text(
-                'Delete Progress',
-                style: TextStyle(color: lightColor),
-              ),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(AppLocalizations.of(context)!.settingsText),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Text(
+              AppLocalizations.of(context)!.language,
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
-          ),
-        );
-      },
+            SizedBox(height: 10),
+            Row(
+              children: <Widget>[
+                Switch(
+                  value: _useSystemDefaultLanguage,
+                  onChanged: (newValue) {
+                    setState(() {
+                      _useSystemDefaultLanguage = newValue;
+                      if (newValue) {
+                        // Use system default language
+                        // You may want to set the _selectedLanguage to the system's default here
+                      }
+                    });
+                    _saveSettings();
+                  },
+                ),
+                Text(
+                  'TEMP USE DEFAULT',
+                  //AppLocalizations.of(context)!.useSystemDefaultLanguageText,
+                ),
+              ],
+            ),
+            DropdownButton<String>(
+              value: _selectedLanguage,
+              onChanged: (newValue) {
+                setState(() {
+                  _selectedLanguage = newValue!;
+                });
+                _saveSettings();
+              },
+              items: [
+                'English',
+                'Español',
+                'Français',
+                'Italiano',
+                'Latin',
+                'Português',
+                'Română',
+              ].map((String language) {
+                return DropdownMenuItem<String>(
+                  value: language,
+                  child: Text(language),
+                );
+              }).toList(),
+              // Disable dropdown when use system default language is enabled
+              isExpanded: !_useSystemDefaultLanguage,
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

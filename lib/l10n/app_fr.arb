@@ -1,0 +1,8 @@
+{
+    "language": "Français",
+    "languageCode": "fr",
+    "appDescription": "Une application pour les langues romanes",
+    "gameText": "Jeu",
+    "settingsText": "Paramètres",
+    "useSystemDefaultLanguageText": "Utiliser la langue par défaut du système"
+}

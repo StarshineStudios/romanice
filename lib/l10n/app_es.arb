@@ -1,0 +1,8 @@
+{
+    "language": "Español",
+    "languageCode": "es",
+    "appDescription": "una aplicación para lenguas romances",
+    "gameText": "Juego",
+    "settingsText": "Configuración",
+    "useSystemDefaultLanguageText": "Usar idioma predeterminado del sistema"
+}

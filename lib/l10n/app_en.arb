@@ -1,0 +1,26 @@
+{
+    "language": "English",
+    "@language": {
+        "description": "The current UI language"
+    },
+    "languageCode": "en",
+    "@languageCode": {
+        "description": "The code for the app's current language"
+    },
+    "appDescription": "An app for romance languages",
+    "@appDescription": {
+        "description": "The app's description"
+    },
+    "gameText": "Game",
+    "@gameText": {
+        "description": "The translation for the word Game"
+    },
+    "settingsText": "Settings",
+    "@settingsText": {
+        "description": "The translation for the word Settings"
+    },
+    "useSystemDefaultLanguageText": "Use System Default Language",
+    "@useSystemDefaultLanguageText": {
+        "description": "The translation for the phrase Use System Default Language"
+    }
+}
