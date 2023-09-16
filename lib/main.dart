@@ -25,32 +25,9 @@ class RomaniceApp extends StatefulWidget {
 }
 
 class _RomaniceAppState extends State<RomaniceApp> {
-  String _selectedLanguage = 'English'; // Default language
-
   @override
   void initState() {
     super.initState();
-    _loadLanguage();
-  }
-
-  Future<void> _loadLanguage() async {
-    final generalBox = Hive.box(generalBoxName);
-    final useSystemDefaultLanguage =
-        generalBox.get('useSystemDefaultLanguage', defaultValue: true);
-    final selectedLanguage =
-        generalBox.get('selectedLanguage', defaultValue: 'English');
-
-    if (useSystemDefaultLanguage) {
-      // Use intl package to get system's default locale
-      final systemLocale = Intl.systemLocale.split('_')[0];
-      setState(() {
-        _selectedLanguage = systemLocale;
-      });
-    } else {
-      setState(() {
-        _selectedLanguage = selectedLanguage;
-      });
-    }
   }
 
   @override
@@ -65,7 +42,6 @@ class _RomaniceAppState extends State<RomaniceApp> {
         GlobalCupertinoLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
       ],
-      locale: Locale(_selectedLanguage),
     );
   }
 }
