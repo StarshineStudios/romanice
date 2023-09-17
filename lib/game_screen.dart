@@ -1,4 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:google_nav_bar/google_nav_bar.dart';
+import 'game_screen.dart';
+import 'settings_screen.dart';
+import 'constants.dart';
+import 'l10n/L10n.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:intl/intl.dart'; // Import the intl package
 
 class GameScreen extends StatelessWidget {
   const GameScreen({Key? key}) : super(key: key);
@@ -6,9 +16,6 @@ class GameScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Romance Language Inflection Study'),
-      ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

@@ -11,22 +11,16 @@ class SettingsScreen extends StatefulWidget {
 
 class _SettingsScreenState extends State<SettingsScreen> {
   final Box<dynamic> _generalBox = Hive.box('generalBoxString');
-  bool _useSystemDefaultLanguage = true;
-  String _selectedLanguage = 'English';
+  late bool _useSystemDefaultLanguage;
+  late String _selectedLanguage = 'English';
 
   @override
   void initState() {
     super.initState();
-    _loadSettings();
-  }
-
-  Future<void> _loadSettings() async {
-    setState(() {
-      _useSystemDefaultLanguage =
-          _generalBox.get('useSystemDefaultLanguage', defaultValue: true);
-      _selectedLanguage =
-          _generalBox.get('selectedLanguage', defaultValue: 'English');
-    });
+    _useSystemDefaultLanguage =
+        _generalBox.get('useSystemDefaultLanguage', defaultValue: true);
+    _selectedLanguage =
+        _generalBox.get('selectedLanguage', defaultValue: 'English');
   }
 
   void _saveSettings() {
@@ -38,7 +32,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(AppLocalizations.of(context)!.settingsText),
+        title: Text(AppLocalizations.of(context)!.textSettings),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),

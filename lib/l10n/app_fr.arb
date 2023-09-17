@@ -1,8 +1,16 @@
 {
-    "language": "Français",
-    "languageCode": "fr",
-    "appDescription": "Une application pour les langues romanes",
-    "gameText": "Jeu",
-    "settingsText": "Paramètres",
-    "useSystemDefaultLanguageText": "Utiliser la langue par défaut du système"
+  "appDescription": "Une application pour les langues romanes",
+  "language": "Français",
+  "languageCode": "fr",
+  "textEnglish": "Anglais",
+  "textFrench": "Français",
+  "textGame": "Jeu",
+  "textItalian": "Italien",
+  "textLatin": "Latin",
+  "textPortuguese": "Portugais",
+  "textRomanian": "Roumain",
+  "textSettings": "Paramètres",
+  "textSpanish": "Espagnol",
+  "textSystemLanguage": "Langue du Système",
+  "useSystemDefaultLanguageText": "Utiliser la Langue du Système"
 }

@@ -1,8 +1,16 @@
 {
-    "language": "Română",
-    "languageCode": "ro",
-    "appDescription": "O aplicație pentru limbile romanice",
-    "gameText": "Joc",
-    "settingsText": "Setări",
-    "useSystemDefaultLanguageText": "Utilizați limba implicită a sistemului"
+  "appDescription": "O aplicație pentru limbile romanice",
+  "language": "Română",
+  "languageCode": "ro",
+  "textEnglish": "Engleză",
+  "textFrench": "Franceză",
+  "textGame": "Joc",
+  "textItalian": "Italiană",
+  "textLatin": "Latină",
+  "textPortuguese": "Portugheză",
+  "textRomanian": "Română",
+  "textSettings": "Setări",
+  "textSpanish": "Spaniol",
+  "textSystemLanguage": "Limbă de Sistem",
+  "useSystemDefaultLanguageText": "Utilizați Limba de Sistem"
 }

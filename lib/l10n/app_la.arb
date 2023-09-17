@@ -1,8 +1,16 @@
 {
-    "language": "Latin",
-    "languageCode": "la",
-    "appDescription": "Applicatio pro linguis Romanicis",
-    "gameText": "Ludus",
-    "settingsText": "Optiones",
-    "useSystemDefaultLanguageText": "Utens systematis praefiniti lingua"
+  "appDescription": "Applicatio pro linguis Romanicis",
+  "language": "Latin",
+  "languageCode": "la",
+  "textEnglish": "Anglicum",
+  "textFrench": "Gallice",
+  "textGame": "Ludus",
+  "textItalian": "Italus",
+  "textLatin": "Latinus",
+  "textPortuguese": "Portugallensis",
+  "textRomanian": "Romanus",
+  "textSettings": "Optiones",
+  "textSpanish": "Hispanice",
+  "textSystemLanguage": "Lingua Systematis",
+  "useSystemDefaultLanguageText": "Uti Lingua Systematis"
 }

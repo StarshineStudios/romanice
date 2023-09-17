@@ -1,8 +1,16 @@
 {
-    "language": "Italiano",
-    "languageCode": "it",
-    "appDescription": "Un'app per le lingue romanze",
-    "gameText": "Gioco",
-    "settingsText": "Impostazioni",
-    "useSystemDefaultLanguageText": "Usa lingua di sistema predefinita"
+  "appDescription": "Un'app per le lingue romanze",
+  "language": "Italiano",
+  "languageCode": "it",
+  "textEnglish": "Inglese",
+  "textFrench": "Francese",
+  "textGame": "Gioco",
+  "textItalian": "Italiano",
+  "textLatin": "Latino",
+  "textPortuguese": "Portoghese",
+  "textRomanian": "Rumeno",
+  "textSettings": "Impostazioni",
+  "textSpanish": "Spagnolo",
+  "textSystemLanguage": "Lingua di Sistema",
+  "useSystemDefaultLanguageText": "Utilizzare la Lingua di Sistema"
 }
