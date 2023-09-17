@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:google_nav_bar/google_nav_bar.dart';
-import 'game_screen.dart';
 import 'settings_screen.dart';
 import 'constants.dart';
 import 'l10n/L10n.dart';

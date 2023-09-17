@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:hive_flutter/adapters.dart';
+import 'main.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({Key? key}) : super(key: key);
@@ -11,88 +13,134 @@ class SettingsScreen extends StatefulWidget {
 
 class _SettingsScreenState extends State<SettingsScreen> {
   final Box<dynamic> _generalBox = Hive.box('generalBoxString');
-  late bool _useSystemDefaultLanguage;
-  late String _selectedLanguage = 'English';
 
+  late Locale selectedLocale;
+  late bool usingSystemLocale;
   @override
   void initState() {
     super.initState();
-    _useSystemDefaultLanguage =
-        _generalBox.get('useSystemDefaultLanguage', defaultValue: true);
-    _selectedLanguage =
-        _generalBox.get('selectedLanguage', defaultValue: 'English');
-  }
-
-  void _saveSettings() {
-    _generalBox.put('useSystemDefaultLanguage', _useSystemDefaultLanguage);
-    _generalBox.put('selectedLanguage', _selectedLanguage);
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(AppLocalizations.of(context)!.textSettings),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Text(
-              AppLocalizations.of(context)!.language,
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-            ),
-            SizedBox(height: 10),
-            Row(
+    usingSystemLocale = _generalBox.get('useSystemLocale', defaultValue: true);
+    selectedLocale =
+        _generalBox.get('selectedLocale', defaultValue: const Locale('en'));
+
+    return ValueListenableBuilder(
+      valueListenable: Hive.box(generalBoxName).listenable(),
+      builder: (context, box, widget) {
+        return Scaffold(
+          appBar: AppBar(
+            title: Text(AppLocalizations.of(context)!.textSettings),
+          ),
+          body: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Switch(
-                  value: _useSystemDefaultLanguage,
-                  onChanged: (newValue) {
-                    setState(() {
-                      _useSystemDefaultLanguage = newValue;
-                      if (newValue) {
-                        // Use system default language
-                        // You may want to set the _selectedLanguage to the system's default here
-                      }
-                    });
-                    _saveSettings();
-                  },
-                ),
                 Text(
-                  'TEMP USE DEFAULT',
-                  //AppLocalizations.of(context)!.useSystemDefaultLanguageText,
+                  AppLocalizations.of(context)!.language,
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
+                SizedBox(height: 10),
+                Row(
+                  children: <Widget>[
+                    Switch(
+                      value: usingSystemLocale,
+                      onChanged: (newValue) {
+                        setState(() {
+                          _generalBox.put('useSystemLocale', newValue);
+                        });
+                      },
+                    ),
+                    Text(
+                      'TEMP USE DEFAULT',
+                      //AppLocalizations.of(context)!.useSystemDefaultLanguageText,
+                    ),
+                  ],
+                ),
+                LocaleDropdown(),
               ],
             ),
-            DropdownButton<String>(
-              value: _selectedLanguage,
-              onChanged: (newValue) {
-                setState(() {
-                  _selectedLanguage = newValue!;
-                });
-                _saveSettings();
-              },
-              items: [
-                'English',
-                'Español',
-                'Français',
-                'Italiano',
-                'Latin',
-                'Português',
-                'Română',
-              ].map((String language) {
-                return DropdownMenuItem<String>(
-                  value: language,
-                  child: Text(language),
-                );
-              }).toList(),
-              // Disable dropdown when use system default language is enabled
-              isExpanded: !_useSystemDefaultLanguage,
-            ),
-          ],
-        ),
-      ),
+          ),
+        );
+      },
     );
+  }
+}
+
+class LocaleDropdown extends StatefulWidget {
+  @override
+  _LocaleDropdownState createState() => _LocaleDropdownState();
+}
+
+class _LocaleDropdownState extends State<LocaleDropdown> {
+  late String _selectedLocaleCode;
+  final Box<dynamic> _generalBox = Hive.box(generalBoxName);
+
+  final List<String> _availableLocaleCodes = [
+    'en', // English
+    'es', // Spanish
+    'fr', // French
+    'it', // Italian
+    'pt', // Portuguese
+    'la', // Latin
+    'ro', // Romanian
+  ];
+
+  void _updateSelectedLocaleCode(String newLocaleCode) {
+    setState(() {
+      _selectedLocaleCode = newLocaleCode;
+      _generalBox.put('selectedLocaleCode', newLocaleCode.toString());
+      print(_selectedLocaleCode);
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    // Initialize the selected locale from Hive or use a default value
+    final savedLocale =
+        _generalBox.get('selectedLocaleCode', defaultValue: 'en');
+    _selectedLocaleCode = savedLocale;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return DropdownButton<String>(
+      value: _selectedLocaleCode,
+      onChanged: (String? newLocaleCode) {
+        _updateSelectedLocaleCode(newLocaleCode!);
+      },
+      items: _availableLocaleCodes.map((String localeCode) {
+        return DropdownMenuItem<String>(
+          value: localeCode,
+          child: Text(_getLocaleDisplayName(localeCode)),
+        );
+      }).toList(),
+    );
+  }
+
+  // Helper function to get the display name for each locale
+  String _getLocaleDisplayName(String localeCode) {
+    switch (localeCode) {
+      case 'en':
+        return 'English';
+      case 'es':
+        return 'Spanish';
+      case 'fr':
+        return 'French';
+      case 'it':
+        return 'Italian';
+      case 'pt':
+        return 'Portuguese';
+      case 'la':
+        return 'Latin';
+      case 'ro':
+        return 'Romanian';
+      default:
+        return 'Unknown';
+    }
   }
 }

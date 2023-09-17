@@ -17,31 +17,35 @@ const generalBoxName = 'generalBoxString';
 
 //https://stackoverflow.com/a/62825776
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
   await Hive.openBox(generalBoxName);
-  WidgetsFlutterBinding.ensureInitialized();
-
-  // Define locales that our app supports (no country codes, see comments below)
-
-  final RomaniceApp romaniceApp = RomaniceApp();
-
-  runApp(RomaniceApp());
-  // runApp(MaterialApp(
-  //   title: 'RomaniceApp',
-  //   home: romaniceApp,
-  //   supportedLocales: appSupportedLocales,
-  //   localizationsDelegates: const [
-  //     // These are default localization delegates that implement the very basic translations for standard controls and date/time formats.
-  //     GlobalMaterialLocalizations.delegate,
-  //     GlobalWidgetsLocalizations.delegate,
-  //   ],
-  // ));
+  //setInitialValues();
+  runApp(const RomaniceApp());
 }
 
 List<Widget> pages = [
   const GameScreen(),
   const SettingsScreen(),
 ];
+
+// Future<void> setInitialValues() async {
+//   final Box<dynamic> box = Hive.box('generalBoxString');
+
+//   // Replace these key-value pairs with your desired initial values
+//   final initialData = {
+//     'useSystemLocale': true,
+//     'selectedLocale': const Locale('en'),
+//     // Add more key-value pairs as needed
+//   };
+
+//   // Iterate through the initialData map and set values in the box
+//   initialData.forEach((key, value) {
+//     if (!box.containsKey(key)) {
+//       box.put(key, value);
+//     }
+//   });
+// }
 
 class RomaniceApp extends StatefulWidget {
   const RomaniceApp({super.key});
@@ -52,13 +56,28 @@ class RomaniceApp extends StatefulWidget {
 
 class _RomaniceAppState extends State<RomaniceApp> with WidgetsBindingObserver {
   // Store dynamic changeable locale settings here, they change with the system changes
+
+  final Box<dynamic> _generalBox = Hive.box(generalBoxName);
   late String currentDefaultSystemLocale = Platform.localeName;
   late List<Locale> currentSystemLocales =
       View.of(context).platformDispatcher.locales;
+
+  late String selectedLocaleCode;
+  late String localeInUseCode;
+
+  //MyApp.of(context).setLocale(Locale.fromSubtags(languageCode: 'en'))
   @override
   void initState() {
-    // This is run when the widget is first time initialized
     WidgetsBinding.instance.addObserver(this); // Subscribe to changes
+
+    bool usingSystemLocale =
+        _generalBox.get('useSystemLocale', defaultValue: true);
+    selectedLocaleCode =
+        _generalBox.get('selectedLocaleCode', defaultValue: 'en');
+    localeInUseCode = usingSystemLocale
+        ? currentDefaultSystemLocale.substring(0, 2)
+        : selectedLocaleCode;
+
     super.initState();
   }
 
@@ -74,17 +93,22 @@ class _RomaniceAppState extends State<RomaniceApp> with WidgetsBindingObserver {
   Widget build(BuildContext context) {
     // Here we read the current locale values
     print(currentDefaultSystemLocale);
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      supportedLocales: L10n.all,
-      localizationsDelegates: [
-        AppLocalizations.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-      ],
-      locale: Locale(currentDefaultSystemLocale.substring(0, 2)),
-      home: AppScreen(),
+    return ValueListenableBuilder(
+      valueListenable: Hive.box(generalBoxName).listenable(),
+      builder: (context, box, widget) {
+        return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          supportedLocales: L10n.all,
+          localizationsDelegates: const [
+            AppLocalizations.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+          ],
+          locale: Locale(localeInUseCode),
+          home: const AppScreen(),
+        );
+      },
     );
   }
 }
