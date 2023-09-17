@@ -7,11 +7,9 @@ import 'settings_screen.dart';
 import 'constants.dart';
 import 'l10n/L10n.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:intl/intl.dart'; // Import the intl package
+// Import the intl package
 
 import 'dart:io';
-import 'package:flutter/material.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 
 const generalBoxName = 'generalBoxString';
 

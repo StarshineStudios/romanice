@@ -1,11 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:hive_flutter/hive_flutter.dart';
-import 'settings_screen.dart';
-import 'constants.dart';
-import 'l10n/L10n.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:intl/intl.dart'; // Import the intl package
+// Import the intl package
 
 class GameScreen extends StatelessWidget {
   const GameScreen({Key? key}) : super(key: key);
@@ -21,37 +15,37 @@ class GameScreen extends StatelessWidget {
               onPressed: () {
                 // Add your action for Latin button here
               },
-              child: Text('Latin'),
+              child: const Text('Latin'),
             ),
             ElevatedButton(
               onPressed: () {
                 // Add your action for Italian button here
               },
-              child: Text('Italian'),
+              child: const Text('Italian'),
             ),
             ElevatedButton(
               onPressed: () {
                 // Add your action for Spanish button here
               },
-              child: Text('Spanish'),
+              child: const Text('Spanish'),
             ),
             ElevatedButton(
               onPressed: () {
                 // Add your action for Portuguese button here
               },
-              child: Text('Portuguese'),
+              child: const Text('Portuguese'),
             ),
             ElevatedButton(
               onPressed: () {
                 // Add your action for French button here
               },
-              child: Text('French'),
+              child: const Text('French'),
             ),
             ElevatedButton(
               onPressed: () {
                 // Add your action for Romanian button here
               },
-              child: Text('Romanian'),
+              child: const Text('Romanian'),
             ),
           ],
         ),

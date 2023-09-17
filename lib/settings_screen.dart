@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:hive_flutter/adapters.dart';
-import 'main.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({Key? key}) : super(key: key);
@@ -16,68 +13,71 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
   late Locale selectedLocale;
   late bool usingSystemLocale;
+
   @override
   void initState() {
     super.initState();
+  }
+
+  void _handleLanguageChange() {
+    setState(() {
+      // Rebuild the widget tree
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     usingSystemLocale = _generalBox.get('useSystemLocale', defaultValue: true);
     selectedLocale =
-        _generalBox.get('selectedLocale', defaultValue: const Locale('en'));
+        Locale(_generalBox.get('selectedLocaleCode', defaultValue: 'en'));
 
-    return ValueListenableBuilder(
-      valueListenable: Hive.box(generalBoxName).listenable(),
-      builder: (context, box, widget) {
-        return Scaffold(
-          appBar: AppBar(
-            title: Text(AppLocalizations.of(context)!.textSettings),
-          ),
-          body: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Settings'),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            const Text(
+              'Language',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 10),
+            Row(
               children: <Widget>[
-                Text(
-                  AppLocalizations.of(context)!.language,
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                Switch(
+                  value: usingSystemLocale,
+                  onChanged: (newValue) {
+                    setState(() {
+                      _generalBox.put('useSystemLocale', newValue);
+                    });
+                  },
                 ),
-                SizedBox(height: 10),
-                Row(
-                  children: <Widget>[
-                    Switch(
-                      value: usingSystemLocale,
-                      onChanged: (newValue) {
-                        setState(() {
-                          _generalBox.put('useSystemLocale', newValue);
-                        });
-                      },
-                    ),
-                    Text(
-                      'TEMP USE DEFAULT',
-                      //AppLocalizations.of(context)!.useSystemDefaultLanguageText,
-                    ),
-                  ],
-                ),
-                LocaleDropdown(),
+                const Text('Use System Default'),
               ],
             ),
-          ),
-        );
-      },
+            LocaleDropdown(onLanguageChange: _handleLanguageChange),
+          ],
+        ),
+      ),
     );
   }
 }
 
 class LocaleDropdown extends StatefulWidget {
+  final Function onLanguageChange;
+
+  const LocaleDropdown({super.key, required this.onLanguageChange});
+
   @override
   _LocaleDropdownState createState() => _LocaleDropdownState();
 }
 
 class _LocaleDropdownState extends State<LocaleDropdown> {
   late String _selectedLocaleCode;
-  final Box<dynamic> _generalBox = Hive.box(generalBoxName);
+  final Box<dynamic> _generalBox = Hive.box('generalBoxString');
 
   final List<String> _availableLocaleCodes = [
     'en', // English
@@ -93,7 +93,7 @@ class _LocaleDropdownState extends State<LocaleDropdown> {
     setState(() {
       _selectedLocaleCode = newLocaleCode;
       _generalBox.put('selectedLocaleCode', newLocaleCode.toString());
-      print(_selectedLocaleCode);
+      widget.onLanguageChange(); // Trigger the callback
     });
   }
 
@@ -111,7 +111,9 @@ class _LocaleDropdownState extends State<LocaleDropdown> {
     return DropdownButton<String>(
       value: _selectedLocaleCode,
       onChanged: (String? newLocaleCode) {
-        _updateSelectedLocaleCode(newLocaleCode!);
+        if (newLocaleCode != null) {
+          _updateSelectedLocaleCode(newLocaleCode);
+        }
       },
       items: _availableLocaleCodes.map((String localeCode) {
         return DropdownMenuItem<String>(
@@ -122,7 +124,6 @@ class _LocaleDropdownState extends State<LocaleDropdown> {
     );
   }
 
-  // Helper function to get the display name for each locale
   String _getLocaleDisplayName(String localeCode) {
     switch (localeCode) {
       case 'en':
