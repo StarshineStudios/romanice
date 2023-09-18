@@ -12,5 +12,6 @@
   "textSettings": "Optiones",
   "textSpanish": "Hispanice",
   "textSystemLanguage": "Lingua Systematis",
-  "useSystemDefaultLanguageText": "Uti Lingua Systematis"
+  "useSystemDefaultLanguageText": "Uti Lingua Systematis",
+  "resetProgressText": "Progressum resarcire"
 }

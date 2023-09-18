@@ -13,17 +13,50 @@ import 'dart:io';
 
 const generalBoxName = 'generalBoxString';
 
+//https://github.com/The-ring-io/flutter_phoenix/tree/master
+
+class Phoenix extends StatefulWidget {
+  final Widget child;
+
+  Phoenix({Key? key, required this.child}) : super(key: key);
+
+  @override
+  _PhoenixState createState() => _PhoenixState();
+
+  static rebirth(BuildContext context) {
+    context.findAncestorStateOfType<_PhoenixState>()!.restartApp();
+  }
+}
+
+class _PhoenixState extends State<Phoenix> {
+  Key _key = UniqueKey();
+
+  void restartApp() {
+    setState(() {
+      _key = UniqueKey();
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return KeyedSubtree(
+      key: _key,
+      child: widget.child,
+    );
+  }
+}
+
 //https://stackoverflow.com/a/62825776
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
   await Hive.openBox(generalBoxName);
   //setInitialValues();
-  runApp(const RomaniceApp());
+  runApp(Phoenix(child: const RomaniceApp()));
 }
 
 List<Widget> pages = [
-  const GameScreen(),
+  GameScreen(),
   const SettingsScreen(),
 ];
 
@@ -122,127 +155,46 @@ class _AppScreenState extends State<AppScreen> {
   int navBarIndex = 0;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: pages[navBarIndex],
-      bottomNavigationBar: Container(
-        height: 75,
-        color: foregroundColor,
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: GNav(
-            activeColor: lightColor,
-            tabBackgroundColor: backgroundColor,
-            color: lightColor,
-            textStyle: const TextStyle(
-              color: lightColor,
+    return ValueListenableBuilder(
+      valueListenable: Hive.box(generalBoxName).listenable(),
+      builder: (context, box, widget) {
+        return Scaffold(
+          body: pages[navBarIndex],
+          bottomNavigationBar: Container(
+            height: 75,
+            color: foregroundColor,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: GNav(
+                activeColor: lightColor,
+                tabBackgroundColor: backgroundColor,
+                color: lightColor,
+                textStyle: const TextStyle(
+                  color: lightColor,
+                ),
+                padding: const EdgeInsets.all(13),
+                gap: 8,
+                iconSize: 30,
+                onTabChange: (index) {
+                  setState(() {
+                    navBarIndex = index;
+                  });
+                },
+                tabs: [
+                  GButton(
+                    icon: Icons.square,
+                    text: AppLocalizations.of(context)!.textGame,
+                  ),
+                  GButton(
+                    icon: Icons.settings,
+                    text: AppLocalizations.of(context)!.textSettings,
+                  ),
+                ],
+              ),
             ),
-            padding: const EdgeInsets.all(13),
-            gap: 8,
-            iconSize: 30,
-            onTabChange: (index) {
-              setState(() {
-                navBarIndex = index;
-              });
-            },
-            tabs: [
-              GButton(
-                icon: Icons.square,
-                text: AppLocalizations.of(context)!.textGame,
-              ),
-              GButton(
-                icon: Icons.settings,
-                text: AppLocalizations.of(context)!.textSettings,
-              ),
-            ],
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }
-      //     Scaffold(
-      //   body: Column(
-      //     crossAxisAlignment: CrossAxisAlignment.start,
-      //     mainAxisAlignment: MainAxisAlignment.start,
-      //     children: <Widget>[
-      //       // Text(
-      //       //     'Initial system default locale: ${widget.initialDefaultSystemLocale}.'),
-      //       // Text(
-      //       //     'Initial language code: ${widget.initialDefaultSystemLocale.split('_')[0]}, country code: ${widget.initialDefaultSystemLocale.split('_')[1]}.'),
-      //       // Text('Initial system locales:'),
-      //       // for (var locale in widget.initialSystemLocales)
-      //       //   Text(locale.toString()),
-      //       Text(''),
-      //       Text(
-      //           'Current system default locale: ${currentDefaultSystemLocale}.'),
-      //       Text('Current system locales:'),
-      //       for (var locale in currentSystemLocales) Text(locale.toString()),
-      //       Text(''),
-      //       Text(
-      //           'Selected application locale: ${Localizations.localeOf(context).toString()}.'),
-      //       Text(''),
-      //       Text(
-      //           'Current date: ${Localizations.of<MaterialLocalizations>(context, MaterialLocalizations)?.formatFullDate(DateTime.now())}.'),
-      //       Text(
-      //           'Current time zone: ${DateTime.now().timeZoneName} (offset ${DateTime.now().timeZoneOffset}).'),
-      //     ],
-      //   ),
-      // ),
-// void main() async {
-//   await Hive.initFlutter();
-//   await Hive.openBox(generalBoxName);
-//   runApp(
-//     const MaterialApp(
-//       home: RomaniceApp(),
-//     ),
-//   );
-// }
-
-// class RomaniceApp extends StatefulWidget {
-//   const RomaniceApp({super.key});
-
-//   @override
-//   State<RomaniceApp> createState() => _RomaniceAppState();
-// }
-
-// class _RomaniceAppState extends State<RomaniceApp> {
-//   final Box<dynamic> _generalBox = Hive.box('generalBoxString');
-
-//   @override
-//   void initState() {
-//     super.initState();
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     bool useSystemLocale =
-//         _generalBox.get('useSystemDefaultLanguage', defaultValue: true);
-//     Locale selectedLocale = _generalBox.get('selectedLanguage',
-//         defaultValue: Localizations.localeOf(context));
-
-//     // Determine the app's locale based on _useSystemLocale
-//     Locale appLocale =
-//         useSystemLocale ? Localizations.localeOf(context) : selectedLocale;
-//     print(Localizations.localeOf(context).toString());
-//     return MaterialApp(
-//       home: const AppScreen(),
-//       debugShowCheckedModeBanner: false,
-//       supportedLocales: L10n.all,
-//       locale: appLocale,
-//       localizationsDelegates: const [
-//         AppLocalizations.delegate,
-//         GlobalMaterialLocalizations.delegate,
-//         GlobalCupertinoLocalizations.delegate,
-//         GlobalWidgetsLocalizations.delegate,
-//       ],
-//       builder: (context, child) {
-//         // Use the Locale override provided by MaterialApp
-//         return Localizations.override(
-//           context: context,
-//           locale: appLocale,
-//           child: child,
-//         );
-//       },
-//     );
-//   }
-// }

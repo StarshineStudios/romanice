@@ -12,5 +12,6 @@
   "textSettings": "Setări",
   "textSpanish": "Spaniol",
   "textSystemLanguage": "Limbă de Sistem",
-  "useSystemDefaultLanguageText": "Utilizați Limba de Sistem"
+  "useSystemDefaultLanguageText": "Utilizați Limba de Sistem",
+  "resetProgressText": "Resetați progresul"
 }

@@ -54,5 +54,9 @@
   "useSystemDefaultLanguageText": "Use System Default Language",
   "@useSystemDefaultLanguageText": {
     "description": "Text for using the system default language"
+  },
+  "resetProgressText": "Reset Progress",
+  "@resetProgressText": {
+    "description": "Reset Progress in the current language"
   }
 }

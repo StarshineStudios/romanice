@@ -12,5 +12,6 @@
   "textSettings": "Paramètres",
   "textSpanish": "Espagnol",
   "textSystemLanguage": "Langue du Système",
-  "useSystemDefaultLanguageText": "Utiliser la Langue du Système"
+  "useSystemDefaultLanguageText": "Utiliser la Langue du Système",
+  "resetProgressText": "Réinitialiser la progression"
 }
