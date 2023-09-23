@@ -9,6 +9,20 @@ const Color brightColor = Color.fromARGB(255, 87, 76, 190);
 const Color fadedColor = Color.fromARGB(255, 103, 102, 121);
 const Color lightColor = Color.fromARGB(255, 217, 216, 230);
 
+const generalBoxName = 'generalBoxString';
+
+class SupportedLocales {
+  static final all = [
+    const Locale('en'),
+    const Locale('la'),
+    const Locale('es'),
+    const Locale('it'),
+    const Locale('fr'),
+    const Locale('pt'),
+    const Locale('ro'),
+  ];
+}
+
 class NiceButton extends StatefulWidget {
   final Color color;
   final Color inactiveColor;

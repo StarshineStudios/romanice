@@ -1,15 +1,7 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
-import 'main.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:google_nav_bar/google_nav_bar.dart';
-import 'game_screen.dart';
-import 'settings_screen.dart';
-import 'constants.dart';
-import 'l10n/L10n.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 //The page for modifying the settings
 class SettingsScreen extends StatefulWidget {
@@ -28,9 +20,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
   void updateSelectedLocaleCode(String newLocaleCode) {
     selectedLocaleCode = newLocaleCode;
-    // setState(() {
-
-    // });
   }
 
   @override
@@ -44,17 +33,27 @@ class _SettingsScreenState extends State<SettingsScreen> {
     selectedLocaleCode =
         _generalBox.get('selectedLocaleCode', defaultValue: 'en');
 
+    String deviceLocaleCode =
+        _generalBox.get('deviceLocaleCode', defaultValue: 'en');
+
+    void updateContext() {
+      String actualLocaleCode =
+          usingSystemLocale ? deviceLocaleCode : selectedLocaleCode;
+      context.setLocale(Locale(actualLocaleCode));
+    }
+
     return Scaffold(
-      appBar: AppBar(
-        title: Text(AppLocalizations.of(context)!.textSettings),
-      ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Text(
-              AppLocalizations.of(context)!.textSystemLanguage,
+              'textSettings'.tr(),
+              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
+            Text(
+              'textSystemLanguage'.tr(),
               style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 10),
@@ -65,35 +64,33 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   onChanged: (newValue) {
                     setState(() {
                       _generalBox.put('useSystemLocale', newValue);
+                      updateContext();
                     });
                   },
                 ),
-                Text(
-                    AppLocalizations.of(context)!.useSystemDefaultLanguageText),
+                Text('useSystemDefaultLanguageText'.tr()),
               ],
             ),
             LocaleDropdown(
+              updateContext: updateContext,
               updateCode: updateSelectedLocaleCode,
               enabled: !usingSystemLocale,
             ),
-            ElevatedButton(
-                onPressed: () {
-                  _generalBox.put('selectedLocaleCode', selectedLocaleCode);
-                  print(selectedLocaleCode);
-                  Phoenix.rebirth(context);
-                },
-                child: Text('Apply (This will restart app)')),
+            // ElevatedButton(
+            //     onPressed: () {
+            //       _generalBox.put('selectedLocaleCode', selectedLocaleCode);
+            //     },
+            //     child: const Text('Apply (This will restart app)')),
             Text(
-              AppLocalizations.of(context)!.resetProgressText,
+              'resetProgressText'.tr(),
               style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             ElevatedButton(
-              child: Text(AppLocalizations.of(context)!.resetProgressText +
-                  '(This will restart app)'),
+              child: Text('resetProgressText'.tr()),
               onPressed: () {
                 setState(() {
                   _generalBox.clear();
-                  Phoenix.rebirth(context);
+                  //Phoenix.rebirth(context);
                 });
               },
             )
@@ -106,9 +103,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
 class LocaleDropdown extends StatefulWidget {
   final Function updateCode;
+  final Function updateContext;
   final bool enabled;
   const LocaleDropdown(
-      {super.key, required this.updateCode, required this.enabled});
+      {super.key,
+      required this.updateCode,
+      required this.enabled,
+      required this.updateContext});
 
   @override
   State<LocaleDropdown> createState() => _LocaleDropdownState();
@@ -145,6 +146,7 @@ class _LocaleDropdownState extends State<LocaleDropdown> {
           ? (String? newLocaleCode) {
               if (newLocaleCode != null) {
                 widget.updateCode(newLocaleCode);
+                widget.updateContext();
                 _selectedLocaleCode = newLocaleCode;
                 print(newLocaleCode);
               }

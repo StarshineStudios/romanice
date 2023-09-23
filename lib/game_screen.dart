@@ -1,99 +1,214 @@
+import 'package:colorguesser/constants.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+
+class BorderedText extends StatelessWidget {
+  final String text;
+  final TextStyle style;
+  final double strokeWidth;
+  final Color strokeColor;
+  final Color fillColor;
+
+  const BorderedText({
+    super.key,
+    required this.text,
+    required this.style,
+    this.strokeWidth = 6.0,
+    this.strokeColor = Colors.black,
+    this.fillColor = Colors.white,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: <Widget>[
+        // Stroked text as border.
+        Text(
+          text,
+          style: style.copyWith(
+            foreground: Paint()
+              ..style = PaintingStyle.stroke
+              ..strokeWidth = strokeWidth
+              ..color = strokeColor,
+          ),
+        ),
+        // Solid text as fill.
+        Text(
+          text,
+          style: style.copyWith(color: fillColor),
+        ),
+      ],
+    );
+  }
+}
+
+class PeriodicTableElementBox extends StatelessWidget {
+  final String imagePath;
+  final String symbol;
+  final String name;
+  final int number;
+  final VoidCallback onPressed;
+
+  const PeriodicTableElementBox({
+    super.key,
+    required this.imagePath,
+    required this.symbol,
+    required this.name,
+    required this.number,
+    required this.onPressed,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(20),
+      child: GestureDetector(
+        onTap: onPressed,
+        child: Container(
+          width: 100, // Adjust the size as needed
+          height: 100, // Adjust the size as needed
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            image: DecorationImage(
+              image: AssetImage(imagePath),
+              fit: BoxFit.cover,
+            ),
+          ),
+          child: Stack(
+            alignment: Alignment.center,
+            children: [
+              Positioned(
+                top: 10,
+                left: 10,
+                child: BorderedText(
+                  text: ' XP: $number',
+                  strokeWidth: 15,
+                  style: const TextStyle(
+                    fontSize: 45,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+              Positioned(
+                child: BorderedText(
+                  text: symbol,
+                  strokeWidth: 15,
+                  style: const TextStyle(
+                    fontSize: 120,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+              Positioned(
+                bottom: 30,
+                child: BorderedText(
+                  text: name,
+                  strokeWidth: 15,
+                  style: const TextStyle(
+                    fontSize: 40,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
 
 class GameScreen extends StatefulWidget {
+  const GameScreen({super.key});
+
+  //final List<PeriodicTableElementBox> elements;
+
   @override
-  _GameScreenState createState() => _GameScreenState();
+  State<GameScreen> createState() => _GameScreenState();
 }
 
 class _GameScreenState extends State<GameScreen> {
   @override
   Widget build(BuildContext context) {
-    final screenSize = MediaQuery.of(context).size;
-
-    // Determine the number of columns based on screen width
-    int columns = screenSize.width < 600 ? 1 : 2;
+    List<PeriodicTableElementBox> periodicElements = [
+      PeriodicTableElementBox(
+        imagePath: 'assets/FlagRome.png',
+        symbol: 'La',
+        name: 'textLatin'.tr(),
+        number: 1,
+        onPressed: () {
+          // Handle onPressed action here
+        },
+      ),
+      PeriodicTableElementBox(
+        imagePath: 'assets/FlagItaly.png',
+        symbol: 'It',
+        name: 'textItalian'.tr(),
+        number: 2,
+        onPressed: () {
+          // Handle onPressed action here
+        },
+      ),
+      PeriodicTableElementBox(
+        imagePath: 'assets/FlagSpain.png',
+        symbol: 'Es',
+        name: 'textSpanish'.tr(),
+        number: 3,
+        onPressed: () {
+          // Handle onPressed action here
+        },
+      ),
+      PeriodicTableElementBox(
+        imagePath: 'assets/FlagFrance.png',
+        symbol: 'Fr',
+        name: 'textFrench'.tr(),
+        number: 4,
+        onPressed: () {
+          // Handle onPressed action here
+        },
+      ),
+      PeriodicTableElementBox(
+        imagePath: 'assets/FlagPortugal.png',
+        symbol: 'Pt',
+        name: 'textPortuguese'.tr(),
+        number: 5,
+        onPressed: () {
+          // Handle onPressed action here
+        },
+      ),
+      PeriodicTableElementBox(
+        imagePath: 'assets/FlagRomania.png',
+        symbol: 'Ro',
+        name: 'textRomanian'.tr(),
+        number: 6,
+        onPressed: () {
+          // Handle onPressed action here
+        },
+      ),
+    ];
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Game Screen'),
-      ),
-      body: StaggeredGridView.count(
-        crossAxisCount: columns,
-        mainAxisSpacing: 10.0,
-        crossAxisSpacing: 10.0,
-        staggeredTiles: [
-          StaggeredTile.extent(1, 200.0), // Each grid item is 1 column wide
-          StaggeredTile.extent(1, 200.0),
-          StaggeredTile.extent(1, 200.0),
-          StaggeredTile.extent(1, 200.0),
-          StaggeredTile.extent(1, 200.0),
-          StaggeredTile.extent(1, 200.0),
-        ],
-        children: [
-          _buildGridItem("Title 1", "assets/FlagRome.png"),
-          _buildGridItem("Title 2", "assets/FlagItaly.png"),
-          _buildGridItem("Title 3", "assets/FlagSpain.png"),
-          _buildGridItem("Title 4", "assets/FlagPortugal.png"),
-          _buildGridItem("Title 5", "assets/FlagFrance.png"),
-          _buildGridItem("Title 6", "assets/FlagRomania.png"),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildGridItem(String title, String imagePath) {
-    return Card(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(15.0),
-      ),
-      child: Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage(imagePath),
-            fit: BoxFit.cover,
-          ),
-          borderRadius: BorderRadius.circular(15.0),
+      backgroundColor: backgroundColor,
+      body: GridView.builder(
+        gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+          maxCrossAxisExtent: 410, // Adjust the element box width as needed
+          childAspectRatio: 1.0, // Square boxes
+          crossAxisSpacing: 0,
+          mainAxisSpacing: 0,
         ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            Container(
-              color: Colors.white.withOpacity(0.8),
-              padding: EdgeInsets.all(10.0),
-              child: Column(
-                children: [
-                  Text(
-                    title,
-                    style:
-                        TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
-                  ),
-                  SizedBox(height: 10.0),
-                  ElevatedButton(
-                    onPressed: () {
-                      // Handle Conjugate button click
-                    },
-                    child: Text("Conjugate"),
-                  ),
-                  SizedBox(height: 10.0),
-                  ElevatedButton(
-                    onPressed: () {
-                      // Handle Decline button click
-                    },
-                    child: Text("Decline"),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
+        itemCount: periodicElements.length,
+        itemBuilder: (context, index) {
+          return periodicElements[index];
+        },
       ),
     );
   }
 }
 
 void main() {
-  runApp(MaterialApp(
+  runApp(const MaterialApp(
     home: GameScreen(),
   ));
 }

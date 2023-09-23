@@ -1,64 +1,29 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'game_screen.dart';
 import 'settings_screen.dart';
 import 'constants.dart';
-import 'l10n/L10n.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-// Import the intl package
-
 import 'dart:io';
 
-const generalBoxName = 'generalBoxString';
-
-//https://github.com/The-ring-io/flutter_phoenix/tree/master
-
-class Phoenix extends StatefulWidget {
-  final Widget child;
-
-  Phoenix({Key? key, required this.child}) : super(key: key);
-
-  @override
-  _PhoenixState createState() => _PhoenixState();
-
-  static rebirth(BuildContext context) {
-    context.findAncestorStateOfType<_PhoenixState>()!.restartApp();
-  }
-}
-
-class _PhoenixState extends State<Phoenix> {
-  Key _key = UniqueKey();
-
-  void restartApp() {
-    setState(() {
-      _key = UniqueKey();
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return KeyedSubtree(
-      key: _key,
-      child: widget.child,
-    );
-  }
-}
-
-//https://stackoverflow.com/a/62825776
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await EasyLocalization.ensureInitialized();
   await Hive.initFlutter();
   await Hive.openBox(generalBoxName);
-  //setInitialValues();
-  runApp(Phoenix(child: const RomaniceApp()));
+  // setInitialValues(); //This is to set initial values for Hive given they are not initialized so I dont have to depend on first time default being correct
+  runApp(
+    // Phoenix(
+    //   child:
+    EasyLocalization(
+        supportedLocales: SupportedLocales.all,
+        path: 'assets/translations',
+        fallbackLocale: const Locale('en'),
+        child: const RomaniceApp()),
+    // ),
+  );
 }
-
-List<Widget> pages = [
-  GameScreen(),
-  const SettingsScreen(),
-];
 
 // Future<void> setInitialValues() async {
 //   final Box<dynamic> box = Hive.box('generalBoxString');
@@ -78,6 +43,11 @@ List<Widget> pages = [
 //   });
 // }
 
+List<Widget> pages = [
+  const GameScreen(),
+  const SettingsScreen(),
+];
+
 class RomaniceApp extends StatefulWidget {
   const RomaniceApp({super.key});
 
@@ -86,27 +56,27 @@ class RomaniceApp extends StatefulWidget {
 }
 
 class _RomaniceAppState extends State<RomaniceApp> with WidgetsBindingObserver {
-  // Store dynamic changeable locale settings here, they change with the system changes
-
   final Box<dynamic> _generalBox = Hive.box(generalBoxName);
-  late String currentDefaultSystemLocale = Platform.localeName;
-  late List<Locale> currentSystemLocales =
-      View.of(context).platformDispatcher.locales;
 
-  late String selectedLocaleCode;
-  late String localeInUseCode;
+  late String deviceLocaleCodes = Platform.localeName;
 
-  //MyApp.of(context).setLocale(Locale.fromSubtags(languageCode: 'en'))
+  // not needed
+  // late List<Locale> deviceLocaleCodess =
+  //     View.of(context).platformDispatcher.locales;
+
+  late String selectedLocaleCode; //The one chosen by the user
+  late String localeInUseCode; //the one ultimately displayed
+
   @override
   void initState() {
     WidgetsBinding.instance.addObserver(this); // Subscribe to changes
-
+    _generalBox.put('deviceLocaleCodesCode', deviceLocaleCodes);
     bool usingSystemLocale =
         _generalBox.get('useSystemLocale', defaultValue: true);
     selectedLocaleCode =
         _generalBox.get('selectedLocaleCode', defaultValue: 'en');
     localeInUseCode = usingSystemLocale
-        ? currentDefaultSystemLocale.substring(0, 2)
+        ? deviceLocaleCodes.substring(0, 2)
         : selectedLocaleCode;
 
     super.initState();
@@ -122,24 +92,12 @@ class _RomaniceAppState extends State<RomaniceApp> with WidgetsBindingObserver {
 
   @override
   Widget build(BuildContext context) {
-    // Here we read the current locale values
-    print(currentDefaultSystemLocale);
-    return ValueListenableBuilder(
-      valueListenable: Hive.box(generalBoxName).listenable(),
-      builder: (context, box, widget) {
-        return MaterialApp(
-          debugShowCheckedModeBanner: false,
-          supportedLocales: L10n.all,
-          localizationsDelegates: const [
-            AppLocalizations.delegate,
-            GlobalMaterialLocalizations.delegate,
-            GlobalCupertinoLocalizations.delegate,
-            GlobalWidgetsLocalizations.delegate,
-          ],
-          locale: Locale(localeInUseCode),
-          home: const AppScreen(),
-        );
-      },
+    return MaterialApp(
+      localizationsDelegates: context.localizationDelegates,
+      supportedLocales: context.supportedLocales,
+      locale: context.locale,
+      debugShowCheckedModeBanner: false,
+      home: const AppScreen(),
     );
   }
 }
@@ -183,11 +141,11 @@ class _AppScreenState extends State<AppScreen> {
                 tabs: [
                   GButton(
                     icon: Icons.square,
-                    text: AppLocalizations.of(context)!.textGame,
+                    text: 'textGame'.tr(),
                   ),
                   GButton(
                     icon: Icons.settings,
-                    text: AppLocalizations.of(context)!.textSettings,
+                    text: 'textSettings'.tr(),
                   ),
                 ],
               ),
@@ -198,3 +156,36 @@ class _AppScreenState extends State<AppScreen> {
     );
   }
 }
+
+//https://github.com/The-ring-io/flutter_phoenix/tree/master
+
+// class Phoenix extends StatefulWidget {
+//   final Widget child;
+
+//   Phoenix({Key? key, required this.child}) : super(key: key);
+
+//   @override
+//   _PhoenixState createState() => _PhoenixState();
+
+//   static rebirth(BuildContext context) {
+//     context.findAncestorStateOfType<_PhoenixState>()!.restartApp();
+//   }
+// }
+
+// class _PhoenixState extends State<Phoenix> {
+//   Key _key = UniqueKey();
+
+//   void restartApp() {
+//     setState(() {
+//       _key = UniqueKey();
+//     });
+//   }
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return KeyedSubtree(
+//       key: _key,
+//       child: widget.child,
+//     );
+//   }
+// }
