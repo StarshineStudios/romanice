@@ -10,18 +10,41 @@ const Color fadedColor = Color.fromARGB(255, 103, 102, 121);
 const Color lightColor = Color.fromARGB(255, 217, 216, 230);
 
 const generalBoxName = 'generalBoxString';
+List<Locale> supportedLocales = const [
+  Locale('en'),
+  Locale(
+      'fi'), //this is actually latin, I just cant use la for some dumb reason
+  Locale('es'),
+  Locale('it'),
+  Locale('fr'),
+  Locale('pt'),
+  Locale('ro'),
+];
 
-class SupportedLocales {
-  static final all = [
-    const Locale('en'),
-    const Locale('la'),
-    const Locale('es'),
-    const Locale('it'),
-    const Locale('fr'),
-    const Locale('pt'),
-    const Locale('ro'),
-  ];
+// List<String> supportedLocaleCodes = [
+//   'en',
+
+//   'fi', //this is actually latin, I just cant use la for some dumb reason
+//   'es',
+//   'it',
+//   'fr',
+//   'pt',
+//   'ro',
+// ];
+
+Locale ifSupported(Locale locale) {
+  if (supportedLocales.contains(locale)) {
+    return locale;
+  }
+  return const Locale('en');
 }
+
+// String ifSupportedString(String localeCode) {
+//   if (supportedLocaleCodes.contains(localeCode)) {
+//     return localeCode;
+//   }
+//   return 'en';
+// }
 
 class NiceButton extends StatefulWidget {
   final Color color;

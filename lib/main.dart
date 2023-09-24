@@ -7,6 +7,8 @@ import 'settings_screen.dart';
 import 'constants.dart';
 import 'dart:io';
 
+import 'package:flutter_localizations/flutter_localizations.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
@@ -17,7 +19,7 @@ void main() async {
     // Phoenix(
     //   child:
     EasyLocalization(
-        supportedLocales: SupportedLocales.all,
+        supportedLocales: supportedLocales,
         path: 'assets/translations',
         fallbackLocale: const Locale('en'),
         child: const RomaniceApp()),
@@ -32,6 +34,7 @@ void main() async {
 //   final initialData = {
 //     'useSystemLocale': true,
 //     'selectedLocale': const Locale('en'),
+//     'systemLocaleCode': Platform.localeName,
 //     // Add more key-value pairs as needed
 //   };
 
@@ -58,10 +61,10 @@ class RomaniceApp extends StatefulWidget {
 class _RomaniceAppState extends State<RomaniceApp> with WidgetsBindingObserver {
   final Box<dynamic> _generalBox = Hive.box(generalBoxName);
 
-  late String deviceLocaleCodes = Platform.localeName;
+  late String deviceLocaleCode = Platform.localeName.substring(0, 2);
 
   // not needed
-  // late List<Locale> deviceLocaleCodess =
+  // late List<Locale> deviceLocaleCodes =
   //     View.of(context).platformDispatcher.locales;
 
   late String selectedLocaleCode; //The one chosen by the user
@@ -70,13 +73,13 @@ class _RomaniceAppState extends State<RomaniceApp> with WidgetsBindingObserver {
   @override
   void initState() {
     WidgetsBinding.instance.addObserver(this); // Subscribe to changes
-    _generalBox.put('deviceLocaleCodesCode', deviceLocaleCodes);
+
     bool usingSystemLocale =
         _generalBox.get('useSystemLocale', defaultValue: true);
     selectedLocaleCode =
         _generalBox.get('selectedLocaleCode', defaultValue: 'en');
     localeInUseCode = usingSystemLocale
-        ? deviceLocaleCodes.substring(0, 2)
+        ? deviceLocaleCode.substring(0, 2)
         : selectedLocaleCode;
 
     super.initState();
