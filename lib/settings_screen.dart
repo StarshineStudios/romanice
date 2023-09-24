@@ -62,7 +62,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
             Row(
               children: <Widget>[
                 Switch(
-                  value: _generalBox.get('usingSystemLocale'),
+                  value:
+                      _generalBox.get('usingSystemLocale', defaultValue: true),
                   onChanged: (newValue) {
                     setState(() {
                       _generalBox.put('usingSystemLocale', newValue);
@@ -75,7 +76,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
             ),
             LocaleDropdown(
               updateContext: updateContext,
-              enabled: !_generalBox.get('usingSystemLocale'),
+              enabled:
+                  !_generalBox.get('usingSystemLocale', defaultValue: true),
             ),
             // ElevatedButton(
             //     onPressed: () {
