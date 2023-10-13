@@ -1,0 +1,17 @@
+{
+  "appDescription": "una aplicación para lenguas romances",
+  "language": "Español",
+  "languageCode": "es",
+  "textEnglish": "Inglés",
+  "textFrench": "Francés",
+  "textGame": "Juego",
+  "textItalian": "Italiano",
+  "textLatin": "Latín",
+  "textPortuguese": "Portugués",
+  "textRomanian": "Rumano",
+  "textSettings": "Configuración",
+  "textSpanish": "Español",
+  "textSystemLanguage": "Idioma del Sistema",
+  "useSystemDefaultLanguageText": "Usar idioma del Sistema",
+  "resetProgressText": "Restablecer progreso"
+}

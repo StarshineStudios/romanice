@@ -1,0 +1,18 @@
+{
+  "appDescription": "An app for romance languages",
+  "language": "English",
+  "languageCode": "en",
+  "textEnglish": "English",
+  "textFrench": "French",
+  "textGame": "Game",
+  "textItalian": "Italian",
+  "textLatin": "Latin",
+  "textPortuguese": "Portuguese",
+  "textRomanian": "Romanian",
+  "textSettings": "Settings",
+  "textSpanish": "Spanish",
+  "textSystemLanguage": "System Language",
+  "useSystemDefaultLanguageText": "Use System Default Language",
+  "resetProgressText": "Reset Progress"
+  
+}
