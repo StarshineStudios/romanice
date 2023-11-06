@@ -136,7 +136,7 @@ class _NiceButtonState extends State<NiceButton> {
   }
 }
 
-List<Map<String, List<String>>> spanishVerbs = [
+const List<Map<String, List<String>>> spanishVerbs = [
   // SER
   {
     'infinitive': ['ser'],
@@ -172,7 +172,7 @@ List<Map<String, List<String>>> spanishVerbs = [
   },
 ];
 
-List<Map<String, List<String>>> latinVerbs = [
+const List<Map<String, List<String>>> latinVerbs = [
   // SER
   {
     'infinitive': ['esse'],
