@@ -3,11 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 // import 'package:flutter/material.dart';
-import 'package:easy_localization/easy_localization.dart';
-import 'package:hive_flutter/hive_flutter.dart';
-import 'package:google_nav_bar/google_nav_bar.dart';
-import 'game_screen.dart';
-import 'settings_screen.dart';
 import 'constants.dart';
 import 'dart:io';
 

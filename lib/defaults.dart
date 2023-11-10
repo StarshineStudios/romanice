@@ -1,8 +1,5 @@
 import 'constants.dart';
-import 'dart:math';
-import 'defaults.dart';
 
-import 'package:flutter/material.dart';
 
 const Map<String, Map<String, Map<String, String>>> defaultAdjectiveDeclension = {
   'nom': {

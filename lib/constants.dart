@@ -1,4 +1,3 @@
-import 'dart:math';
 import 'defaults.dart';
 
 import 'package:flutter/material.dart';

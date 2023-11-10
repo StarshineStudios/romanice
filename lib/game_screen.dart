@@ -107,7 +107,7 @@ class PeriodicTableElementBox extends StatelessWidget {
                   text: name,
                   strokeWidth: 15,
                   style: const TextStyle(
-                    fontSize: 40,
+                    fontSize: 30,
                     color: Colors.white,
                   ),
                 ),
@@ -145,7 +145,7 @@ class _GameScreenState extends State<GameScreen> {
       PeriodicTableElementBox(
         imagePath: 'assets/FlagItaly.png',
         symbol: 'It',
-        name: 'textItalian'.tr(),
+        name: "${'textItalian'.tr()} ${'comingSoonText'.tr()}",
         number: 2,
         onPressed: () {
           // Handle onPressed action here
@@ -154,7 +154,7 @@ class _GameScreenState extends State<GameScreen> {
       PeriodicTableElementBox(
         imagePath: 'assets/FlagSpain.png',
         symbol: 'Es',
-        name: 'textSpanish'.tr(),
+        name: "${'textSpanish'.tr()} ${'comingSoonText'.tr()}",
         number: 3,
         onPressed: () {
           // Handle onPressed action here
@@ -163,7 +163,7 @@ class _GameScreenState extends State<GameScreen> {
       PeriodicTableElementBox(
         imagePath: 'assets/FlagFrance.png',
         symbol: 'Fr',
-        name: 'textFrench'.tr(),
+        name: "${'textFrench'.tr()} ${'comingSoonText'.tr()}",
         number: 4,
         onPressed: () {
           // Handle onPressed action here
@@ -172,7 +172,7 @@ class _GameScreenState extends State<GameScreen> {
       PeriodicTableElementBox(
         imagePath: 'assets/FlagPortugal.png',
         symbol: 'Pt',
-        name: 'textPortuguese'.tr(),
+        name: "${'textPortuguese'.tr()} ${'comingSoonText'.tr()}",
         number: 5,
         onPressed: () {
           // Handle onPressed action here
@@ -181,7 +181,7 @@ class _GameScreenState extends State<GameScreen> {
       PeriodicTableElementBox(
         imagePath: 'assets/FlagRomania.png',
         symbol: 'Ro',
-        name: 'textRomanian'.tr(),
+        name: "${'textRomanian'.tr()} ${'comingSoonText'.tr()}",
         number: 6,
         onPressed: () {
           // Handle onPressed action here

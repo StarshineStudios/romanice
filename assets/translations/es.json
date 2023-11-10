@@ -13,5 +13,6 @@
   "textSpanish": "Español",
   "textSystemLanguage": "Idioma del Sistema",
   "useSystemDefaultLanguageText": "Usar idioma del Sistema",
-  "resetProgressText": "Restablecer progreso"
+  "resetProgressText": "Restablecer progreso",
+  "comingSoonText": "¡Próximamente!"
 }
