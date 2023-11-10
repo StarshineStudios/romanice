@@ -7,7 +7,6 @@ import 'settings_screen.dart';
 import 'constants.dart';
 import 'dart:io';
 
-import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
