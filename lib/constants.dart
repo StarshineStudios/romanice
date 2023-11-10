@@ -1,17 +1,19 @@
+import 'dart:math';
+
 import 'defaults.dart';
 
 import 'package:flutter/material.dart';
 
 import 'verbs_latin.dart';
 
-const Color backgroundColor = Color.fromARGB(255, 31, 29, 50);
+const Color darkColor = Color.fromRGBO(119, 107, 93, 1);
 
-const Color foregroundColor = Color.fromARGB(255, 68, 64, 103);
+const Color mediumColor = Color.fromRGBO(176, 166, 149, 1);
+const Color fadedColor = Color.fromRGBO(170, 167, 162, 1);
 
-const Color brightColor = Color.fromARGB(255, 87, 76, 190);
+const Color lightColor = Color.fromRGBO(235, 227, 213, 1);
 
-const Color fadedColor = Color.fromARGB(255, 103, 102, 121);
-const Color lightColor = Color.fromARGB(255, 217, 216, 230);
+const Color almostWhiteColor = Color.fromRGBO(243, 238, 234, 1);
 
 const generalBoxName = 'generalBoxString';
 List<Locale> supportedLocales = const [
@@ -59,9 +61,9 @@ class NiceButton extends StatefulWidget {
   final bool active;
   const NiceButton({
     super.key,
-    this.color = foregroundColor,
+    this.color = almostWhiteColor,
     this.inactiveColor = fadedColor,
-    this.borderRadius = 8.0,
+    this.borderRadius = 4.0,
     this.height = 6,
     this.active = true,
     required this.child,
@@ -138,20 +140,6 @@ class _NiceButtonState extends State<NiceButton> {
   }
 }
 
-List<String> numbers = ['singular', 'plural'];
-List<String> genders = ['neuter', 'masculine', 'feminine'];
-List<String> cases = ['nominative', 'accusative', 'genitive', 'dative', 'ablative', 'vocative', 'locative'];
-List<String> moods = ['indicative', 'subjunctive'];
-
-List<String> shortNumbers = ['s', 'p'];
-List<String> shortGenders = ['n', 'm', 'f'];
-List<String> shortCases = ['nom', 'acc', 'gen', 'dat', 'abl', 'voc', 'loc'];
-List<String> shortMoods = ['ind', 'sub', 'imp'];
-List<String> shortVoices = ['act', 'pas'];
-List<String> shortTenses = ['pres', 'imp', 'fut', 'perf', 'plup', 'futp'];
-
-List<String> shortPersons = ['1', '2', '3'];
-
 class LatinAdjective {
   final Map<String, Map<String, Map<String, String>>> declension;
   const LatinAdjective(
@@ -173,7 +161,7 @@ class LatinNoun {
       this.declension = defaultNounDeclension});
 
   String declineAdjective(String c, String n, String g) {
-    return declension[c]?[n] ?? 'does not exist';
+    return declension[c]?[n] ?? 'DNE';
   }
 }
 
@@ -192,17 +180,143 @@ class LatinVerb {
     if (v == 'pas' && (t == 'perf' || t == 'plup' || t == 'futp')) {
       //then it is gender dependant
 
-      String participle = participles['perfectPassive']?.declineAdjective('com', n, g) ?? 'perfect passive does not exist';
-      String formOfSum = irregularVerbs[0].conjugateVerb(m, 'act', t, n, p);
+      String participle = participles['perfectPassive']?.declineAdjective('com', n, g) ?? 'DNE'; //perfect passive does not exist
+      String formOfSum = latinVerbs[0].conjugateVerb(m, 'act', t, n, p);
 
+      if (participle == 'DNE' || formOfSum == 'DNE') {
+        return 'DNE';
+      }
       return '$participle $formOfSum';
     }
-    return conjugation[m]?[v]?[t]?[n]?[p] ?? 'does not exist';
+    return conjugation[m]?[v]?[t]?[n]?[p] ?? 'DNE';
   }
 }
 
+class Question {
+  String lemma;
+  // String definition; //This can be added later
+  List<String> demands;
+  String prompt;
+  String answer;
+  Question({required this.lemma, required this.demands, required this.prompt, required this.answer});
+  @override
+  String toString() {
+    return 'lemma: $lemma, demands: $demands, prompt: $prompt, answer: $answer';
+  }
+}
 
+List<String> latinNumbers = ['singular', 'plural'];
+List<String> latinGenders = ['neuter', 'masculine', 'feminine'];
+List<String> latinCases = ['nominative', 'accusative', 'genitive', 'dative', 'ablative', 'vocative'];
+List<String> latinFullCases = ['nominative', 'accusative', 'genitive', 'dative', 'ablative', 'vocative', 'locative'];
 
+List<String> latinMoods = ['indicative', 'subjunctive'];
+
+List<String> latinShortNumbers = ['s', 'p'];
+List<String> latinShortGenders = ['m', 'f', 'n'];
+List<String> latinShortCases = ['nom', 'acc', 'gen', 'dat', 'abl', 'voc'];
+List<String> latinShortFullCases = ['nom', 'acc', 'gen', 'dat', 'abl', 'voc', 'loc'];
+List<String> latinShortMoods = ['ind', 'sub', 'imp'];
+List<String> latinShortVoices = ['act', 'pas'];
+List<String> latinShortTenses = ['pres', 'imp', 'fut', 'perf', 'plup', 'futp'];
+
+List<String> latinShortPersons = ['1', '2', '3'];
+
+Question getLatinVerbQuestion() {
+  final _random = new Random();
+
+  //
+  LatinVerb randomVerb = latinVerbs[_random.nextInt(latinVerbs.length)];
+
+  String randomMood = latinShortMoods[_random.nextInt(latinShortMoods.length)];
+  String randomVoice = latinShortVoices[_random.nextInt(latinShortVoices.length)];
+  String randomTense = latinShortTenses[_random.nextInt(latinShortTenses.length)];
+  String randomNumber = latinShortNumbers[_random.nextInt(latinShortNumbers.length)];
+  String randomPerson = latinShortPersons[_random.nextInt(latinShortPersons.length)];
+  String randomGender = latinShortGenders[_random.nextInt(latinShortGenders.length)];
+
+  void initConjugation() {
+    randomMood = latinShortMoods[_random.nextInt(latinShortMoods.length)];
+    randomVoice = latinShortVoices[_random.nextInt(latinShortVoices.length)];
+    randomTense = latinShortTenses[_random.nextInt(latinShortTenses.length)];
+    randomNumber = latinShortNumbers[_random.nextInt(latinShortNumbers.length)];
+    randomPerson = latinShortPersons[_random.nextInt(latinShortPersons.length)];
+    randomGender = latinShortGenders[_random.nextInt(latinShortGenders.length)];
+  }
+
+  while (randomVerb.conjugateVerb(randomMood, randomVoice, randomTense, randomNumber, randomPerson, g: randomGender) == 'DNE') {
+    initConjugation();
+    print('$randomMood, $randomVoice, $randomTense, $randomNumber, $randomPerson, $randomGender does not work');
+  }
+
+  String lemma = randomVerb.infinitives['presentActive'] ?? 'something went terribly wrong';
+  List<String> demands = [randomTense, randomMood, randomVoice];
+  String prompt = getSubject(randomMood, randomNumber, randomPerson, randomGender);
+  String answer = randomVerb.conjugateVerb(randomMood, randomVoice, randomTense, randomNumber, randomPerson, g: randomGender);
+
+  return Question(lemma: lemma, demands: demands, prompt: prompt, answer: answer);
+}
+
+String getSubject(String mood, String number, String person, String gender) {
+  String getThirdPersonSubject(String number, String gender) {
+    final _random = new Random();
+    String result = '';
+
+    Map<String, Map<String, List<String>>> subjects = {
+      's': {
+        'm': ['Marcus', 'Antonius', 'Is'],
+        'f': ['Helena', 'Livia', 'Ea'],
+        'n': ['Animal', 'Templum'],
+      },
+      'p': {
+        'm': ['Senatores', 'Multi'],
+        'f': ['Feminae', 'Puellae'],
+        'n': ['Animalia', 'Templa'],
+      },
+    };
+
+    List<String> listToChooseFrom = subjects[number]?[gender] ?? ['DNE'];
+
+    return listToChooseFrom[_random.nextInt(listToChooseFrom.length)];
+  }
+
+  if (number == 's') {
+    if (person == '1') {
+      return 'Egō';
+    } else if (person == '2') {
+      return 'Tū';
+    } else if (person == '3') {
+      return getThirdPersonSubject(number, gender);
+    }
+  } else if (number == 'p') {
+    if (person == '1') {
+      return 'Nōs';
+    } else if (person == '2') {
+      return 'Vōs';
+    } else if (person == '3') {
+      return getThirdPersonSubject(number, gender);
+    }
+  }
+
+  //Tu, audi! etc
+  if (mood == 'imp') {}
+  //FIX LATER
+  return 'DNE';
+}
+
+void main() {
+  print('lol');
+  print(latinVerbs[0].conjugateVerb('ind', 'act', 'pres', 'p', '3'));
+  Question thing = getLatinVerbQuestion();
+  print(thing.toString());
+
+  print('lol');
+  // Example usage:
+
+  // final randomQuestion = getRandomQuestion(spanishVerbs, spanishSubjects);
+  // print("Prompt: ${randomQuestion.prompt}");
+  // print("Answer: ${randomQuestion.answer}");
+}
 
 
 //OLD STUFF
@@ -386,10 +500,4 @@ class LatinVerb {
 //   return question;
 // }
 
-// void main() {
-//   // Example usage:
 
-//   // final randomQuestion = getRandomQuestion(spanishVerbs, spanishSubjects);
-//   // print("Prompt: ${randomQuestion.prompt}");
-//   // print("Answer: ${randomQuestion.answer}");
-// }

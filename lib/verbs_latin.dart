@@ -1,6 +1,6 @@
 import 'constants.dart';
 
-List<LatinVerb> irregularVerbs = [
+List<LatinVerb> latinVerbs = [
   esse,
 // possum
 // eō
@@ -15,6 +15,11 @@ List<LatinVerb> irregularVerbs = [
 ];
 
 LatinVerb esse = LatinVerb(
+  infinitives: {
+    'presentActive': 'esse',
+    'perfectActive': 'fuisse',
+    'futureActive': 'fore',
+  },
   participles: {
     'futureActive': const LatinAdjective(
       declension: {

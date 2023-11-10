@@ -137,7 +137,7 @@ class _LocaleDropdownState extends State<LocaleDropdown> {
                 _selectedLocaleCode = newLocaleCode;
 
                 widget.updateContext();
-                print(newLocaleCode);
+                // print(newLocaleCode);
               }
             }
           : null,
