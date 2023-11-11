@@ -1,72 +1,56 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: MyParentWidget(),
-    );
-  }
-}
-
-class MyParentWidget extends StatefulWidget {
-  @override
-  _MyParentWidgetState createState() => _MyParentWidgetState();
-}
-
-class _MyParentWidgetState extends State<MyParentWidget> {
-  List<bool> expandedStates = [false, false, false]; // Keep track of expanded state for each child
-
-  void toggleExpanded(int index) {
-    setState(() {
-      expandedStates[index] = !expandedStates[index];
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Toggle Expanded Example'),
-      ),
-      body: Column(
-        children: <Widget>[
-          ElevatedButton(
-            onPressed: () {
-              for (int i = 0; i < expandedStates.length; i++) {
-                toggleExpanded(i);
-              }
-            },
-            child: Text('Toggle Expanded'),
-          ),
-          MyChildWidget(expanded: expandedStates[0]),
-          MyChildWidget(expanded: expandedStates[1]),
-          MyChildWidget(expanded: expandedStates[2]),
-        ],
-      ),
-    );
-  }
-}
-
-class MyChildWidget extends StatefulWidget {
-  final bool expanded;
-
-  MyChildWidget({required this.expanded});
-
-  @override
-  _MyChildWidgetState createState() => _MyChildWidgetState();
-}
-
-class _MyChildWidgetState extends State<MyChildWidget> {
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      child: ListTile(
-        title: Text(widget.expanded ? 'Expanded' : 'Not Expanded'),
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text('Stack Inside Column'),
+        ),
+        body: Column(
+          children: [
+            Container(
+              height: 100,
+              color: Colors.blue,
+              child: const Center(
+                child: Text('Item 1'),
+              ),
+            ),
+            Stack(
+              children: [
+                Container(
+                  height: 200,
+                  color: Colors.green,
+                  child: const Center(
+                    child: Text('Item 2'),
+                  ),
+                ),
+                const Positioned(
+                  top: 10,
+                  left: 10,
+                  child: Text(
+                    'Overlayed Text',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                ),
+              ],
+            ),
+            Container(
+              height: 150,
+              color: Colors.red,
+              child: const Center(
+                child: Text('Item 3'),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

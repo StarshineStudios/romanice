@@ -1,4 +1,6 @@
 import 'package:colorguesser/constants.dart';
+import 'package:colorguesser/latin_questions.dart';
+import 'package:colorguesser/practice_screen.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
@@ -8,6 +10,9 @@ class LanguageBox2 extends StatelessWidget {
   final String description;
   final int index;
   final VoidCallback onPressed;
+  final VoidCallback onNounButtonPressed;
+  final VoidCallback onVerbButtonPressed;
+
   final bool isExpanded;
   const LanguageBox2({
     super.key,
@@ -17,6 +22,8 @@ class LanguageBox2 extends StatelessWidget {
     required this.onPressed,
     required this.description,
     required this.isExpanded,
+    required this.onNounButtonPressed,
+    required this.onVerbButtonPressed,
   });
 
   @override
@@ -102,18 +109,18 @@ class LanguageBox2 extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
                               NiceButton(
+                                onPressed: onNounButtonPressed,
                                 child: const Text(
                                   'T NOUNS',
                                   style: TextStyle(fontSize: 25, color: darkColor, fontFamily: 'Coustard'),
                                 ),
-                                onPressed: () {},
                               ),
                               NiceButton(
+                                onPressed: onVerbButtonPressed,
                                 child: const Text(
                                   'T VERBS',
                                   style: TextStyle(fontSize: 25, color: darkColor, fontFamily: 'Coustard'),
                                 ),
-                                onPressed: () {},
                               ),
                             ],
                           ),
@@ -155,13 +162,15 @@ class _LanguageBoxHolderState extends State<LanguageBoxHolder> {
     });
   }
 
-  // void launchGame() {
-  //   Navigator.of(context).push(
-  //     MaterialPageRoute(
-  //       builder: (context) => PracticeScreen(),
-  //     ),
-  //   );
-  // }
+  void launchGame(Function() getFunction) {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => PracticeScreen(
+          getFunction: getFunction,
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -182,6 +191,10 @@ class _LanguageBoxHolderState extends State<LanguageBoxHolder> {
         onPressed: () {
           changeExpandedIndex(0);
         },
+        onNounButtonPressed: () {},
+        onVerbButtonPressed: () {
+          launchGame(getLatinVerbQuestion);
+        },
       ),
       LanguageBox2(
         imagePath: 'assets/FlagItaly.png',
@@ -192,6 +205,8 @@ class _LanguageBoxHolderState extends State<LanguageBoxHolder> {
         onPressed: () {
           changeExpandedIndex(1);
         },
+        onNounButtonPressed: () {},
+        onVerbButtonPressed: () {},
       ),
       LanguageBox2(
         imagePath: 'assets/FlagSpain.png',
@@ -202,6 +217,8 @@ class _LanguageBoxHolderState extends State<LanguageBoxHolder> {
         onPressed: () {
           changeExpandedIndex(2);
         },
+        onNounButtonPressed: () {},
+        onVerbButtonPressed: () {},
       ),
       LanguageBox2(
         imagePath: 'assets/FlagFrance.png',
@@ -212,6 +229,8 @@ class _LanguageBoxHolderState extends State<LanguageBoxHolder> {
         onPressed: () {
           changeExpandedIndex(3);
         },
+        onNounButtonPressed: () {},
+        onVerbButtonPressed: () {},
       ),
       LanguageBox2(
         imagePath: 'assets/FlagPortugal.png',
@@ -222,6 +241,8 @@ class _LanguageBoxHolderState extends State<LanguageBoxHolder> {
         onPressed: () {
           changeExpandedIndex(4);
         },
+        onNounButtonPressed: () {},
+        onVerbButtonPressed: () {},
       ),
       LanguageBox2(
         imagePath: 'assets/FlagRomania.png',
@@ -232,6 +253,8 @@ class _LanguageBoxHolderState extends State<LanguageBoxHolder> {
         onPressed: () {
           changeExpandedIndex(5);
         },
+        onNounButtonPressed: () {},
+        onVerbButtonPressed: () {},
       ),
     ];
 

@@ -1,10 +1,9 @@
-import 'dart:math';
-
-import 'defaults.dart';
+import 'package:tinycolor2/tinycolor2.dart';
 
 import 'package:flutter/material.dart';
 
 import 'verbs_latin.dart';
+import 'latin_questions.dart';
 
 const Color darkColor = Color.fromRGBO(119, 107, 93, 1);
 
@@ -74,26 +73,26 @@ class NiceButton extends StatefulWidget {
   State<NiceButton> createState() => _NiceButtonState();
 }
 
-//https://stackoverflow.com/a/67989242
-extension ColorBrightness on Color {
-  Color darken([double amount = .1]) {
-    assert(amount >= 0 && amount <= 1);
+// //https://stackoverflow.com/a/67989242
+// extension ColorBrightness on Color {
+//   Color darken([double amount = .1]) {
+//     assert(amount >= 0 && amount <= 1);
 
-    final hsl = HSLColor.fromColor(this);
-    final hslDark = hsl.withLightness((hsl.lightness - amount).clamp(0.0, 1.0));
+//     final hsl = HSLColor.fromColor(this);
+//     final hslDark = hsl.withLightness((hsl.lightness - amount).clamp(0.0, 1.0));
 
-    return hslDark.toColor();
-  }
+//     return hslDark.toColor();
+//   }
 
-  Color lighten([double amount = .1]) {
-    assert(amount >= 0 && amount <= 1);
+//   Color lighten([double amount = .1]) {
+//     assert(amount >= 0 && amount <= 1);
 
-    final hsl = HSLColor.fromColor(this);
-    final hslLight = hsl.withLightness((hsl.lightness + amount).clamp(0.0, 1.0));
+//     final hsl = HSLColor.fromColor(this);
+//     final hslLight = hsl.withLightness((hsl.lightness + amount).clamp(0.0, 1.0));
 
-    return hslLight.toColor();
-  }
-}
+//     return hslLight.toColor();
+//   }
+// }
 
 class _NiceButtonState extends State<NiceButton> {
   double _paddingTop = 0;
@@ -124,7 +123,7 @@ class _NiceButtonState extends State<NiceButton> {
           padding: EdgeInsets.only(bottom: _paddingBottom),
           duration: const Duration(milliseconds: 100),
           decoration: BoxDecoration(
-            color: widget.active ? widget.color.darken() : widget.inactiveColor.darken(),
+            color: widget.active ? widget.color.darken(30) : widget.inactiveColor.darken(30),
             borderRadius: BorderRadius.circular(widget.borderRadius),
           ),
           child: Container(
@@ -140,168 +139,17 @@ class _NiceButtonState extends State<NiceButton> {
   }
 }
 
-class LatinAdjective {
-  final Map<String, Map<String, Map<String, String>>> declension;
-  const LatinAdjective(
-      {
-      //default value for tests and such
-      this.declension = defaultAdjectiveDeclension});
-
-  String declineAdjective(String c, String n, String g) {
-    return declension[c]?[n]?[g] ?? 'does not exist';
-  }
-}
-
-class LatinNoun {
-  final Map<String, Map<String, String>> declension;
-  final String gender;
-  const LatinNoun(
-      {required this.gender,
-      //default value for tests and such
-      this.declension = defaultNounDeclension});
-
-  String declineAdjective(String c, String n, String g) {
-    return declension[c]?[n] ?? 'DNE';
-  }
-}
-
-class LatinVerb {
-  Map<String, String> infinitives;
-  Map<String, LatinAdjective> participles;
-  Map<String, Map<String, Map<String, Map<String, Map<String, String>>>>> conjugation;
-
-  LatinVerb({
-    this.infinitives = defaultVerbInfinitives,
-    this.participles = defaultVerbParticiples,
-    this.conjugation = defaultVerbConjugation,
-  });
-
-  String conjugateVerb(String m, String v, String t, String n, String p, {String g = 'm'}) {
-    if (v == 'pas' && (t == 'perf' || t == 'plup' || t == 'futp')) {
-      //then it is gender dependant
-
-      String participle = participles['perfectPassive']?.declineAdjective('com', n, g) ?? 'DNE'; //perfect passive does not exist
-      String formOfSum = latinVerbs[0].conjugateVerb(m, 'act', t, n, p);
-
-      if (participle == 'DNE' || formOfSum == 'DNE') {
-        return 'DNE';
-      }
-      return '$participle $formOfSum';
-    }
-    return conjugation[m]?[v]?[t]?[n]?[p] ?? 'DNE';
-  }
-}
-
 class Question {
   String lemma;
   // String definition; //This can be added later
   List<String> demands;
   String prompt;
   String answer;
-  Question({required this.lemma, required this.demands, required this.prompt, required this.answer});
+  Question({this.lemma = '', this.demands = const [''], this.prompt = '', this.answer = ''});
   @override
   String toString() {
     return 'lemma: $lemma, demands: $demands, prompt: $prompt, answer: $answer';
   }
-}
-
-List<String> latinNumbers = ['singular', 'plural'];
-List<String> latinGenders = ['neuter', 'masculine', 'feminine'];
-List<String> latinCases = ['nominative', 'accusative', 'genitive', 'dative', 'ablative', 'vocative'];
-List<String> latinFullCases = ['nominative', 'accusative', 'genitive', 'dative', 'ablative', 'vocative', 'locative'];
-
-List<String> latinMoods = ['indicative', 'subjunctive'];
-
-List<String> latinShortNumbers = ['s', 'p'];
-List<String> latinShortGenders = ['m', 'f', 'n'];
-List<String> latinShortCases = ['nom', 'acc', 'gen', 'dat', 'abl', 'voc'];
-List<String> latinShortFullCases = ['nom', 'acc', 'gen', 'dat', 'abl', 'voc', 'loc'];
-List<String> latinShortMoods = ['ind', 'sub', 'imp'];
-List<String> latinShortVoices = ['act', 'pas'];
-List<String> latinShortTenses = ['pres', 'imp', 'fut', 'perf', 'plup', 'futp'];
-
-List<String> latinShortPersons = ['1', '2', '3'];
-
-Question getLatinVerbQuestion() {
-  final _random = new Random();
-
-  //
-  LatinVerb randomVerb = latinVerbs[_random.nextInt(latinVerbs.length)];
-
-  String randomMood = latinShortMoods[_random.nextInt(latinShortMoods.length)];
-  String randomVoice = latinShortVoices[_random.nextInt(latinShortVoices.length)];
-  String randomTense = latinShortTenses[_random.nextInt(latinShortTenses.length)];
-  String randomNumber = latinShortNumbers[_random.nextInt(latinShortNumbers.length)];
-  String randomPerson = latinShortPersons[_random.nextInt(latinShortPersons.length)];
-  String randomGender = latinShortGenders[_random.nextInt(latinShortGenders.length)];
-
-  void initConjugation() {
-    randomMood = latinShortMoods[_random.nextInt(latinShortMoods.length)];
-    randomVoice = latinShortVoices[_random.nextInt(latinShortVoices.length)];
-    randomTense = latinShortTenses[_random.nextInt(latinShortTenses.length)];
-    randomNumber = latinShortNumbers[_random.nextInt(latinShortNumbers.length)];
-    randomPerson = latinShortPersons[_random.nextInt(latinShortPersons.length)];
-    randomGender = latinShortGenders[_random.nextInt(latinShortGenders.length)];
-  }
-
-  while (randomVerb.conjugateVerb(randomMood, randomVoice, randomTense, randomNumber, randomPerson, g: randomGender) == 'DNE') {
-    initConjugation();
-    print('$randomMood, $randomVoice, $randomTense, $randomNumber, $randomPerson, $randomGender does not work');
-  }
-
-  String lemma = randomVerb.infinitives['presentActive'] ?? 'something went terribly wrong';
-  List<String> demands = [randomTense, randomMood, randomVoice];
-  String prompt = getSubject(randomMood, randomNumber, randomPerson, randomGender);
-  String answer = randomVerb.conjugateVerb(randomMood, randomVoice, randomTense, randomNumber, randomPerson, g: randomGender);
-
-  return Question(lemma: lemma, demands: demands, prompt: prompt, answer: answer);
-}
-
-String getSubject(String mood, String number, String person, String gender) {
-  String getThirdPersonSubject(String number, String gender) {
-    final _random = new Random();
-    String result = '';
-
-    Map<String, Map<String, List<String>>> subjects = {
-      's': {
-        'm': ['Marcus', 'Antonius', 'Is'],
-        'f': ['Helena', 'Livia', 'Ea'],
-        'n': ['Animal', 'Templum'],
-      },
-      'p': {
-        'm': ['Senatores', 'Multi'],
-        'f': ['Feminae', 'Puellae'],
-        'n': ['Animalia', 'Templa'],
-      },
-    };
-
-    List<String> listToChooseFrom = subjects[number]?[gender] ?? ['DNE'];
-
-    return listToChooseFrom[_random.nextInt(listToChooseFrom.length)];
-  }
-
-  if (number == 's') {
-    if (person == '1') {
-      return 'Egō';
-    } else if (person == '2') {
-      return 'Tū';
-    } else if (person == '3') {
-      return getThirdPersonSubject(number, gender);
-    }
-  } else if (number == 'p') {
-    if (person == '1') {
-      return 'Nōs';
-    } else if (person == '2') {
-      return 'Vōs';
-    } else if (person == '3') {
-      return getThirdPersonSubject(number, gender);
-    }
-  }
-
-  //Tu, audi! etc
-  if (mood == 'imp') {}
-  //FIX LATER
-  return 'DNE';
 }
 
 void main() {

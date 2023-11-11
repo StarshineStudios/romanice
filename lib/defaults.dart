@@ -1,5 +1,4 @@
-import 'constants.dart';
-
+import 'latin_questions.dart';
 
 const Map<String, Map<String, Map<String, String>>> defaultAdjectiveDeclension = {
   'nom': {

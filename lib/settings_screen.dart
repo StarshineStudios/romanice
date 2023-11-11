@@ -39,57 +39,107 @@ class _SettingsScreenState extends State<SettingsScreen> {
     }
 
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Text(
-              'textSettings'.tr(),
-              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-            ),
-            Text(
-              'textSystemLanguage'.tr(),
-              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 10),
-            Row(
-              children: <Widget>[
-                Switch(
-                  value: _generalBox.get('usingSystemLocale', defaultValue: true),
-                  onChanged: (newValue) {
-                    setState(() {
-                      _generalBox.put('usingSystemLocale', newValue);
-                      updateContext();
-                    });
-                  },
+      backgroundColor: mediumColor,
+      body: ListView(
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.only(left: 8.0, right: 8.0, bottom: 8.0),
+            child: Container(
+              padding: EdgeInsets.all(8.0),
+              decoration: BoxDecoration(
+                color: lightColor,
+                borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(12),
+                  bottomRight: Radius.circular(12),
                 ),
-                Text('useSystemDefaultLanguageText'.tr()),
-              ],
+              ),
+              child: Center(
+                child: FittedBox(
+                  fit: BoxFit.fitWidth,
+                  child: Text(
+                    'textSettings'.tr(),
+                    style: TextStyle(fontSize: 60, color: darkColor, fontFamily: 'Coustard', fontWeight: FontWeight.bold),
+                  ),
+                ),
+              ),
             ),
-            LocaleDropdown(
-              updateContext: updateContext,
-              enabled: !_generalBox.get('usingSystemLocale', defaultValue: true),
+          ),
+
+          Padding(
+            padding: const EdgeInsets.only(left: 8.0, right: 8.0, bottom: 8.0),
+            child: Container(
+              padding: EdgeInsets.all(8.0),
+              decoration: BoxDecoration(color: lightColor, borderRadius: BorderRadius.circular(12)),
+              child: Column(
+                children: [
+                  Text(
+                    'textSystemLanguage'.tr(),
+                    style: TextStyle(fontSize: 30, color: darkColor, fontFamily: 'Coustard', fontWeight: FontWeight.bold),
+                    overflow: TextOverflow.visible,
+                  ),
+                  const SizedBox(height: 10),
+                  Text(
+                    'useSystemDefaultLanguageText'.tr(),
+                    style: TextStyle(fontSize: 20, color: darkColor, fontFamily: 'Coustard'),
+                  ),
+                  Switch(
+                    focusColor: darkColor,
+                    hoverColor: darkColor,
+                    activeColor: darkColor,
+                    value: _generalBox.get('usingSystemLocale', defaultValue: true),
+                    onChanged: (newValue) {
+                      setState(() {
+                        _generalBox.put('usingSystemLocale', newValue);
+                        updateContext();
+                      });
+                    },
+                  ),
+                  LocaleDropdown(
+                    updateContext: updateContext,
+                    enabled: !_generalBox.get('usingSystemLocale', defaultValue: true),
+                  ),
+                ],
+              ),
             ),
-            // ElevatedButton(
-            //     onPressed: () {
-            //       _generalBox.put('selectedLocaleCode', selectedLocaleCode);
-            //     },
-            //     child: const Text('Apply (This will restart app)')),
-            Text(
-              'resetProgressText'.tr(),
-              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          ),
+
+          Padding(
+            padding: const EdgeInsets.only(left: 8.0, right: 8.0, bottom: 8.0),
+            child: Container(
+              padding: EdgeInsets.all(8.0),
+              decoration: BoxDecoration(color: lightColor, borderRadius: BorderRadius.circular(12)),
+              child: Column(
+                children: [
+                  Center(
+                    child: Text(
+                      'resetProgressText'.tr(),
+                      style: TextStyle(fontSize: 30, color: darkColor, fontFamily: 'Coustard', fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  NiceButton(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        'resetProgressText'.tr(),
+                        style: TextStyle(fontSize: 20, color: darkColor, fontFamily: 'Coustard'),
+                      ),
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        _generalBox.clear();
+                      });
+                    },
+                  )
+                ],
+              ),
             ),
-            ElevatedButton(
-              child: Text('resetProgressText'.tr()),
-              onPressed: () {
-                setState(() {
-                  _generalBox.clear();
-                });
-              },
-            )
-          ],
-        ),
+          ),
+          // ElevatedButton(
+          //     onPressed: () {
+          //       _generalBox.put('selectedLocaleCode', selectedLocaleCode);
+          //     },
+          //     child: const Text('Apply (This will restart app)')),
+        ],
       ),
     );
   }
@@ -130,6 +180,8 @@ class _LocaleDropdownState extends State<LocaleDropdown> {
   Widget build(BuildContext context) {
     return DropdownButton<String>(
       value: _selectedLocaleCode,
+      dropdownColor: lightColor,
+      focusColor: fadedColor,
       onChanged: widget.enabled
           ? (String? newLocaleCode) {
               if (newLocaleCode != null) {
@@ -144,7 +196,10 @@ class _LocaleDropdownState extends State<LocaleDropdown> {
       items: _availableLocaleCodes.map((String localeCode) {
         return DropdownMenuItem<String>(
           value: localeCode,
-          child: Text(_getLocaleDisplayName(localeCode)),
+          child: Text(
+            _getLocaleDisplayName(localeCode),
+            style: TextStyle(fontSize: 20, color: widget.enabled ? darkColor : fadedColor, fontFamily: 'Coustard'),
+          ),
         );
       }).toList(),
     );
