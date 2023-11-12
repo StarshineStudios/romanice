@@ -1,9 +1,11 @@
 import 'dart:math';
 
+import 'adjectives_latin.dart';
 import 'constants.dart';
 
 import 'defaults.dart';
 
+import 'nouns_latin.dart';
 import 'verbs_latin.dart';
 
 class LatinAdjective {
@@ -26,7 +28,7 @@ class LatinNoun {
       //default value for tests and such
       this.declension = defaultNounDeclension});
 
-  String declineAdjective(String c, String n, String g) {
+  String declineNoun(String c, String n) {
     return declension[c]?[n] ?? 'DNE';
   }
 }
@@ -58,11 +60,11 @@ class LatinVerb {
   }
 }
 
-List<String> latinNumbers = ['singular', 'plural'];
-List<String> latinGenders = ['neuter', 'masculine', 'feminine'];
-List<String> latinCases = ['nominative', 'accusative', 'genitive', 'dative', 'ablative', 'vocative'];
-List<String> latinFullCases = ['nominative', 'accusative', 'genitive', 'dative', 'ablative', 'vocative', 'locative'];
-List<String> latinMoods = ['indicative', 'subjunctive'];
+// List<String> latinNumbers = ['singular', 'plural'];
+// List<String> latinGenders = ['neuter', 'masculine', 'feminine'];
+// List<String> latinCases = ['nominative', 'accusative', 'genitive', 'dative', 'ablative', 'vocative'];
+// List<String> latinFullCases = ['nominative', 'accusative', 'genitive', 'dative', 'ablative', 'vocative', 'locative'];
+// List<String> latinMoods = ['indicative', 'subjunctive'];
 
 //These can apply to a lot of languages
 Map<String, String> lengthenNumber = {
@@ -145,8 +147,9 @@ Question getLatinVerbQuestion() {
   String lemma = randomVerb.infinitives['presentActive'] ?? 'something went terribly wrong';
   List<String> demands = [
     lengthenTense[randomTense] ?? 'DNE',
+    lengthenMood[randomMood] ?? 'DNE',
     //if it is imperative, you need to know the person, as the subject/vocative forms are often identical
-    randomMood == 'imp' ? '${lengthenMood[randomMood]} (${lengthenPerson[randomPerson]})' : lengthenMood[randomMood] ?? 'DNE',
+    if (randomMood == 'imp') lengthenPerson[randomPerson] ?? 'DNE',
     lengthenVoice[randomVoice] ?? 'DNE',
   ];
   String prompt = getLatinSubject(randomMood, randomNumber, randomPerson, randomGender);
@@ -155,6 +158,83 @@ Question getLatinVerbQuestion() {
   String answer = prompt.replaceAll('_____', blank);
 
   return Question(lemma: lemma, demands: demands, prompt: prompt, answer: answer);
+}
+
+Question getLatinNounQuestion() {
+  final random = Random();
+  LatinNoun randomNoun = latinNouns[random.nextInt(latinNouns.length)];
+
+  String randomCase = latinShortFullCases[random.nextInt(latinShortFullCases.length)];
+  String randomNumber = latinShortNumbers[random.nextInt(latinShortNumbers.length)];
+
+  void initDeclension() {
+    randomCase = latinShortFullCases[random.nextInt(latinShortFullCases.length)];
+    randomNumber = latinShortNumbers[random.nextInt(latinShortNumbers.length)];
+  }
+
+  while (randomNoun.declineNoun(randomCase, randomNumber) == 'DNE') {
+    initDeclension();
+    print('$randomCase, $randomNumber, DNE');
+  }
+
+  //possible it is a plural only noun
+  String lemma = randomNoun.declension['nom']?['s'] ?? randomNoun.declension['nom']?['p'] ?? 'TERRIBLE ERROR';
+
+  List<String> demands = [
+    lengthenCase[randomCase] ?? 'DNE',
+    lengthenNumber[randomNumber] ?? 'DNE',
+  ];
+  String prompt = '_____';
+
+  String blank = randomNoun.declineNoun(randomCase, randomNumber);
+  String answer = prompt.replaceAll('_____', blank);
+
+  return Question(lemma: lemma, demands: demands, prompt: prompt, answer: answer);
+}
+
+//match adjective to noun
+Question getLatinAdjectiveNounQuestion() {
+  final random = Random();
+  LatinNoun randomNoun = latinNouns[random.nextInt(latinNouns.length)];
+  String randomCase = latinShortFullCases[random.nextInt(latinShortFullCases.length)];
+  String randomNumber = latinShortNumbers[random.nextInt(latinShortNumbers.length)];
+
+  void initDeclension() {
+    randomCase = latinShortFullCases[random.nextInt(latinShortFullCases.length)];
+    randomNumber = latinShortNumbers[random.nextInt(latinShortNumbers.length)];
+  }
+
+  while (randomNoun.declineNoun(randomCase, randomNumber) == 'DNE') {
+    initDeclension();
+    print('$randomCase, $randomNumber, DNE');
+  }
+
+  LatinAdjective randomAdjective = latinAdjectives[random.nextInt(latinAdjectives.length)];
+
+  //possible it is a plural only noun
+  String lemma = randomAdjective.declineAdjective('nom', 's', 'n');
+
+  List<String> demands = [
+    lengthenCase[randomCase] ?? 'DNE',
+    lengthenNumber[randomNumber] ?? 'DNE',
+    lengthenGender[randomNoun.gender] ?? 'DNE', //disable in hard mode? maybe
+  ];
+
+  String declinedNoun = randomNoun.declineNoun(randomCase, randomNumber);
+  String prompt = '$declinedNoun _____';
+
+  String blank = randomAdjective.declineAdjective(randomCase, randomNumber, randomNoun.gender);
+  String answer = prompt.replaceAll('_____', blank);
+
+  return Question(lemma: lemma, demands: demands, prompt: prompt, answer: answer);
+}
+
+Question getLatinDeclineQuestion() {
+  final random = Random();
+  // Simulate a 60/40 chance
+  bool isOutcomeA = random.nextDouble() < 0.5;
+
+  return isOutcomeA ? getLatinNounQuestion() : getLatinAdjectiveNounQuestion();
 }
 
 String getLatinSubject(String mood, String number, String person, String gender) {

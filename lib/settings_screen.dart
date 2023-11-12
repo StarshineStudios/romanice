@@ -45,8 +45,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
           Padding(
             padding: const EdgeInsets.only(left: 8.0, right: 8.0, bottom: 8.0),
             child: Container(
-              padding: EdgeInsets.all(8.0),
-              decoration: BoxDecoration(
+              padding: const EdgeInsets.all(8.0),
+              decoration: const BoxDecoration(
                 color: lightColor,
                 borderRadius: BorderRadius.only(
                   bottomLeft: Radius.circular(12),
@@ -58,7 +58,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   fit: BoxFit.fitWidth,
                   child: Text(
                     'textSettings'.tr(),
-                    style: TextStyle(fontSize: 60, color: darkColor, fontFamily: 'Coustard', fontWeight: FontWeight.bold),
+                    style: const TextStyle(fontSize: 60, color: darkColor, fontFamily: 'Coustard', fontWeight: FontWeight.bold),
                   ),
                 ),
               ),
@@ -68,19 +68,19 @@ class _SettingsScreenState extends State<SettingsScreen> {
           Padding(
             padding: const EdgeInsets.only(left: 8.0, right: 8.0, bottom: 8.0),
             child: Container(
-              padding: EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(8.0),
               decoration: BoxDecoration(color: lightColor, borderRadius: BorderRadius.circular(12)),
               child: Column(
                 children: [
                   Text(
                     'textSystemLanguage'.tr(),
-                    style: TextStyle(fontSize: 30, color: darkColor, fontFamily: 'Coustard', fontWeight: FontWeight.bold),
+                    style: const TextStyle(fontSize: 30, color: darkColor, fontFamily: 'Coustard', fontWeight: FontWeight.bold),
                     overflow: TextOverflow.visible,
                   ),
                   const SizedBox(height: 10),
                   Text(
                     'useSystemDefaultLanguageText'.tr(),
-                    style: TextStyle(fontSize: 20, color: darkColor, fontFamily: 'Coustard'),
+                    style: const TextStyle(fontSize: 20, color: darkColor, fontFamily: 'Coustard'),
                   ),
                   Switch(
                     focusColor: darkColor,
@@ -106,14 +106,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
           Padding(
             padding: const EdgeInsets.only(left: 8.0, right: 8.0, bottom: 8.0),
             child: Container(
-              padding: EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(8.0),
               decoration: BoxDecoration(color: lightColor, borderRadius: BorderRadius.circular(12)),
               child: Column(
                 children: [
                   Center(
                     child: Text(
                       'resetProgressText'.tr(),
-                      style: TextStyle(fontSize: 30, color: darkColor, fontFamily: 'Coustard', fontWeight: FontWeight.bold),
+                      style: const TextStyle(fontSize: 30, color: darkColor, fontFamily: 'Coustard', fontWeight: FontWeight.bold),
                     ),
                   ),
                   NiceButton(
@@ -121,7 +121,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
                         'resetProgressText'.tr(),
-                        style: TextStyle(fontSize: 20, color: darkColor, fontFamily: 'Coustard'),
+                        style: const TextStyle(fontSize: 20, color: darkColor, fontFamily: 'Coustard'),
                       ),
                     ),
                     onPressed: () {

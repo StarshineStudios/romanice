@@ -44,6 +44,7 @@ dependencies:
   hive: ^2.2.3
   hive_flutter: ^1.1.0
   tinycolor2: ^3.0.1
+  rename: ^3.0.1
 
 
 

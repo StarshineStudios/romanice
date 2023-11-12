@@ -14,5 +14,41 @@
   "textSystemLanguage": "Langue du Système",
   "useSystemDefaultLanguageText": "Utiliser la Langue du Système",
   "resetProgressText": "Réinitialiser la progression",
-  "comingSoonText": "Prochainement!"
+  "comingSoonText": "Prochainement!",
+  "textDecline": "Décliner",
+  "textConjugate": "Conjuguer",
+  "textPractice": "Pratiquer",
+
+  "singular": "singulier",
+  "plural": "pluriel",
+  "masculine": "masculin",
+  "feminine": "féminin",
+  "neuter": "neutre",
+  "nominative": "nominatif",
+  "accusative": "accusatif",
+  "genitive": "génitif",
+  "dative": "datif",
+  "ablative": "ablatif",
+  "vocative": "vocatif",
+  "locative": "locatif",
+  "indicative": "indicatif",
+  "subjunctive": "subjonctif",
+  "imperative": "impératif",
+  "active": "actif",
+  "passive": "passif",
+  "present": "présent",
+  "imperfect": "imparfait",
+  "future": "futur",
+  "perfect": "parfait",
+  "pluperfect": "plus-que-parfait",
+  "future perfect": "futur antérieur",
+  "first person": "première personne",
+  "second person": "deuxième personne",
+  "third person": "troisième personne",
+
+  "completed": "terminé",
+  "tap to reveal": "appuyez pour révéler"
+  
+  
+
 }

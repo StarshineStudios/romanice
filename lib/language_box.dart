@@ -90,14 +90,14 @@ class LanguageBox2 extends StatelessWidget {
                     duration: const Duration(milliseconds: 400),
                     child: Stack(
                       children: [
-                        const Positioned(
-                          bottom: 50,
+                        Positioned(
+                          bottom: 60,
                           left: 0,
                           right: 0,
                           child: Center(
                             child: Text(
-                              'T PRACTICE:',
-                              style: TextStyle(fontSize: 25, color: darkColor, fontFamily: 'Coustard'),
+                              'textPractice'.tr(),
+                              style: const TextStyle(fontSize: 25, color: darkColor, fontFamily: 'Coustard'),
                             ),
                           ),
                         ),
@@ -110,16 +110,22 @@ class LanguageBox2 extends StatelessWidget {
                             children: [
                               NiceButton(
                                 onPressed: onNounButtonPressed,
-                                child: const Text(
-                                  'T NOUNS',
-                                  style: TextStyle(fontSize: 25, color: darkColor, fontFamily: 'Coustard'),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text(
+                                    'textDecline'.tr(),
+                                    style: const TextStyle(fontSize: 25, color: darkColor, fontFamily: 'Coustard'),
+                                  ),
                                 ),
                               ),
                               NiceButton(
                                 onPressed: onVerbButtonPressed,
-                                child: const Text(
-                                  'T VERBS',
-                                  style: TextStyle(fontSize: 25, color: darkColor, fontFamily: 'Coustard'),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text(
+                                    'textConjugate'.tr(),
+                                    style: const TextStyle(fontSize: 25, color: darkColor, fontFamily: 'Coustard'),
+                                  ),
                                 ),
                               ),
                             ],
@@ -182,6 +188,42 @@ class _LanguageBoxHolderState extends State<LanguageBoxHolder> {
       //         isExpanded = true;
       //       });
       //     }),
+      Padding(
+        padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+        child: Container(
+          padding: const EdgeInsets.all(8.0),
+          decoration: const BoxDecoration(
+            color: lightColor,
+            borderRadius: BorderRadius.only(
+              bottomLeft: Radius.circular(12),
+              bottomRight: Radius.circular(12),
+            ),
+          ),
+          child: const Center(
+            child: FittedBox(
+              fit: BoxFit.fitWidth,
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // Container(
+                  //   width: 70,
+                  //   child: Image(
+                  //     image: AssetImage('assets/typeBack.png'),
+                  //   ),
+                  // ),
+                  // SizedBox(
+                  //   width: 20,
+                  // ),
+                  Text(
+                    'Rōmānicē!',
+                    style: TextStyle(fontSize: 60, color: darkColor, fontFamily: 'Coustard', fontWeight: FontWeight.bold),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
       LanguageBox2(
         imagePath: 'assets/FlagRome.png',
         name: 'textLatin'.tr(),
@@ -191,7 +233,9 @@ class _LanguageBoxHolderState extends State<LanguageBoxHolder> {
         onPressed: () {
           changeExpandedIndex(0);
         },
-        onNounButtonPressed: () {},
+        onNounButtonPressed: () {
+          launchGame(getLatinDeclineQuestion);
+        },
         onVerbButtonPressed: () {
           launchGame(getLatinVerbQuestion);
         },

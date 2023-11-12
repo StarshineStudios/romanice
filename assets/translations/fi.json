@@ -14,5 +14,42 @@
   "textSystemLanguage": "Lingua Systematis",
   "useSystemDefaultLanguageText": "Uti Lingua Systematis",
   "resetProgressText": "Data delere",
-  "comingSoonText": "Brevī veniēns!"
+  "comingSoonText": "Brevī veniēns!",
+
+  "textDecline": "Declinare",
+  "textConjugate": "Conjugare",
+  "textPractice": "Exercere",
+
+  "singular": "singularis",
+  "plural": "pluralis",
+  "masculine": "masculinum",
+  "feminine": "femininum",
+  "neuter": "neutrum",
+  "nominative": "nominativus",
+  "accusative": "accusativus",
+  "genitive": "genitivus",
+  "dative": "dativus",
+  "ablative": "ablativus",
+  "vocative": "vocativus",
+  "locative": "locativus",
+  "indicative": "indicativus",
+  "subjunctive": "subjunctivus",
+  "imperative": "imperativus",
+  "active": "activus",
+  "passive": "passivus",
+  "present": "praesens",
+  "imperfect": "imperfectum",
+  "future": "futurum",
+  "perfect": "perfectum",
+  "pluperfect": "pluperfectum",
+  "future perfect": "futurum perfectum",
+  "first person": "prima persona",
+  "second person": "secunda persona",
+  "third person": "tertia persona",
+
+  "completed": "completus",
+  "tap to reveal": "pulsate ut revelaret"
+  
+
+  
 }

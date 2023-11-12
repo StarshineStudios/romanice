@@ -1,13 +1,13 @@
 import 'dart:math';
 
 import 'package:colorguesser/latin_questions.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 import 'package:flutter/material.dart';
 
 import 'constants.dart';
 import 'package:tinycolor2/tinycolor2.dart';
 // Import the necessary package
-import 'package:flutter/material.dart';
 
 class PracticeScreen extends StatefulWidget {
   final Function() getFunction;
@@ -52,7 +52,7 @@ class _PracticeScreenState extends State<PracticeScreen> {
         backgroundColor: lightColor,
         foregroundColor: darkColor,
         title: Text(
-          'Completed: ${count.toString()}',
+          '${'completed'.tr()}: ${count.toString()}',
           style: const TextStyle(color: darkColor, fontFamily: 'Coustard'),
         ),
       ),
@@ -68,66 +68,65 @@ class _PracticeScreenState extends State<PracticeScreen> {
                 bottomRight: Radius.circular(16.0),
               ),
             ),
-            child: Center(
-              child: Column(
-                children: [
-                  Text(
-                    question.lemma,
-                    style: const TextStyle(
-                      fontSize: 60,
-                      color: darkColor,
-                      fontFamily: 'Coustard',
-                      fontWeight: FontWeight.bold,
-                    ),
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height * 0.38,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Text(
+                  question.lemma,
+                  style: const TextStyle(
+                    height: 0.9,
+                    fontSize: 60,
+                    color: darkColor,
+                    fontFamily: 'Coustard',
+                    fontWeight: FontWeight.bold,
                   ),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: question.demands.map((String item) {
-                      return Padding(
-                        padding: const EdgeInsets.all(4.0),
-                        child: Container(
-                          padding: const EdgeInsets.all(8.0),
-                          decoration: BoxDecoration(
-                            color: generatePastelColor(item),
-                            borderRadius: BorderRadius.circular(8.0),
-                          ),
-                          child: Text(
-                            item,
-                            style: TextStyle(
-                              fontSize: 25,
-                              color: generatePastelColor(item).darken(30),
-                              fontFamily: 'Coustard',
-                            ),
+                ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: question.demands.map((String item) {
+                    return Padding(
+                      padding: const EdgeInsets.all(4.0),
+                      child: Container(
+                        padding: const EdgeInsets.all(8.0),
+                        decoration: BoxDecoration(
+                          color: generatePastelColor(item),
+                          borderRadius: BorderRadius.circular(8.0),
+                        ),
+                        child: Text(
+                          item.tr(),
+                          style: TextStyle(
+                            fontSize: 25,
+                            color: generatePastelColor(item).darken(30),
+                            fontFamily: 'Coustard',
                           ),
                         ),
-                      );
-                    }).toList(),
-                  ),
-                  const SizedBox(
-                    height: 8.0,
-                  ),
-                ],
-              ),
+                      ),
+                    );
+                  }).toList(),
+                ),
+                const SizedBox(
+                  height: 4.0,
+                ),
+              ],
             ),
           ),
-          const SizedBox(
-            height: 8.0,
-          ),
-          Text(
-            count < 3 && !answerRevealed ? 'T tap to reveal' : '',
-            style: TextStyle(
-              fontSize: 25,
-              color: darkColor,
-              fontFamily: 'Coustard',
-            ),
-          ),
+          // Text(
+          //   count < 3 && !answerRevealed ? 'tap to reveal'.tr() : '',
+          //   style: TextStyle(
+          //     fontSize: 25,
+          //     color: darkColor,
+          //     fontFamily: 'Coustard',
+          //   ),
+          // ),\
           Expanded(
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: GestureDetector(onTap: onTap, child: TypeWriter(text: answerRevealed ? question.answer : question.prompt)),
+            child: GestureDetector(
+              onTap: onTap,
+              child: TypeWriter(text: answerRevealed ? question.answer : question.prompt),
             ),
-          ),
+          )
         ],
       ),
     );
@@ -173,8 +172,8 @@ class TypeWriter extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 400,
-      height: 500,
+      width: 800,
+      height: 1000,
       child: Stack(
         alignment: Alignment.center,
         children: [

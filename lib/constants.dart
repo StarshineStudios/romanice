@@ -62,7 +62,7 @@ class NiceButton extends StatefulWidget {
     super.key,
     this.color = almostWhiteColor,
     this.inactiveColor = fadedColor,
-    this.borderRadius = 4.0,
+    this.borderRadius = 8.0,
     this.height = 6,
     this.active = true,
     required this.child,
