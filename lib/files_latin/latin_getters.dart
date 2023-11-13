@@ -1,112 +1,12 @@
+//These can apply to a lot of languages
 import 'dart:math';
 
-import 'adjectives_latin.dart';
-import 'constants.dart';
-
-import 'defaults.dart';
-
-import 'nouns_latin.dart';
-import 'verbs_latin.dart';
-
-class LatinAdjective {
-  final Map<String, Map<String, Map<String, String>>> declension;
-  const LatinAdjective(
-      {
-      //default value for tests and such
-      this.declension = defaultAdjectiveDeclension});
-
-  String declineAdjective(String c, String n, String g) {
-    return declension[c]?[n]?[g] ?? 'DNE';
-  }
-}
-
-class LatinNoun {
-  final Map<String, Map<String, String>> declension;
-  final String gender;
-  const LatinNoun(
-      {required this.gender,
-      //default value for tests and such
-      this.declension = defaultNounDeclension});
-
-  String declineNoun(String c, String n) {
-    return declension[c]?[n] ?? 'DNE';
-  }
-}
-
-class LatinVerb {
-  Map<String, String> infinitives;
-  Map<String, LatinAdjective> participles;
-  Map<String, Map<String, Map<String, Map<String, Map<String, String>>>>> conjugation;
-
-  LatinVerb({
-    this.infinitives = defaultVerbInfinitives,
-    this.participles = defaultVerbParticiples,
-    this.conjugation = defaultVerbConjugation,
-  });
-
-  String conjugateVerb(String m, String v, String t, String n, String p, {String g = 'm'}) {
-    if (v == 'pas' && (t == 'perf' || t == 'plup' || t == 'futp')) {
-      //then it is gender dependant
-
-      String participle = participles['perfectPassive']?.declineAdjective('com', n, g) ?? 'DNE'; //perfect passive does not exist
-      String formOfSum = latinVerbs[0].conjugateVerb(m, 'act', t, n, p);
-
-      if (participle == 'DNE' || formOfSum == 'DNE') {
-        return 'DNE';
-      }
-      return '$participle $formOfSum';
-    }
-    return conjugation[m]?[v]?[t]?[n]?[p] ?? 'DNE';
-  }
-}
-
-// List<String> latinNumbers = ['singular', 'plural'];
-// List<String> latinGenders = ['neuter', 'masculine', 'feminine'];
-// List<String> latinCases = ['nominative', 'accusative', 'genitive', 'dative', 'ablative', 'vocative'];
-// List<String> latinFullCases = ['nominative', 'accusative', 'genitive', 'dative', 'ablative', 'vocative', 'locative'];
-// List<String> latinMoods = ['indicative', 'subjunctive'];
-
-//These can apply to a lot of languages
-Map<String, String> lengthenNumber = {
-  's': 'singular',
-  'p': 'plural',
-};
-Map<String, String> lengthenGender = {
-  'm': 'masculine',
-  'f': 'feminine',
-  'n': 'neuter',
-};
-Map<String, String> lengthenCase = {
-  'nom': 'nominative',
-  'acc': 'accusative',
-  'gen': 'genitive',
-  'dat': 'dative',
-  'abl': 'ablative',
-  'voc': 'vocative',
-  'loc': 'locative',
-};
-Map<String, String> lengthenMood = {
-  'ind': 'indicative',
-  'sub': 'subjunctive',
-  'imp': 'imperative',
-};
-Map<String, String> lengthenVoice = {
-  'act': 'active',
-  'pas': 'passive',
-};
-Map<String, String> lengthenTense = {
-  'pres': 'present',
-  'imp': 'imperfect',
-  'fut': 'future',
-  'perf': 'perfect',
-  'plup': 'pluperfect',
-  'futp': 'future perfect',
-};
-Map<String, String> lengthenPerson = {
-  '1': 'first person',
-  '2': 'second person',
-  '3': 'third person',
-};
+import '../constants.dart';
+import 'word_data/latin_adjectives.dart';
+import 'latin_classes.dart';
+import 'word_data/latin_nouns.dart';
+import 'word_data/latin_verbs.dart';
+import '../lengtheners.dart';
 
 List<String> latinShortNumbers = ['s', 'p'];
 List<String> latinShortGenders = ['m', 'f', 'n'];
@@ -116,6 +16,12 @@ List<String> latinShortMoods = ['ind', 'sub', 'imp'];
 List<String> latinShortVoices = ['act', 'pas'];
 List<String> latinShortTenses = ['pres', 'imp', 'fut', 'perf', 'plup', 'futp'];
 List<String> latinShortPersons = ['1', '2', '3'];
+
+// List<String> latinNumbers = ['singular', 'plural'];
+// List<String> latinGenders = ['neuter', 'masculine', 'feminine'];
+// List<String> latinCases = ['nominative', 'accusative', 'genitive', 'dative', 'ablative', 'vocative'];
+// List<String> latinFullCases = ['nominative', 'accusative', 'genitive', 'dative', 'ablative', 'vocative', 'locative'];
+// List<String> latinMoods = ['indicative', 'subjunctive'];
 
 Question getLatinVerbQuestion() {
   final random = Random();
@@ -211,7 +117,6 @@ Question getLatinAdjectiveNounQuestion() {
 
   LatinAdjective randomAdjective = latinAdjectives[random.nextInt(latinAdjectives.length)];
 
-  //possible it is a plural only noun
   String lemma = randomAdjective.declineAdjective('nom', 's', 'n');
 
   List<String> demands = [
@@ -225,6 +130,10 @@ Question getLatinAdjectiveNounQuestion() {
 
   String blank = randomAdjective.declineAdjective(randomCase, randomNumber, randomNoun.gender);
   String answer = prompt.replaceAll('_____', blank);
+
+  if (answer == 'DNE') {
+    return getLatinAdjectiveNounQuestion();
+  }
 
   return Question(lemma: lemma, demands: demands, prompt: prompt, answer: answer);
 }

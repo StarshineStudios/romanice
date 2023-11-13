@@ -38,13 +38,20 @@
   "passive": "passivo",
   "present": "presente",
   "imperfect": "imperfetto",
-  "future": "futuro",
+  "future": "futuro semplice",
   "perfect": "passato prossimo",
   "pluperfect": "trapassato prossimo",
   "future perfect": "futuro anteriore",
   "first person": "prima persona",
   "second person": "seconda persona",
   "third person": "terza persona",
+  
+  "conditional": "condizionale",
+  "perfect simple": "perfetto semplice",
+  "perfect compound": "perfetto composto",
+  "anterior": "anteriormente",
+  "conditional perfect": "condizionale perfetto",
+  
 
   "completed": "completato",
   "tap to reveal": "tocca per rivelare"

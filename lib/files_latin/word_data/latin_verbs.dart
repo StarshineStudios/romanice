@@ -1,4 +1,4 @@
-import 'latin_questions.dart';
+import '../latin_classes.dart';
 
 List<LatinVerb> latinVerbs = [
   esse,

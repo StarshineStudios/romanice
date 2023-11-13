@@ -1,8 +1,12 @@
 import 'package:colorguesser/constants.dart';
-import 'package:colorguesser/latin_questions.dart';
 import 'package:colorguesser/practice_screen.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+
+import 'files_french/french_getters.dart';
+import 'files_italian/italian_getters.dart';
+import 'files_latin/latin_getters.dart';
+import 'files_spanish/spanish_getters.dart';
 
 class LanguageBox2 extends StatelessWidget {
   final String imagePath;
@@ -243,38 +247,50 @@ class _LanguageBoxHolderState extends State<LanguageBoxHolder> {
       LanguageBox2(
         imagePath: 'assets/FlagItaly.png',
         name: 'textItalian'.tr(),
-        description: 'comingSoonText'.tr(),
+        description: '',
         index: 1,
         isExpanded: expandedIndex == 1,
         onPressed: () {
           changeExpandedIndex(1);
         },
-        onNounButtonPressed: () {},
-        onVerbButtonPressed: () {},
+        onNounButtonPressed: () {
+          launchGame(getItalianDeclineQuestion);
+        },
+        onVerbButtonPressed: () {
+          launchGame(getItalianVerbQuestion);
+        },
       ),
       LanguageBox2(
         imagePath: 'assets/FlagSpain.png',
         name: 'textSpanish'.tr(),
-        description: 'comingSoonText'.tr(),
+        description: '',
         index: 2,
         isExpanded: expandedIndex == 2,
         onPressed: () {
           changeExpandedIndex(2);
         },
-        onNounButtonPressed: () {},
-        onVerbButtonPressed: () {},
+        onNounButtonPressed: () {
+          launchGame(getSpanishDeclineQuestion);
+        },
+        onVerbButtonPressed: () {
+          launchGame(getSpanishVerbQuestion);
+        },
       ),
       LanguageBox2(
         imagePath: 'assets/FlagFrance.png',
         name: 'textFrench'.tr(),
-        description: 'comingSoonText'.tr(),
+        description: '',
         index: 3,
         isExpanded: expandedIndex == 3,
         onPressed: () {
           changeExpandedIndex(3);
         },
-        onNounButtonPressed: () {},
-        onVerbButtonPressed: () {},
+        onNounButtonPressed: () {
+          launchGame(getFrenchDeclineQuestion);
+        },
+        onVerbButtonPressed: () {
+          launchGame(getFrenchVerbQuestion);
+        },
       ),
       LanguageBox2(
         imagePath: 'assets/FlagPortugal.png',

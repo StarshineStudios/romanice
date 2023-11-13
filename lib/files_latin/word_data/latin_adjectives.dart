@@ -1,5 +1,4 @@
-import 'package:colorguesser/latin_questions.dart';
-
+import 'package:colorguesser/files_latin/latin_classes.dart';
 
 List<LatinAdjective> latinAdjectives = [
   romanus,

@@ -45,7 +45,13 @@
   "first person": "primeira pessoa",
   "second person": "segunda pessoa",
   "third person": "terceira pessoa",
-
+  
+  "conditional": "condicional",
+  "perfect simple": "perfeito simples",
+  "perfect compound": "perfeito composto",
+  "anterior": "anterior",
+  "conditional perfect": "condicional perfeito",
+  
   "completed": "completado",
   "tap to reveal": "toque para revelar"
   

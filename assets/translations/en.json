@@ -49,6 +49,14 @@
   "second person": "second person",
   "third person": "third person",
               
+  "conditional": "conditional",
+  "perfect simple": "perfect simple",
+  "perfect compound": "perfect compound",
+  "anterior": "anterior",
+  "conditional perfect": "conditional perfect",
+
+
+
   "completed": "completed",
   "tap to reveal": "tap to reveal"
 }

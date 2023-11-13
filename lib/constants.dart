@@ -2,9 +2,6 @@ import 'package:tinycolor2/tinycolor2.dart';
 
 import 'package:flutter/material.dart';
 
-import 'verbs_latin.dart';
-import 'latin_questions.dart';
-
 const Color darkColor = Color.fromRGBO(119, 107, 93, 1);
 
 const Color mediumColor = Color.fromRGBO(176, 166, 149, 1);
@@ -152,19 +149,19 @@ class Question {
   }
 }
 
-void main() {
-  print('lol');
-  print(latinVerbs[0].conjugateVerb('ind', 'act', 'pres', 'p', '3'));
-  Question thing = getLatinVerbQuestion();
-  print(thing.toString());
+// void main() {
+//   print('lol');
+//   print(latinVerbs[0].conjugateVerb('ind', 'act', 'pres', 'p', '3'));
+//   Question thing = getLatinVerbQuestion();
+//   print(thing.toString());
 
-  print('lol');
-  // Example usage:
+//   print('lol');
+//   // Example usage:
 
-  // final randomQuestion = getRandomQuestion(spanishVerbs, spanishSubjects);
-  // print("Prompt: ${randomQuestion.prompt}");
-  // print("Answer: ${randomQuestion.answer}");
-}
+//   // final randomQuestion = getRandomQuestion(spanishVerbs, spanishSubjects);
+//   // print("Prompt: ${randomQuestion.prompt}");
+//   // print("Answer: ${randomQuestion.answer}");
+// }
 
 
 //OLD STUFF

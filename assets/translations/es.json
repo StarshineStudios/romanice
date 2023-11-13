@@ -32,6 +32,7 @@
   "ablative": "ablativo",
   "vocative": "vocativo",
   "locative": "locativo",
+  
   "indicative": "indicativo",
   "subjunctive": "subjuntivo",
   "imperative": "imperativo",
@@ -46,6 +47,12 @@
   "first person": "primera persona",
   "second person": "segunda persona",
   "third person": "tercera persona",
+
+  "conditional": "condicional",
+  "perfect simple": "perfecto simple",
+  "perfect compound": "perfecto compuesto",
+  "anterior": "anterior",
+  "conditional perfect": "condicional perfecto",
 
   "completed": "completado",
   "tap to reveal": "tocar para revelar"

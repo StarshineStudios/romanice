@@ -1,5 +1,4 @@
-import 'latin_questions.dart';
-
+import '../latin_classes.dart';
 
 List<LatinNoun> latinNouns = [
   stella,
