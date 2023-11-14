@@ -44,7 +44,7 @@ Map<String, String> lengthenMood = {
   'imp': 'imperative', //es, la, fr, it, pt, ro
 
   //SAME FORM
-  'optcon': 'optative-conditional', //ro
+  'optcon': 'optative/conditional', //ro
   'con': 'conditional', //ro, it (italian, french, and romanian considers conditional a mood. spanish does not. )
   'pre': 'presumptive', //ro
 };
@@ -73,20 +73,20 @@ Map<String, String> lengthenTense = {
   //r at front means romance
 
   //Simple forms
-  'r pres': 'present', //es, fr, it, pt, ro
-  'r imp': 'imperfect', //es, fr, it, pt, ro
-  'r fut': 'future', //es, fr, it, pt
-  'r perf': 'simple past', //es, fr, it, pt, ro
-  'r cond': 'conditional', //es, pt (other languages consider cond to be a mood)
+  'r pres': 'romance present', //es, fr, it, pt, ro
+  'r imp': 'romance imperfect', //es, fr, it, pt, ro
+  'r fut': 'romance future', //es, fr, it, pt
+  'r perf': 'romance perfect', //es, fr, it, pt, ro
+  'r cond': 'romance conditional', //es, pt (other languages consider cond to be a mood)
   //romanian and portiuguese have a strange simple pluperfect tense
-  'r plup': 'simple pluperfect', //ro, pt
+  'r plup': 'romance pluperfect', //ro, pt
 
   //compound forms
-  'r perf c': 'compound perfect',
-  'r plup c': 'pluperfect',
-  'r futp c': 'future perfect',
-  'r ante c': 'past anterior',
-  'r condp c': 'conditional perfect',
+  'r perf c': 'romance compound perfect',
+  'r plup c': 'romance compound pluperfect',
+  'r futp c': 'romance future perfect',
+  'r ante c': 'romance past anterior',
+  'r condp c': 'romance conditional perfect',
 
   //spanish only soubjunctive imperfect forms
   'r imp ra': 'imperfect (ra)', //es

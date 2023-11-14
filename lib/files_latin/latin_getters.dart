@@ -37,7 +37,9 @@ Question getLatinVerbQuestion() {
     randomGender = latinShortGenders[random.nextInt(latinShortGenders.length)];
   }
 
-  while (randomVerb.conjugateVerb(randomMood, randomVoice, randomTense, randomNumber, randomPerson, g: randomGender) == 'DNE') {
+  //I will not allow second person neuter because that is very rare
+  while (randomVerb.conjugateVerb(randomMood, randomVoice, randomTense, randomNumber, randomPerson, g: randomGender) == 'DNE' ||
+      (randomGender == 'n' && randomPerson == '2')) {
     initConjugation();
     print('$randomMood, $randomVoice, $randomTense, $randomNumber, $randomPerson, $randomGender DNE');
   }
@@ -145,6 +147,7 @@ String getLatinSubject(String mood, String number, String person, String gender)
       's': {
         'm': ['Mārcus', 'Lūcius', 'Gāius', 'Iūlius', 'Quīntus', 'Titus', 'Aulus', 'Sextus', 'Magister', 'Vīcīnus', 'is'],
         'f': ['Iūlia', 'Lūcia', 'Cornēlia', 'Aemilia', 'Claudia', 'Antōnia', 'Flāvia', 'Valeria', 'Magistra', 'Vīcīna', 'ea'],
+        'n': ['Nōmen', 'Animal', 'Tempus', 'Mare', 'Bellum', 'Caput', 'Corpus', 'Opus', 'Verbum', 'id'],
       },
       'p': {
         'm': [
@@ -161,6 +164,7 @@ String getLatinSubject(String mood, String number, String person, String gender)
           'eī'
         ],
         'f': ['Iūlia et Lūcia', 'Cornēlia et Aemilia', 'Claudia et Antōnia', 'Flāvia et Valeria', 'Magistrae', 'Vīcīnae', 'eae'],
+        'n': ['Nōmina', 'Animālia', 'Tempora', 'Maria', 'Bella', 'Capita', 'Corpora', 'Opera', 'Verba', 'ea'],
       },
     };
     List<String> listToChooseFrom = subjects[number]?[gender] ?? ['DNE'];
@@ -168,12 +172,14 @@ String getLatinSubject(String mood, String number, String person, String gender)
   }
 
   //if SECOND PERSON IMPERATIVE, we use the VOCATIVE or PRONOUNS
+  //neuter second person is not allowed
   if (mood == 'imp') {
     if (person == '2') {
       Map<String, Map<String, List<String>>> vocativeSubjects = {
         's': {
           'm': ['Mārce', 'Lūcī', 'Gāī', 'Iūlī', 'Quīnte', 'Tīte', 'Aule', 'Sexte', 'Magister', 'Vīcīne', 'Tū'],
           'f': ['Iūlia', 'Lūcia', 'Cornēlia', 'Aemilia', 'Claudia', 'Antōnia', 'Flāvia', 'Valeria', 'Magistra', 'Vīcīna', 'Tū'],
+          // 'n': ['Nōmen', 'Animal', 'Tempus', 'Mare', 'Bellum', 'Caput', 'Corpus', 'Opus', 'Verbum', 'id'],
         },
         'p': {
           'm': [
@@ -190,21 +196,23 @@ String getLatinSubject(String mood, String number, String person, String gender)
             'Vōs'
           ],
           'f': ['Iūlia et Lūcia', 'Cornēlia et Aemilia', 'Claudia et Antōnia', 'Flāvia et Valeria', 'Magistrae', 'Vīcīnae', 'Vōs'],
+          // 'n': ['Nōmina', 'Animālia', 'Tempora', 'Maria', 'Bella', 'Capita', 'Corpora', 'Opera', 'Verba', 'ea'],
         },
       };
 
-      List<String> listToChooseFrom = vocativeSubjects[number]?[gender] ?? ['DNE'];
+      List<String> listToChooseFrom = vocativeSubjects[number]?[gender] ?? ['DNyE'];
       bool spaceBefore = random.nextBool() ? true : false;
       String vocative = listToChooseFrom[random.nextInt(listToChooseFrom.length)];
       return spaceBefore ? '_____, $vocative!' : '$vocative, _____!';
     } else if (person == '3') {
       //in third person imperative, it is often weird to have a subject.
-      //TODO: add some acceptable words here
+      //TODO: add some acceptable words here?
       return '_____';
     } else {
       return 'DNE'; //imperatives cannot be first person
     }
   } else {
+    //wait neuter cant be first person
     String subject = '';
     if (number == 's') {
       if (person == '1') {

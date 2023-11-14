@@ -445,7 +445,7 @@ LatinVerb amare = LatinVerb(
   },
 );
 
-LatinVerb loquor = LatinVerb(
+LatinDeponentVerb loquor = LatinDeponentVerb(
   infinitives: {
     'presentActive': 'loqui',
     // 'perfectActive': 'locūtus esse',
