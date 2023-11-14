@@ -14,10 +14,7 @@ void main() async {
   await Hive.openBox(generalBoxName);
   // setInitialValues(); //This is to set initial values for Hive given they are not initialized so I dont have to depend on first time default being correct
   runApp(
-    // Phoenix(
-    //   child:
     EasyLocalization(supportedLocales: supportedLocales, path: 'assets/translations', fallbackLocale: const Locale('en'), child: const RomaniceApp()),
-    // ),
   );
 }
 

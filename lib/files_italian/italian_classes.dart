@@ -2,10 +2,7 @@ import 'word_data/italian_verbs.dart';
 
 class ItalianAdjective {
   final Map<String, Map<String, String>> declension;
-  const ItalianAdjective(
-      {
-      //default value for tests and such\
-      required this.declension});
+  const ItalianAdjective({required this.declension});
 
   String declineAdjective(String n, String g) {
     return declension[n]?[g] ?? 'DNE';
@@ -21,13 +18,10 @@ class ItalianNoun {
     return declension[n] ?? 'DNE';
   }
 
-  //TODO: inelegant solution but it works
-  String getGender({String n = 'DEFAULT'}) {
-    if (n == 'DEFAULT') {
-      return gender;
-    }
-
+  String getGender(String n) {
+    //check if irregular
     if (gender == 'i') {
+      //masc in singular, fem in plural
       return n == 's' ? 'm' : 'f';
     } else {
       return gender;
@@ -50,46 +44,45 @@ class ItalianVerb {
     required this.conjugation,
   });
 
+  //we need the gender for forms involving participles.
   String conjugateVerb(String m, String t, String n, String p, {String g = 'm'}) {
-    print('hi'); //pres ind and pres cond are both simple, also all imp are simple
-    if (m == 'imp' || t == 'pres' || t == 'imp' || t == 'fut' || t == 'perf') {
+    //first, check if the verb is simple or not.
+    if ('r pres' == t || 'r imp' == t || 'r fut' == t || 'r perf' == t) {
       return conjugation[m]?[t]?[n]?[p] ?? 'DNE';
-
-      //else if the verb is not simple and is compound
-    } else {
-      String auxiliaryTense = '';
-
-      if (t == 'perfc') {
-        auxiliaryTense = 'pres';
-      } else if (t == 'plup') {
-        auxiliaryTense = 'imp';
-      } else if (t == 'ant') {
-        auxiliaryTense = 'perf';
-      } else if (t == 'futp') {
-        auxiliaryTense = 'fut';
-      } else if (m == 'con' && t == 'perfc') {
-        auxiliaryTense = 'pres';
-      }
-
-      //if it is essere it is gender dependant
-
-      //mood is same,
-      String participleGender = auxiliaryVerb == essere2 ? g : 'm';
-
-      String aux = auxiliaryVerb.conjugateVerb(m, auxiliaryTense, n, p);
-      String part = participles['past']!.declineAdjective(n, participleGender);
-
-      if (aux == 'DNE' || part == 'DNE') {
-        return 'DNE';
-      }
-      return '$aux $part';
     }
+
+    //else if the verb is not simple and is compound
+    String auxiliaryTense = '';
+    if (t == 'r perf c') {
+      auxiliaryTense = 'r pres';
+    } else if (t == 'r plup c') {
+      auxiliaryTense = 'r imp';
+    } else if (t == 'r ante c') {
+      auxiliaryTense = 'r perf';
+    } else if (t == 'r futp c') {
+      auxiliaryTense = 'r fut';
+    }
+
+    //if the auxiliary verb is etre, it is gender and number dependant.
+    //else, we use the masculine singular form with avoir
+    String participleNumber = auxiliaryVerb == essere2 ? n : 'm';
+    String participleGender = auxiliaryVerb == essere2 ? g : 'm';
+
+    String aux = auxiliaryVerb.conjugateVerb(m, auxiliaryTense, n, p);
+    String part = participles['r perf']!.declineAdjective(participleNumber, participleGender);
+
+    if (aux == 'DNE' || part == 'DNE') {
+      return 'DNE';
+    }
+    return '$aux $part';
   }
 }
 
+//The behave just like normal verbs but do not have aux verbs of their own to prevent paradoxes.
 class ItalianAuxiliaryVerb {
   String infinitive;
   String gerund;
+
   Map<String, ItalianAdjective> participles;
   Map<String, Map<String, Map<String, Map<String, String>>>> conjugation;
 
@@ -101,10 +94,6 @@ class ItalianAuxiliaryVerb {
   });
 
   String conjugateVerb(String m, String t, String n, String p, {String g = 'm'}) {
-    print('hi'); //pres ind and pres cond are both simple, also all imp are simple
-    if (m == 'imp' || t == 'pres' || t == 'imp' || t == 'fut' || t == 'perf') {
-      return conjugation[m]?[t]?[n]?[p] ?? 'DNE';
-    }
-    return 'DNE';
+    return conjugation[m]?[t]?[n]?[p] ?? 'DNE';
   }
 }

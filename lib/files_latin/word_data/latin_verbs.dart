@@ -15,7 +15,7 @@ List<LatinVerb> latinVerbs = [
 // inquam
 ];
 
-LatinVerb esse = LatinVerb(
+LatinVerb esse = LatinAuxiliaryVerb(
   infinitives: {
     'presentActive': 'esse',
     'perfectActive': 'fuisse',
@@ -90,10 +90,10 @@ LatinVerb esse = LatinVerb(
           's': {'1': 'essem', '2': 'essēs', '3': 'esset'},
           'p': {'1': 'essēmus', '2': 'essētis', '3': 'essent'},
         },
-        'impArchaic': {
-          's': {'1': 'forem', '2': 'forēs', '3': 'foret'},
-          'p': {'1': 'forēmus', '2': 'forētis', '3': 'forent'},
-        },
+        // 'impArchaic': {
+        //   's': {'1': 'forem', '2': 'forēs', '3': 'foret'},
+        //   'p': {'1': 'forēmus', '2': 'forētis', '3': 'forent'},
+        // },
         'perf': {
           's': {'1': 'fuerim', '2': 'fuerīs', '3': 'fuerit'},
           'p': {'1': 'fuerīmus', '2': 'fuerītis', '3': 'fuerint'},
@@ -193,10 +193,6 @@ LatinVerb posse = LatinVerb(
           's': {'1': 'possem', '2': 'possēs', '3': 'posset'},
           'p': {'1': 'possēmus', '2': 'possētis', '3': 'possent'},
         },
-        'impArchaic': {
-          's': {'1': 'forem', '2': 'forēs', '3': 'foret'},
-          'p': {'1': 'forēmus', '2': 'forētis', '3': 'forent'},
-        },
         'perf': {
           's': {'1': 'potuerim', '2': 'potuerīs', '3': 'potuerit'},
           'p': {'1': 'potuerīmus', '2': 'potuerītis', '3': 'potuerint'},
@@ -204,18 +200,6 @@ LatinVerb posse = LatinVerb(
         'plup': {
           's': {'1': 'potuissem', '2': 'potuissēs', '3': 'potuisset'},
           'p': {'1': 'potuissēmus', '2': 'potuissētis', '3': 'potuissent'},
-        },
-      },
-    },
-    'imp': {
-      'act': {
-        'pres': {
-          's': {'2': 'es'},
-          'p': {'2': 'este'},
-        },
-        'fut': {
-          's': {'2': 'estō', '3': 'estō'},
-          'p': {'2': 'estōte', '3': 'suntō'},
         },
       },
     },
@@ -383,21 +367,19 @@ LatinVerb amare = LatinVerb(
           's': {'1': 'amābor', '2': 'amāberis', '3': 'amābitur'},
           'p': {'1': 'amābimur', '2': 'amābiminī', '3': 'amābuntur'},
         },
-
-        //gender dependant
-        'perf': {
-          's': {'1': 'amātus sum', '2': 'amātus es', '3': 'amātus est'},
-          'p': {'1': 'amātī sumus', '2': 'amātī estis', '3': 'amātī sunt'},
-        },
-        'plup': {
-          's': {'1': 'amātus eram', '2': 'amātus erās', '3': 'amātus erat'},
-          'p': {'1': 'amātī erāmus', '2': 'amātī erātis', '3': 'amātī erant'},
-        },
-        'futp': {
-          's': {'1': 'amātus ero', '2': 'amātus eris', '3': 'amātus erit'},
-          'p': {'1': 'amātī erimus', '2': 'amātī eritis', '3': 'amātī erunt'},
-        },
-        //gender dependant
+        //Participle dependant forms are not listed here.
+        // 'perf': {
+        //   's': {'1': 'amātus sum', '2': 'amātus es', '3': 'amātus est'},
+        //   'p': {'1': 'amātī sumus', '2': 'amātī estis', '3': 'amātī sunt'},
+        // },
+        // 'plup': {
+        //   's': {'1': 'amātus eram', '2': 'amātus erās', '3': 'amātus erat'},
+        //   'p': {'1': 'amātī erāmus', '2': 'amātī erātis', '3': 'amātī erant'},
+        // },
+        // 'futp': {
+        //   's': {'1': 'amātus ero', '2': 'amātus eris', '3': 'amātus erit'},
+        //   'p': {'1': 'amātī erimus', '2': 'amātī eritis', '3': 'amātī erunt'},
+        // },
       },
     },
     'sub': {
@@ -428,16 +410,14 @@ LatinVerb amare = LatinVerb(
           's': {'1': 'amārer', '2': 'amārēris', '3': 'amārētur'},
           'p': {'1': 'amārēmur', '2': 'amārēminī', '3': 'amārentur'},
         },
-        //gender dependant
-        'perf': {
-          's': {'1': 'amātus sim', '2': 'amātus sis', '3': 'amātus sit'},
-          'p': {'1': 'amātī simus', '2': 'amātī sitis', '3': 'amātī sint'},
-        },
-        'plup': {
-          's': {'1': 'amātus essem', '2': 'amātus essēs', '3': 'amātus esset'},
-          'p': {'1': 'amātī essēmus', '2': 'amātī essētis', '3': 'amātī essent'},
-        },
-        //gender dependant
+        // 'perf': {
+        //   's': {'1': 'amātus sim', '2': 'amātus sis', '3': 'amātus sit'},
+        //   'p': {'1': 'amātī simus', '2': 'amātī sitis', '3': 'amātī sint'},
+        // },
+        // 'plup': {
+        //   's': {'1': 'amātus essem', '2': 'amātus essēs', '3': 'amātus esset'},
+        //   'p': {'1': 'amātī essēmus', '2': 'amātī essētis', '3': 'amātī essent'},
+        // },
       },
     },
     'imp': {
@@ -459,6 +439,192 @@ LatinVerb amare = LatinVerb(
         'fut': {
           's': {'2': 'amātor', '3': 'amātor'},
           'p': {'3': 'amantor'}
+        },
+      },
+    },
+  },
+);
+
+LatinVerb loquor = LatinVerb(
+  infinitives: {
+    'presentActive': 'loqui',
+    // 'perfectActive': 'locūtus esse',
+    // 'futureActive': 'locūtūrus esse',
+  },
+  participles: {
+    'presentActive': const LatinAdjective(
+      declension: {
+        'nom': {
+          's': {'m': 'loquēns', 'f': 'loquēns', 'n': 'loquēns'},
+          'p': {'m': 'loquentēs', 'f': 'loquentēs', 'n': 'loquentia'}
+        },
+        'acc': {
+          's': {'m': 'loquentem', 'f': 'loquentem', 'n': 'loquēns'},
+          'p': {'m': 'loquentēs', 'f': 'loquentēs', 'n': 'loquentia'}
+        },
+        'gen': {
+          's': {'m': 'loquentis', 'f': 'loquentis', 'n': 'loquentis'},
+          'p': {'m': 'loquentium', 'f': 'loquentium', 'n': 'loquentium'}
+        },
+        'dat': {
+          's': {'m': 'loquentī', 'f': 'loquentī', 'n': 'loquentī'},
+          'p': {'m': 'loquentibus', 'f': 'loquentibus', 'n': 'loquentibus'}
+        },
+        'abl': {
+          's': {'m': 'loquente', 'f': 'loquente', 'n': 'loquente'},
+          'p': {'m': 'loquentibus', 'f': 'loquentibus', 'n': 'loquentibus'}
+        },
+        'voc': {
+          's': {'m': 'loquēns', 'f': 'loquēns', 'n': 'loquēns'},
+          'p': {'m': 'loquentēs', 'f': 'loquentēs', 'n': 'loquentia'}
+        },
+      },
+    ),
+    'perfectActive': const LatinAdjective(
+      declension: {
+        'nom': {
+          's': {'m': 'locūtus', 'f': 'locūta', 'n': 'locūtum'},
+          'p': {'m': 'locūtī', 'f': 'locūtae', 'n': 'locūta'}
+        },
+        'acc': {
+          's': {'m': 'locūtum', 'f': 'locūtam', 'n': 'locūtum'},
+          'p': {'m': 'locūtōs', 'f': 'locūtās', 'n': 'locūta'}
+        },
+        'gen': {
+          's': {'m': 'locūtī', 'f': 'locūtae', 'n': 'locūtī'},
+          'p': {'m': 'locūtōrum', 'f': 'locūtārum', 'n': 'locūtōrum'}
+        },
+        'dat': {
+          's': {'m': 'locūtō', 'f': 'locūtae', 'n': 'locūtō'},
+          'p': {'m': 'locūtīs', 'f': 'locūtīs', 'n': 'locūtīs'}
+        },
+        'abl': {
+          's': {'m': 'locūtō', 'f': 'locūtā', 'n': 'locūtō'},
+          'p': {'m': 'locūtīs', 'f': 'locūtīs', 'n': 'locūtīs'}
+        },
+        'voc': {
+          's': {'m': 'locūte', 'f': 'locūta', 'n': 'locūtum'},
+          'p': {'m': 'locūtī', 'f': 'locūtae', 'n': 'locūta'}
+        },
+      },
+    ),
+    'futureActive': const LatinAdjective(
+      declension: {
+        'nom': {
+          's': {'m': 'locūtūrus', 'f': 'locūtūra', 'n': 'locūtūrum'},
+          'p': {'m': 'locūtūrī', 'f': 'locūtūrae', 'n': 'locūtūra'}
+        },
+        'acc': {
+          's': {'m': 'locūtūrum', 'f': 'locūtūram', 'n': 'locūtūrum'},
+          'p': {'m': 'locūtūrōs', 'f': 'locūtūrās', 'n': 'locūtūra'}
+        },
+        'gen': {
+          's': {'m': 'locūtūrī', 'f': 'locūtūrae', 'n': 'locūtūrī'},
+          'p': {'m': 'locūtūrōrum', 'f': 'locūtūrārum', 'n': 'locūtūrōrum'}
+        },
+        'dat': {
+          's': {'m': 'locūtūrō', 'f': 'locūtūrae', 'n': 'locūtūrō'},
+          'p': {'m': 'locūtūrīs', 'f': 'locūtūrīs', 'n': 'locūtūrīs'}
+        },
+        'abl': {
+          's': {'m': 'locūtūrō', 'f': 'locūtūrā', 'n': 'locūtūrō'},
+          'p': {'m': 'locūtūrīs', 'f': 'locūtūrīs', 'n': 'locūtūrīs'}
+        },
+        'voc': {
+          's': {'m': 'locūtūre', 'f': 'locūtūra', 'n': 'locūtūrum'},
+          'p': {'m': 'locūtūrī', 'f': 'locūtūrae', 'n': 'locūtūra'}
+        },
+      },
+    ),
+    'futurePassive': const LatinAdjective(
+      declension: {
+        'nom': {
+          's': {'m': 'loquendus', 'f': 'loquenda', 'n': 'loquendum'},
+          'p': {'m': 'loquendī', 'f': 'loquendae', 'n': 'loquenda'}
+        },
+        'acc': {
+          's': {'m': 'loquendum', 'f': 'loquendam', 'n': 'loquendum'},
+          'p': {'m': 'loquendōs', 'f': 'loquendās', 'n': 'loquenda'}
+        },
+        'gen': {
+          's': {'m': 'loquendī', 'f': 'loquendae', 'n': 'loquendī'},
+          'p': {'m': 'loquendōrum', 'f': 'loquendārum', 'n': 'loquendōrum'}
+        },
+        'dat': {
+          's': {'m': 'loquendō', 'f': 'loquendae', 'n': 'loquendō'},
+          'p': {'m': 'loquendīs', 'f': 'loquendīs', 'n': 'loquendīs'}
+        },
+        'abl': {
+          's': {'m': 'loquendō', 'f': 'loquendā', 'n': 'loquendō'},
+          'p': {'m': 'loquendīs', 'f': 'loquendīs', 'n': 'loquendīs'}
+        },
+        'voc': {
+          's': {'m': 'loquende', 'f': 'loquenda', 'n': 'loquendum'},
+          'p': {'m': 'loquendī', 'f': 'loquendae', 'n': 'loquenda'}
+        },
+      },
+    ),
+  },
+  conjugation: {
+    'ind': {
+      'act': {
+        'pres': {
+          's': {'1': 'loquor', '2': 'loqueris', '3': 'loquitur'},
+          'p': {'1': 'loquimur', '2': 'loquiminī', '3': 'loquuntur'},
+        },
+        'imp': {
+          's': {'1': 'loquebar', '2': 'loquebāris', '3': 'loquebātur'},
+          'p': {'1': 'loquebāmur', '2': 'loquebāminī', '3': 'loquebantur'},
+        },
+        'fut': {
+          's': {'1': 'loquar', '2': 'loqueris', '3': 'loquetur'},
+          'p': {'1': 'loquēmur', '2': 'loquēminī', '3': 'loquentur'},
+        },
+        // 'perf': {
+        //   's': {'1': 'locūtus sum', '2': 'locūtus es', '3': 'locūtus est'},
+        //   'p': {'1': 'locūtī sumus', '2': 'locūtī estis', '3': 'locūtī sunt'},
+        // },
+        // 'plup': {
+        //   's': {'1': 'locūtus eram', '2': 'locūtus erās', '3': 'locūtus erat'},
+        //   'p': {'1': 'locūtī erāmus', '2': 'locūtī erātis', '3': 'locūtī erant'},
+        // },
+        // 'futp': {
+        //   's': {'1': 'locūtus erō', '2': 'locūtus eris', '3': 'locūtus erit'},
+        //   'p': {'1': 'locūtī erimus', '2': 'locūtī eritis', '3': 'locūtī erunt'},
+        // },
+      },
+      //no passive
+    },
+    'sub': {
+      'act': {
+        'pres': {
+          's': {'1': 'loquar', '2': 'loquāris', '3': 'loquātur'},
+          'p': {'1': 'loquāmur', '2': 'loquāminī', '3': 'loquantur'},
+        },
+        'imp': {
+          's': {'1': 'loquerer', '2': 'loquerēris', '3': 'loquerētur'},
+          'p': {'1': 'loquerēmur', '2': 'loquerēminī', '3': 'loquerentur'},
+        },
+        // 'perf': {
+        //   's': {'1': 'locūtus sim', '2': 'locūtus sīs', '3': 'locūtus sit'},
+        //   'p': {'1': 'locūtī simus', '2': 'locūtī sitis', '3': 'locūtī sint'},
+        // },
+        // 'plup': {
+        //   's': {'1': 'locūtus essem', '2': 'locūtus essēs', '3': 'locūtus esset'},
+        //   'p': {'1': 'locūtī essēmus', '2': 'locūtī essētis', '3': 'locūtī essent'},
+        // },
+      },
+      //no passive
+    },
+    'imp': {
+      'act': {
+        'pres': {
+          's': {'2': 'loquere'},
+          'p': {'2': 'loquiminī'}
+        },
+        'fut': {
+          's': {'2': 'loquitor'},
+          'p': {'2': 'loquitor', '3': 'loquuntor'}
         },
       },
     },

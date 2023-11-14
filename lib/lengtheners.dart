@@ -31,6 +31,9 @@ Map<String, String> lengthenCase = {
   'abl': 'ablative',
   'voc': 'vocative', //la, ro
   'loc': 'locative',
+
+  'nomacc': 'nominative/accusative',
+  'gendat': 'genitive/dative',
 };
 
 //romanian sometimes counts verbal nouns as moods.
@@ -41,7 +44,7 @@ Map<String, String> lengthenMood = {
   'imp': 'imperative', //es, la, fr, it, pt, ro
 
   //SAME FORM
-  'opt': 'optative', //ro
+  'optcon': 'optative-conditional', //ro
   'con': 'conditional', //ro, it (italian, french, and romanian considers conditional a mood. spanish does not. )
   'pre': 'presumptive', //ro
 };
@@ -69,23 +72,37 @@ Map<String, String> lengthenTense = {
   //there will be some redundancy for clarity.
   //r at front means romance
 
-  //THESE ARE NOT ENGLISH FORMS. THEY ARE ROMANCE NAMES.
   //Simple forms
-  'rpres': 'present',
-  'rimp': 'imperfect',
-  'rfut': 'future',
-  'rperf': 'simple past',
-  'rcond': 'conditional',
+  'r pres': 'present', //es, fr, it, pt, ro
+  'r imp': 'imperfect', //es, fr, it, pt, ro
+  'r fut': 'future', //es, fr, it, pt
+  'r perf': 'simple past', //es, fr, it, pt, ro
+  'r cond': 'conditional', //es, pt (other languages consider cond to be a mood)
+  //romanian and portiuguese have a strange simple pluperfect tense
+  'r plup': 'simple pluperfect', //ro, pt
 
   //compound forms
-  'rperfc': 'compound past',
-  'rplup': 'pluperfect',
-  'rfutp': 'future perfect',
-  'rant': 'past anterior',
-  'rcondp': 'conditional perfect',
+  'r perf c': 'compound perfect',
+  'r plup c': 'pluperfect',
+  'r futp c': 'future perfect',
+  'r ante c': 'past anterior',
+  'r condp c': 'conditional perfect',
+
+  //spanish only soubjunctive imperfect forms
+  'r imp ra': 'imperfect (ra)', //es
+  'r imp se': 'imperfect (se)', //es
+
+  //Romanian only future forms
+  'r fut c vrea': 'future (vrea)',
+  // 'r futp c vrea': '', //I can just use future perfect compound for this
+  'r fut c o': 'future (o)',
+  'r fut c avea': 'future (avea)', //rare, but forms future in the past so I will include it
+  'r futpast c': 'future in the past',
 };
 Map<String, String> lengthenPerson = {
   '1': 'first person',
   '2': 'second person',
   '3': 'third person',
 };
+
+//participles can be past or whatever

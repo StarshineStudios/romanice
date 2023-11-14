@@ -61,10 +61,9 @@ class SpanishVerb {
       //if it is essere it is gender dependant
 
       //mood is same,
-      String participleGender = auxiliaryVerb == essere2 ? g : 'm';
 
       String aux = auxiliaryVerb.conjugateVerb(m, auxiliaryTense, n, p);
-      String part = participles['past']!.declineAdjective(n, participleGender);
+      String part = participles['past']!.declineAdjective('s', 'm');
 
       if (aux == 'DNE' || part == 'DNE') {
         return 'DNE';

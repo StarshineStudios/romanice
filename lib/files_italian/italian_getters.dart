@@ -12,39 +12,31 @@ List<String> italianShortNumbers = ['s', 'p'];
 //i is used to represent neuter like words that change gender
 List<String> italianShortGenders = ['m', 'f', 'i'];
 List<String> italianShortMoods = ['ind', 'sub', 'con', 'imp'];
+List<String> italianShortPersons = ['1', '2', '3'];
 List<String> italianShortTenses = [
-  'rpres',
-  'rimp',
-  'rfut',
-  'rperf',
-  // 'rcond', //cond is mood
+  'r pres',
+  'r imp',
+  'r fut',
+  'r perf',
 
   //compound forms
-  'rperfc',
-  'rplup',
-  'rfutp',
-  'rant',
-  // 'rcondp',
+  'r perf c',
+  'r plup c',
+  'r futp c',
+  'r ante c',
 ];
-List<String> italianShortPersons = ['1', '2', '3'];
-
-// List<String> italianNumbers = ['singular', 'plural'];
-// List<String> italianGenders = ['neuter', 'masculine', 'feminine'];
-// List<String> italianCases = ['nominative', 'accusative', 'genitive', 'dative', 'ablative', 'vocative'];
-// List<String> italianFullCases = ['nominative', 'accusative', 'genitive', 'dative', 'ablative', 'vocative', 'locative'];
-// List<String> italianMoods = ['indicative', 'subjunctive'];
 
 Question getItalianVerbQuestion() {
   final random = Random();
-
-  //
+  //PICK RANDOM VERB
   ItalianVerb randomVerb = italianVerbs[random.nextInt(italianVerbs.length)];
+
+  //PICK RANDOM CONJUGATION
   String randomMood = italianShortMoods[random.nextInt(italianShortMoods.length)];
   String randomTense = italianShortTenses[random.nextInt(italianShortTenses.length)];
   String randomNumber = italianShortNumbers[random.nextInt(italianShortNumbers.length)];
   String randomPerson = italianShortPersons[random.nextInt(italianShortPersons.length)];
   String randomGender = italianShortGenders[random.nextInt(italianShortGenders.length)];
-
   void initConjugation() {
     randomMood = italianShortMoods[random.nextInt(italianShortMoods.length)];
     randomTense = italianShortTenses[random.nextInt(italianShortTenses.length)];
@@ -55,31 +47,31 @@ Question getItalianVerbQuestion() {
 
   while (randomVerb.conjugateVerb(randomMood, randomTense, randomNumber, randomPerson, g: randomGender) == 'DNE') {
     initConjugation();
-    print('$randomMood, $randomTense, $randomNumber, $randomPerson, $randomGender DNE');
   }
 
+  //ONCE WE HAVE FOUND A VALID CONJUGATION FOR THE VERB
   String lemma = randomVerb.infinitive;
 
   List<String> demands = [
     lengthenTense[randomTense] ?? 'DNE',
     lengthenMood[randomMood] ?? 'DNE',
+    //if it is imperative, person matters.
     if (randomMood == 'imp') lengthenPerson[randomPerson] ?? 'DNE',
   ];
-  String prompt = getItalianSubject(randomMood, randomNumber, randomPerson, randomGender);
 
+  //GENERATE QUESTION
+  String prompt = getItalianSubject(randomMood, randomNumber, randomPerson, randomGender);
   String blank = randomVerb.conjugateVerb(randomMood, randomTense, randomNumber, randomPerson, g: randomGender);
   String answer = prompt.replaceAll('_____', blank);
-
   return Question(lemma: lemma, demands: demands, prompt: prompt, answer: answer);
-  // return Question(lemma: 'lemma', demands: ['demands'], prompt: 'prompt', answer: 'answer');
 }
 
 Question getItalianNounQuestion() {
   final random = Random();
+  //PICK RANDOM NOUN
   ItalianNoun randomNoun = italianNouns[random.nextInt(italianNouns.length)];
-
+  //PICK RANDOM DECLENSION
   String randomNumber = italianShortNumbers[random.nextInt(italianShortNumbers.length)];
-
   void initDeclension() {
     randomNumber = italianShortNumbers[random.nextInt(italianShortNumbers.length)];
   }
@@ -89,25 +81,23 @@ Question getItalianNounQuestion() {
     print('$randomNumber, DNE');
   }
 
+  //GENERATE QUESTION
   String lemma = randomNumber == 's' ? randomNoun.declineNoun('p') : randomNoun.declineNoun('s');
-
   List<String> demands = [
     lengthenNumber[randomNumber] ?? 'DNE',
   ];
   String prompt = '_____';
-
   String blank = randomNoun.declineNoun(randomNumber);
   String answer = prompt.replaceAll('_____', blank);
-
   return Question(lemma: lemma, demands: demands, prompt: prompt, answer: answer);
 }
 
-//match adjective to noun
 Question getItalianAdjectiveNounQuestion() {
   final random = Random();
+  //GET RANDOM NOUN
   ItalianNoun randomNoun = italianNouns[random.nextInt(italianNouns.length)];
+  //GET RANDOM NUMBER
   String randomNumber = italianShortNumbers[random.nextInt(italianShortNumbers.length)];
-
   void initDeclension() {
     randomNumber = italianShortNumbers[random.nextInt(italianShortNumbers.length)];
   }
@@ -116,26 +106,24 @@ Question getItalianAdjectiveNounQuestion() {
     initDeclension();
     print('$randomNumber, DNE');
   }
-
+  //GET RANDOM ADJECTIVE
   ItalianAdjective randomAdjective = italianAdjectives[random.nextInt(italianAdjectives.length)];
 
+  //GENERATE QUESTION
   String lemma = randomAdjective.declineAdjective('s', 'm');
-
   List<String> demands = [
     lengthenNumber[randomNumber] ?? 'DNE',
-    lengthenGender[randomNoun.getGender(n: randomNumber)] ?? 'DNE', //disable in hard mode? maybe
+    lengthenGender[randomNoun.getGender(randomNumber)] ?? 'DNE', //disable in hard mode? maybe
   ];
 
   String declinedNoun = randomNoun.declineNoun(randomNumber);
   String prompt = '$declinedNoun _____';
-
-  String blank = randomAdjective.declineAdjective(randomNumber, randomNoun.getGender(n: randomNumber));
+  String blank = randomAdjective.declineAdjective(randomNumber, randomNoun.getGender(randomNumber));
   String answer = prompt.replaceAll('_____', blank);
 
   if (answer == 'DNE') {
     return getItalianAdjectiveNounQuestion();
   }
-
   return Question(lemma: lemma, demands: demands, prompt: prompt, answer: answer);
 }
 
@@ -150,21 +138,30 @@ Question getItalianDeclineQuestion() {
 String getItalianSubject(String mood, String number, String person, String gender) {
   final random = Random();
 
-  //In order to get them
   String getThirdPersonSubject(String number, String gender) {
     Map<String, Map<String, List<String>>> subjects = {
       's': {
-        'm': ['TEMP Marco', 'TEMP Antonio', 'TEMP Is'],
-        'f': ['TEMP Helena', 'TEMP Livia', 'TEMP Ea'],
+        'm': ['Luca', 'Matteo', 'Alessandro', 'Marco', 'Giovanni', 'Francesco', 'Andrea', 'Gabriele', 'Il professore', 'Il vicino', 'lui'],
+        'f': ['Sofia', 'Giulia', 'Martina', 'Chiara', 'Laura', 'Alessia', 'Francesca', 'Serena', 'La professoressa', 'La vicina', 'lei'],
       },
       'p': {
-        'm': ['TEMP Senatores', 'TEMP Multi', 'TEMP Marco e Antonio', 'TEMP Helena e Marcus'],
-        'f': ['TEMP Femine', 'TEMP Puelle', 'TEMP Helena e Livia'],
+        'm': [
+          'Luca e Matteo',
+          'Alessandro e Marco',
+          'Giovanni e Francesco',
+          'Andrea e Gabriele',
+          'Luca e Giulia',
+          'Matteo e Chiara',
+          'Alessandro e Laura',
+          'Marco e Alessia',
+          'I professori',
+          'I vicini',
+          'loro'
+        ],
+        'f': ['Sofia e Giulia', 'Martina e Chiara', 'Laura e Alessia', 'Francesca e Serena', 'Le professoresse', 'Le vicine', 'loro'],
       },
     };
-
     List<String> listToChooseFrom = subjects[number]?[gender] ?? ['DNE'];
-
     return listToChooseFrom[random.nextInt(listToChooseFrom.length)];
   }
 
@@ -172,17 +169,17 @@ String getItalianSubject(String mood, String number, String person, String gende
 
   if (number == 's') {
     if (person == '1') {
-      subject = 'TEMP Egō';
+      subject = 'Io';
     } else if (person == '2') {
-      subject = 'TEMP Tū';
+      subject = 'Tu';
     } else if (person == '3') {
       subject = getThirdPersonSubject(number, gender);
     }
   } else if (number == 'p') {
     if (person == '1') {
-      subject = 'TEMP Nōs';
+      subject = 'Noi';
     } else if (person == '2') {
-      subject = 'TEMP Vōs';
+      subject = 'Voi';
     } else if (person == '3') {
       subject = getThirdPersonSubject(number, gender);
     }

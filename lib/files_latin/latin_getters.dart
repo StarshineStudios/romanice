@@ -17,25 +17,17 @@ List<String> latinShortVoices = ['act', 'pas'];
 List<String> latinShortTenses = ['pres', 'imp', 'fut', 'perf', 'plup', 'futp'];
 List<String> latinShortPersons = ['1', '2', '3'];
 
-// List<String> latinNumbers = ['singular', 'plural'];
-// List<String> latinGenders = ['neuter', 'masculine', 'feminine'];
-// List<String> latinCases = ['nominative', 'accusative', 'genitive', 'dative', 'ablative', 'vocative'];
-// List<String> latinFullCases = ['nominative', 'accusative', 'genitive', 'dative', 'ablative', 'vocative', 'locative'];
-// List<String> latinMoods = ['indicative', 'subjunctive'];
-
 Question getLatinVerbQuestion() {
   final random = Random();
-
-  //
+  //GET RANDOM VERB
   LatinVerb randomVerb = latinVerbs[random.nextInt(latinVerbs.length)];
-
+  //GET RANDOM CONJUGATION
   String randomMood = latinShortMoods[random.nextInt(latinShortMoods.length)];
   String randomVoice = latinShortVoices[random.nextInt(latinShortVoices.length)];
   String randomTense = latinShortTenses[random.nextInt(latinShortTenses.length)];
   String randomNumber = latinShortNumbers[random.nextInt(latinShortNumbers.length)];
   String randomPerson = latinShortPersons[random.nextInt(latinShortPersons.length)];
   String randomGender = latinShortGenders[random.nextInt(latinShortGenders.length)];
-
   void initConjugation() {
     randomMood = latinShortMoods[random.nextInt(latinShortMoods.length)];
     randomVoice = latinShortVoices[random.nextInt(latinShortVoices.length)];
@@ -50,29 +42,28 @@ Question getLatinVerbQuestion() {
     print('$randomMood, $randomVoice, $randomTense, $randomNumber, $randomPerson, $randomGender DNE');
   }
 
-  String lemma = randomVerb.infinitives['presentActive'] ?? 'something went terribly wrong';
+  String lemma = randomVerb.infinitives['presentActive'] ?? 'DNE';
   List<String> demands = [
     lengthenTense[randomTense] ?? 'DNE',
     lengthenMood[randomMood] ?? 'DNE',
-    //if it is imperative, you need to know the person, as the subject/vocative forms are often identical
+    //if it is imperative, you need to know the person, as the subject/vocative forms are often identical and can be confusing
     if (randomMood == 'imp') lengthenPerson[randomPerson] ?? 'DNE',
     lengthenVoice[randomVoice] ?? 'DNE',
   ];
-  String prompt = getLatinSubject(randomMood, randomNumber, randomPerson, randomGender);
 
+  String prompt = getLatinSubject(randomMood, randomNumber, randomPerson, randomGender);
   String blank = randomVerb.conjugateVerb(randomMood, randomVoice, randomTense, randomNumber, randomPerson, g: randomGender);
   String answer = prompt.replaceAll('_____', blank);
-
   return Question(lemma: lemma, demands: demands, prompt: prompt, answer: answer);
 }
 
 Question getLatinNounQuestion() {
   final random = Random();
+  //GET RANDOM NOUN
   LatinNoun randomNoun = latinNouns[random.nextInt(latinNouns.length)];
-
+  //GET RANDOM VALID DECLENSION
   String randomCase = latinShortFullCases[random.nextInt(latinShortFullCases.length)];
   String randomNumber = latinShortNumbers[random.nextInt(latinShortNumbers.length)];
-
   void initDeclension() {
     randomCase = latinShortFullCases[random.nextInt(latinShortFullCases.length)];
     randomNumber = latinShortNumbers[random.nextInt(latinShortNumbers.length)];
@@ -83,18 +74,17 @@ Question getLatinNounQuestion() {
     print('$randomCase, $randomNumber, DNE');
   }
 
-  //possible it is a plural only noun
+  //ACCOUNT FOR THE FACT THAT IT MAY BE PLURAL ONLY
   String lemma = randomNoun.declension['nom']?['s'] ?? randomNoun.declension['nom']?['p'] ?? 'TERRIBLE ERROR';
 
+  //PREPARE QUESTION
   List<String> demands = [
     lengthenCase[randomCase] ?? 'DNE',
     lengthenNumber[randomNumber] ?? 'DNE',
   ];
   String prompt = '_____';
-
   String blank = randomNoun.declineNoun(randomCase, randomNumber);
   String answer = prompt.replaceAll('_____', blank);
-
   return Question(lemma: lemma, demands: demands, prompt: prompt, answer: answer);
 }
 
@@ -153,48 +143,69 @@ String getLatinSubject(String mood, String number, String person, String gender)
   String getThirdPersonSubject(String number, String gender) {
     Map<String, Map<String, List<String>>> subjects = {
       's': {
-        'm': ['Marcus', 'Antonius', 'Is'],
-        'f': ['Helena', 'Livia', 'Ea'],
-        'n': ['Animal', 'Templum'],
+        'm': ['Mārcus', 'Lūcius', 'Gāius', 'Iūlius', 'Quīntus', 'Titus', 'Aulus', 'Sextus', 'Magister', 'Vīcīnus', 'is'],
+        'f': ['Iūlia', 'Lūcia', 'Cornēlia', 'Aemilia', 'Claudia', 'Antōnia', 'Flāvia', 'Valeria', 'Magistra', 'Vīcīna', 'ea'],
       },
       'p': {
-        'm': ['Senatores', 'Multi', 'Marcus et Antonius', 'Helena et Marcus'],
-        'f': ['Feminae', 'Puellae', 'Helena et Livia'],
-        'n': ['Animalia', 'Templa'],
+        'm': [
+          'Mārcus et Lūcius',
+          'Gāius et Iūlius',
+          'Quīntus et Titus',
+          'Aulus et Sextus',
+          'Mārcus et Iūlia',
+          'Lūcius et Cornēlia',
+          'Gāius et Aemilia',
+          'Iūlius et Claudia',
+          'Magistrī',
+          'Vīcīnī',
+          'eī'
+        ],
+        'f': ['Iūlia et Lūcia', 'Cornēlia et Aemilia', 'Claudia et Antōnia', 'Flāvia et Valeria', 'Magistrae', 'Vīcīnae', 'eae'],
       },
     };
-
     List<String> listToChooseFrom = subjects[number]?[gender] ?? ['DNE'];
-
     return listToChooseFrom[random.nextInt(listToChooseFrom.length)];
   }
 
-  //if imperative second person, we use the VOCATIVE or Tu/Vos
-  if (mood == 'imp' && person == '2') {
-    Map<String, Map<String, List<String>>> vocativeSubjects = {
-      's': {
-        'm': ['Marce', 'Antoni', 'Tū'],
-        'f': ['Helena', 'Livia', 'Tū'],
-        'n': ['Animal', 'Templum'],
-      },
-      'p': {
-        'm': ['Senatores', 'omnes', 'vos omnes'],
-        'f': ['Feminae', 'Puellae', 'vos omnes'],
-        'n': ['Animalia'],
-      },
-    };
-    List<String> listToChooseFrom = vocativeSubjects[number]?[gender] ?? ['DNE'];
+  //if SECOND PERSON IMPERATIVE, we use the VOCATIVE or PRONOUNS
+  if (mood == 'imp') {
+    if (person == '2') {
+      Map<String, Map<String, List<String>>> vocativeSubjects = {
+        's': {
+          'm': ['Mārce', 'Lūcī', 'Gāī', 'Iūlī', 'Quīnte', 'Tīte', 'Aule', 'Sexte', 'Magister', 'Vīcīne', 'Tū'],
+          'f': ['Iūlia', 'Lūcia', 'Cornēlia', 'Aemilia', 'Claudia', 'Antōnia', 'Flāvia', 'Valeria', 'Magistra', 'Vīcīna', 'Tū'],
+        },
+        'p': {
+          'm': [
+            'Mārce et Lūcī',
+            'Gāī et Iūlī',
+            'Quīnte et Tīte',
+            'Aule et Sexte',
+            'Mārce et Iūlia',
+            'Lūcī et Cornēlia',
+            'Gāī et Aemilia',
+            'Iūlī et Claudia',
+            'Magistrī',
+            'Vīcīnī',
+            'Vōs'
+          ],
+          'f': ['Iūlia et Lūcia', 'Cornēlia et Aemilia', 'Claudia et Antōnia', 'Flāvia et Valeria', 'Magistrae', 'Vīcīnae', 'Vōs'],
+        },
+      };
 
-    bool spaceBefore = random.nextBool() ? true : false;
-
-    String vocative = listToChooseFrom[random.nextInt(listToChooseFrom.length)];
-
-    return spaceBefore ? '_____, $vocative' : '$vocative, _____';
-
-    //else the thing is a SUBJECT
+      List<String> listToChooseFrom = vocativeSubjects[number]?[gender] ?? ['DNE'];
+      bool spaceBefore = random.nextBool() ? true : false;
+      String vocative = listToChooseFrom[random.nextInt(listToChooseFrom.length)];
+      return spaceBefore ? '_____, $vocative!' : '$vocative, _____!';
+    } else if (person == '3') {
+      //in third person imperative, it is often weird to have a subject.
+      //TODO: add some acceptable words here
+      return '_____';
+    } else {
+      return 'DNE'; //imperatives cannot be first person
+    }
   } else {
     String subject = '';
-
     if (number == 's') {
       if (person == '1') {
         subject = 'Egō';
