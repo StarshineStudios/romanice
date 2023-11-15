@@ -115,8 +115,17 @@ class RomanianVerb {
           return 'DNE';
         }
         return '$first $second';
+      } else if (t == 'r pres') {
+        String first = avea3.conjugateVerb('ind', 'r pres', n, p);
+
+        String second = 'fi';
+        String third = participles['past']?.declineAdjective('nomacc', 's', 'm') ?? 'DNE';
+        if (first == 'DNE' || second == 'DNE' || third == 'DNE') {
+          return 'DNE';
+        }
+        return '$first $second $third';
       }
-    } else if (m == 'optcon') {
+    } else if (m == 'pre') {
       if (t == 'r perf c') {
         //we use the aux form of vrea with oi	oi	o	om	oți	or
         String first = vrea3.conjugateVerb('ind', 'r pres', n, p);
@@ -125,10 +134,17 @@ class RomanianVerb {
           return 'DNE';
         }
         return '$first $second';
+      } else if (t == 'pres') {
+        String first = vrea3.conjugateVerb('ind', 'r pres', n, p);
+        String second = 'fi';
+        String third = participles['past']?.declineAdjective('nomacc', 's', 'm') ?? 'DNE';
+        if (first == 'DNE' || second == 'DNE' || third == 'DNE') {
+          return 'DNE';
+        }
+        return '$first $second $third';
       }
     }
     //it is otherwise simple.
-
     return conjugation[m]?[t]?[n]?[p] ?? 'DNE';
   }
 }

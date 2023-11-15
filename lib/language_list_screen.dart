@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'files_french/french_getters.dart';
 import 'files_italian/italian_getters.dart';
 import 'files_latin/latin_getters.dart';
+import 'files_romanian/romanian_getters.dart';
 import 'files_spanish/spanish_getters.dart';
 
 class LanguageBox2 extends StatelessWidget {
@@ -307,14 +308,18 @@ class _LanguageBoxHolderState extends State<LanguageBoxHolder> {
       LanguageBox2(
         imagePath: 'assets/FlagRomania.png',
         name: 'textRomanian'.tr(),
-        description: 'comingSoonText'.tr(),
+        description: '',
         index: 5,
         isExpanded: expandedIndex == 5,
         onPressed: () {
           changeExpandedIndex(5);
         },
-        onNounButtonPressed: () {},
-        onVerbButtonPressed: () {},
+        onNounButtonPressed: () {
+          launchGame(getRomanianDeclineQuestion);
+        },
+        onVerbButtonPressed: () {
+          launchGame(getRomanianVerbQuestion);
+        },
       ),
     ];
 
@@ -327,143 +332,3 @@ void main() {
     home: LanguageBoxHolder(),
   ));
 }
-
-//OLD LANGUAGE BOX
-
-// class LanguageBox extends StatefulWidget {
-//   final String imagePath;
-//   final String name;
-//   final String description;
-//   final int index;
-//   final VoidCallback onPressed;
-//   const LanguageBox({
-//     super.key,
-//     required this.imagePath,
-//     required this.name,
-//     required this.index,
-//     required this.onPressed,
-//     required this.description,
-//   });
-
-//   @override
-//   State<LanguageBox> createState() => _LanguageBoxState();
-// }
-
-// class _LanguageBoxState extends State<LanguageBox> {
-//   bool isExpanded = false;
-
-//   @override
-//   Widget build(BuildContext context) {
-//     //paddding around each box
-//     return Padding(
-//       padding: const EdgeInsets.only(top: 12, left: 12, right: 12),
-//       child: GestureDetector(
-//         onTap: () {
-//           setState(() {
-//             isExpanded = !isExpanded;
-//           });
-//         },
-//         child: Container(
-//           decoration: BoxDecoration(
-//             color: lightColor,
-//             borderRadius: BorderRadius.circular(25.0),
-//           ),
-//           child: Padding(
-//             padding: const EdgeInsets.all(12),
-//             //the elements inside
-//             child: Column(
-//               children: [
-//                 Row(
-//                   children: [
-//                     Container(
-//                       height: 80,
-//                       width: 80, // Adjust the size as needed
-//                       decoration: BoxDecoration(
-//                         borderRadius: BorderRadius.circular(20),
-//                         image: DecorationImage(
-//                           image: AssetImage(widget.imagePath),
-//                           fit: BoxFit.cover,
-//                         ),
-//                       ),
-//                     ),
-//                     Expanded(
-//                       child: FittedBox(
-//                         alignment: Alignment.centerLeft,
-//                         fit: BoxFit.scaleDown,
-//                         child: Padding(
-//                           padding: const EdgeInsets.only(left: 12),
-//                           child: Column(
-//                             crossAxisAlignment: CrossAxisAlignment.start,
-//                             children: [
-//                               Text(
-//                                 widget.name,
-//                                 style: const TextStyle(fontSize: 30, color: darkColor, fontFamily: 'Coustard', fontWeight: FontWeight.bold),
-//                               ),
-//                               if (widget.description != '')
-//                                 Text(
-//                                   widget.description,
-//                                   style: const TextStyle(fontSize: 25, color: darkColor, fontFamily: 'Coustard'),
-//                                 ),
-//                             ],
-//                           ),
-//                         ),
-//                       ),
-//                     ),
-//                   ],
-//                 ),
-//                 AnimatedContainer(
-//                   duration: const Duration(milliseconds: 200),
-//                   height: isExpanded ? 100.0 : 0.0,
-//                   // color: Colors.blue,/for testing
-//                   child: AnimatedOpacity(
-//                     opacity: isExpanded ? 1.0 : 0.0,
-//                     duration: const Duration(milliseconds: 400),
-//                     child: Stack(
-//                       children: [
-//                         const Positioned(
-//                           bottom: 50,
-//                           left: 0,
-//                           right: 0,
-//                           child: Center(
-//                             child: Text(
-//                               'T PRACTICE:',
-//                               style: TextStyle(fontSize: 25, color: darkColor, fontFamily: 'Coustard'),
-//                             ),
-//                           ),
-//                         ),
-//                         Positioned(
-//                           left: 0,
-//                           right: 0,
-//                           bottom: 0,
-//                           child: Row(
-//                             mainAxisAlignment: MainAxisAlignment.spaceAround,
-//                             children: [
-//                               NiceButton(
-//                                 child: const Text(
-//                                   'T NOUNS',
-//                                   style: TextStyle(fontSize: 25, color: darkColor, fontFamily: 'Coustard'),
-//                                 ),
-//                                 onPressed: () {},
-//                               ),
-//                               NiceButton(
-//                                 child: const Text(
-//                                   'T VERBS',
-//                                   style: TextStyle(fontSize: 25, color: darkColor, fontFamily: 'Coustard'),
-//                                 ),
-//                                 onPressed: () {},
-//                               ),
-//                             ],
-//                           ),
-//                         ),
-//                       ],
-//                     ),
-//                   ),
-//                 ),
-//               ],
-//             ),
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-// }

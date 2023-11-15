@@ -1,29 +1,34 @@
 {
   "appDescription": "O aplicație pentru limbile romanice",
-  "language": "Română",
-  "languageCode": "ro",
+  "language": "Engleză",
+  "languageCode": "en",
+  "textGame": "Joc",
+
+  "textSettings": "Setări",
+  "textSystemLanguage": "Limba Sistemului",
+  "useSystemDefaultLanguageText": "Folosește Limba Implicită a Sistemului",
+  "resetProgressText": "Resetează Progresul",
+  "comingSoonText": "În curând!",
+
   "textEnglish": "Engleză",
   "textFrench": "Franceză",
-  "textGame": "Joc",
   "textItalian": "Italiană",
   "textLatin": "Latină",
   "textPortuguese": "Portugheză",
   "textRomanian": "Română",
-  "textSettings": "Setări",
-  "textSpanish": "Spaniol",
-  "textSystemLanguage": "Limbă de Sistem",
-  "useSystemDefaultLanguageText": "Utilizați Limba de Sistem",
-  "resetProgressText": "Resetați progresul",
-  "comingSoonText": "În curând!",
-  "textDecline": "Refuza",
+  "textSpanish": "Spaniolă",
+
+  "textDecline": "Declinare",
   "textConjugate": "Conjugare",
-  "textPractice": "Exercițiu",
+  "textPractice": "Exersare",
 
   "singular": "singular",
   "plural": "plural",
+
   "masculine": "masculin",
   "feminine": "feminin",
   "neuter": "neutru",
+  
   "nominative": "nominativ",
   "accusative": "acuzativ",
   "genitive": "genitiv",
@@ -31,29 +36,56 @@
   "ablative": "ablativ",
   "vocative": "vocativ",
   "locative": "locativ",
+  "nominative/accusative": "nominativ/acuzativ",
+  "genitive/dative": "genitiv/dativ",
+
   "indicative": "indicativ",
   "subjunctive": "conjunctiv",
   "imperative": "imperativ",
+  "optative/conditional": "optativ/condițional",
+  "conditional": "condițional",
+  "presumptive": "presumtiv",
+
   "active": "activ",
   "passive": "pasiv",
+
   "present": "prezent",
   "imperfect": "imperfect",
   "future": "viitor",
   "perfect": "perfect",
   "pluperfect": "mai mult ca perfect",
   "future perfect": "viitor anterior",
+
+  "romance present": "prezent",
+  "romance imperfect": "imperfect",
+  "romance future": "viitor",
+  "romance perfect": "perfect simplu",
+  "romance conditional": "condițional",
+  "romance pluperfect": "mai mult ca perfect",
+
+  "romance compound perfect": "perfect compus",
+  "romance compound pluperfect": "mai mult ca perfect compus",
+  "romance future perfect": "viitor anterior",
+  "romance past anterior": "trecut anterior",
+  "romance conditional perfect": "condițional perfect",
+
+  "imperfect (ra)": "imperfect (ra)",
+  "imperfect (se)": "imperfect (se)",
+
+  "future (vrea)": "viitor I (vrea)",
+  "future (o)": "viitor popular (o, avea)",
+  "future (avea)": "viitor popular (avea)",
+  "future in the past": "viitor în trecut popular",
+
   "first person": "prima persoană",
   "second person": "a doua persoană",
   "third person": "a treia persoană",
-  
-  "conditional": "conditional",
+              
   "perfect simple": "perfect simplu",
   "perfect compound": "perfect compus",
   "anterior": "anterior",
-  "conditional perfect": "conditional perfect",
-  
+  "conditional perfect": "condițional perfect",
 
   "completed": "completat",
-  "tap to reveal": "atingeți pentru a dezvălui"
-
+  "tap to reveal": "atinge pentru a dezvălui"
 }

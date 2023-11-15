@@ -27,8 +27,8 @@ List<String> romanianShortTenses = [
   'r fut c vrea',
   'r futp c', // 'r futp c vrea': '', //I can just use future perfect c for this
 
-  'r fut c o',
-  'r fut c avea', //rare, but I will include it
+  'r fut c o', //o is a form of avea
+  'r fut c avea', //rare, but I will include it, it is basis of futpast
   'r futpast c',
 ];
 
@@ -85,7 +85,7 @@ Question getRomanianNounQuestion() {
   }
 
   //GENERATE QUESTION
-  String lemma = randomNoun.declension['nom']?['s'] ?? 'DNE';
+  String lemma = randomNoun.declension['nomacc']?['s'] ?? 'DNE';
   List<String> demands = [
     lengthenCase[randomCase] ?? 'DNE',
     lengthenNumber[randomNumber] ?? 'DNE',
@@ -113,7 +113,7 @@ Question getRomanianAdjectiveNounQuestion() {
   }
   //GET RANDOM ADJECTIVE
   RomanianAdjective randomAdjective = romanianAdjectives[random.nextInt(romanianAdjectives.length)];
-  String lemma = randomAdjective.declineAdjective('nom', 's', 'n');
+  String lemma = randomAdjective.declineAdjective('nomacc', 's', 'n');
 
   //GENERATE QUESTION
   List<String> demands = [
@@ -298,17 +298,17 @@ String getRomanianSubject(String mood, String number, String person, String gend
     String subject = '';
     if (number == 's') {
       if (person == '1') {
-        subject = 'Egō';
+        subject = 'Eu';
       } else if (person == '2') {
-        subject = 'Tū';
+        subject = 'Tu';
       } else if (person == '3') {
         subject = getThirdPersonSubject(number, gender);
       }
     } else if (number == 'p') {
       if (person == '1') {
-        subject = 'Nōs';
+        subject = 'Noi';
       } else if (person == '2') {
-        subject = 'Vōs';
+        subject = 'Voi';
       } else if (person == '3') {
         subject = getThirdPersonSubject(number, gender);
       }

@@ -182,15 +182,16 @@ String getLatinSubject(String mood, String number, String person, String gender)
           // 'n': ['Nōmen', 'Animal', 'Tempus', 'Mare', 'Bellum', 'Caput', 'Corpus', 'Opus', 'Verbum', 'id'],
         },
         'p': {
+          //often when calling someone, we do not use 'and'
           'm': [
             'Mārce et Lūcī',
-            'Gāī et Iūlī',
+            'Gāī, Iūlī',
             'Quīnte et Tīte',
             'Aule et Sexte',
             'Mārce et Iūlia',
             'Lūcī et Cornēlia',
-            'Gāī et Aemilia',
-            'Iūlī et Claudia',
+            'Gāī, Aemilia',
+            'Iūlī, Claudia',
             'Magistrī',
             'Vīcīnī',
             'Vōs'

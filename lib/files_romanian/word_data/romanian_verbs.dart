@@ -150,9 +150,6 @@ RomanianAuxiliaryVerb avea3 = RomanianAuxiliaryVerb(
   },
 );
 
-///////////
-///
-///
 RomanianVerb vrea = RomanianVerb(
   infinitive: 'a vrea',
   gerund: 'vrând',
@@ -234,6 +231,68 @@ RomanianAuxiliaryVerb vrea3 = RomanianAuxiliaryVerb(
       'r pres': {
         's': {'1': 'oi', '2': 'oi', '3': 'o'},
         'p': {'1': 'om', '2': 'oți', '3': 'or'},
+      },
+    },
+  },
+);
+
+RomanianVerb vedea = RomanianVerb(
+  infinitive: 'a vedea',
+  gerund: 'văzând',
+  participles: {
+    //This form is not listed in wiktionary but
+    //it still certainly exists and is important
+    //as more than just a participle for avea forms
+    'past': const RomanianAdjective(
+      declension: {
+        'nomacc': {
+          's': {'m': 'văzut', 'f': 'văzută', 'n': 'văzut'},
+          'p': {'m': 'văzuți', 'f': 'văzute', 'n': 'văzute'}
+        },
+        'gendat': {
+          's': {'m': 'văzut', 'f': 'văzute', 'n': 'văzut'},
+          'p': {'m': 'văzuți', 'f': 'văzute', 'n': 'văzute'}
+        },
+        // 'voc': {
+        //   's': {'m': '', 'f': '', 'n': ''},
+        //   'p': {'m': '', 'f': '', 'n': ''}
+        // },
+      },
+    ),
+  },
+  conjugation: {
+    'ind': {
+      'r pres': {
+        's': {'1': 'văd', '2': 'vezi', '3': 'vede'},
+        'p': {'1': 'vedem', '2': 'vedeţi', '3': 'văd'},
+      },
+      'r imp': {
+        's': {'1': 'vedeam', '2': 'vedeai', '3': 'vedea'},
+        'p': {'1': 'vedeam', '2': 'vedeaţi', '3': 'vedeau'},
+      },
+      'r perf': {
+        's': {'1': 'văzui', '2': 'văzuşi', '3': 'văzu'},
+        'p': {'1': 'văzurăm', '2': 'văzurăţi', '3': 'văzură'},
+      },
+      'r  plup': {
+        's': {'1': 'văzusem', '2': 'văzuseşi', '3': 'văzuse'},
+        'p': {'1': 'văzuserăm', '2': 'văzuserăţi', '3': 'văzuseră'},
+      },
+    },
+    'sub': {
+      'r pres': {
+        's': {'1': 'să văd', '2': 'să vezi', '3': 'să vadă'},
+        'p': {'1': 'să vedem', '2': 'să vedeți', '3': 'să vadă'},
+      },
+    },
+    'imp': {
+      'r pres': {
+        's': {
+          '2': 'vezi',
+        },
+        'p': {
+          '2': 'vedeți',
+        },
       },
     },
   },

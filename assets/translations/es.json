@@ -1,20 +1,22 @@
 {
-  "appDescription": "una aplicación para lenguas romances",
-  "language": "Español",
+  "appDescription": "Una aplicación para lenguas romances",
+  "language": "Inglés",
   "languageCode": "es",
+  "textGame": "Juego",
+
+  "textSettings": "Configuraciones",
+  "textSystemLanguage": "Idioma del Sistema",
+  "useSystemDefaultLanguageText": "Usar Idioma Predeterminado del Sistema",
+  "resetProgressText": "Reiniciar Progreso",
+  "comingSoonText": "¡Próximamente!",
+
   "textEnglish": "Inglés",
   "textFrench": "Francés",
-  "textGame": "Juego",
   "textItalian": "Italiano",
   "textLatin": "Latín",
   "textPortuguese": "Portugués",
   "textRomanian": "Rumano",
-  "textSettings": "Configuración",
   "textSpanish": "Español",
-  "textSystemLanguage": "Idioma del Sistema",
-  "useSystemDefaultLanguageText": "Usar idioma del Sistema",
-  "resetProgressText": "Restablecer progreso",
-  "comingSoonText": "¡Próximamente!",
 
   "textDecline": "Declinar",
   "textConjugate": "Conjugar",
@@ -22,9 +24,11 @@
 
   "singular": "singular",
   "plural": "plural",
+
   "masculine": "masculino",
   "feminine": "femenino",
   "neuter": "neutro",
+  
   "nominative": "nominativo",
   "accusative": "acusativo",
   "genitive": "genitivo",
@@ -32,23 +36,51 @@
   "ablative": "ablativo",
   "vocative": "vocativo",
   "locative": "locativo",
-  
+  "nominative/accusative": "nominativo/acusativo",
+  "genitive/dative": "genitivo/dativo",
+
   "indicative": "indicativo",
   "subjunctive": "subjuntivo",
   "imperative": "imperativo",
+  "optative/conditional": "optativo/condicional",
+  "conditional": "condicional",
+  "presumptive": "presuntivo",
+
   "active": "activo",
   "passive": "pasivo",
+
   "present": "presente",
   "imperfect": "imperfecto",
   "future": "futuro",
   "perfect": "perfecto",
   "pluperfect": "pluscuamperfecto",
   "future perfect": "futuro perfecto",
+
+  "romance present": "presente",
+  "romance imperfect": "imperfecto",
+  "romance future": "futuro",
+  "romance perfect": "perfecto simple",
+  "romance conditional": "condicional",
+  "romance pluperfect": "pluscuamperfecto simple",
+
+  "romance compound perfect": "perfecto compuesto",
+  "romance compound pluperfect": "pluscuamperfecto",
+  "romance future perfect": "futuro perfecto",
+  "romance past anterior": "anterior",
+  "romance conditional perfect": "condicional perfecto",
+
+  "imperfect (ra)": "imperfecto (ra)",
+  "imperfect (se)": "imperfecto (se)",
+
+  "future (vrea)": "futuro (vrea)",
+  "future (o)": "futuro (o, avea)",
+  "future (avea)": "futuro (avea)",
+  "future in the past": "futuro en el pasado",
+
   "first person": "primera persona",
   "second person": "segunda persona",
   "third person": "tercera persona",
-
-  "conditional": "condicional",
+              
   "perfect simple": "perfecto simple",
   "perfect compound": "perfecto compuesto",
   "anterior": "anterior",
@@ -56,6 +88,4 @@
 
   "completed": "completado",
   "tap to reveal": "tocar para revelar"
-  
-  
 }
