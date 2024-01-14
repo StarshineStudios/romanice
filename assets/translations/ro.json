@@ -1,8 +1,10 @@
 {
   "appDescription": "O aplicație pentru limbile romanice",
-  "language": "Engleză",
+  "language": "Română",
   "languageCode": "en",
   "textGame": "Joc",
+  "textStore": "Magazin",
+
 
   "textSettings": "Setări",
   "textSystemLanguage": "Limba Sistemului",

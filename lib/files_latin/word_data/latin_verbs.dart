@@ -4,6 +4,10 @@ List<LatinVerb> latinVerbs = [
   esse,
   posse,
   amare,
+  volo,
+  nolo,
+  video,
+
 // eō
 // volō
 // nōlō
@@ -625,6 +629,422 @@ LatinDeponentVerb loquor = LatinDeponentVerb(
         'fut': {
           's': {'2': 'loquitor'},
           'p': {'2': 'loquitor', '3': 'loquuntor'}
+        },
+      },
+    },
+  },
+);
+
+LatinVerb volo = LatinVerb(
+  infinitives: {
+    'presentActive': 'velle',
+    'perfectActive': 'voluisse',
+  },
+  participles: {
+    'presentActive': const LatinAdjective(
+      declension: {
+        'nom': {
+          's': {'m': 'volēns', 'f': 'volēns', 'n': 'volēns'},
+          'p': {'m': 'volentēs', 'f': 'volentēs', 'n': 'volentia'}
+        },
+        'acc': {
+          's': {'m': 'volentem', 'f': 'volentem', 'n': 'volēns'},
+          'p': {'m': 'volentēs', 'f': 'volentēs', 'n': 'volentia'}
+        },
+        'gen': {
+          's': {'m': 'volentis', 'f': 'volentis', 'n': 'volentis'},
+          'p': {'m': 'volentium', 'f': 'volentium', 'n': 'volentium'}
+        },
+        'dat': {
+          's': {'m': 'volentī', 'f': 'volentī', 'n': 'volentī'},
+          'p': {'m': 'volentibus', 'f': 'volentibus', 'n': 'volentibus'}
+        },
+        'abl': {
+          's': {'m': 'volente', 'f': 'volente', 'n': 'volente'},
+          'p': {'m': 'volentibus', 'f': 'volentibus', 'n': 'volentibus'}
+        },
+        'voc': {
+          's': {'m': 'volēns', 'f': 'volēns', 'n': 'volēns'},
+          'p': {'m': 'volentēs', 'f': 'volentēs', 'n': 'volentia'}
+        },
+      },
+    ),
+  },
+  conjugation: {
+    'ind': {
+      'act': {
+        'pres': {
+          's': {'1': 'volō', '2': 'vīs', '3': 'vult'},
+          'p': {'1': 'volumus', '2': 'vultis', '3': 'volunt'},
+        },
+        'imp': {
+          's': {'1': 'volēbam', '2': 'volēbās', '3': 'volēbat'},
+          'p': {'1': 'volēbāmus', '2': 'volēbātis', '3': 'volēbant'},
+        },
+        'fut': {
+          's': {'1': 'volam', '2': 'volēs', '3': 'volet'},
+          'p': {'1': 'volēmus', '2': 'volētis', '3': 'volent'},
+        },
+        'perf': {
+          's': {'1': 'voluī', '2': 'voluistī', '3': 'voluit'},
+          'p': {'1': 'voluimus', '2': 'voluistis', '3': 'voluērunt'},
+        },
+        'plup': {
+          's': {'1': 'volueram', '2': 'voluerās', '3': 'voluerat'},
+          'p': {'1': 'voluerāmus', '2': 'voluerātis', '3': 'voluerant'},
+        },
+        'futp': {
+          's': {'1': 'voluerō', '2': 'volueris', '3': 'voluerit'},
+          'p': {'1': 'voluerimus', '2': 'volueritis', '3': 'voluerint'},
+        },
+      },
+    },
+    'sub': {
+      'act': {
+        'pres': {
+          's': {'1': 'velim', '2': 'velīs', '3': 'velit'},
+          'p': {'1': 'velīmus', '2': 'velītis', '3': 'velint'},
+        },
+        'imp': {
+          's': {'1': 'vellem', '2': 'vellēs', '3': 'vellet'},
+          'p': {'1': 'vellēmus', '2': 'vellētis', '3': 'vellent'},
+        },
+        'perf': {
+          's': {'1': 'voluerim', '2': 'voluerīs', '3': 'voluerit'},
+          'p': {'1': 'voluerīmus', '2': 'voluerītis', '3': 'voluerint'},
+        },
+        'plup': {
+          's': {'1': 'voluissem', '2': 'voluissēs', '3': 'voluisset'},
+          'p': {'1': 'voluissēmus', '2': 'voluissētis', '3': 'voluissent'},
+        },
+      },
+    },
+    //no imperative
+  },
+);
+
+LatinVerb nolo = LatinVerb(
+  infinitives: {
+    'presentActive': 'nōlle',
+    'perfectActive': 'nōluisse',
+  },
+  participles: {
+    'presentActive': const LatinAdjective(
+      declension: {
+        'nom': {
+          's': {'m': 'nolēns', 'f': 'nolēns', 'n': 'nolēns'},
+          'p': {'m': 'nolentēs', 'f': 'nolentēs', 'n': 'nolentia'}
+        },
+        'acc': {
+          's': {'m': 'nolentem', 'f': 'nolentem', 'n': 'nolēns'},
+          'p': {'m': 'nolentēs', 'f': 'nolentēs', 'n': 'nolentia'}
+        },
+        'gen': {
+          's': {'m': 'nolentis', 'f': 'nolentis', 'n': 'nolentis'},
+          'p': {'m': 'nolentium', 'f': 'nolentium', 'n': 'nolentium'}
+        },
+        'dat': {
+          's': {'m': 'nolentī', 'f': 'nolentī', 'n': 'nolentī'},
+          'p': {'m': 'nolentibus', 'f': 'nolentibus', 'n': 'nolentibus'}
+        },
+        'abl': {
+          's': {'m': 'nolente', 'f': 'nolente', 'n': 'nolente'},
+          'p': {'m': 'nolentibus', 'f': 'nolentibus', 'n': 'nolentibus'}
+        },
+        'voc': {
+          's': {'m': 'nolēns', 'f': 'nolēns', 'n': 'nolēns'},
+          'p': {'m': 'nolentēs', 'f': 'nolentēs', 'n': 'nolentia'}
+        },
+      },
+    ),
+  },
+  conjugation: {
+    'ind': {
+      'act': {
+        'pres': {
+          's': {'1': 'nōlō', '2': 'nōn vīs', '3': 'nōn vult'},
+          'p': {'1': 'nōn volumus', '2': 'nōn vultis', '3': 'nōn volunt'},
+        },
+        'imp': {
+          's': {'1': 'nōlēbam', '2': 'nōlēbās', '3': 'nōlēbat'},
+          'p': {'1': 'nōlēbāmus', '2': 'nōlēbātis', '3': 'nōlēbant'},
+        },
+        'fut': {
+          's': {'1': 'nōlō', '2': 'nōn vīs', '3': 'nōn vult'},
+          'p': {'1': 'nōn volumus', '2': 'nōn vultis', '3': 'nōn volunt'},
+        },
+        'perf': {
+          's': {'1': 'nōlūī', '2': 'nōlūistī', '3': 'nōluit'},
+          'p': {'1': 'nōlūimus', '2': 'nōlūistis', '3': 'nōlūērunt'},
+        },
+        'plup': {
+          's': {'1': 'nōlueram', '2': 'nōluerās', '3': 'nōluerat'},
+          'p': {'1': 'nōluerāmus', '2': 'nōluerātis', '3': 'nōluerant'},
+        },
+        'futp': {
+          's': {'1': 'nōluerō', '2': 'nōlueris', '3': 'nōluerit'},
+          'p': {'1': 'nōluerimus', '2': 'nōlueritis', '3': 'nōluerint'},
+        },
+      },
+    },
+    'sub': {
+      'act': {
+        'pres': {
+          's': {'1': 'nōlīm', '2': 'nōlīs', '3': 'nōlīt'},
+          'p': {'1': 'nōlīmus', '2': 'nōlītis', '3': 'nōlīnt'},
+        },
+        'imp': {
+          's': {'1': 'nōllēm', '2': 'nōllēs', '3': 'nōllet'},
+          'p': {'1': 'nōllēmus', '2': 'nōllētis', '3': 'nōllent'},
+        },
+        'perf': {
+          's': {'1': 'nōluerim', '2': 'nōluerīs', '3': 'nōluerit'},
+          'p': {'1': 'nōluerīmus', '2': 'nōluerītis', '3': 'nōluerint'},
+        },
+        'plup': {
+          's': {'1': 'nōluissem', '2': 'nōluissēs', '3': 'nōluisset'},
+          'p': {'1': 'nōluissēmus', '2': 'nōluissētis', '3': 'nōluissent'},
+        },
+      },
+    },
+    'imp': {
+      'act': {
+        'pres': {
+          's': {'2': 'nōlī'},
+          'p': {'2': 'nōlitō', '3': 'nōlitō'},
+        },
+        'fut': {
+          's': {
+            '2': 'nōlē',
+          },
+          'p': {'2': 'nōnlitōte', '3': 'nōluntō'},
+        },
+      },
+    },
+  },
+);
+
+LatinVerb video = LatinVerb(
+  infinitives: {
+    'presentActive': 'vidēre',
+    'perfectActive': 'vīdisse',
+    'presentPassive': 'vīdērī',
+  },
+  participles: {
+    'presentActive': const LatinAdjective(
+      declension: {
+        'nom': {
+          's': {'m': 'vidēns', 'f': 'vidēns', 'n': 'vidēns'},
+          'p': {'m': 'videntēs', 'f': 'videntēs', 'n': 'videntia'}
+        },
+        'acc': {
+          's': {'m': 'videntem', 'f': 'videntem', 'n': 'vidēns'},
+          'p': {'m': 'videntēs', 'f': 'videntēs', 'n': 'videntia'}
+        },
+        'gen': {
+          's': {'m': 'videntis', 'f': 'videntis', 'n': 'videntis'},
+          'p': {'m': 'videntium', 'f': 'videntium', 'n': 'videntium'}
+        },
+        'dat': {
+          's': {'m': 'videntī', 'f': 'videntī', 'n': 'videntī'},
+          'p': {'m': 'videntibus', 'f': 'videntibus', 'n': 'videntibus'}
+        },
+        'abl': {
+          's': {'m': 'vidente', 'f': 'vidente', 'n': 'vidente'},
+          'p': {'m': 'videntibus', 'f': 'videntibus', 'n': 'videntibus'}
+        },
+        'voc': {
+          's': {'m': 'vidēns', 'f': 'vidēns', 'n': 'vidēns'},
+          'p': {'m': 'videntēs', 'f': 'videntēs', 'n': 'videntia'}
+        },
+      },
+    ),
+    'futureActive': const LatinAdjective(
+      declension: {
+        'nom': {
+          's': {'m': 'vīsūrus', 'f': 'vīsūra', 'n': 'vīsūrum'},
+          'p': {'m': 'vīsūrī', 'f': 'vīsūrae', 'n': 'vīsūra'}
+        },
+        'acc': {
+          's': {'m': 'vīsūrum', 'f': 'vīsūram', 'n': 'vīsūrum'},
+          'p': {'m': 'vīsūrōs', 'f': 'vīsūrās', 'n': 'vīsūra'}
+        },
+        'gen': {
+          's': {'m': 'vīsūrī', 'f': 'vīsūrae', 'n': 'vīsūrī'},
+          'p': {'m': 'vīsūrōrum', 'f': 'vīsūrārum', 'n': 'vīsūrōrum'}
+        },
+        'dat': {
+          's': {'m': 'vīsūrō', 'f': 'vīsūrae', 'n': 'vīsūrō'},
+          'p': {'m': 'vīsūrīs', 'f': 'vīsūrīs', 'n': 'vīsūrīs'}
+        },
+        'abl': {
+          's': {'m': 'vīsūrō', 'f': 'vīsūrā', 'n': 'vīsūrō'},
+          'p': {'m': 'vīsūrīs', 'f': 'vīsūrīs', 'n': 'vīsūrīs'}
+        },
+        'voc': {
+          's': {'m': 'vīsūre', 'f': 'vīsūra', 'n': 'vīsūrum'},
+          'p': {'m': 'vīsūrī', 'f': 'vīsūrae', 'n': 'vīsūra'}
+        },
+      },
+    ),
+    'perfectPassive': const LatinAdjective(
+      declension: {
+        'nom': {
+          's': {'m': 'vīsus', 'f': 'vīsa', 'n': 'vīsum'},
+          'p': {'m': 'vīsī', 'f': 'vīsae', 'n': 'vīsa'}
+        },
+        'acc': {
+          's': {'m': 'vīsum', 'f': 'vīsam', 'n': 'vīsum'},
+          'p': {'m': 'vīsōs', 'f': 'vīsās', 'n': 'vīsa'}
+        },
+        'gen': {
+          's': {'m': 'vīsī', 'f': 'vīsae', 'n': 'vīsī'},
+          'p': {'m': 'vīsōrum', 'f': 'vīsārum', 'n': 'vīsōrum'}
+        },
+        'dat': {
+          's': {'m': 'vīsō', 'f': 'vīsae', 'n': 'vīsō'},
+          'p': {'m': 'vīsīs', 'f': 'vīsīs', 'n': 'vīsīs'}
+        },
+        'abl': {
+          's': {'m': 'vīsō', 'f': 'vīsā', 'n': 'vīsō'},
+          'p': {'m': 'vīsīs', 'f': 'vīsīs', 'n': 'vīsīs'}
+        },
+        'voc': {
+          's': {'m': 'vīsē', 'f': 'vīsa', 'n': 'vīsum'},
+          'p': {'m': 'vīsī', 'f': 'vīsae', 'n': 'vīsa'}
+        },
+      },
+    ),
+    'futurePassive': const LatinAdjective(
+      declension: {
+        'nom': {
+          's': {'m': 'videndus', 'f': 'videnda', 'n': 'videndum'},
+          'p': {'m': 'videndī', 'f': 'videndae', 'n': 'videnda'}
+        },
+        'acc': {
+          's': {'m': 'videndum', 'f': 'videndam', 'n': 'videndum'},
+          'p': {'m': 'videndōs', 'f': 'videndās', 'n': 'videnda'}
+        },
+        'gen': {
+          's': {'m': 'videndī', 'f': 'videndae', 'n': 'videndī'},
+          'p': {'m': 'videndōrum', 'f': 'videndārum', 'n': 'videndōrum'}
+        },
+        'dat': {
+          's': {'m': 'videndō', 'f': 'videndae', 'n': 'videndō'},
+          'p': {'m': 'videndīs', 'f': 'videndīs', 'n': 'videndīs'}
+        },
+        'abl': {
+          's': {'m': 'videndō', 'f': 'videndā', 'n': 'videndō'},
+          'p': {'m': 'videndīs', 'f': 'videndīs', 'n': 'videndīs'}
+        },
+        'voc': {
+          's': {'m': 'vidende', 'f': 'videnda', 'n': 'videndum'},
+          'p': {'m': 'videndī', 'f': 'videndae', 'n': 'videnda'}
+        },
+      },
+    ),
+  },
+  conjugation: {
+    'ind': {
+      'act': {
+        'pres': {
+          's': {'1': 'videō', '2': 'vidēs', '3': 'videt'},
+          'p': {'1': 'vidēmus', '2': 'vidētis', '3': 'vident'},
+        },
+        'imp': {
+          's': {'1': 'vidēbam', '2': 'vidēbās', '3': 'vidēbat'},
+          'p': {'1': 'vidēbāmus', '2': 'vidēbātis', '3': 'vidēbant'},
+        },
+        'fut': {
+          's': {'1': 'vidēbō', '2': 'vidēbis', '3': 'vidēbit'},
+          'p': {'1': 'vidēbimus', '2': 'vidēbitis', '3': 'vidēbunt'},
+        },
+        'perf': {
+          's': {'1': 'vīdī', '2': 'vīdistī', '3': 'vīdit'},
+          'p': {'1': 'vīdimus', '2': 'vīdistis', '3': 'vīdērunt'},
+        },
+        'plup': {
+          's': {'1': 'vīderam', '2': 'vīderās', '3': 'vīderat'},
+          'p': {'1': 'vīderāmus', '2': 'vīderātis', '3': 'vīderant'},
+        },
+        'futp': {
+          's': {'1': 'vīderō', '2': 'vīderis', '3': 'vīderit'},
+          'p': {'1': 'vīderimus', '2': 'vīderitis', '3': 'vīderint'},
+        },
+      },
+      'pas': {
+        'pres': {
+          's': {'1': 'videor', '2': 'vidēris', '3': 'vidētur'},
+          'p': {'1': 'vidēmur', '2': 'vidēminī', '3': 'videntur'},
+        },
+        'imp': {
+          's': {'1': 'vidēbar', '2': 'vidēbāris', '3': 'vidēbātur'},
+          'p': {'1': 'vidēbāmur', '2': 'vidēbāminī', '3': 'vidēbantur'},
+        },
+        'fut': {
+          's': {'1': 'vidēbor', '2': 'vidēberis', '3': 'vidēbitur'},
+          'p': {'1': 'vidēbimur', '2': 'vidēbiminī', '3': 'vidēbuntur'},
+        },
+        //Participle dependent forms are not listed here.
+      },
+    },
+    'sub': {
+      'act': {
+        'pres': {
+          's': {'1': 'videam', '2': 'videās', '3': 'videat'},
+          'p': {'1': 'videāmus', '2': 'videātis', '3': 'videant'},
+        },
+        'imp': {
+          's': {'1': 'viderem', '2': 'viderēs', '3': 'videret'},
+          'p': {'1': 'viderēmus', '2': 'viderētis', '3': 'viderent'},
+        },
+        'perf': {
+          's': {'1': 'vīderim', '2': 'vīderis', '3': 'vīderit'},
+          'p': {'1': 'vīderimus', '2': 'vīderitis', '3': 'vīderint'},
+        },
+        'plup': {
+          's': {'1': 'vīdissem', '2': 'vīdissēs', '3': 'vīdisset'},
+          'p': {'1': 'vīdissēmus', '2': 'vīdissētis', '3': 'vīdissent'},
+        },
+      },
+      'pas': {
+        'pres': {
+          's': {'1': 'videar', '2': 'videāris', '3': 'videātur'},
+          'p': {'1': 'videāmur', '2': 'videāminī', '3': 'videantur'},
+        },
+        'imp': {
+          's': {'1': 'vidērer', '2': 'vidērēris', '3': 'vidērētur'},
+          'p': {'1': 'vidērēmur', '2': 'vidērēminī', '3': 'vidērentur'},
+        },
+        // 'perf': {
+        //   's': {'1': 'vīsus sim', '2': 'vīsus sis', '3': 'vīsus sit'},
+        //   'p': {'1': 'vīsī simus', '2': 'vīsī sitis', '3': 'vīsī sint'},
+        // },
+        // 'plup': {
+        //   's': {'1': 'vīsus essem', '2': 'vīsus essēs', '3': 'vīsus esset'},
+        //   'p': {'1': 'vīsī essēmus', '2': 'vīsī essētis', '3': 'vīsī essent'},
+        // },
+      },
+    },
+    'imp': {
+      'act': {
+        'pres': {
+          's': {'2': 'vidē'},
+          'p': {'2': 'vidēte'}
+        },
+        'fut': {
+          's': {'2': 'vidētō', '3': 'vidētō'},
+          'p': {'2': 'vidētōte', '3': 'videntō'}
+        },
+      },
+      'pas': {
+        'pres': {
+          's': {'2': 'vidēre'},
+          'p': {'2': 'vidēminī'}
+        },
+        'fut': {
+          's': {'2': 'vidētor', '3': 'vidētor'},
+          'p': {'3': 'videntor'}
         },
       },
     },

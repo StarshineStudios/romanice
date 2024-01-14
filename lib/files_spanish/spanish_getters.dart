@@ -10,24 +10,24 @@ import '../lengtheners.dart';
 
 List<String> spanishShortNumbers = ['s', 'p'];
 //i is used to represent neuter like words that change gender
-List<String> spanishShortGenders = [
-  'm',
-  'f',
-];
+List<String> spanishShortGenders = ['m', 'f'];
 List<String> spanishShortMoods = ['ind', 'sub', 'imp'];
 List<String> spanishShortTenses = [
-  'rpres',
-  'rimp',
-  'rfut',
-  'rperf',
-  'rcond', //cond is tense in spanish
+  'r pres',
+  'r imp',
+
+  'r imp se',
+  'r imp ra',
+  'r fut',
+  'r perf',
+  'r cond', //cond is tense in spanish
 
   //compound forms
-  'rperfc',
-  'rplup',
-  'rfutp',
-  'rant',
-  'rcondp',
+  'r perf c',
+  'r plup c',
+  'r futp c',
+  'r ante c',
+  'r condp c',
 ];
 List<String> spanishShortPersons = ['1', '2', '3'];
 
@@ -157,12 +157,41 @@ String getSpanishSubject(String mood, String number, String person, String gende
   String getThirdPersonSubject(String number, String gender) {
     Map<String, Map<String, List<String>>> subjects = {
       's': {
-        'm': ['TEMP Marco', 'TEMP Antonio', 'TEMP Is'],
-        'f': ['TEMP Helena', 'TEMP Livia', 'TEMP Ea'],
+        // singular
+        'm': [
+          // masculine
+          'Carlos', 'José', 'Miguel', 'Juan', 'Luis', 'Pedro', 'Jorge', 'Fernando', 'Pablo', 'Alejandro', 'él'
+        ],
+        'f': [
+          // feminine
+          'María', 'Ana', 'Carmen', 'Laura', 'Isabel', 'Teresa', 'Sofía', 'Patricia', 'Lucía', 'Elena', 'ella'
+        ],
       },
       'p': {
-        'm': ['TEMP Senatores', 'TEMP Multi', 'TEMP Marco e Antonio', 'TEMP Helena e Marcus'],
-        'f': ['TEMP Femine', 'TEMP Puelle', 'TEMP Helena e Livia'],
+        // plural
+        'm': [
+          // masculine (and mixed groups)
+          'Carlos y José',
+          'Miguel y Juan',
+          'Luis y Pedro',
+          'Jorge y Fernando',
+          'Pablo y Alejandro',
+          'Carlos y María',
+          'José y Ana',
+          'Miguel y Carmen',
+          'Juan y Laura',
+          'Luis y Isabel',
+          'ellos'
+        ],
+        'f': [
+          // feminine
+          'María y Ana',
+          'Carmen y Laura',
+          'Isabel y Teresa',
+          'Sofía y Patricia',
+          'Lucía y Elena',
+          'ellas'
+        ],
       },
     };
 
@@ -175,17 +204,17 @@ String getSpanishSubject(String mood, String number, String person, String gende
 
   if (number == 's') {
     if (person == '1') {
-      subject = 'TEMP Egō';
+      subject = 'Yo';
     } else if (person == '2') {
-      subject = 'TEMP Tū';
+      subject = 'Tu';
     } else if (person == '3') {
       subject = getThirdPersonSubject(number, gender);
     }
   } else if (number == 'p') {
     if (person == '1') {
-      subject = 'TEMP Nōs';
+      subject = 'Nosotros';
     } else if (person == '2') {
-      subject = 'TEMP Vōs';
+      subject = 'Vosotros';
     } else if (person == '3') {
       subject = getThirdPersonSubject(number, gender);
     }

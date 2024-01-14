@@ -64,6 +64,7 @@ Question getFrenchVerbQuestion() {
   return Question(lemma: lemma, demands: demands, prompt: prompt, answer: answer);
 }
 
+//This is comically easy and I will not include it
 Question getFrenchNounQuestion() {
   final random = Random();
   //PICK A RANDOM NOUN
@@ -132,7 +133,7 @@ Question getFrenchAdjectiveNounQuestion() {
 Question getFrenchDeclineQuestion() {
   final random = Random();
   // Simulate a chance
-  bool isOutcomeA = random.nextDouble() < 0.5;
+  bool isOutcomeA = random.nextDouble() < 0;
   return isOutcomeA ? getFrenchNounQuestion() : getFrenchAdjectiveNounQuestion();
 }
 

@@ -7,6 +7,8 @@ import 'settings_screen.dart';
 import 'constants.dart';
 import 'dart:io';
 
+import 'store_screen.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
@@ -20,6 +22,7 @@ void main() async {
 
 List<Widget> pages = [
   const LanguageBoxHolder(),
+  // const StoreScreen(),
   const SettingsScreen(),
 ];
 
@@ -91,12 +94,12 @@ class _AppScreenState extends State<AppScreen> {
           body: pages[navBarIndex],
           bottomNavigationBar: Container(
             height: 75,
-            color: mediumColor,
+            color: darkColor,
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: GNav(
-                activeColor: lightColor,
-                tabBackgroundColor: darkColor,
+                activeColor: darkColor,
+                tabBackgroundColor: lightColor,
                 color: lightColor,
                 textStyle: const TextStyle(
                   color: lightColor,
@@ -113,10 +116,17 @@ class _AppScreenState extends State<AppScreen> {
                   GButton(
                     icon: Icons.square,
                     text: 'textGame'.tr(),
+                    textStyle: TextStyle(fontFamily: 'Fraunces', color: darkColor),
                   ),
+                  // GButton(
+                  //   icon: Icons.shop,
+                  //   text: 'textStore'.tr(),
+                  //   textStyle: TextStyle(fontFamily: 'Fraunces', color: darkColor),
+                  // ),
                   GButton(
                     icon: Icons.settings,
                     text: 'textSettings'.tr(),
+                    textStyle: TextStyle(fontFamily: 'Fraunces', color: darkColor),
                   ),
                 ],
               ),

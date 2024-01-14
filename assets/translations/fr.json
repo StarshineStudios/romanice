@@ -1,8 +1,10 @@
 {
   "appDescription": "Une application pour les langues romanes",
-  "language": "Anglais",
+  "language": "Français",
   "languageCode": "fr",
   "textGame": "Jeu",
+  "textStore": "Magasin",
+
 
   "textSettings": "Paramètres",
   "textSystemLanguage": "Langue du Système",

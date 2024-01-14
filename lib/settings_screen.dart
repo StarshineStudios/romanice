@@ -58,7 +58,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   fit: BoxFit.fitWidth,
                   child: Text(
                     'textSettings'.tr(),
-                    style: const TextStyle(fontSize: 60, color: darkColor, fontFamily: 'Coustard', fontWeight: FontWeight.bold),
+                    style: const TextStyle(fontSize: 60, color: darkColor, fontFamily: 'Fraunces', fontWeight: FontWeight.bold),
                   ),
                 ),
               ),
@@ -74,13 +74,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 children: [
                   Text(
                     'textSystemLanguage'.tr(),
-                    style: const TextStyle(fontSize: 30, color: darkColor, fontFamily: 'Coustard', fontWeight: FontWeight.bold),
+                    style: const TextStyle(fontSize: 30, color: darkColor, fontFamily: 'Fraunces', fontWeight: FontWeight.bold),
                     overflow: TextOverflow.visible,
                   ),
                   const SizedBox(height: 10),
                   Text(
                     'useSystemDefaultLanguageText'.tr(),
-                    style: const TextStyle(fontSize: 20, color: darkColor, fontFamily: 'Coustard'),
+                    style: const TextStyle(fontSize: 20, color: darkColor, fontFamily: 'Fraunces'),
                   ),
                   Switch(
                     focusColor: darkColor,
@@ -103,42 +103,38 @@ class _SettingsScreenState extends State<SettingsScreen> {
             ),
           ),
 
-          Padding(
-            padding: const EdgeInsets.only(left: 8.0, right: 8.0, bottom: 8.0),
-            child: Container(
-              padding: const EdgeInsets.all(8.0),
-              decoration: BoxDecoration(color: lightColor, borderRadius: BorderRadius.circular(12)),
-              child: Column(
-                children: [
-                  Center(
-                    child: Text(
-                      'resetProgressText'.tr(),
-                      style: const TextStyle(fontSize: 30, color: darkColor, fontFamily: 'Coustard', fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                  NiceButton(
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        'resetProgressText'.tr(),
-                        style: const TextStyle(fontSize: 20, color: darkColor, fontFamily: 'Coustard'),
-                      ),
-                    ),
-                    onPressed: () {
-                      setState(() {
-                        _generalBox.clear();
-                      });
-                    },
-                  )
-                ],
-              ),
-            ),
-          ),
-          // ElevatedButton(
-          //     onPressed: () {
-          //       _generalBox.put('selectedLocaleCode', selectedLocaleCode);
-          //     },
-          //     child: const Text('Apply (This will restart app)')),
+          //DOES NOT YET WORK
+          // Padding(
+          //   padding: const EdgeInsets.only(left: 8.0, right: 8.0, bottom: 8.0),
+          //   child: Container(
+          //     padding: const EdgeInsets.all(8.0),
+          //     decoration: BoxDecoration(color: lightColor, borderRadius: BorderRadius.circular(12)),
+          //     child: Column(
+          //       children: [
+          //         Center(
+          //           child: Text(
+          //             'resetProgressText'.tr(),
+          //             style: const TextStyle(fontSize: 30, color: darkColor, fontFamily: 'Fraunces', fontWeight: FontWeight.bold),
+          //           ),
+          //         ),
+          //         NiceButton(
+          //           child: Padding(
+          //             padding: const EdgeInsets.all(8.0),
+          //             child: Text(
+          //               'resetProgressText'.tr(),
+          //               style: const TextStyle(fontSize: 20, color: darkColor, fontFamily: 'Fraunces'),
+          //             ),
+          //           ),
+          //           onPressed: () {
+          //             setState(() {
+          //               _generalBox.clear();
+          //             });
+          //           },
+          //         )
+          //       ],
+          //     ),
+          //   ),
+          // ),
         ],
       ),
     );
@@ -198,7 +194,7 @@ class _LocaleDropdownState extends State<LocaleDropdown> {
           value: localeCode,
           child: Text(
             _getLocaleDisplayName(localeCode),
-            style: TextStyle(fontSize: 20, color: widget.enabled ? darkColor : fadedColor, fontFamily: 'Coustard'),
+            style: TextStyle(fontSize: 20, color: widget.enabled ? darkColor : fadedColor, fontFamily: 'Fraunces'),
           ),
         );
       }).toList(),
@@ -208,19 +204,26 @@ class _LocaleDropdownState extends State<LocaleDropdown> {
   String _getLocaleDisplayName(String localeCode) {
     switch (localeCode) {
       case 'en':
-        return 'English';
+        return 'language'.tr() == 'textEnglish'.tr() ? 'English' : '${'textEnglish'.tr()} (English)';
+
       case 'es':
-        return 'Spanish';
+        return 'language'.tr() == 'textSpanish'.tr() ? 'Español' : '${'textSpanish'.tr()} (Español)';
+
       case 'fr':
-        return 'French';
+        return 'language'.tr() == 'textFrench'.tr() ? 'Français' : '${'textFrench'.tr()} (Français)';
+
       case 'it':
-        return 'Italian';
+        return 'language'.tr() == 'textItalian'.tr() ? 'Italiano' : '${'textItalian'.tr()} (Italiano)';
+
       case 'pt':
-        return 'Portuguese';
+        return 'language'.tr() == 'textPortuguese'.tr() ? 'Português' : '${'textPortuguese'.tr()} (Português)';
+
       case 'fi':
-        return 'Latin';
+        return 'language'.tr() == 'textLatin'.tr() ? 'Latīnum' : '${'textLatin'.tr()} (Latīnum)';
+
       case 'ro':
-        return 'Romanian';
+        return 'language'.tr() == 'textRomanian'.tr() ? 'Română' : '${'textRomanian'.tr()} (Română)';
+
       default:
         return 'Unknown';
     }

@@ -1,8 +1,10 @@
 {
   "appDescription": "Una aplicación para lenguas romances",
-  "language": "Inglés",
+  "language": "Español",
   "languageCode": "es",
   "textGame": "Juego",
+  "textStore": "Tienda",
+
 
   "textSettings": "Configuraciones",
   "textSystemLanguage": "Idioma del Sistema",

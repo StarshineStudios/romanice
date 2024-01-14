@@ -10,7 +10,9 @@ import '../lengtheners.dart';
 
 List<String> italianShortNumbers = ['s', 'p'];
 //i is used to represent neuter like words that change gender
-List<String> italianShortGenders = ['m', 'f', 'i'];
+List<String> italianShortFullGenders = ['m', 'f', 'i'];
+List<String> italianShortGenders = ['m', 'f'];
+
 List<String> italianShortMoods = ['ind', 'sub', 'con', 'imp'];
 List<String> italianShortPersons = ['1', '2', '3'];
 List<String> italianShortTenses = [
@@ -36,6 +38,7 @@ Question getItalianVerbQuestion() {
   String randomTense = italianShortTenses[random.nextInt(italianShortTenses.length)];
   String randomNumber = italianShortNumbers[random.nextInt(italianShortNumbers.length)];
   String randomPerson = italianShortPersons[random.nextInt(italianShortPersons.length)];
+  //not include irregular because that is wrong
   String randomGender = italianShortGenders[random.nextInt(italianShortGenders.length)];
   void initConjugation() {
     randomMood = italianShortMoods[random.nextInt(italianShortMoods.length)];
@@ -130,7 +133,7 @@ Question getItalianAdjectiveNounQuestion() {
 Question getItalianDeclineQuestion() {
   final random = Random();
   // Simulate a 60/40 chance
-  bool isOutcomeA = random.nextDouble() < 0.5;
+  bool isOutcomeA = random.nextDouble() < 0;
 
   return isOutcomeA ? getItalianNounQuestion() : getItalianAdjectiveNounQuestion();
 }

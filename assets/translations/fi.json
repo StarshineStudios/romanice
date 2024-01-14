@@ -1,8 +1,10 @@
 {
   "appDescription": "Applicātiō pro linguis Rōmānicīs",
-  "language": "Anglicus",
+  "language": "Latīnum",
   "languageCode": "la",
   "textGame": "Lūdus",
+  "textStore": "Taberna",
+
 
   "textSettings": "Configūrātiōnēs",
   "textSystemLanguage": "Lingua Systematis",

@@ -9,6 +9,12 @@ List<LatinNoun> latinNouns = [
   tempus,
   domus,
   dies,
+  aqua,
+  via,
+  arbor,
+  fructus,
+  liber,
+  // Add the rest of the new nouns here
 ];
 
 LatinNoun stella = const LatinNoun(
@@ -255,33 +261,154 @@ LatinNoun dies = const LatinNoun(
   },
 );
 
-// LatinNoun REPLACE = const LatinNoun(
-//   gender: 'n',
-//   declension: {
-//     'nom': {
-//       's': '',
-//       'p': '',
-//     },
-//     'acc': {
-//       's': '',
-//       'p': '',
-//     },
-//     'gen': {
-//       's': '',
-//       'p': '',
-//     },
-//     'dat': {
-//       's': '',
-//       'p': '',
-//     },
-//     'abl': {
-//       's': '',
-//       'p': '',
-//     },
-//     'voc': {
-//       's': '',
-//       'p': '',
-//     },
-//   },
-// );
+LatinNoun aqua = const LatinNoun(
+  gender: 'f',
+  declension: {
+    'nom': {
+      's': 'aqua',
+      'p': 'aquae',
+    },
+    'acc': {
+      's': 'aquam',
+      'p': 'aquās',
+    },
+    'gen': {
+      's': 'aquae',
+      'p': 'aquārum',
+    },
+    'dat': {
+      's': 'aquae',
+      'p': 'aquis',
+    },
+    'abl': {
+      's': 'aquā',
+      'p': 'aquis',
+    },
+    'voc': {
+      's': 'aqua',
+      'p': 'aquae',
+    },
+  },
+);
 
+LatinNoun via = const LatinNoun(
+  gender: 'f',
+  declension: {
+    'nom': {
+      's': 'via',
+      'p': 'viae',
+    },
+    'acc': {
+      's': 'viam',
+      'p': 'viās',
+    },
+    'gen': {
+      's': 'viae',
+      'p': 'viārum',
+    },
+    'dat': {
+      's': 'viae',
+      'p': 'viīs',
+    },
+    'abl': {
+      's': 'viā',
+      'p': 'viīs',
+    },
+    'voc': {
+      's': 'via',
+      'p': 'viae',
+    },
+  },
+);
+
+LatinNoun arbor = const LatinNoun(
+  gender: 'f',
+  declension: {
+    'nom': {
+      's': 'arbor',
+      'p': 'arborēs',
+    },
+    'acc': {
+      's': 'arborem',
+      'p': 'arborēs',
+    },
+    'gen': {
+      's': 'arboris',
+      'p': 'arborum',
+    },
+    'dat': {
+      's': 'arbori',
+      'p': 'arboribus',
+    },
+    'abl': {
+      's': 'arbori',
+      'p': 'arboribus',
+    },
+    'voc': {
+      's': 'arbor',
+      'p': 'arborēs',
+    },
+  },
+);
+
+LatinNoun fructus = const LatinNoun(
+  gender: 'm',
+  declension: {
+    'nom': {
+      's': 'fructus',
+      'p': 'fructūs',
+    },
+    'acc': {
+      's': 'fructum',
+      'p': 'fructūs',
+    },
+    'gen': {
+      's': 'fructūs',
+      'p': 'fructuum',
+    },
+    'dat': {
+      's': 'fructuī',
+      'p': 'fructibus',
+    },
+    'abl': {
+      's': 'fructū',
+      'p': 'fructibus',
+    },
+    'voc': {
+      's': 'fructus',
+      'p': 'fructūs',
+    },
+  },
+);
+
+LatinNoun liber = const LatinNoun(
+  gender: 'm',
+  declension: {
+    'nom': {
+      's': 'liber',
+      'p': 'librī',
+    },
+    'acc': {
+      's': 'librum',
+      'p': 'librōs',
+    },
+    'gen': {
+      's': 'librī',
+      'p': 'librōrum',
+    },
+    'dat': {
+      's': 'librō',
+      'p': 'librīs',
+    },
+    'abl': {
+      's': 'librō',
+      'p': 'librīs',
+    },
+    'voc': {
+      's': 'liber',
+      'p': 'librī',
+    },
+  },
+);
+
+// ... Continue adding the rest of the LatinNoun definitions here in a similar format

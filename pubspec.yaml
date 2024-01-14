@@ -101,6 +101,11 @@ flutter:
         - asset: assets/fonts/Coustard-Regular.ttf
         - asset: assets/fonts/Coustard-Black.ttf
           weight: 900
+    - family: Fraunces
+      fonts:
+        - asset: assets/fonts/Fraunces-VariableFont_SOFT,WONK,opsz,wght.ttf
+        - asset: assets/fonts/Fraunces-Italic-VariableFont_SOFT,WONK,opsz,wght.ttf
+          style: italic
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

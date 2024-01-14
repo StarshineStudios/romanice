@@ -54,7 +54,7 @@ class _PracticeScreenState extends State<PracticeScreen> {
         foregroundColor: darkColor,
         title: Text(
           '${'completed'.tr()}: ${count.toString()}',
-          style: const TextStyle(color: darkColor, fontFamily: 'Coustard'),
+          style: const TextStyle(color: darkColor, fontFamily: 'Fraunces'),
         ),
       ),
       backgroundColor: mediumColor,
@@ -80,7 +80,7 @@ class _PracticeScreenState extends State<PracticeScreen> {
                     height: 0.9,
                     fontSize: 60,
                     color: darkColor,
-                    fontFamily: 'Coustard',
+                    fontFamily: 'Fraunces',
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -101,7 +101,7 @@ class _PracticeScreenState extends State<PracticeScreen> {
                           style: TextStyle(
                             fontSize: 25,
                             color: generatePastelColor(item).darken(30),
-                            fontFamily: 'Coustard',
+                            fontFamily: 'Fraunces',
                           ),
                         ),
                       ),
@@ -119,7 +119,7 @@ class _PracticeScreenState extends State<PracticeScreen> {
           //   style: TextStyle(
           //     fontSize: 25,
           //     color: darkColor,
-          //     fontFamily: 'Coustard',
+          //     fontFamily: 'Fraunces',
           //   ),
           // ),\
           Expanded(
@@ -196,7 +196,7 @@ class TypeWriter extends StatelessWidget {
                       fit: BoxFit.scaleDown,
                       child: Text(
                         text,
-                        style: const TextStyle(fontSize: 40, color: darkColor, fontFamily: 'Coustard'),
+                        style: const TextStyle(fontSize: 40, color: darkColor, fontFamily: 'Fraunces'),
                       ),
                     ),
                   ),

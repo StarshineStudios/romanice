@@ -1,8 +1,10 @@
 {
   "appDescription": "Um aplicativo para línguas românicas",
-  "language": "Inglês",
+  "language": "Português",
   "languageCode": "pt",
   "textGame": "Jogo",
+  "textStore": "Loja",
+
 
   "textSettings": "Configurações",
   "textSystemLanguage": "Idioma do Sistema",

@@ -1,12 +1,14 @@
 {
   "appDescription": "Un'app per le lingue romanze",
-  "language": "Inglese",
+  "language": "Italiano",
   "languageCode": "it",
   "textGame": "Gioco",
+  "textStore": "Negozio",
+
 
   "textSettings": "Impostazioni",
   "textSystemLanguage": "Lingua del Sistema",
-  "useSystemDefaultLanguageText": "Usa Lingua Predefinita del Sistema",
+  "useSystemDefaultLanguageText": "Usare Lingua Predefinita del Sistema",
   "resetProgressText": "Azzera Progressi",
   "comingSoonText": "Prossimamente!",
 

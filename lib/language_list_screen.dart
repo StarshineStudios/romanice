@@ -72,12 +72,12 @@ class LanguageBox2 extends StatelessWidget {
                             children: [
                               Text(
                                 name,
-                                style: const TextStyle(fontSize: 30, color: darkColor, fontFamily: 'Coustard', fontWeight: FontWeight.bold),
+                                style: const TextStyle(fontSize: 30, color: darkColor, fontFamily: 'Fraunces', fontWeight: FontWeight.bold),
                               ),
                               if (description != '')
                                 Text(
                                   description,
-                                  style: const TextStyle(fontSize: 25, color: darkColor, fontFamily: 'Coustard'),
+                                  style: const TextStyle(fontSize: 25, color: darkColor, fontFamily: 'Fraunces'),
                                 ),
                             ],
                           ),
@@ -102,7 +102,7 @@ class LanguageBox2 extends StatelessWidget {
                           child: Center(
                             child: Text(
                               'textPractice'.tr(),
-                              style: const TextStyle(fontSize: 25, color: darkColor, fontFamily: 'Coustard'),
+                              style: const TextStyle(fontSize: 25, color: darkColor, fontFamily: 'Fraunces'),
                             ),
                           ),
                         ),
@@ -119,7 +119,7 @@ class LanguageBox2 extends StatelessWidget {
                                   padding: const EdgeInsets.all(8.0),
                                   child: Text(
                                     'textDecline'.tr(),
-                                    style: const TextStyle(fontSize: 25, color: darkColor, fontFamily: 'Coustard'),
+                                    style: const TextStyle(fontSize: 25, color: darkColor, fontFamily: 'Fraunces'),
                                   ),
                                 ),
                               ),
@@ -129,7 +129,7 @@ class LanguageBox2 extends StatelessWidget {
                                   padding: const EdgeInsets.all(8.0),
                                   child: Text(
                                     'textConjugate'.tr(),
-                                    style: const TextStyle(fontSize: 25, color: darkColor, fontFamily: 'Coustard'),
+                                    style: const TextStyle(fontSize: 25, color: darkColor, fontFamily: 'Fraunces'),
                                   ),
                                 ),
                               ),
@@ -221,7 +221,7 @@ class _LanguageBoxHolderState extends State<LanguageBoxHolder> {
                   // ),
                   Text(
                     'Rōmānicē!',
-                    style: TextStyle(fontSize: 60, color: darkColor, fontFamily: 'Coustard', fontWeight: FontWeight.bold),
+                    style: TextStyle(fontSize: 60, color: darkColor, fontFamily: 'Fraunces', fontWeight: FontWeight.bold),
                   ),
                 ],
               ),
@@ -262,29 +262,13 @@ class _LanguageBoxHolderState extends State<LanguageBoxHolder> {
         },
       ),
       LanguageBox2(
-        imagePath: 'assets/FlagSpain.png',
-        name: 'textSpanish'.tr(),
+        imagePath: 'assets/FlagFrance.png',
+        name: 'textFrench'.tr(),
         description: '',
         index: 2,
         isExpanded: expandedIndex == 2,
         onPressed: () {
           changeExpandedIndex(2);
-        },
-        onNounButtonPressed: () {
-          launchGame(getSpanishDeclineQuestion);
-        },
-        onVerbButtonPressed: () {
-          launchGame(getSpanishVerbQuestion);
-        },
-      ),
-      LanguageBox2(
-        imagePath: 'assets/FlagFrance.png',
-        name: 'textFrench'.tr(),
-        description: '',
-        index: 3,
-        isExpanded: expandedIndex == 3,
-        onPressed: () {
-          changeExpandedIndex(3);
         },
         onNounButtonPressed: () {
           launchGame(getFrenchDeclineQuestion);
@@ -294,13 +278,30 @@ class _LanguageBoxHolderState extends State<LanguageBoxHolder> {
         },
       ),
       LanguageBox2(
+        imagePath: 'assets/FlagSpain.png',
+        name: 'textSpanish'.tr(),
+        description: 'comingSoonText'.tr(),
+        index: 3,
+        isExpanded: expandedIndex == 3,
+        onPressed: () {
+          // changeExpandedIndex(3);
+        },
+        onNounButtonPressed: () {
+          // launchGame(getSpanishDeclineQuestion);
+        },
+        onVerbButtonPressed: () {
+          // launchGame(getSpanishVerbQuestion);
+        },
+      ),
+
+      LanguageBox2(
         imagePath: 'assets/FlagPortugal.png',
         name: 'textPortuguese'.tr(),
         description: 'comingSoonText'.tr(),
         index: 4,
         isExpanded: expandedIndex == 4,
         onPressed: () {
-          changeExpandedIndex(4);
+          // changeExpandedIndex(4);
         },
         onNounButtonPressed: () {},
         onVerbButtonPressed: () {},
@@ -308,19 +309,22 @@ class _LanguageBoxHolderState extends State<LanguageBoxHolder> {
       LanguageBox2(
         imagePath: 'assets/FlagRomania.png',
         name: 'textRomanian'.tr(),
-        description: '',
+        description: 'comingSoonText'.tr(),
         index: 5,
         isExpanded: expandedIndex == 5,
         onPressed: () {
-          changeExpandedIndex(5);
+          // changeExpandedIndex(5);
         },
         onNounButtonPressed: () {
-          launchGame(getRomanianDeclineQuestion);
+          // launchGame(getRomanianDeclineQuestion);
         },
         onVerbButtonPressed: () {
-          launchGame(getRomanianVerbQuestion);
+          // launchGame(getRomanianVerbQuestion);
         },
       ),
+      SizedBox(
+        height: 15,
+      )
     ];
 
     return Scaffold(backgroundColor: mediumColor, body: ListView(children: periodicElements));

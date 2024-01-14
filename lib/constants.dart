@@ -3,6 +3,7 @@ import 'package:tinycolor2/tinycolor2.dart';
 import 'package:flutter/material.dart';
 
 const Color darkColor = Color.fromRGBO(119, 107, 93, 1);
+const Color darkColorTrans = Color.fromRGBO(119, 107, 93, 0.5);
 
 const Color mediumColor = Color.fromRGBO(176, 166, 149, 1);
 const Color fadedColor = Color.fromRGBO(170, 167, 162, 1);
