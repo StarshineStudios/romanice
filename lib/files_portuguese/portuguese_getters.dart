@@ -2,25 +2,25 @@
 import 'dart:math';
 
 import '../constants.dart';
-import 'word_data/spanish_adjectives.dart';
-import 'spanish_classes.dart';
-import 'word_data/spanish_nouns.dart';
-import 'word_data/spanish_verbs.dart';
+import 'word_data/portuguese_adjectives.dart';
+import 'portuguese_classes.dart';
+import 'word_data/portuguese_nouns.dart';
+import 'word_data/portuguese_verbs.dart';
 import '../lengtheners.dart';
 
-List<String> spanishShortNumbers = ['s', 'p'];
+List<String> portugueseShortNumbers = ['s', 'p'];
 //i is used to represent neuter like words that change gender
-List<String> spanishShortGenders = [
+List<String> portugueseShortGenders = [
   'm',
   'f',
 ];
-List<String> spanishShortMoods = ['ind', 'sub', 'imp'];
-List<String> spanishShortTenses = [
+List<String> portugueseShortMoods = ['ind', 'sub', 'imp'];
+List<String> portugueseShortTenses = [
   'rpres',
   'rimp',
   'rfut',
   'rperf',
-  'rcond', //cond is tense in spanish
+  'rcond', //cond is tense in portuguese
 
   //compound forms
   'rperfc',
@@ -29,31 +29,31 @@ List<String> spanishShortTenses = [
   'rant',
   'rcondp',
 ];
-List<String> spanishShortPersons = ['1', '2', '3'];
+List<String> portugueseShortPersons = ['1', '2', '3'];
 
-// List<String> spanishNumbers = ['singular', 'plural'];
-// List<String> spanishGenders = ['neuter', 'masculine', 'feminine'];
-// List<String> spanishCases = ['nominative', 'accusative', 'genitive', 'dative', 'ablative', 'vocative'];
-// List<String> spanishFullCases = ['nominative', 'accusative', 'genitive', 'dative', 'ablative', 'vocative', 'locative'];
-// List<String> spanishMoods = ['indicative', 'subjunctive'];
+// List<String> portugueseNumbers = ['singular', 'plural'];
+// List<String> portugueseGenders = ['neuter', 'masculine', 'feminine'];
+// List<String> portugueseCases = ['nominative', 'accusative', 'genitive', 'dative', 'ablative', 'vocative'];
+// List<String> portugueseFullCases = ['nominative', 'accusative', 'genitive', 'dative', 'ablative', 'vocative', 'locative'];
+// List<String> portugueseMoods = ['indicative', 'subjunctive'];
 
-Question getSpanishVerbQuestion() {
+Question getPortugueseVerbQuestion() {
   final random = Random();
 
   //
-  SpanishVerb randomVerb = spanishVerbs[random.nextInt(spanishVerbs.length)];
-  String randomMood = spanishShortMoods[random.nextInt(spanishShortMoods.length)];
-  String randomTense = spanishShortTenses[random.nextInt(spanishShortTenses.length)];
-  String randomNumber = spanishShortNumbers[random.nextInt(spanishShortNumbers.length)];
-  String randomPerson = spanishShortPersons[random.nextInt(spanishShortPersons.length)];
-  String randomGender = spanishShortGenders[random.nextInt(spanishShortGenders.length)];
+  PortugueseVerb randomVerb = portugueseVerbs[random.nextInt(portugueseVerbs.length)];
+  String randomMood = portugueseShortMoods[random.nextInt(portugueseShortMoods.length)];
+  String randomTense = portugueseShortTenses[random.nextInt(portugueseShortTenses.length)];
+  String randomNumber = portugueseShortNumbers[random.nextInt(portugueseShortNumbers.length)];
+  String randomPerson = portugueseShortPersons[random.nextInt(portugueseShortPersons.length)];
+  String randomGender = portugueseShortGenders[random.nextInt(portugueseShortGenders.length)];
 
   void initConjugation() {
-    randomMood = spanishShortMoods[random.nextInt(spanishShortMoods.length)];
-    randomTense = spanishShortTenses[random.nextInt(spanishShortTenses.length)];
-    randomNumber = spanishShortNumbers[random.nextInt(spanishShortNumbers.length)];
-    randomPerson = spanishShortPersons[random.nextInt(spanishShortPersons.length)];
-    randomGender = spanishShortGenders[random.nextInt(spanishShortGenders.length)];
+    randomMood = portugueseShortMoods[random.nextInt(portugueseShortMoods.length)];
+    randomTense = portugueseShortTenses[random.nextInt(portugueseShortTenses.length)];
+    randomNumber = portugueseShortNumbers[random.nextInt(portugueseShortNumbers.length)];
+    randomPerson = portugueseShortPersons[random.nextInt(portugueseShortPersons.length)];
+    randomGender = portugueseShortGenders[random.nextInt(portugueseShortGenders.length)];
   }
 
   while (randomVerb.conjugateVerb(randomMood, randomTense, randomNumber, randomPerson, g: randomGender) == 'DNE') {
@@ -68,7 +68,7 @@ Question getSpanishVerbQuestion() {
     lengthenMood[randomMood] ?? 'DNE',
     if (randomMood == 'imp') lengthenPerson[randomPerson] ?? 'DNE',
   ];
-  String prompt = getSpanishSubject(randomMood, randomNumber, randomPerson, randomGender);
+  String prompt = getPortugueseSubject(randomMood, randomNumber, randomPerson, randomGender);
 
   String blank = randomVerb.conjugateVerb(randomMood, randomTense, randomNumber, randomPerson, g: randomGender);
   String answer = prompt.replaceAll('_____', blank);
@@ -77,14 +77,14 @@ Question getSpanishVerbQuestion() {
   // return Question(lemma: 'lemma', demands: ['demands'], prompt: 'prompt', answer: 'answer');
 }
 
-Question getSpanishNounQuestion() {
+Question getPortugueseNounQuestion() {
   final random = Random();
-  SpanishNoun randomNoun = spanishNouns[random.nextInt(spanishNouns.length)];
+  PortugueseNoun randomNoun = portugueseNouns[random.nextInt(portugueseNouns.length)];
 
-  String randomNumber = spanishShortNumbers[random.nextInt(spanishShortNumbers.length)];
+  String randomNumber = portugueseShortNumbers[random.nextInt(portugueseShortNumbers.length)];
 
   void initDeclension() {
-    randomNumber = spanishShortNumbers[random.nextInt(spanishShortNumbers.length)];
+    randomNumber = portugueseShortNumbers[random.nextInt(portugueseShortNumbers.length)];
   }
 
   while (randomNoun.declineNoun(randomNumber) == 'DNE') {
@@ -106,13 +106,13 @@ Question getSpanishNounQuestion() {
 }
 
 //match adjective to noun
-Question getSpanishAdjectiveNounQuestion() {
+Question getPortugueseAdjectiveNounQuestion() {
   final random = Random();
-  SpanishNoun randomNoun = spanishNouns[random.nextInt(spanishNouns.length)];
-  String randomNumber = spanishShortNumbers[random.nextInt(spanishShortNumbers.length)];
+  PortugueseNoun randomNoun = portugueseNouns[random.nextInt(portugueseNouns.length)];
+  String randomNumber = portugueseShortNumbers[random.nextInt(portugueseShortNumbers.length)];
 
   void initDeclension() {
-    randomNumber = spanishShortNumbers[random.nextInt(spanishShortNumbers.length)];
+    randomNumber = portugueseShortNumbers[random.nextInt(portugueseShortNumbers.length)];
   }
 
   while (randomNoun.declineNoun(randomNumber) == 'DNE') {
@@ -120,7 +120,7 @@ Question getSpanishAdjectiveNounQuestion() {
     print('$randomNumber, DNE');
   }
 
-  SpanishAdjective randomAdjective = spanishAdjectives[random.nextInt(spanishAdjectives.length)];
+  PortugueseAdjective randomAdjective = portugueseAdjectives[random.nextInt(portugueseAdjectives.length)];
 
   String lemma = randomAdjective.declineAdjective('s', 'm');
 
@@ -136,21 +136,21 @@ Question getSpanishAdjectiveNounQuestion() {
   String answer = prompt.replaceAll('_____', blank);
 
   if (answer == 'DNE') {
-    return getSpanishAdjectiveNounQuestion();
+    return getPortugueseAdjectiveNounQuestion();
   }
 
   return Question(lemma: lemma, demands: demands, prompt: prompt, answer: answer);
 }
 
-Question getSpanishDeclineQuestion() {
+Question getPortugueseDeclineQuestion() {
   final random = Random();
   // Simulate a 60/40 chance
   bool isOutcomeA = random.nextDouble() < 0.5;
 
-  return isOutcomeA ? getSpanishNounQuestion() : getSpanishAdjectiveNounQuestion();
+  return isOutcomeA ? getPortugueseNounQuestion() : getPortugueseAdjectiveNounQuestion();
 }
 
-String getSpanishSubject(String mood, String number, String person, String gender) {
+String getPortugueseSubject(String mood, String number, String person, String gender) {
   final random = Random();
 
   //In order to get them
