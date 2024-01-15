@@ -1,3 +1,4 @@
+import '../../core/enums.dart';
 import '../portuguese_classes.dart';
 
 List<PortugueseVerb> portugueseVerbs = [
@@ -8,58 +9,58 @@ PortugueseVerb ser = PortugueseVerb(
   infinitive: 'ser',
   gerund: 'sendo',
   participles: {
-    'past': const PortugueseAdjective(
+    Tense.perfectRomance: const PortugueseAdjective(
       declension: {
-        's': {'m': 'sido', 'f': 'sida'},
-        'p': {'m': 'sidos', 'f': 'sidas'}
+        Number.s: {Gender.m: 'sido', Gender.f: 'sida'},
+        Number.p: {Gender.m: 'sidos', Gender.f: 'sidas'}
       },
     ),
   },
   conjugation: {
-    'ind': {
-      'r pres': {
-        's': {'1': 'sou', '2': 'és', '3': 'é'},
-        'p': {'1': 'somos', '2': 'sois', '3': 'são'},
+    Mood.ind: {
+      Tense.presentRomance: {
+        Number.s: {Person.first: 'sou', Person.second: 'és', Person.third: 'é'},
+        Number.p: {Person.first: 'somos', Person.second: 'sois', Person.third: 'são'},
       },
-      'r imp': {
-        's': {'1': 'era', '2': 'eras', '3': 'era'},
-        'p': {'1': 'éramos', '2': 'éreis', '3': 'eram'},
+      Tense.imperfectRomance: {
+        Number.s: {Person.first: 'era', Person.second: 'eras', Person.third: 'era'},
+        Number.p: {Person.first: 'éramos', Person.second: 'éreis', Person.third: 'eram'},
       },
-      'r perf': {
-        's': {'1': 'fui', '2': 'foste', '3': 'foi'},
-        'p': {'1': 'fomos', '2': 'fostes', '3': 'foram'},
+      Tense.perfectRomance: {
+        Number.s: {Person.first: 'fui', Person.second: 'foste', Person.third: 'foi'},
+        Number.p: {Person.first: 'fomos', Person.second: 'fostes', Person.third: 'foram'},
       },
-      'r plup': {
-        's': {'1': 'fora', '2': 'foras', '3': 'fora'},
-        'p': {'1': 'fôramos', '2': 'fôreis', '3': 'foram'},
+      Tense.pluperfectRomance: {
+        Number.s: {Person.first: 'fora', Person.second: 'foras', Person.third: 'fora'},
+        Number.p: {Person.first: 'fôramos', Person.second: 'fôreis', Person.third: 'foram'},
       },
-      'r fut': {
-        's': {'1': 'serei', '2': 'serás', '3': 'será'},
-        'p': {'1': 'seremos', '2': 'sereis', '3': 'serão'},
+      Tense.futureRomance: {
+        Number.s: {Person.first: 'serei', Person.second: 'serás', Person.third: 'será'},
+        Number.p: {Person.first: 'seremos', Person.second: 'sereis', Person.third: 'serão'},
       },
-      'r cond': {
-        's': {'1': 'seria', '2': 'serias', '3': 'seria'},
-        'p': {'1': 'seríamos', '2': 'seríeis', '3': 'seriam'},
-      },
-    },
-    'sub': {
-      'r pres': {
-        's': {'1': 'seja', '2': 'sejas', '3': 'seja'},
-        'p': {'1': 'sejamos', '2': 'sejais', '3': 'sejam'},
-      },
-      'r imp': {
-        's': {'1': 'fosse', '2': 'fosses', '3': 'fosse'},
-        'p': {'1': 'fôssemos', '2': 'fôsseis', '3': 'fossem'},
-      },
-      'r fut': {
-        's': {'1': 'for', '2': 'fores', '3': 'for'},
-        'p': {'1': 'formos', '2': 'fordes', '3': 'forem'},
+      Tense.conditionalRomance: {
+        Number.s: {Person.first: 'seria', Person.second: 'serias', Person.third: 'seria'},
+        Number.p: {Person.first: 'seríamos', Person.second: 'seríeis', Person.third: 'seriam'},
       },
     },
-    'imp': {
-      'r pres': {
-        's': {'2': 'sê', '3': 'seja'},
-        'p': {'1': 'sejamos', '2': 'sede', '3': 'sejam'},
+    Mood.sub: {
+      Tense.presentRomance: {
+        Number.s: {Person.first: 'seja', Person.second: 'sejas', Person.third: 'seja'},
+        Number.p: {Person.first: 'sejamos', Person.second: 'sejais', Person.third: 'sejam'},
+      },
+      Tense.imperfectRomance: {
+        Number.s: {Person.first: 'fosse', Person.second: 'fosses', Person.third: 'fosse'},
+        Number.p: {Person.first: 'fôssemos', Person.second: 'fôsseis', Person.third: 'fossem'},
+      },
+      Tense.futureRomance: {
+        Number.s: {Person.first: 'for', Person.second: 'fores', Person.third: 'for'},
+        Number.p: {Person.first: 'formos', Person.second: 'fordes', Person.third: 'forem'},
+      },
+    },
+    Mood.imp: {
+      Tense.presentRomance: {
+        Number.s: {Person.second: 'sê', Person.third: 'seja'},
+        Number.p: {Person.first: 'sejamos', Person.second: 'sede', Person.third: 'sejam'},
       },
     },
   },
@@ -69,58 +70,58 @@ PortugueseVerb ter = PortugueseVerb(
   infinitive: 'ter',
   gerund: 'tendo',
   participles: {
-    'past': const PortugueseAdjective(
+    Tense.perfectRomance: const PortugueseAdjective(
       declension: {
-        's': {'m': 'tido', 'f': 'tida'},
-        'p': {'m': 'tidos', 'f': 'tidas'}
+        Number.s: {Gender.m: 'tido', Gender.f: 'tida'},
+        Number.p: {Gender.m: 'tidos', Gender.f: 'tidas'}
       },
     ),
   },
   conjugation: {
-    'ind': {
-      'r pres': {
-        's': {'1': 'tenho', '2': 'tens', '3': 'tem'},
-        'p': {'1': 'temos', '2': 'tendes', '3': 'têm'},
+    Mood.ind: {
+      Tense.presentRomance: {
+        Number.s: {Person.first: 'tenho', Person.second: 'tens', Person.third: 'tem'},
+        Number.p: {Person.first: 'temos', Person.second: 'tendes', Person.third: 'têm'},
       },
-      'r imp': {
-        's': {'1': 'tinha', '2': 'tinhas', '3': 'tinha'},
-        'p': {'1': 'tínhamos', '2': 'tínheis', '3': 'tinham'},
+      Tense.imperfectRomance: {
+        Number.s: {Person.first: 'tinha', Person.second: 'tinhas', Person.third: 'tinha'},
+        Number.p: {Person.first: 'tínhamos', Person.second: 'tínheis', Person.third: 'tinham'},
       },
-      'r perf': {
-        's': {'1': 'tive', '2': 'tiveste', '3': 'teve'},
-        'p': {'1': 'tivemos', '2': 'tivestes', '3': 'tiveram'},
+      Tense.perfectRomance: {
+        Number.s: {Person.first: 'tive', Person.second: 'tiveste', Person.third: 'teve'},
+        Number.p: {Person.first: 'tivemos', Person.second: 'tivestes', Person.third: 'tiveram'},
       },
-      'r plup': {
-        's': {'1': 'tivera', '2': 'tiveras', '3': 'tivera'},
-        'p': {'1': 'tivéramos', '2': 'tivéreis', '3': 'tiveram'},
+      Tense.pluperfectRomance: {
+        Number.s: {Person.first: 'tivera', Person.second: 'tiveras', Person.third: 'tivera'},
+        Number.p: {Person.first: 'tivéramos', Person.second: 'tivéreis', Person.third: 'tiveram'},
       },
-      'r fut': {
-        's': {'1': 'terei', '2': 'terás', '3': 'terá'},
-        'p': {'1': 'teremos', '2': 'tereis', '3': 'terão'},
+      Tense.futureRomance: {
+        Number.s: {Person.first: 'terei', Person.second: 'terás', Person.third: 'terá'},
+        Number.p: {Person.first: 'teremos', Person.second: 'tereis', Person.third: 'terão'},
       },
-      'r cond': {
-        's': {'1': 'teria', '2': 'terias', '3': 'teria'},
-        'p': {'1': 'teríamos', '2': 'teríeis', '3': 'teriam'},
-      },
-    },
-    'sub': {
-      'r pres': {
-        's': {'1': 'tenha', '2': 'tenhas', '3': 'tenha'},
-        'p': {'1': 'tenhamos', '2': 'tenhais', '3': 'tenham'},
-      },
-      'r imp': {
-        's': {'1': 'tivesse', '2': 'tivesses', '3': 'tivesse'},
-        'p': {'1': 'tivéssemos', '2': 'tivésseis', '3': 'tivessem'},
-      },
-      'r fut': {
-        's': {'1': 'tiver', '2': 'tiveres', '3': 'tiver'},
-        'p': {'1': 'tivermos', '2': 'tiverdes', '3': 'tiverem'},
+      Tense.conditionalRomance: {
+        Number.s: {Person.first: 'teria', Person.second: 'terias', Person.third: 'teria'},
+        Number.p: {Person.first: 'teríamos', Person.second: 'teríeis', Person.third: 'teriam'},
       },
     },
-    'imp': {
-      'r pres': {
-        's': {'2': 'tem', '3': 'tenha'},
-        'p': {'1': 'tenhamos', '2': 'tende', '3': 'tenham'},
+    Mood.sub: {
+      Tense.presentRomance: {
+        Number.s: {Person.first: 'tenha', Person.second: 'tenhas', Person.third: 'tenha'},
+        Number.p: {Person.first: 'tenhamos', Person.second: 'tenhais', Person.third: 'tenham'},
+      },
+      Tense.imperfectRomance: {
+        Number.s: {Person.first: 'tivesse', Person.second: 'tivesses', Person.third: 'tivesse'},
+        Number.p: {Person.first: 'tivéssemos', Person.second: 'tivésseis', Person.third: 'tivessem'},
+      },
+      Tense.futureRomance: {
+        Number.s: {Person.first: 'tiver', Person.second: 'tiveres', Person.third: 'tiver'},
+        Number.p: {Person.first: 'tivermos', Person.second: 'tiverdes', Person.third: 'tiverem'},
+      },
+    },
+    Mood.imp: {
+      Tense.presentRomance: {
+        Number.s: {Person.second: 'tem', Person.third: 'tenha'},
+        Number.p: {Person.first: 'tenhamos', Person.second: 'tende', Person.third: 'tenham'},
       },
     },
   },

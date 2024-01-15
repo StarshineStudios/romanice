@@ -1,23 +1,25 @@
+import 'package:colorguesser/core/enums.dart';
+
 import 'word_data/portuguese_verbs.dart';
 
 class PortugueseAdjective {
-  final Map<String, Map<String, String>> declension;
+  final Map<Number, Map<Gender, String>> declension;
   const PortugueseAdjective(
       {
       //default value for tests and such\
       required this.declension});
 
-  String declineAdjective(String n, String g) {
+  String declineAdjective(Number n, Gender g) {
     return declension[n]?[g] ?? 'DNE';
   }
 }
 
 class PortugueseNoun {
-  final Map<String, String> declension;
-  final String gender;
+  final Map<Number, String> declension;
+  final Gender gender;
   const PortugueseNoun({required this.gender, required this.declension});
 
-  String declineNoun(String n) {
+  String declineNoun(Number n) {
     return declension[n] ?? 'DNE';
   }
 }
@@ -25,8 +27,8 @@ class PortugueseNoun {
 class PortugueseVerb {
   String infinitive;
   String gerund;
-  Map<String, PortugueseAdjective> participles;
-  Map<String, Map<String, Map<String, Map<String, String>>>> conjugation;
+  Map<Tense, PortugueseAdjective> participles;
+  Map<Mood, Map<Tense, Map<Number, Map<Person, String>>>> conjugation;
 
   PortugueseVerb({
     required this.infinitive,
@@ -35,29 +37,35 @@ class PortugueseVerb {
     required this.conjugation,
   });
 
-  String conjugateVerb(String m, String t, String n, String p, {String g = 'm'}) {
+  String conjugateVerb(Mood m, Tense t, Number n, Person p, {Gender g = Gender.m}) {
     // print('hi'); //pres ind and pres cond are both simple, also all imp are simple
-    if (m == 'r pres' || t == 'r imp' || t == 'r perf' || t == 'r plup' || t == 'r fut' || t == 'r cond') {
+    if (t == Tense.presentRomance ||
+        t == Tense.imperfectRomance ||
+        t == Tense.perfectRomance ||
+        t == Tense.pluperfectRomance ||
+        t == Tense.futureRomance ||
+        t == Tense.conditionalRomance) {
       return conjugation[m]?[t]?[n]?[p] ?? 'DNE';
 
       //else if the verb is not simple and is compound
     } else {
-      String auxiliaryTense = '';
+      Tense auxiliaryTense;
 
-      if (t == 'r perf c') {
-        auxiliaryTense = 'r pres';
-      } else if (t == 'r plup c') {
-        auxiliaryTense = 'r imp';
-      } else if (t == 'r ante c') {
-        auxiliaryTense = 'r perf c';
-      } else if (t == 'r futp c') {
-        auxiliaryTense = 'r fut';
-      } else if (t == 'r condp c') {
-        auxiliaryTense = 'pres';
+      if (t == Tense.perfectRomanceCompound) {
+        auxiliaryTense = Tense.presentRomance;
+      } else if (t == Tense.pluperfectRomanceCompound) {
+        auxiliaryTense = Tense.imperfectRomance;
+      } else if (t == Tense.anteriorRomanceCompound) {
+        auxiliaryTense = Tense.perfectRomanceCompound;
+      } else if (t == Tense.futurePerfectRomanceCompound) {
+        auxiliaryTense = Tense.futureRomance;
+      } else {
+        //if (t == Tense.conditionalPerfectRomanceCompound) {
+        auxiliaryTense = Tense.present; //will be conditional
       }
 
       String aux = ter.conjugateVerb(m, auxiliaryTense, n, p);
-      String part = participles['past']!.declineAdjective('s', 'm');
+      String part = participles['past']!.declineAdjective(Number.s, Gender.m);
 
       if (aux == 'DNE' || part == 'DNE') {
         return 'DNE';
@@ -70,8 +78,8 @@ class PortugueseVerb {
 class PortugueseAuxiliaryVerb {
   String infinitive;
   String gerund;
-  Map<String, PortugueseAdjective> participles;
-  Map<String, Map<String, Map<String, Map<String, String>>>> conjugation;
+  Map<Tense, PortugueseAdjective> participles;
+  Map<Mood, Map<Tense, Map<Number, Map<Person, String>>>> conjugation;
 
   PortugueseAuxiliaryVerb({
     required this.infinitive,
@@ -80,9 +88,13 @@ class PortugueseAuxiliaryVerb {
     required this.conjugation,
   });
 
-  String conjugateVerb(String m, String t, String n, String p, {String g = 'm'}) {
-    // print('hi'); //pres ind and pres cond are both simple, also all imp are simple
-    if (m == 'imp' || t == 'pres' || t == 'imp' || t == 'fut' || t == 'perf') {
+  String conjugateVerb(Mood m, Tense t, Number n, Person p, {Gender g = Gender.m}) {
+    if (t == Tense.present ||
+        t == Tense.imperfect ||
+        t == Tense.perfect ||
+        t == Tense.pluperfectRomance ||
+        t == Tense.futureRomance ||
+        t == Tense.conditionalRomance) {
       return conjugation[m]?[t]?[n]?[p] ?? 'DNE';
     }
     return 'DNE';

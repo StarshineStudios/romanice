@@ -1,3 +1,5 @@
+import 'package:colorguesser/core/enums.dart';
+
 import '../portuguese_classes.dart';
 
 List<PortugueseAdjective> portugueseAdjectives = [
@@ -6,13 +8,13 @@ List<PortugueseAdjective> portugueseAdjectives = [
 
 PortugueseAdjective romano = const PortugueseAdjective(
   declension: {
-    's': {'m': 'romano', 'f': 'romana'},
-    'p': {'m': 'romanos', 'f': 'romanas'}
+    Number.s: {Gender.m: 'romano', Gender.f: 'romana'},
+    Number.p: {Gender.m: 'romanos', Gender.f: 'romanas'}
   },
 );
 PortugueseAdjective bonito = const PortugueseAdjective(
   declension: {
-    's': {'m': 'bonito', 'f': 'bonita'},
-    'p': {'m': 'bonitos', 'f': 'bonitas'}
+    Number.s: {Gender.m: 'bonito', Gender.f: 'bonita'},
+    Number.p: {Gender.m: 'bonitos', Gender.f: 'bonitas'}
   },
 );

@@ -1,3 +1,5 @@
+import 'package:colorguesser/core/enums.dart';
+
 import '../portuguese_classes.dart';
 
 List<PortugueseNoun> portugueseNouns = [
@@ -5,9 +7,9 @@ List<PortugueseNoun> portugueseNouns = [
 ];
 
 PortugueseNoun estrela = const PortugueseNoun(
-  gender: 'f',
+  gender: Gender.f,
   declension: {
-    's': 'estrela',
-    'p': 'estrelas',
+    Number.s: 'estrela',
+    Number.p: 'estrelas',
   },
 );
