@@ -12,100 +12,99 @@
 //NOTE THAT ON THE RIGHT IS NOT WHAT WILL BE DISPLAYED, NOR IS IT THE ENGLISH FORM OF THE WORD.
 //THE ACTUAL FORM WILL BE TRANSLATED. THE WORD ROMANCE WILL NOT APPEAR IN FRONT OF ANY
 //THIS EXISTS ONLY TO SIMPLIFY THE CODE
-Map<String, String> lengthenNumber = {
-  's': 'singular', //es, la, fr, it, pt, ro
-  'p': 'plural', //es, la, fr, it, pt, ro
-};
-Map<String, String> lengthenGender = {
-  'm': 'masculine', //es, la, fr, it, pt, ro
-  'f': 'feminine', //es, la, fr, it, pt, ro
-  'n': 'neuter', //la
+import 'package:colorguesser/core/enums.dart';
 
-  'i': 'irregular', //used in italian to mean neuter-like words
+Map<Number, String> lengthenNumber = {
+  Number.s: 'singular', //es, la, fr, it, pt, ro
+  Number.p: 'plural', //es, la, fr, it, pt, ro
+};
+Map<Gender, String> lengthenGender = {
+  Gender.m: 'masculine', //es, la, fr, it, pt, ro
+  Gender.f: 'feminine', //es, la, fr, it, pt, ro
+  Gender.n: 'neuter', //la
+  Gender.i: 'irregular', //used in italian to mean neuter-like words
 };
 
 //only latin and romanian have cases for non pronouns.
 //nom+acc and gen+dat are same in romanian
-Map<String, String> lengthenCase = {
-  'nom': 'nominative', //la, ro
-  'acc': 'accusative', //la, ro
-  'gen': 'genitive', //la, ro
-  'dat': 'dative', //la, ro
-  'abl': 'ablative',
-  'voc': 'vocative', //la, ro
-  'loc': 'locative',
+Map<Case, String> lengthenCase = {
+  Case.nom: 'nominative', //la, ro
+  Case.acc: 'accusative', //la, ro
+  Case.gen: 'genitive', //la, ro
+  Case.dat: 'dative', //la, ro
+  Case.abl: 'ablative',
+  Case.voc: 'vocative', //la, ro
+  Case.loc: 'locative',
 
-  'nomacc': 'nominative/accusative',
-  'gendat': 'genitive/dative',
+  Case.nomacc: 'nominative/accusative',
+  Case.gendat: 'genitive/dative',
 };
 
-//romanian sometimes counts verbal nouns as moods.
+//romanian sometimes counts verbal nouns like gerunds and infinitives as moods.
 //I will not because it does not make sense.
-Map<String, String> lengthenMood = {
-  'ind': 'indicative', //es, la, fr, it, pt, ro
-  'sub': 'subjunctive', //es, la, fr, it, pt, ro
-  'imp': 'imperative', //es, la, fr, it, pt, ro
+Map<Mood, String> lengthenMood = {
+  Mood.ind: 'indicative', //es, la, fr, it, pt, ro
+  Mood.sub: 'subjunctive', //es, la, fr, it, pt, ro
+  Mood.imp: 'imperative', //es, la, fr, it, pt, ro
 
   //SAME FORM
-  'optcon': 'optative/conditional', //ro
-  'con': 'conditional', //ro, it (italian, french, and romanian considers conditional a mood. spanish does not. )
-  'pre': 'presumptive', //ro
+  Mood.optcon: 'optative/conditional', //ro
+  Mood.con: 'conditional', //ro, it (italian, french, and romanian considers conditional a mood. spanish does not. )
+  Mood.pre: 'presumptive', //ro
 };
 
 //only latin has a proper passive voice
-Map<String, String> lengthenVoice = {
-  'act': 'active', //la
-  'pas': 'passive', //la
+Map<Voice, String> lengthenVoice = {
+  Voice.act: 'active', //la
+  Voice.pas: 'passive', //la
 };
 
 //i will not count progressive tenses as tenses, but i will count compound ones
-Map<String, String> lengthenTense = {
+Map<Tense, String> lengthenTense = {
   //These are the six simple latin tenses.
   //I will use these exclusively for latin, as
   //romance languages often call the same tense in their language and in latin
   //different names
-  'pres': 'present', //la
-  'imp': 'imperfect', //la
-  'fut': 'future', //la
-  'perf': 'perfect', //la
-  'plup': 'pluperfect', //la
-  'futp': 'future perfect', //la
+  Tense.present: 'present', //la
+  Tense.imperfect: 'imperfect', //la
+  Tense.future: 'future', //la
+  Tense.perfect: 'perfect', //la
+  Tense.pluperfect: 'pluperfect', //la
+  Tense.futurePerfect: 'future perfect', //la
 
   //These are for romance languages
   //there will be some redundancy for clarity.
   //r at front means romance
 
   //Simple forms
-  'r pres': 'romance present', //es, fr, it, pt, ro
-  'r imp': 'romance imperfect', //es, fr, it, pt, ro
-  'r fut': 'romance future', //es, fr, it, pt
-  'r perf': 'romance perfect', //es, fr, it, pt, ro
-  'r con': 'romance conditional', //es, pt (other languages consider cond to be a mood)
+  Tense.presentRomance: 'romance present', //es, fr, it, pt, ro
+  Tense.imperfectRomance: 'romance imperfect', //es, fr, it, pt, ro
+  Tense.futureRomance: 'romance future', //es, fr, it, pt
+  Tense.perfectRomance: 'romance perfect', //es, fr, it, pt, ro
+  Tense.conditionalRomance: 'romance conditional', //es, pt (other languages consider cond to be a mood)
   //romanian and portiuguese have a strange simple pluperfect tense
-  'r plup': 'romance pluperfect', //ro, pt
+  Tense.pluperfectRomance: 'romance pluperfect', //ro, pt
 
   //compound forms
-  'r perf c': 'romance compound perfect',
-  'r plup c': 'romance compound pluperfect',
-  'r futp c': 'romance future perfect',
-  'r ante c': 'romance past anterior',
-  'r condp c': 'romance conditional perfect',
+  Tense.perfectRomanceCompound: 'romance compound perfect',
+  Tense.pluperfectRomanceCompound: 'romance compound pluperfect',
+  Tense.futurePerfectRomanceCompound: 'romance future perfect',
+  Tense.anteriorRomanceCompound: 'romance past anterior',
+  Tense.conditionalPerfectRomanceCompound: 'romance conditional perfect',
 
   //spanish only soubjunctive imperfect forms
-  'r imp ra': 'imperfect (ra)', //es
-  'r imp se': 'imperfect (se)', //es
+  Tense.imperfectSpanishRa: 'imperfect (ra)', //es
+  Tense.imperfectSpanishSe: 'imperfect (se)', //es
 
   //Romanian only future forms
-  'r fut c vrea': 'future (vrea)',
-  // 'r futp c vrea': '', //I can just use future perfect compound for this
-  'r fut c o': 'future (o)',
-  'r fut c avea': 'future (avea)', //rare, but forms future in the past so I will include it
-  'r futpast c': 'future in the past',
+  Tense.futureRomanianCompoundVrea: 'future (vrea)',
+  // 'r futp c vrea: '', //I can just use future perfect compound for this
+  Tense.futureRomanianCompoundO: 'future (o)',
+  Tense.futureRomanianCompoundAvea: 'future (avea)', //rare, but forms future in the past so I will include it
+  Tense.futurePastRomanianCompound: 'future in the past',
 };
-Map<String, String> lengthenPerson = {
-  '1': 'first person',
-  '2': 'second person',
-  '3': 'third person',
+Map<Person, String> lengthenPerson = {
+  Person.first: 'first person',
+  Person.second: 'second person',
+  Person.third: 'third person',
 };
-
-//participles can be past or whatever

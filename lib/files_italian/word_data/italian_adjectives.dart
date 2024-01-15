@@ -1,3 +1,5 @@
+import 'package:colorguesser/core/enums.dart';
+
 import '../italian_classes.dart';
 
 List<ItalianAdjective> italianAdjectives = [
@@ -23,111 +25,111 @@ List<ItalianAdjective> italianAdjectives = [
 
 ItalianAdjective romano = const ItalianAdjective(
   declension: {
-    's': {'m': 'romano', 'f': 'romana'},
-    'p': {'m': 'romani', 'f': 'romane'}
+    Number.s: {Gender.m: 'romano', Gender.f: 'romana'},
+    Number.p: {Gender.m: 'romani', Gender.f: 'romane'}
   },
 );
 
 ItalianAdjective grande = const ItalianAdjective(
   declension: {
-    's': {'m': 'grande', 'f': 'grande'},
-    'p': {'m': 'grandi', 'f': 'grandi'}
+    Number.s: {Gender.m: 'grande', Gender.f: 'grande'},
+    Number.p: {Gender.m: 'grandi', Gender.f: 'grandi'}
   },
 );
 
 ItalianAdjective italiano = const ItalianAdjective(
   declension: {
-    's': {'m': 'italiano', 'f': 'italiana'},
-    'p': {'m': 'italiani', 'f': 'italiane'}
+    Number.s: {Gender.m: 'italiano', Gender.f: 'italiana'},
+    Number.p: {Gender.m: 'italiani', Gender.f: 'italiane'}
   },
 );
 ItalianAdjective piccolo = const ItalianAdjective(
   declension: {
-    's': {'m': 'piccolo', 'f': 'piccola'},
-    'p': {'m': 'piccoli', 'f': 'piccole'}
+    Number.s: {Gender.m: 'piccolo', Gender.f: 'piccola'},
+    Number.p: {Gender.m: 'piccoli', Gender.f: 'piccole'}
   },
 );
 ItalianAdjective bello = const ItalianAdjective(
   declension: {
-    's': {'m': 'bello', 'f': 'bella'},
-    'p': {'m': 'belli', 'f': 'belle'}
+    Number.s: {Gender.m: 'bello', Gender.f: 'bella'},
+    Number.p: {Gender.m: 'belli', Gender.f: 'belle'}
   },
 );
 ItalianAdjective giovane = const ItalianAdjective(
   declension: {
-    's': {'m': 'giovane', 'f': 'giovane'},
-    'p': {'m': 'giovani', 'f': 'giovani'}
+    Number.s: {Gender.m: 'giovane', Gender.f: 'giovane'},
+    Number.p: {Gender.m: 'giovani', Gender.f: 'giovani'}
   },
 );
 ItalianAdjective vecchio = const ItalianAdjective(
   declension: {
-    's': {'m': 'vecchio', 'f': 'vecchia'},
-    'p': {'m': 'vecchi', 'f': 'vecchie'}
+    Number.s: {Gender.m: 'vecchio', Gender.f: 'vecchia'},
+    Number.p: {Gender.m: 'vecchi', Gender.f: 'vecchie'}
   },
 );
 ItalianAdjective buono = const ItalianAdjective(
   declension: {
-    's': {'m': 'buono', 'f': 'buona'},
-    'p': {'m': 'buoni', 'f': 'buone'}
+    Number.s: {Gender.m: 'buono', Gender.f: 'buona'},
+    Number.p: {Gender.m: 'buoni', Gender.f: 'buone'}
   },
 );
 ItalianAdjective cattivo = const ItalianAdjective(
   declension: {
-    's': {'m': 'cattivo', 'f': 'cattiva'},
-    'p': {'m': 'cattivi', 'f': 'cattive'}
+    Number.s: {Gender.m: 'cattivo', Gender.f: 'cattiva'},
+    Number.p: {Gender.m: 'cattivi', Gender.f: 'cattive'}
   },
 );
 ItalianAdjective grosso = const ItalianAdjective(
   declension: {
-    's': {'m': 'grosso', 'f': 'grossa'},
-    'p': {'m': 'grossi', 'f': 'grosse'}
+    Number.s: {Gender.m: 'grosso', Gender.f: 'grossa'},
+    Number.p: {Gender.m: 'grossi', Gender.f: 'grosse'}
   },
 );
 ItalianAdjective lungo = const ItalianAdjective(
   declension: {
-    's': {'m': 'lungo', 'f': 'lunga'},
-    'p': {'m': 'lungi', 'f': 'lunge'}
+    Number.s: {Gender.m: 'lungo', Gender.f: 'lunga'},
+    Number.p: {Gender.m: 'lungi', Gender.f: 'lunge'}
   },
 );
 ItalianAdjective corto = const ItalianAdjective(
   declension: {
-    's': {'m': 'corto', 'f': 'corta'},
-    'p': {'m': 'corti', 'f': 'corte'}
+    Number.s: {Gender.m: 'corto', Gender.f: 'corta'},
+    Number.p: {Gender.m: 'corti', Gender.f: 'corte'}
   },
 );
 ItalianAdjective alto = const ItalianAdjective(
   declension: {
-    's': {'m': 'alto', 'f': 'alta'},
-    'p': {'m': 'alti', 'f': 'alte'}
+    Number.s: {Gender.m: 'alto', Gender.f: 'alta'},
+    Number.p: {Gender.m: 'alti', Gender.f: 'alte'}
   },
 );
 ItalianAdjective nuovo = const ItalianAdjective(
   declension: {
-    's': {'m': 'nuovo', 'f': 'nuova'},
-    'p': {'m': 'nuovi', 'f': 'nuove'}
+    Number.s: {Gender.m: 'nuovo', Gender.f: 'nuova'},
+    Number.p: {Gender.m: 'nuovi', Gender.f: 'nuove'}
   },
 );
 ItalianAdjective vivo = const ItalianAdjective(
   declension: {
-    's': {'m': 'vivo', 'f': 'viva'},
-    'p': {'m': 'vivi', 'f': 'vive'}
+    Number.s: {Gender.m: 'vivo', Gender.f: 'viva'},
+    Number.p: {Gender.m: 'vivi', Gender.f: 'vive'}
   },
 );
 ItalianAdjective morto = const ItalianAdjective(
   declension: {
-    's': {'m': 'morto', 'f': 'morta'},
-    'p': {'m': 'morti', 'f': 'morte'}
+    Number.s: {Gender.m: 'morto', Gender.f: 'morta'},
+    Number.p: {Gender.m: 'morti', Gender.f: 'morte'}
   },
 );
 ItalianAdjective freddo = const ItalianAdjective(
   declension: {
-    's': {'m': 'freddo', 'f': 'fredda'},
-    'p': {'m': 'freddi', 'f': 'fredde'}
+    Number.s: {Gender.m: 'freddo', Gender.f: 'fredda'},
+    Number.p: {Gender.m: 'freddi', Gender.f: 'fredde'}
   },
 );
 ItalianAdjective caldo = const ItalianAdjective(
   declension: {
-    's': {'m': 'caldo', 'f': 'calda'},
-    'p': {'m': 'caldi', 'f': 'calde'}
+    Number.s: {Gender.m: 'caldo', Gender.f: 'calda'},
+    Number.p: {Gender.m: 'caldi', Gender.f: 'calde'}
   },
 );

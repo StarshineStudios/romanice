@@ -1,3 +1,5 @@
+import 'package:colorguesser/core/enums.dart';
+
 import '../italian_classes.dart';
 
 List<ItalianVerb> italianVerbs = [
@@ -10,52 +12,52 @@ ItalianVerb essere = ItalianVerb(
   gerund: 'essèndo',
   participles: {
     //this would be weird to decline but whatever
-    'r perf': const ItalianAdjective(
+    Tense.perfectRomance: const ItalianAdjective(
       declension: {
-        's': {'m': 'stàto', 'f': 'stàta'},
-        'p': {'m': 'stàti', 'f': 'stàte'}
+        Number.s: {Gender.m: 'stàto', Gender.f: 'stàta'},
+        Number.p: {Gender.m: 'stàti', Gender.f: 'stàte'}
       },
     ),
   },
   conjugation: {
-    'ind': {
-      'r pres': {
-        's': {'1': 'sono', '2': 'sei', '3': 'è'},
-        'p': {'1': 'siamo', '2': 'siete', '3': 'sono'},
+    Mood.ind: {
+      Tense.presentRomance: {
+        Number.s: {Person.first: 'sono', Person.second: 'sei', Person.third: 'è'},
+        Number.p: {Person.first: 'siamo', Person.second: 'siete', Person.third: 'sono'},
       },
-      'r imp': {
-        's': {'1': 'ero', '2': 'eri', '3': 'era'},
-        'p': {'1': 'eravamo', '2': 'eravate', '3': 'erano'},
+      Tense.imperfectRomance: {
+        Number.s: {Person.first: 'ero', Person.second: 'eri', Person.third: 'era'},
+        Number.p: {Person.first: 'eravamo', Person.second: 'eravate', Person.third: 'erano'},
       },
-      'r fut': {
-        's': {'1': 'sarò', '2': 'sarai', '3': 'sarà'},
-        'p': {'1': 'saremo', '2': 'sarete', '3': 'saranno'},
+      Tense.futureRomance: {
+        Number.s: {Person.first: 'sarò', Person.second: 'sarai', Person.third: 'sarà'},
+        Number.p: {Person.first: 'saremo', Person.second: 'sarete', Person.third: 'saranno'},
       },
-      'r perf': {
-        's': {'1': 'fui', '2': 'fosti', '3': 'fu'},
-        'p': {'1': 'fummo', '2': 'foste', '3': 'furono'},
-      },
-    },
-    'con': {
-      'r pres': {
-        's': {'1': 'sarò', '2': 'sarai', '3': 'sarà'},
-        'p': {'1': 'saremo', '2': 'sarete', '3': 'saranno'},
+      Tense.perfectRomance: {
+        Number.s: {Person.first: 'fui', Person.second: 'fosti', Person.third: 'fu'},
+        Number.p: {Person.first: 'fummo', Person.second: 'foste', Person.third: 'furono'},
       },
     },
-    'sub': {
-      'r pres': {
-        's': {'1': 'sia', '2': 'sia', '3': 'sia'},
-        'p': {'1': 'siamo', '2': 'siate', '3': 'siano'},
-      },
-      'r imp': {
-        's': {'1': 'fossi', '2': 'fossi', '3': 'fosse'},
-        'p': {'1': 'fossimo', '2': 'foste', '3': 'fossero'},
+    Mood.con: {
+      Tense.presentRomance: {
+        Number.s: {Person.first: 'sarò', Person.second: 'sarai', Person.third: 'sarà'},
+        Number.p: {Person.first: 'saremo', Person.second: 'sarete', Person.third: 'saranno'},
       },
     },
-    'imp': {
-      'r pres': {
-        's': {'2': 'sii', '3': 'sia'},
-        'p': {'1': 'siamo', '2': 'siate', '3': 'siano'},
+    Mood.sub: {
+      Tense.presentRomance: {
+        Number.s: {Person.first: 'sia', Person.second: 'sia', Person.third: 'sia'},
+        Number.p: {Person.first: 'siamo', Person.second: 'siate', Person.third: 'siano'},
+      },
+      Tense.imperfectRomance: {
+        Number.s: {Person.first: 'fossi', Person.second: 'fossi', Person.third: 'fosse'},
+        Number.p: {Person.first: 'fossimo', Person.second: 'foste', Person.third: 'fossero'},
+      },
+    },
+    Mood.imp: {
+      Tense.presentRomance: {
+        Number.s: {Person.second: 'sii', Person.third: 'sia'},
+        Number.p: {Person.first: 'siamo', Person.second: 'siate', Person.third: 'siano'},
       },
     },
   },
@@ -66,52 +68,52 @@ ItalianAuxiliaryVerb essere2 = ItalianAuxiliaryVerb(
   gerund: 'essèndo',
   participles: {
     //this would be weird to decline but whatever
-    'r perf': const ItalianAdjective(
+    Tense.perfectRomance: const ItalianAdjective(
       declension: {
-        's': {'m': 'stàto', 'f': 'stàta'},
-        'p': {'m': 'stàti', 'f': 'stàte'}
+        Number.s: {Gender.m: 'stàto', Gender.f: 'stàta'},
+        Number.p: {Gender.m: 'stàti', Gender.f: 'stàte'}
       },
     ),
   },
   conjugation: {
-    'ind': {
-      'r pres': {
-        's': {'1': 'sono', '2': 'sei', '3': 'è'},
-        'p': {'1': 'siamo', '2': 'siete', '3': 'sono'},
+    Mood.ind: {
+      Tense.presentRomance: {
+        Number.s: {Person.first: 'sono', Person.second: 'sei', Person.third: 'è'},
+        Number.p: {Person.first: 'siamo', Person.second: 'siete', Person.third: 'sono'},
       },
-      'r imp': {
-        's': {'1': 'ero', '2': 'eri', '3': 'era'},
-        'p': {'1': 'eravamo', '2': 'eravate', '3': 'erano'},
+      Tense.imperfectRomance: {
+        Number.s: {Person.first: 'ero', Person.second: 'eri', Person.third: 'era'},
+        Number.p: {Person.first: 'eravamo', Person.second: 'eravate', Person.third: 'erano'},
       },
-      'r fut': {
-        's': {'1': 'sarò', '2': 'sarai', '3': 'sarà'},
-        'p': {'1': 'saremo', '2': 'sarete', '3': 'saranno'},
+      Tense.futureRomance: {
+        Number.s: {Person.first: 'sarò', Person.second: 'sarai', Person.third: 'sarà'},
+        Number.p: {Person.first: 'saremo', Person.second: 'sarete', Person.third: 'saranno'},
       },
-      'r perf': {
-        's': {'1': 'fui', '2': 'fosti', '3': 'fu'},
-        'p': {'1': 'fummo', '2': 'foste', '3': 'furono'},
-      },
-    },
-    'con': {
-      'pres': {
-        's': {'1': 'sarò', '2': 'sarai', '3': 'sarà'},
-        'p': {'1': 'saremo', '2': 'sarete', '3': 'saranno'},
+      Tense.perfectRomance: {
+        Number.s: {Person.first: 'fui', Person.second: 'fosti', Person.third: 'fu'},
+        Number.p: {Person.first: 'fummo', Person.second: 'foste', Person.third: 'furono'},
       },
     },
-    'sub': {
-      'r pres': {
-        's': {'1': 'sia', '2': 'sia', '3': 'sia'},
-        'p': {'1': 'siamo', '2': 'siate', '3': 'siano'},
-      },
-      'r imp': {
-        's': {'1': 'fossi', '2': 'fossi', '3': 'fosse'},
-        'p': {'1': 'fossimo', '2': 'foste', '3': 'fossero'},
+    Mood.con: {
+      Tense.presentRomance: {
+        Number.s: {Person.first: 'sarò', Person.second: 'sarai', Person.third: 'sarà'},
+        Number.p: {Person.first: 'saremo', Person.second: 'sarete', Person.third: 'saranno'},
       },
     },
-    'imp': {
-      'r pres': {
-        's': {'2': 'sii', '3': 'sia'},
-        'p': {'1': 'siamo', '2': 'siate', '3': 'siano'},
+    Mood.sub: {
+      Tense.presentRomance: {
+        Number.s: {Person.first: 'sia', Person.second: 'sia', Person.third: 'sia'},
+        Number.p: {Person.first: 'siamo', Person.second: 'siate', Person.third: 'siano'},
+      },
+      Tense.imperfectRomance: {
+        Number.s: {Person.first: 'fossi', Person.second: 'fossi', Person.third: 'fosse'},
+        Number.p: {Person.first: 'fossimo', Person.second: 'foste', Person.third: 'fossero'},
+      },
+    },
+    Mood.imp: {
+      Tense.presentRomance: {
+        Number.s: {Person.second: 'sii', Person.third: 'sia'},
+        Number.p: {Person.first: 'siamo', Person.second: 'siate', Person.third: 'siano'},
       },
     },
   },

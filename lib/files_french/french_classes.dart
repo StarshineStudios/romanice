@@ -1,10 +1,10 @@
 import '../core/enums.dart';
 import 'word_data/french_verbs.dart';
-import '../../core/constants.dart';
 
 class FrenchAdjective {
   final Map<Number, Map<Gender, String>> declension;
-  const FrenchAdjective({required this.declension});
+  final bool before;
+  const FrenchAdjective({required this.declension, this.before = false});
 
   String declineAdjective(Number n, Gender g) {
     return declension[n]?[g] ?? 'DNE';
@@ -43,7 +43,7 @@ class FrenchVerb {
     }
 
     //else if the verb is not simple and is compound
-    var auxiliaryTense;
+    Tense auxiliaryTense;
     if (t == Tense.perfectRomanceCompound) {
       auxiliaryTense = Tense.presentRomance;
     } else if (t == Tense.pluperfectRomanceCompound) {

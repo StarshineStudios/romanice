@@ -1,7 +1,5 @@
 import 'dart:math';
-
 import 'package:colorguesser/core/enums.dart';
-
 import '../core/constants.dart';
 import 'word_data/french_adjectives.dart';
 import 'french_classes.dart';
@@ -9,11 +7,11 @@ import 'word_data/french_nouns.dart';
 import 'word_data/french_verbs.dart';
 import '../core/lengtheners.dart';
 
-List<Number> frenchShortNumbers = [Number.s, Number.p];
-List<Gender> frenchShortGenders = [Gender.m, Gender.f];
-List<Mood> frenchShortMoods = [Mood.ind, Mood.sub, Mood.con, Mood.imp];
-List<Person> frenchShortPersons = [Person.first, Person.second, Person.third];
-List<Tense> frenchShortTenses = [
+List<Number> frenchNumbers = [Number.s, Number.p];
+List<Gender> frenchGenders = [Gender.m, Gender.f];
+List<Mood> frenchMoods = [Mood.ind, Mood.sub, Mood.con, Mood.imp];
+List<Person> frenchPersons = [Person.first, Person.second, Person.third];
+List<Tense> frenchTenses = [
   //non-compound forms
   Tense.presentRomance,
   Tense.imperfectRomance,
@@ -27,23 +25,26 @@ List<Tense> frenchShortTenses = [
   Tense.anteriorRomanceCompound,
 ];
 
+////////////////////////////////////////////////////////////////
+
+//VERBS
 Question getFrenchVerbQuestion() {
   final random = Random();
   //PICK RANDOM VERB
   FrenchVerb randomVerb = frenchVerbs[random.nextInt(frenchVerbs.length)];
 
   //PICK RANDOM CONJUGATION
-  Mood randomMood = frenchShortMoods[random.nextInt(frenchShortMoods.length)];
-  Tense randomTense = frenchShortTenses[random.nextInt(frenchShortTenses.length)];
-  Number randomNumber = frenchShortNumbers[random.nextInt(frenchShortNumbers.length)];
-  Person randomPerson = frenchShortPersons[random.nextInt(frenchShortPersons.length)];
-  Gender randomGender = frenchShortGenders[random.nextInt(frenchShortGenders.length)];
+  Mood randomMood = frenchMoods.getRandom();
+  Tense randomTense = frenchTenses.getRandom();
+  Number randomNumber = frenchNumbers.getRandom();
+  Person randomPerson = frenchPersons.getRandom();
+  Gender randomGender = frenchGenders.getRandom();
   void initConjugation() {
-    randomMood = frenchShortMoods[random.nextInt(frenchShortMoods.length)];
-    randomTense = frenchShortTenses[random.nextInt(frenchShortTenses.length)];
-    randomNumber = frenchShortNumbers[random.nextInt(frenchShortNumbers.length)];
-    randomPerson = frenchShortPersons[random.nextInt(frenchShortPersons.length)];
-    randomGender = frenchShortGenders[random.nextInt(frenchShortGenders.length)];
+    randomMood = frenchMoods.getRandom();
+    randomTense = frenchTenses.getRandom();
+    randomNumber = frenchNumbers.getRandom();
+    randomPerson = frenchPersons.getRandom();
+    randomGender = frenchGenders.getRandom();
   }
 
   while (randomVerb.conjugateVerb(randomMood, randomTense, randomNumber, randomPerson, g: randomGender) == 'DNE') {
@@ -57,7 +58,7 @@ Question getFrenchVerbQuestion() {
     lengthenTense[randomTense] ?? 'DNE',
     lengthenMood[randomMood] ?? 'DNE',
     //if it is imperative, person matters.
-    if (randomMood == 'imp') lengthenPerson[randomPerson] ?? 'DNE',
+    if (randomMood == Mood.imp) lengthenPerson[randomPerson] ?? 'DNE',
   ];
 
   String blank = randomVerb.conjugateVerb(randomMood, randomTense, randomNumber, randomPerson, g: randomGender);
@@ -80,9 +81,9 @@ Question getFrenchNounQuestion() {
   FrenchNoun randomNoun = frenchNouns[random.nextInt(frenchNouns.length)];
 
   //PICK A RANDOM DECLENSION
-  Number randomNumber = frenchShortNumbers[random.nextInt(frenchShortNumbers.length)];
+  Number randomNumber = frenchNumbers[random.nextInt(frenchNumbers.length)];
   void initDeclension() {
-    randomNumber = frenchShortNumbers[random.nextInt(frenchShortNumbers.length)];
+    randomNumber = frenchNumbers[random.nextInt(frenchNumbers.length)];
   }
 
   while (randomNoun.declineNoun(randomNumber) == 'DNE') {
@@ -107,9 +108,9 @@ Question getFrenchAdjectiveNounQuestion() {
   //PICK A RANDOM NOUN
   FrenchNoun randomNoun = frenchNouns[random.nextInt(frenchNouns.length)];
   //PICK A RANDOM ADJECTIVE
-  Number randomNumber = frenchShortNumbers[random.nextInt(frenchShortNumbers.length)];
+  Number randomNumber = frenchNumbers[random.nextInt(frenchNumbers.length)];
   void initDeclension() {
-    randomNumber = frenchShortNumbers[random.nextInt(frenchShortNumbers.length)];
+    randomNumber = frenchNumbers[random.nextInt(frenchNumbers.length)];
   }
 
   while (randomNoun.declineNoun(randomNumber) == 'DNE') {
@@ -127,7 +128,9 @@ Question getFrenchAdjectiveNounQuestion() {
   ];
 
   String declinedNoun = randomNoun.declineNoun(randomNumber);
-  String prompt = '$declinedNoun _____';
+
+  //some french adjectives go before
+  String prompt = randomAdjective.before ? '_____ $declinedNoun' : '$declinedNoun _____';
 
   String blank = randomAdjective.declineAdjective(randomNumber, randomNoun.gender);
   String answer = prompt.replaceAll('_____', blank);

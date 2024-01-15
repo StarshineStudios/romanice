@@ -46,7 +46,7 @@ class RomanianVerb {
       if (t == 'r perf c') {
         //we use the aux form
         String first = avea2.conjugateVerb('ind', 'r pres', n, p);
-        String second = participles['past']!.declineAdjective('nomacc', 's', 'm') ?? 'DNE';
+        String second = participles['past']!.declineAdjective('nomacc', 's', 'm');
         if (first == 'DNE' || second == 'DNE') {
           return 'DNE';
         }

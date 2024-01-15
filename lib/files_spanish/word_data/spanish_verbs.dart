@@ -52,7 +52,7 @@ SpanishVerb ser = SpanishVerb(
         's': {'1': 'fuese', '2': 'fueses', '3': 'fuese'},
         'p': {'1': 'fuésemos', '2': 'fueseis', '3': 'fuesen'},
       },
-      'r imp se': {
+      'future': {
         's': {'1': 'fuere', '2': 'fueres', '3': 'fuere'},
         'p': {'1': 'fuéremos', '2': 'fuereis', '3': 'fueren'},
       },
@@ -112,7 +112,7 @@ SpanishAuxiliaryVerb haber = SpanishAuxiliaryVerb(
         's': {'1': 'hubiese', '2': 'hubieses', '3': 'hubiese'},
         'p': {'1': 'hubiésemos', '2': 'hubieseis', '3': 'hubiesen'},
       },
-      'r imp se': {
+      'future': {
         's': {'1': 'hubiere', '2': 'hubieres', '3': 'hubiere'},
         'p': {'1': 'hubiéremos', '2': 'hubiereis', '3': 'hubieren'},
       },

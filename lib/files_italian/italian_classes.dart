@@ -1,28 +1,30 @@
+import 'package:colorguesser/core/enums.dart';
+
 import 'word_data/italian_verbs.dart';
 
 class ItalianAdjective {
-  final Map<String, Map<String, String>> declension;
+  final Map<Number, Map<Gender, String>> declension;
   const ItalianAdjective({required this.declension});
 
-  String declineAdjective(String n, String g) {
+  String declineAdjective(Number n, Gender g) {
     return declension[n]?[g] ?? 'DNE';
   }
 }
 
 class ItalianNoun {
-  final Map<String, String> declension;
-  final String gender;
+  final Map<Number, String> declension;
+  final Gender gender;
   const ItalianNoun({required this.gender, required this.declension});
 
-  String declineNoun(String n) {
+  String declineNoun(Number n) {
     return declension[n] ?? 'DNE';
   }
 
-  String getGender(String n) {
+  Gender getGender(Number n) {
     //check if irregular
-    if (gender == 'i') {
+    if (gender == Gender.i) {
       //masc in singular, fem in plural
-      return n == 's' ? 'm' : 'f';
+      return n == Number.s ? Gender.m : Gender.f;
     } else {
       return gender;
     }
@@ -33,8 +35,8 @@ class ItalianVerb {
   String infinitive;
   String gerund;
   ItalianAuxiliaryVerb auxiliaryVerb;
-  Map<String, ItalianAdjective> participles;
-  Map<String, Map<String, Map<String, Map<String, String>>>> conjugation;
+  Map<Tense, ItalianAdjective> participles;
+  Map<Mood, Map<Tense, Map<Number, Map<Person, String>>>> conjugation;
 
   ItalianVerb({
     required this.infinitive,
@@ -45,28 +47,29 @@ class ItalianVerb {
   });
 
   //we need the gender for forms involving participles.
-  String conjugateVerb(String m, String t, String n, String p, {String g = 'm'}) {
+  String conjugateVerb(Mood m, Tense t, Number n, Person p, {Gender g = Gender.m}) {
     //first, check if the verb is simple or not.
-    if ('r pres' == t || 'r imp' == t || 'r fut' == t || 'r perf' == t) {
+    if (Tense.presentRomance == t || Tense.imperfectRomance == t || Tense.futureRomance == t || Tense.perfectRomance == t) {
       return conjugation[m]?[t]?[n]?[p] ?? 'DNE';
     }
 
     //else if the verb is not simple and is compound
-    String auxiliaryTense = '';
-    if (t == 'r perf c') {
-      auxiliaryTense = 'r pres';
-    } else if (t == 'r plup c') {
-      auxiliaryTense = 'r imp';
-    } else if (t == 'r ante c') {
-      auxiliaryTense = 'r perf';
-    } else if (t == 'r futp c') {
-      auxiliaryTense = 'r fut';
+    Tense auxiliaryTense;
+    if (t == Tense.perfectRomanceCompound) {
+      auxiliaryTense = Tense.presentRomance;
+    } else if (t == Tense.pluperfectRomanceCompound) {
+      auxiliaryTense = Tense.imperfectRomance;
+    } else if (t == Tense.anteriorRomanceCompound) {
+      auxiliaryTense = Tense.perfectRomance;
+    } else {
+      //if (t == Tense.futurePerfectRomanceCompound) {
+      auxiliaryTense = Tense.futureRomance;
     }
 
-    //if the auxiliary verb is etre, it is gender and number dependant.
-    //else, we use the masculine singular form with avoir
-    String participleNumber = auxiliaryVerb == essere2 ? n : 'm';
-    String participleGender = auxiliaryVerb == essere2 ? g : 'm';
+    //if the auxiliary verb is essere, it is gender and number dependant.
+    //else, we use the masculine singular form with avere
+    Number participleNumber = auxiliaryVerb == essere2 ? n : Number.s;
+    Gender participleGender = auxiliaryVerb == essere2 ? g : Gender.m;
 
     String aux = auxiliaryVerb.conjugateVerb(m, auxiliaryTense, n, p);
     String part = participles['r perf']!.declineAdjective(participleNumber, participleGender);
@@ -83,8 +86,8 @@ class ItalianAuxiliaryVerb {
   String infinitive;
   String gerund;
 
-  Map<String, ItalianAdjective> participles;
-  Map<String, Map<String, Map<String, Map<String, String>>>> conjugation;
+  Map<Tense, ItalianAdjective> participles;
+  Map<Mood, Map<Tense, Map<Number, Map<Person, String>>>> conjugation;
 
   ItalianAuxiliaryVerb({
     required this.infinitive,
@@ -93,7 +96,7 @@ class ItalianAuxiliaryVerb {
     required this.conjugation,
   });
 
-  String conjugateVerb(String m, String t, String n, String p, {String g = 'm'}) {
+  String conjugateVerb(Mood m, Tense t, Number n, Person p, {Gender g = Gender.m}) {
     return conjugation[m]?[t]?[n]?[p] ?? 'DNE';
   }
 }

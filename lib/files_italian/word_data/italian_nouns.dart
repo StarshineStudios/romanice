@@ -1,3 +1,5 @@
+import 'package:colorguesser/core/enums.dart';
+
 import '../italian_classes.dart';
 
 List<ItalianNoun> italianNouns = [
@@ -22,164 +24,164 @@ List<ItalianNoun> italianNouns = [
 ];
 
 ItalianNoun stella = const ItalianNoun(
-  gender: 'f',
+  gender: Gender.f,
   declension: {
-    's': 'stella',
-    'p': 'stelle',
+    Number.s: 'stella',
+    Number.p: 'stelle',
   },
 );
 
 ItalianNoun uomo = const ItalianNoun(
-  gender: 'm',
+  gender: Gender.m,
   declension: {
-    's': 'uomo',
-    'p': 'uomini',
+    Number.s: 'uomo',
+    Number.p: 'uomini',
   },
 );
 
 //literal sense of arms
 ItalianNoun braccio = const ItalianNoun(
-  gender: 'i',
+  gender: Gender.i,
   declension: {
-    's': 'braccio',
-    'p': 'braccia',
+    Number.s: 'braccio',
+    Number.p: 'braccia',
   },
 );
 
 //figurative sense of arms as in like inlets
 ItalianNoun braccio2 = const ItalianNoun(
-  gender: 'm',
+  gender: Gender.m,
   declension: {
-    's': 'braccio',
-    'p': 'bracci',
+    Number.s: 'braccio',
+    Number.p: 'bracci',
   },
 );
 
 //always one sense
 ItalianNoun uovo = const ItalianNoun(
-  gender: 'i',
+  gender: Gender.i,
   declension: {
-    's': 'uovo',
-    'p': 'uova',
+    Number.s: 'uovo',
+    Number.p: 'uova',
   },
 );
 
 ItalianNoun casa = const ItalianNoun(
-  gender: 'f',
+  gender: Gender.f,
   declension: {
-    's': 'casa',
-    'p': 'case',
+    Number.s: 'casa',
+    Number.p: 'case',
   },
 );
 
 ItalianNoun macchina = const ItalianNoun(
-  gender: 'f',
+  gender: Gender.f,
   declension: {
-    's': 'macchina',
-    'p': 'macchine',
+    Number.s: 'macchina',
+    Number.p: 'macchine',
   },
 );
 
 ItalianNoun cane = const ItalianNoun(
-  gender: 'm',
+  gender: Gender.m,
   declension: {
-    's': 'cane',
-    'p': 'cani',
+    Number.s: 'cane',
+    Number.p: 'cani',
   },
 );
 
 ItalianNoun gatto = const ItalianNoun(
-  gender: 'm',
+  gender: Gender.m,
   declension: {
-    's': 'gatto',
-    'p': 'gatti',
+    Number.s: 'gatto',
+    Number.p: 'gatti',
   },
 );
 
 ItalianNoun mela = const ItalianNoun(
-  gender: 'f',
+  gender: Gender.f,
   declension: {
-    's': 'mela',
-    'p': 'mele',
+    Number.s: 'mela',
+    Number.p: 'mele',
   },
 );
 
 ItalianNoun libro = const ItalianNoun(
-  gender: 'm',
+  gender: Gender.m,
   declension: {
-    's': 'libro',
-    'p': 'libri',
+    Number.s: 'libro',
+    Number.p: 'libri',
   },
 );
 
 ItalianNoun sedia = const ItalianNoun(
-  gender: 'f',
+  gender: Gender.f,
   declension: {
-    's': 'sedia',
-    'p': 'sedie',
+    Number.s: 'sedia',
+    Number.p: 'sedie',
   },
 );
 
 ItalianNoun tavolo = const ItalianNoun(
-  gender: 'm',
+  gender: Gender.m,
   declension: {
-    's': 'tavolo',
-    'p': 'tavoli',
+    Number.s: 'tavolo',
+    Number.p: 'tavoli',
   },
 );
 
 ItalianNoun borsa = const ItalianNoun(
-  gender: 'f',
+  gender: Gender.f,
   declension: {
-    's': 'borsa',
-    'p': 'borse',
+    Number.s: 'borsa',
+    Number.p: 'borse',
   },
 );
 
 ItalianNoun albero = const ItalianNoun(
-  gender: 'm',
+  gender: Gender.m,
   declension: {
-    's': 'albero',
-    'p': 'alberi',
+    Number.s: 'albero',
+    Number.p: 'alberi',
   },
 );
 
 ItalianNoun donna = const ItalianNoun(
-  gender: 'f',
+  gender: Gender.f,
   declension: {
-    's': 'donna',
-    'p': 'donne',
+    Number.s: 'donna',
+    Number.p: 'donne',
   },
 );
 
 ItalianNoun persona = const ItalianNoun(
-  gender: 'f',
+  gender: Gender.f,
   declension: {
-    's': 'persona',
-    'p': 'persone',
+    Number.s: 'persona',
+    Number.p: 'persone',
   },
 );
 
 ItalianNoun ragazza = const ItalianNoun(
-  gender: 'f',
+  gender: Gender.f,
   declension: {
-    's': 'ragazza',
-    'p': 'ragazze',
+    Number.s: 'ragazza',
+    Number.p: 'ragazze',
   },
 );
 
 ItalianNoun ragazzo = const ItalianNoun(
-  gender: 'm',
+  gender: Gender.m,
   declension: {
-    's': 'ragazzo',
-    'p': 'ragazzi',
+    Number.s: 'ragazzo',
+    Number.p: 'ragazzi',
   },
 );
 
 ItalianNoun fiore = const ItalianNoun(
-  gender: 'm',
+  gender: Gender.m,
   declension: {
-    's': 'fiore',
-    'p': 'fiori',
+    Number.s: 'fiore',
+    Number.p: 'fiori',
   },
 );

@@ -8,7 +8,10 @@ enum Mood { ind, sub, imp, optcon, con, pre }
 
 enum Voice { act, pas }
 
+enum Person { first, second, third }
+
 enum Tense {
+  //Latin-Exclusive Tenses
   present,
   imperfect,
   future,
@@ -16,6 +19,7 @@ enum Tense {
   pluperfect,
   futurePerfect,
 
+  //Romance Tenses
   presentRomance,
   imperfectRomance,
   futureRomance,
@@ -29,17 +33,13 @@ enum Tense {
   anteriorRomanceCompound,
   conditionalPerfectRomanceCompound,
 
+  //Special Spanish Subjunctive Imperfect Tenses
   imperfectSpanishRa,
   imperfectSpanishSe,
 
+  //Special Romanian Tenses
   futureRomanianCompoundVrea,
   futureRomanianCompoundO,
   futureRomanianCompoundAvea,
   futurePastRomanianCompound,
-}
-
-enum Person {
-  first,
-  second,
-  third,
 }
