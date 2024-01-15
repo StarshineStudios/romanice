@@ -1,16 +1,16 @@
-import '../spanish_classes.dart';
+import '../portuguese_classes.dart';
 
-List<SpanishVerb> spanishVerbs = [
+List<PortugueseVerb> portugueseVerbs = [
   essere,
 ];
 
-SpanishVerb essere = SpanishVerb(
+PortugueseVerb essere = PortugueseVerb(
   infinitive: 'èssere',
   auxiliaryVerb: essere2,
   gerund: 'essèndo',
   participles: {
     //this would be weird to decline but whatever
-    'past': const SpanishAdjective(
+    'past': const PortugueseAdjective(
       declension: {
         's': {'m': 'stàto', 'f': 'stàta'},
         'p': {'m': 'stàti', 'f': 'stàte'}
@@ -61,12 +61,12 @@ SpanishVerb essere = SpanishVerb(
   },
 );
 
-SpanishAuxiliaryVerb essere2 = SpanishAuxiliaryVerb(
+PortugueseAuxiliaryVerb essere2 = PortugueseAuxiliaryVerb(
   infinitive: 'èssere',
   gerund: 'essèndo',
   participles: {
     //this would be weird to decline but whatever
-    'past': const SpanishAdjective(
+    'past': const PortugueseAdjective(
       declension: {
         's': {'m': 'stàto', 'f': 'stàta'},
         'p': {'m': 'stàti', 'f': 'stàte'}

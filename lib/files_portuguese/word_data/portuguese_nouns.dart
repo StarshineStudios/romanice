@@ -1,13 +1,13 @@
-import '../spanish_classes.dart';
+import '../portuguese_classes.dart';
 
-List<SpanishNoun> spanishNouns = [
-  estrella,
+List<PortugueseNoun> portugueseNouns = [
+  estrela,
 ];
 
-SpanishNoun estrella = const SpanishNoun(
+PortugueseNoun estrela = const PortugueseNoun(
   gender: 'f',
   declension: {
-    's': 'estrella',
-    'p': 'estrellas',
+    's': 'estrela',
+    'p': 'estrelas',
   },
 );

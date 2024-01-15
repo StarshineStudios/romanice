@@ -54,7 +54,7 @@ class RomanceVerb {
       //if it is essere it is gender dependant
 
       //mood is same,
-      String participleGender = auxiliaryVerb == etre2 ? g : 'm';
+      String participleGender = auxiliaryVerb == 'etre2' ? g : 'm';
 
       String aux = auxiliaryVerb.conjugateVerb(m, auxiliaryTense, n, p);
       String part = participles['past']!.declineAdjective(n, participleGender);

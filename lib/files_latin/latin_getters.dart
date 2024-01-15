@@ -1,20 +1,49 @@
 //These can apply to a lot of languages
 import 'dart:math';
 
-import '../constants.dart';
+import '../core/constants.dart';
 import 'word_data/latin_adjectives.dart';
 import 'latin_classes.dart';
 import 'word_data/latin_nouns.dart';
 import 'word_data/latin_verbs.dart';
-import '../lengtheners.dart';
+import '../core/lengtheners.dart';
 
 List<String> latinShortNumbers = ['s', 'p'];
 List<String> latinShortGenders = ['m', 'f', 'n'];
-List<String> latinShortCases = ['nom', 'acc', 'gen', 'dat', 'abl', 'voc'];
-List<String> latinShortFullCases = ['nom', 'acc', 'gen', 'dat', 'abl', 'voc', 'loc'];
-List<String> latinShortMoods = ['ind', 'sub', 'imp'];
-List<String> latinShortVoices = ['act', 'pas'];
-List<String> latinShortTenses = ['pres', 'imp', 'fut', 'perf', 'plup', 'futp'];
+List<String> latinShortCases = [
+  'nom',
+  'acc',
+  'gen',
+  'dat',
+  'abl',
+  'voc',
+];
+List<String> latinShortFullCases = [
+  'nom',
+  'acc',
+  'gen',
+  'dat',
+  'abl',
+  'voc',
+  'loc',
+];
+List<String> latinShortMoods = [
+  'ind',
+  'sub',
+  'imp',
+];
+List<String> latinShortVoices = [
+  'act',
+  'pas',
+];
+List<String> latinShortTenses = [
+  'pres',
+  'imp',
+  'fut',
+  'perf',
+  'plup',
+  'futp',
+];
 List<String> latinShortPersons = ['1', '2', '3'];
 
 Question getLatinVerbQuestion() {

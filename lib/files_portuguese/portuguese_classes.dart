@@ -1,8 +1,8 @@
-import 'word_data/spanish_verbs.dart';
+import 'word_data/portuguese_verbs.dart';
 
-class SpanishAdjective {
+class PortugueseAdjective {
   final Map<String, Map<String, String>> declension;
-  const SpanishAdjective(
+  const PortugueseAdjective(
       {
       //default value for tests and such\
       required this.declension});
@@ -12,24 +12,24 @@ class SpanishAdjective {
   }
 }
 
-class SpanishNoun {
+class PortugueseNoun {
   final Map<String, String> declension;
   final String gender;
-  const SpanishNoun({required this.gender, required this.declension});
+  const PortugueseNoun({required this.gender, required this.declension});
 
   String declineNoun(String n) {
     return declension[n] ?? 'DNE';
   }
 }
 
-class SpanishVerb {
+class PortugueseVerb {
   String infinitive;
   String gerund;
-  SpanishAuxiliaryVerb auxiliaryVerb;
-  Map<String, SpanishAdjective> participles;
+  PortugueseAuxiliaryVerb auxiliaryVerb;
+  Map<String, PortugueseAdjective> participles;
   Map<String, Map<String, Map<String, Map<String, String>>>> conjugation;
 
-  SpanishVerb({
+  PortugueseVerb({
     required this.infinitive,
     required this.gerund,
     required this.auxiliaryVerb,
@@ -74,13 +74,13 @@ class SpanishVerb {
   }
 }
 
-class SpanishAuxiliaryVerb {
+class PortugueseAuxiliaryVerb {
   String infinitive;
   String gerund;
-  Map<String, SpanishAdjective> participles;
+  Map<String, PortugueseAdjective> participles;
   Map<String, Map<String, Map<String, Map<String, String>>>> conjugation;
 
-  SpanishAuxiliaryVerb({
+  PortugueseAuxiliaryVerb({
     required this.infinitive,
     required this.gerund,
     required this.participles,
