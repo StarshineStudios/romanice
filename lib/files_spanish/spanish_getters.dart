@@ -58,7 +58,7 @@ Question getSpanishVerbQuestion() {
   List<String> demands = [
     lengthenTense[randomTense] ?? 'DNE',
     lengthenMood[randomMood] ?? 'DNE',
-    if (randomMood == 'imp') lengthenPerson[randomPerson] ?? 'DNE',
+    if (randomMood == Mood.imp) lengthenPerson[randomPerson] ?? 'DNE',
   ];
   String prompt = getSpanishSubject(randomMood, randomNumber, randomPerson, randomGender);
 
@@ -70,7 +70,6 @@ Question getSpanishVerbQuestion() {
 }
 
 Question getSpanishNounQuestion() {
-  final random = Random();
   SpanishNoun randomNoun = spanishNouns.getRandom();
 
   Number randomNumber = spanishNumbers.getRandom();
@@ -195,19 +194,19 @@ String getSpanishSubject(Mood mood, Number number, Person person, Gender gender)
   String subject = '';
 
   if (number == Number.s) {
-    if (person == '1') {
+    if (person == Person.first) {
       subject = 'Yo';
-    } else if (person == '2') {
+    } else if (person == Person.second) {
       subject = 'Tu';
-    } else if (person == '3') {
+    } else if (person == Person.third) {
       subject = getThirdPersonSubject(number, gender);
     }
   } else if (number == Number.p) {
-    if (person == '1') {
+    if (person == Person.first) {
       subject = 'Nosotros';
-    } else if (person == '2') {
+    } else if (person == Person.second) {
       subject = 'Vosotros';
-    } else if (person == '3') {
+    } else if (person == Person.third) {
       subject = getThirdPersonSubject(number, gender);
     }
   }

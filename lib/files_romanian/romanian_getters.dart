@@ -60,7 +60,7 @@ Question getRomanianVerbQuestion() {
   List<String> demands = [
     lengthenTense[randomTense] ?? 'DNE',
     lengthenMood[randomMood] ?? 'DNE',
-    if (randomMood == 'imp') lengthenPerson[randomPerson] ?? 'DNE',
+    if (randomMood == Mood.imp) lengthenPerson[randomPerson] ?? 'DNE',
   ];
   String prompt = getRomanianSubject(randomMood, randomNumber, randomPerson, randomGender);
   String blank = randomVerb.conjugateVerb(randomMood, randomTense, randomNumber, randomPerson);
@@ -289,7 +289,7 @@ String getRomanianSubject(Mood mood, Number number, Person person, Gender gender
       bool spaceBefore = random.nextBool() ? true : false;
       String vocative = listToChooseFrom[random.nextInt(listToChooseFrom.length)];
       return spaceBefore ? '_____, $vocative!' : '$vocative, _____!';
-    } else if (person == '3') {
+    } else if (person == Person.third) {
       return 'DNE'; //imperatives cannot be third person
     } else {
       return 'DNE'; //imperatives cannot be first person
@@ -298,19 +298,19 @@ String getRomanianSubject(Mood mood, Number number, Person person, Gender gender
     //wait neuter cant be first person
     String subject = '';
     if (number == Number.s) {
-      if (person == '1') {
+      if (person == Person.first) {
         subject = 'Eu';
       } else if (person == Person.second) {
         subject = 'Tu';
-      } else if (person == '3') {
+      } else if (person == Person.third) {
         subject = getThirdPersonSubject(number, gender);
       }
     } else if (number == Number.p) {
-      if (person == '1') {
+      if (person == Person.first) {
         subject = 'Noi';
       } else if (person == Person.second) {
         subject = 'Voi';
-      } else if (person == '3') {
+      } else if (person == Person.third) {
         subject = getThirdPersonSubject(number, gender);
       }
     }

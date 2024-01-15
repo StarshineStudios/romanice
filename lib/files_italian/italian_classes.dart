@@ -72,7 +72,7 @@ class ItalianVerb {
     Gender participleGender = auxiliaryVerb == essere2 ? g : Gender.m;
 
     String aux = auxiliaryVerb.conjugateVerb(m, auxiliaryTense, n, p);
-    String part = participles['r perf']!.declineAdjective(participleNumber, participleGender);
+    String part = participles[Tense.perfectRomance]!.declineAdjective(participleNumber, participleGender);
 
     if (aux == 'DNE' || part == 'DNE') {
       return 'DNE';

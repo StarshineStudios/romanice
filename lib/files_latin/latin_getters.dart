@@ -236,9 +236,9 @@ String getLatinSubject(Mood mood, Number number, Person person, Gender gender) {
       String vocative = listToChooseFrom[random.nextInt(listToChooseFrom.length)];
       return spaceBefore ? '_____, $vocative!' : '$vocative, _____!';
     } else if (person == Person.third) {
-      //in third person imperative, it is often weird to have a subject.
-      //TODO: add some acceptable words here?
-      return '_____';
+      //in third person imperative, it is often weird to have a exclamation or comma. Just conjugate like
+      String subject = getThirdPersonSubject(number, gender);
+      return '_____ $subject';
     } else {
       return 'DNE'; //imperatives cannot be first person
     }

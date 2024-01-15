@@ -65,7 +65,7 @@ class PortugueseVerb {
       }
 
       String aux = ter.conjugateVerb(m, auxiliaryTense, n, p);
-      String part = participles['past']!.declineAdjective(Number.s, Gender.m);
+      String part = participles[Tense.perfectRomance]!.declineAdjective(Number.s, Gender.m);
 
       if (aux == 'DNE' || part == 'DNE') {
         return 'DNE';

@@ -35,9 +35,6 @@ List<Tense> portugueseTenses = [
 List<Person> portuguesePersons = [Person.first, Person.second, Person.third];
 
 Question getPortugueseVerbQuestion() {
-  final random = Random();
-
-  //
   PortugueseVerb randomVerb = portugueseVerbs.getRandom();
   Mood randomMood = portugueseMoods.getRandom();
   Tense randomTense = portugueseTenses.getRandom();
@@ -63,7 +60,7 @@ Question getPortugueseVerbQuestion() {
   List<String> demands = [
     lengthenTense[randomTense] ?? 'DNE',
     lengthenMood[randomMood] ?? 'DNE',
-    if (randomMood == 'imp') lengthenPerson[randomPerson] ?? 'DNE',
+    if (randomMood == Mood.imp) lengthenPerson[randomPerson] ?? 'DNE',
   ];
   String prompt = getPortugueseSubject(randomMood, randomNumber, randomPerson, randomGender);
 
@@ -75,7 +72,6 @@ Question getPortugueseVerbQuestion() {
 }
 
 Question getPortugueseNounQuestion() {
-  final random = Random();
   PortugueseNoun randomNoun = portugueseNouns.getRandom();
 
   Number randomNumber = portugueseNumbers.getRandom();
