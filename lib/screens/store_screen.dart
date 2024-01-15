@@ -1,10 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:hive/hive.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 // import 'package:flutter/material.dart';
 import '../core/constants.dart';
-import 'dart:io';
 
 // import 'package:flutter_localizations/flutter_localizations.dart';
 
@@ -17,7 +14,7 @@ class StoreScreen extends StatefulWidget {
 }
 
 class _StoreScreenState extends State<StoreScreen> {
-  final Box<dynamic> _generalBox = Hive.box('generalBoxString');
+  // final Box<dynamic> _generalBox = Hive.box('generalBoxString');
 
   //Are we using the default system locale?
 
@@ -28,16 +25,6 @@ class _StoreScreenState extends State<StoreScreen> {
 
   @override
   Widget build(BuildContext context) {
-    void updateContext() {
-      setState(() {
-        String actualLocaleCode = _generalBox.get('usingSystemLocale', defaultValue: true)
-            ? Platform.localeName.substring(0, 2)
-            : _generalBox.get('selectedLocaleCode', defaultValue: 'en');
-
-        context.setLocale(ifSupported(Locale(actualLocaleCode)));
-      });
-    }
-
     return Scaffold(
       backgroundColor: mediumColor,
       body: ListView(

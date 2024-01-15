@@ -36,7 +36,7 @@ class PortugueseVerb {
   });
 
   String conjugateVerb(String m, String t, String n, String p, {String g = 'm'}) {
-    print('hi'); //pres ind and pres cond are both simple, also all imp are simple
+    // print('hi'); //pres ind and pres cond are both simple, also all imp are simple
     if (m == 'r pres' || t == 'r imp' || t == 'r perf' || t == 'r plup' || t == 'r fut' || t == 'r cond') {
       return conjugation[m]?[t]?[n]?[p] ?? 'DNE';
 
@@ -81,7 +81,7 @@ class PortugueseAuxiliaryVerb {
   });
 
   String conjugateVerb(String m, String t, String n, String p, {String g = 'm'}) {
-    print('hi'); //pres ind and pres cond are both simple, also all imp are simple
+    // print('hi'); //pres ind and pres cond are both simple, also all imp are simple
     if (m == 'imp' || t == 'pres' || t == 'imp' || t == 'fut' || t == 'perf') {
       return conjugation[m]?[t]?[n]?[p] ?? 'DNE';
     }

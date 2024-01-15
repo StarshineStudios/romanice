@@ -1,46 +1,50 @@
+import 'package:colorguesser/core/enums.dart';
+
 import 'word_data/latin_verbs.dart';
 
 class LatinAdjective {
-  final Map<String, Map<String, Map<String, String>>> declension;
+  final Map<Case, Map<Number, Map<Gender, String>>> declension;
   const LatinAdjective({required this.declension});
 
-  String declineAdjective(String c, String n, String g) {
+  String declineAdjective(Case c, Number n, Gender g) {
     return declension[c]?[n]?[g] ?? 'DNE';
   }
 }
 
 class LatinNoun {
-  final Map<String, Map<String, String>> declension;
-  final String gender;
+  final Map<Case, Map<Number, String>> declension;
+  final Gender gender;
   const LatinNoun({required this.gender, required this.declension});
 
-  String declineNoun(String c, String n) {
+  String declineNoun(Case c, Number n) {
     return declension[c]?[n] ?? 'DNE';
   }
 }
 
 class LatinVerb {
-  Map<String, String> infinitives;
-  Map<String, LatinAdjective> participles;
-  Map<String, Map<String, Map<String, Map<String, Map<String, String>>>>> conjugation;
+  Map<Tense, Map<Voice, String>> infinitives;
+  Map<Tense, Map<Voice, LatinAdjective>> participles;
+  Map<Mood, Map<Voice, Map<Tense, Map<Number, Map<Person, String>>>>> conjugation;
 
   LatinVerb({required this.infinitives, required this.participles, required this.conjugation});
 
-  String conjugateVerb(String m, String v, String t, String n, String p, {String g = 'm'}) {
+  String conjugateVerb(Mood m, Voice v, Tense t, Number n, Person p, {Gender g = Gender.m}) {
     //passive perfect, pluperfect, and future perfect are based on the past participle
     //thus they depend on gener and number. (not case, as it goes with sum, always nominative)
     //this is akin to compound tenses in italian or french that have a perfect active participle + etre/essere
-    if (v == 'pas' && (t == 'perf' || t == 'plup' || t == 'futp')) {
-      String sumTense = '';
-      if (t == 'perf') {
-        sumTense = 'pres';
-      } else if (t == 'plup') {
-        sumTense = 'imp';
-      } else if (t == 'futp') {
-        sumTense = 'fut';
+    if (v == Voice.pas && (t == Tense.perfect || t == Tense.pluperfect || t == Tense.futurePerfect)) {
+      Tense sumTense;
+      if (t == Tense.perfect) {
+        sumTense = Tense.present;
+      } else if (t == Tense.pluperfect) {
+        sumTense = Tense.imperfect;
+      } else {
+        //else if (t == Tense.futurePerfect) {
+        sumTense = Tense.future;
       }
-      String part = participles['perfectPassive']?.declineAdjective('nom', n, g) ?? 'DNE'; //perfect passive does not exist
-      String formOfSum = esse.conjugateVerb(m, 'act', sumTense, n, p);
+
+      String part = participles[Tense.perfect]?[Voice.pas]?.declineAdjective(Case.nom, n, g) ?? 'DNE'; //perfect passive does not exist
+      String formOfSum = esse.conjugateVerb(m, Voice.act, sumTense, n, p);
 
       if (part == 'DNE' || formOfSum == 'DNE') {
         return 'DNE';
@@ -55,27 +59,28 @@ class LatinVerb {
 //this prevents issues.
 class LatinDeponentVerb extends LatinVerb {
   LatinDeponentVerb(
-      {required Map<String, String> infinitives,
-      required Map<String, LatinAdjective> participles,
-      required Map<String, Map<String, Map<String, Map<String, Map<String, String>>>>> conjugation})
+      {required Map<Tense, Map<Voice, String>> infinitives,
+      required Map<Tense, Map<Voice, LatinAdjective>> participles,
+      required Map<Mood, Map<Voice, Map<Tense, Map<Number, Map<Person, String>>>>> conjugation})
       : super(infinitives: infinitives, participles: participles, conjugation: conjugation);
 
   @override
-  String conjugateVerb(String m, String v, String t, String n, String p, {String g = 'm'}) {
+  String conjugateVerb(Mood m, Voice v, Tense t, Number n, Person p, {Gender g = Gender.m}) {
     //passive perfect, pluperfect, and future perfect are based on the past participle
     //thus they depend on gener and number. (not case, as it goes with sum, always nominative)
     //this is akin to compound tenses in italian or french that have a perfect active participle + etre/essere
-    if (v == 'act' && (t == 'perf' || t == 'plup' || t == 'futp')) {
-      String sumTense = '';
-      if (t == 'perf') {
-        sumTense = 'pres';
-      } else if (t == 'plup') {
-        sumTense = 'imp';
-      } else if (t == 'futp') {
-        sumTense = 'fut';
+    if (v == Voice.act && (t == Tense.perfect || t == Tense.pluperfect || t == Tense.futurePerfect)) {
+      Tense sumTense;
+      if (t == Tense.perfect) {
+        sumTense = Tense.present;
+      } else if (t == Tense.pluperfect) {
+        sumTense = Tense.imperfect;
+      } else {
+        //if (t == Tense.futurePerfect) {
+        sumTense = Tense.future;
       }
-      String part = participles['perfectActive']?.declineAdjective('nom', n, g) ?? 'DNE'; //perfect passive does not exist
-      String formOfSum = esse.conjugateVerb(m, 'act', sumTense, n, p);
+      String part = participles[Tense.perfect]?[Voice.act]?.declineAdjective(Case.nom, n, g) ?? 'DNE'; //perfect passive does not exist
+      String formOfSum = esse.conjugateVerb(m, Voice.act, sumTense, n, p);
 
       if (part == 'DNE' || formOfSum == 'DNE') {
         return 'DNE';
@@ -88,13 +93,13 @@ class LatinDeponentVerb extends LatinVerb {
 
 class LatinAuxiliaryVerb extends LatinVerb {
   LatinAuxiliaryVerb(
-      {required Map<String, String> infinitives,
-      required Map<String, LatinAdjective> participles,
-      required Map<String, Map<String, Map<String, Map<String, Map<String, String>>>>> conjugation})
+      {required Map<Tense, Map<Voice, String>> infinitives,
+      required Map<Tense, Map<Voice, LatinAdjective>> participles,
+      required Map<Mood, Map<Voice, Map<Tense, Map<Number, Map<Person, String>>>>> conjugation})
       : super(infinitives: infinitives, participles: participles, conjugation: conjugation);
 
   @override
-  String conjugateVerb(String m, String v, String t, String n, String p, {String g = 'm'}) {
+  String conjugateVerb(Mood m, Voice v, Tense t, Number n, Person p, {Gender g = Gender.m}) {
     //Aux verbs do not need to care about participles.
     return conjugation[m]?[v]?[t]?[n]?[p] ?? 'DNE';
   }

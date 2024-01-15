@@ -115,7 +115,6 @@ Question getFrenchAdjectiveNounQuestion() {
 
   while (randomNoun.declineNoun(randomNumber) == 'DNE') {
     initDeclension();
-    print('$randomNumber, DNE');
   }
 
   FrenchAdjective randomAdjective = frenchAdjectives[random.nextInt(frenchAdjectives.length)];

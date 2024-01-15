@@ -1,3 +1,5 @@
+import 'package:colorguesser/core/enums.dart';
+
 import '../latin_classes.dart';
 
 List<LatinNoun> latinNouns = [
@@ -18,395 +20,395 @@ List<LatinNoun> latinNouns = [
 ];
 
 LatinNoun stella = const LatinNoun(
-  gender: 'f',
+  gender: Gender.f,
   declension: {
-    'nom': {
-      's': 'stēlla',
-      'p': 'stēllae',
+    Case.nom: {
+      Number.s: 'stēlla',
+      Number.p: 'stēllae',
     },
-    'acc': {
-      's': 'stēllam',
-      'p': 'stēllās',
+    Case.acc: {
+      Number.s: 'stēllam',
+      Number.p: 'stēllās',
     },
-    'gen': {
-      's': 'stēllae',
-      'p': 'stēllārum',
+    Case.gen: {
+      Number.s: 'stēllae',
+      Number.p: 'stēllārum',
     },
-    'dat': {
-      's': 'stēllae',
-      'p': 'stēllīs',
+    Case.dat: {
+      Number.s: 'stēllae',
+      Number.p: 'stēllīs',
     },
-    'abl': {
-      's': 'stēllā',
-      'p': 'stēllīs',
+    Case.abl: {
+      Number.s: 'stēllā',
+      Number.p: 'stēllīs',
     },
-    'voc': {
-      's': 'stēlla',
-      'p': 'stēllae',
+    Case.voc: {
+      Number.s: 'stēlla',
+      Number.p: 'stēllae',
     },
   },
 );
 
 LatinNoun puer = const LatinNoun(
-  gender: 'm',
+  gender: Gender.m,
   declension: {
-    'nom': {
-      's': 'puer',
-      'p': 'puerī',
+    Case.nom: {
+      Number.s: 'puer',
+      Number.p: 'puerī',
     },
-    'acc': {
-      's': 'puerum',
-      'p': 'puerōs',
+    Case.acc: {
+      Number.s: 'puerum',
+      Number.p: 'puerōs',
     },
-    'gen': {
-      's': 'puerī',
-      'p': 'puerōrum',
+    Case.gen: {
+      Number.s: 'puerī',
+      Number.p: 'puerōrum',
     },
-    'dat': {
-      's': 'puerō',
-      'p': 'puerīs',
+    Case.dat: {
+      Number.s: 'puerō',
+      Number.p: 'puerīs',
     },
-    'abl': {
-      's': 'puerō',
-      'p': 'puerīs',
+    Case.abl: {
+      Number.s: 'puerō',
+      Number.p: 'puerīs',
     },
-    'voc': {
-      's': 'puer',
-      'p': 'puerī',
+    Case.voc: {
+      Number.s: 'puer',
+      Number.p: 'puerī',
     },
   },
 );
 
 LatinNoun bellum = const LatinNoun(
-  gender: 'n',
+  gender: Gender.n,
   declension: {
-    'nom': {
-      's': 'bellum',
-      'p': 'bella',
+    Case.nom: {
+      Number.s: 'bellum',
+      Number.p: 'bella',
     },
-    'acc': {
-      's': 'bellum',
-      'p': 'bella',
+    Case.acc: {
+      Number.s: 'bellum',
+      Number.p: 'bella',
     },
-    'gen': {
-      's': 'bellī',
-      'p': 'bellōrum',
+    Case.gen: {
+      Number.s: 'bellī',
+      Number.p: 'bellōrum',
     },
-    'dat': {
-      's': 'bellō',
-      'p': 'bellīs',
+    Case.dat: {
+      Number.s: 'bellō',
+      Number.p: 'bellīs',
     },
-    'abl': {
-      's': 'bellō',
-      'p': 'bellīs',
+    Case.abl: {
+      Number.s: 'bellō',
+      Number.p: 'bellīs',
     },
-    'voc': {
-      's': 'bellum',
-      'p': 'bella',
+    Case.voc: {
+      Number.s: 'bellum',
+      Number.p: 'bella',
     },
   },
 );
 
 LatinNoun pax = const LatinNoun(
-  gender: 'f',
+  gender: Gender.f,
   declension: {
-    'nom': {
-      's': 'pāx',
-      'p': 'pācēs',
+    Case.nom: {
+      Number.s: 'pāx',
+      Number.p: 'pācēs',
     },
-    'acc': {
-      's': 'pācem',
-      'p': 'pācēs',
+    Case.acc: {
+      Number.s: 'pācem',
+      Number.p: 'pācēs',
     },
-    'gen': {
-      's': 'pācis',
-      'p': 'pācum',
+    Case.gen: {
+      Number.s: 'pācis',
+      Number.p: 'pācum',
     },
-    'dat': {
-      's': 'pācī',
-      'p': 'pācibus',
+    Case.dat: {
+      Number.s: 'pācī',
+      Number.p: 'pācibus',
     },
-    'abl': {
-      's': 'pāce',
-      'p': 'pācibus',
+    Case.abl: {
+      Number.s: 'pāce',
+      Number.p: 'pācibus',
     },
-    'voc': {
-      's': 'pāx',
-      'p': 'pācēs',
+    Case.voc: {
+      Number.s: 'pāx',
+      Number.p: 'pācēs',
     },
   },
 );
 
 LatinNoun homo = const LatinNoun(
-  gender: 'm',
+  gender: Gender.m,
   declension: {
-    'nom': {
-      's': 'homō',
-      'p': 'hominēs',
+    Case.nom: {
+      Number.s: 'homō',
+      Number.p: 'hominēs',
     },
-    'acc': {
-      's': 'hominem',
-      'p': 'hominēs',
+    Case.acc: {
+      Number.s: 'hominem',
+      Number.p: 'hominēs',
     },
-    'gen': {
-      's': 'hominis',
-      'p': 'hominum',
+    Case.gen: {
+      Number.s: 'hominis',
+      Number.p: 'hominum',
     },
-    'dat': {
-      's': 'hominī',
-      'p': 'hominibus',
+    Case.dat: {
+      Number.s: 'hominī',
+      Number.p: 'hominibus',
     },
-    'abl': {
-      's': 'homine',
-      'p': 'hominibus',
+    Case.abl: {
+      Number.s: 'homine',
+      Number.p: 'hominibus',
     },
-    'voc': {
-      's': 'homō',
-      'p': 'hominēs',
+    Case.voc: {
+      Number.s: 'homō',
+      Number.p: 'hominēs',
     },
   },
 );
 
 LatinNoun tempus = const LatinNoun(
-  gender: 'n',
+  gender: Gender.n,
   declension: {
-    'nom': {
-      's': 'tempus',
-      'p': 'tempora',
+    Case.nom: {
+      Number.s: 'tempus',
+      Number.p: 'tempora',
     },
-    'acc': {
-      's': 'tempus',
-      'p': 'tempora',
+    Case.acc: {
+      Number.s: 'tempus',
+      Number.p: 'tempora',
     },
-    'gen': {
-      's': 'temporis',
-      'p': 'temporum',
+    Case.gen: {
+      Number.s: 'temporis',
+      Number.p: 'temporum',
     },
-    'dat': {
-      's': 'temporī',
-      'p': 'temporibus',
+    Case.dat: {
+      Number.s: 'temporī',
+      Number.p: 'temporibus',
     },
-    'abl': {
-      's': 'tempore',
-      'p': 'temporibus',
+    Case.abl: {
+      Number.s: 'tempore',
+      Number.p: 'temporibus',
     },
-    'voc': {
-      's': 'tempus',
-      'p': 'tempora',
+    Case.voc: {
+      Number.s: 'tempus',
+      Number.p: 'tempora',
     },
   },
 );
 
 LatinNoun domus = const LatinNoun(
-  gender: 'f',
+  gender: Gender.f,
   declension: {
-    'nom': {
-      's': 'domus',
-      'p': 'domūs',
+    Case.nom: {
+      Number.s: 'domus',
+      Number.p: 'domūs',
     },
-    'acc': {
-      's': 'domum',
-      'p': 'domōs',
+    Case.acc: {
+      Number.s: 'domum',
+      Number.p: 'domōs',
     },
-    'gen': {
-      's': 'domūs',
-      'p': 'domuum',
+    Case.gen: {
+      Number.s: 'domūs',
+      Number.p: 'domuum',
     },
-    'dat': {
-      's': 'domuī',
-      'p': 'domibus',
+    Case.dat: {
+      Number.s: 'domuī',
+      Number.p: 'domibus',
     },
-    'abl': {
-      's': 'domō',
-      'p': 'domibus',
+    Case.abl: {
+      Number.s: 'domō',
+      Number.p: 'domibus',
     },
-    'voc': {
-      's': 'domus',
-      'p': 'domūs',
+    Case.voc: {
+      Number.s: 'domus',
+      Number.p: 'domūs',
     },
-    'loc': {
-      's': 'domī',
-      'p': 'domibus',
+    Case.loc: {
+      Number.s: 'domī',
+      Number.p: 'domibus',
     },
   },
 );
 
 LatinNoun dies = const LatinNoun(
-  gender: 'm',
+  gender: Gender.m,
   declension: {
-    'nom': {
-      's': 'diēs',
-      'p': 'diēs',
+    Case.nom: {
+      Number.s: 'diēs',
+      Number.p: 'diēs',
     },
-    'acc': {
-      's': 'diem',
-      'p': 'diēs',
+    Case.acc: {
+      Number.s: 'diem',
+      Number.p: 'diēs',
     },
-    'gen': {
-      's': 'diēī',
-      'p': 'diērum',
+    Case.gen: {
+      Number.s: 'diēī',
+      Number.p: 'diērum',
     },
-    'dat': {
-      's': 'diēī',
-      'p': 'diēbus',
+    Case.dat: {
+      Number.s: 'diēī',
+      Number.p: 'diēbus',
     },
-    'abl': {
-      's': 'diē',
-      'p': 'diēbus',
+    Case.abl: {
+      Number.s: 'diē',
+      Number.p: 'diēbus',
     },
-    'voc': {
-      's': 'diēs',
-      'p': 'diēs',
+    Case.voc: {
+      Number.s: 'diēs',
+      Number.p: 'diēs',
     },
   },
 );
 
 LatinNoun aqua = const LatinNoun(
-  gender: 'f',
+  gender: Gender.f,
   declension: {
-    'nom': {
-      's': 'aqua',
-      'p': 'aquae',
+    Case.nom: {
+      Number.s: 'aqua',
+      Number.p: 'aquae',
     },
-    'acc': {
-      's': 'aquam',
-      'p': 'aquās',
+    Case.acc: {
+      Number.s: 'aquam',
+      Number.p: 'aquās',
     },
-    'gen': {
-      's': 'aquae',
-      'p': 'aquārum',
+    Case.gen: {
+      Number.s: 'aquae',
+      Number.p: 'aquārum',
     },
-    'dat': {
-      's': 'aquae',
-      'p': 'aquis',
+    Case.dat: {
+      Number.s: 'aquae',
+      Number.p: 'aquis',
     },
-    'abl': {
-      's': 'aquā',
-      'p': 'aquis',
+    Case.abl: {
+      Number.s: 'aquā',
+      Number.p: 'aquis',
     },
-    'voc': {
-      's': 'aqua',
-      'p': 'aquae',
+    Case.voc: {
+      Number.s: 'aqua',
+      Number.p: 'aquae',
     },
   },
 );
 
 LatinNoun via = const LatinNoun(
-  gender: 'f',
+  gender: Gender.f,
   declension: {
-    'nom': {
-      's': 'via',
-      'p': 'viae',
+    Case.nom: {
+      Number.s: 'via',
+      Number.p: 'viae',
     },
-    'acc': {
-      's': 'viam',
-      'p': 'viās',
+    Case.acc: {
+      Number.s: 'viam',
+      Number.p: 'viās',
     },
-    'gen': {
-      's': 'viae',
-      'p': 'viārum',
+    Case.gen: {
+      Number.s: 'viae',
+      Number.p: 'viārum',
     },
-    'dat': {
-      's': 'viae',
-      'p': 'viīs',
+    Case.dat: {
+      Number.s: 'viae',
+      Number.p: 'viīs',
     },
-    'abl': {
-      's': 'viā',
-      'p': 'viīs',
+    Case.abl: {
+      Number.s: 'viā',
+      Number.p: 'viīs',
     },
-    'voc': {
-      's': 'via',
-      'p': 'viae',
+    Case.voc: {
+      Number.s: 'via',
+      Number.p: 'viae',
     },
   },
 );
 
 LatinNoun arbor = const LatinNoun(
-  gender: 'f',
+  gender: Gender.f,
   declension: {
-    'nom': {
-      's': 'arbor',
-      'p': 'arborēs',
+    Case.nom: {
+      Number.s: 'arbor',
+      Number.p: 'arborēs',
     },
-    'acc': {
-      's': 'arborem',
-      'p': 'arborēs',
+    Case.acc: {
+      Number.s: 'arborem',
+      Number.p: 'arborēs',
     },
-    'gen': {
-      's': 'arboris',
-      'p': 'arborum',
+    Case.gen: {
+      Number.s: 'arboris',
+      Number.p: 'arborum',
     },
-    'dat': {
-      's': 'arbori',
-      'p': 'arboribus',
+    Case.dat: {
+      Number.s: 'arbori',
+      Number.p: 'arboribus',
     },
-    'abl': {
-      's': 'arbori',
-      'p': 'arboribus',
+    Case.abl: {
+      Number.s: 'arbori',
+      Number.p: 'arboribus',
     },
-    'voc': {
-      's': 'arbor',
-      'p': 'arborēs',
+    Case.voc: {
+      Number.s: 'arbor',
+      Number.p: 'arborēs',
     },
   },
 );
 
 LatinNoun fructus = const LatinNoun(
-  gender: 'm',
+  gender: Gender.m,
   declension: {
-    'nom': {
-      's': 'frūctus',
-      'p': 'frūctūs',
+    Case.nom: {
+      Number.s: 'frūctus',
+      Number.p: 'frūctūs',
     },
-    'acc': {
-      's': 'frūctum',
-      'p': 'frūctūs',
+    Case.acc: {
+      Number.s: 'frūctum',
+      Number.p: 'frūctūs',
     },
-    'gen': {
-      's': 'frūctūs',
-      'p': 'frūctuum',
+    Case.gen: {
+      Number.s: 'frūctūs',
+      Number.p: 'frūctuum',
     },
-    'dat': {
-      's': 'frūctuī',
-      'p': 'frūctibus',
+    Case.dat: {
+      Number.s: 'frūctuī',
+      Number.p: 'frūctibus',
     },
-    'abl': {
-      's': 'frūctū',
-      'p': 'frūctibus',
+    Case.abl: {
+      Number.s: 'frūctū',
+      Number.p: 'frūctibus',
     },
-    'voc': {
-      's': 'frūctus',
-      'p': 'frūctūs',
+    Case.voc: {
+      Number.s: 'frūctus',
+      Number.p: 'frūctūs',
     },
   },
 );
 
 LatinNoun liber = const LatinNoun(
-  gender: 'm',
+  gender: Gender.m,
   declension: {
-    'nom': {
-      's': 'liber',
-      'p': 'librī',
+    Case.nom: {
+      Number.s: 'liber',
+      Number.p: 'librī',
     },
-    'acc': {
-      's': 'librum',
-      'p': 'librōs',
+    Case.acc: {
+      Number.s: 'librum',
+      Number.p: 'librōs',
     },
-    'gen': {
-      's': 'librī',
-      'p': 'librōrum',
+    Case.gen: {
+      Number.s: 'librī',
+      Number.p: 'librōrum',
     },
-    'dat': {
-      's': 'librō',
-      'p': 'librīs',
+    Case.dat: {
+      Number.s: 'librō',
+      Number.p: 'librīs',
     },
-    'abl': {
-      's': 'librō',
-      'p': 'librīs',
+    Case.abl: {
+      Number.s: 'librō',
+      Number.p: 'librīs',
     },
-    'voc': {
-      's': 'liber',
-      'p': 'librī',
+    Case.voc: {
+      Number.s: 'liber',
+      Number.p: 'librī',
     },
   },
 );

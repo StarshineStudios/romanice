@@ -1,88 +1,90 @@
-class RomanceAdjective {
-  final Map<String, Map<String, String>> declension;
-  const RomanceAdjective({required this.declension});
+// import '../core/enums.dart';
 
-  String declineAdjective(String n, String g) {
-    return declension[n]?[g] ?? 'DNE';
-  }
-}
+// class RomanceAdjective {
+//   final Map<String, Map<String, String>> declension;
+//   const RomanceAdjective({required this.declension});
 
-class RomanceNoun {
-  final Map<String, String> declension;
-  final String gender;
-  const RomanceNoun({required this.gender, required this.declension});
+//   String declineAdjective(String n, String g) {
+//     return declension[n]?[g] ?? 'DNE';
+//   }
+// }
 
-  String declineNoun(String n) {
-    return declension[n] ?? 'DNE';
-  }
-}
+// class RomanceNoun {
+//   final Map<String, String> declension;
+//   final String gender;
+//   const RomanceNoun({required this.gender, required this.declension});
 
-class RomanceVerb {
-  String infinitive;
-  RomanceAuxiliaryVerb auxiliaryVerb;
-  Map<String, RomanceAdjective> participles;
-  Map<String, Map<String, Map<String, Map<String, String>>>> conjugation;
+//   String declineNoun(String n) {
+//     return declension[n] ?? 'DNE';
+//   }
+// }
 
-  RomanceVerb({
-    required this.infinitive,
-    required this.auxiliaryVerb,
-    required this.participles,
-    required this.conjugation,
-  });
+// class RomanceVerb {
+//   String infinitive;
+//   RomanceAuxiliaryVerb auxiliaryVerb;
+//   Map<String, RomanceAdjective> participles;
+//   Map<String, Map<String, Map<String, Map<String, String>>>> conjugation;
 
-  String conjugateVerb(String m, String t, String n, String p, {String g = 'm'}) {
-    print('hi'); //pres ind and pres cond are both simple, also all imp are simple
-    if (m == 'imp' || t == 'pres' || t == 'imp' || t == 'fut' || t == 'perf') {
-      return conjugation[m]?[t]?[n]?[p] ?? 'DNE';
+//   RomanceVerb({
+//     required this.infinitive,
+//     required this.auxiliaryVerb,
+//     required this.participles,
+//     required this.conjugation,
+//   });
 
-      //else if the verb is not simple and is compound
-    } else {
-      String auxiliaryTense = '';
+//   String conjugateVerb(String m, String t, String n, String p, {String g = 'm'}) {
+//     // print('hi'); //pres ind and pres cond are both simple, also all imp are simple
+//     if (m == 'imp' || t == 'pres' || t == 'imp' || t == 'fut' || t == 'perf') {
+//       return conjugation[m]?[t]?[n]?[p] ?? 'DNE';
 
-      if (t == 'perfc') {
-        auxiliaryTense = 'pres';
-      } else if (t == 'plup') {
-        auxiliaryTense = 'imp';
-      } else if (t == 'ant') {
-        auxiliaryTense = 'perf';
-      } else if (t == 'futp') {
-        auxiliaryTense = 'fut';
-      } else if (m == 'con' && t == 'perfc') {
-        auxiliaryTense = 'pres';
-      }
+//       //else if the verb is not simple and is compound
+//     } else {
+//       String auxiliaryTense = '';
 
-      //if it is essere it is gender dependant
+//       if (t == 'perfc') {
+//         auxiliaryTense = 'pres';
+//       } else if (t == 'plup') {
+//         auxiliaryTense = 'imp';
+//       } else if (t == 'ant') {
+//         auxiliaryTense = 'perf';
+//       } else if (t == 'futp') {
+//         auxiliaryTense = 'fut';
+//       } else if (m == 'con' && t == 'perfc') {
+//         auxiliaryTense = 'pres';
+//       }
 
-      //mood is same,
-      String participleGender = auxiliaryVerb == 'etre2' ? g : 'm';
+//       //if it is essere it is gender dependant
 
-      String aux = auxiliaryVerb.conjugateVerb(m, auxiliaryTense, n, p);
-      String part = participles['past']!.declineAdjective(n, participleGender);
+//       //mood is same,
+//       Gender participleGender = auxiliaryVerb == 'etre2' ? g : Gender.m;
 
-      if (aux == 'DNE' || part == 'DNE') {
-        return 'DNE';
-      }
-      return '$aux $part';
-    }
-  }
-}
+//       String aux = auxiliaryVerb.conjugateVerb(m, auxiliaryTense, n, p);
+//       String part = participles['past']!.declineAdjective(n, participleGender);
 
-class RomanceAuxiliaryVerb {
-  String infinitive;
-  Map<String, RomanceAdjective> participles;
-  Map<String, Map<String, Map<String, Map<String, String>>>> conjugation;
+//       if (aux == 'DNE' || part == 'DNE') {
+//         return 'DNE';
+//       }
+//       return '$aux $part';
+//     }
+//   }
+// }
 
-  RomanceAuxiliaryVerb({
-    required this.infinitive,
-    required this.participles,
-    required this.conjugation,
-  });
+// class RomanceAuxiliaryVerb {
+//   String infinitive;
+//   Map<String, RomanceAdjective> participles;
+//   Map<String, Map<String, Map<String, Map<String, String>>>> conjugation;
 
-  String conjugateVerb(String m, String t, String n, String p, {String g = 'm'}) {
-    print('hi'); //pres ind and pres cond are both simple, also all imp are simple
-    if (m == 'imp' || t == 'pres' || t == 'imp' || t == 'fut' || t == 'perf') {
-      return conjugation[m]?[t]?[n]?[p] ?? 'DNE';
-    }
-    return 'DNE';
-  }
-}
+//   RomanceAuxiliaryVerb({
+//     required this.infinitive,
+//     required this.participles,
+//     required this.conjugation,
+//   });
+
+//   String conjugateVerb(String m, String t, String n, String p, {String g = 'm'}) {
+//     print('hi'); //pres ind and pres cond are both simple, also all imp are simple
+//     if (m == 'imp' || t == 'pres' || t == 'imp' || t == 'fut' || t == 'perf') {
+//       return conjugation[m]?[t]?[n]?[p] ?? 'DNE';
+//     }
+//     return 'DNE';
+//   }
+// }

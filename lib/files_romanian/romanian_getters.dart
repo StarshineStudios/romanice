@@ -52,7 +52,7 @@ Question getRomanianVerbQuestion() {
 
   while (randomVerb.conjugateVerb(randomMood, randomTense, randomNumber, randomPerson) == 'DNE') {
     initConjugation();
-    print('$randomMood, $randomTense, $randomNumber, $randomPerson, $randomGender DNE');
+    // print('$randomMood, $randomTense, $randomNumber, $randomPerson, $randomGender DNE');
   }
   //GENERATE QUESTION
   String lemma = randomVerb.infinitive;
@@ -81,7 +81,7 @@ Question getRomanianNounQuestion() {
 
   while (randomNoun.declineNoun(randomCase, randomNumber) == 'DNE') {
     initDeclension();
-    print('$randomCase, $randomNumber, DNE');
+    // print('$randomCase, $randomNumber, DNE');
   }
 
   //GENERATE QUESTION
@@ -109,7 +109,7 @@ Question getRomanianAdjectiveNounQuestion() {
 
   while (randomNoun.declineNoun(randomCase, randomNumber) == 'DNE') {
     initDeclension();
-    print('$randomCase, $randomNumber, DNE');
+    // print('$randomCase, $randomNumber, DNE');
   }
   //GET RANDOM ADJECTIVE
   RomanianAdjective randomAdjective = romanianAdjectives[random.nextInt(romanianAdjectives.length)];

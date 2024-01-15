@@ -116,17 +116,17 @@ class _AppScreenState extends State<AppScreen> {
                   GButton(
                     icon: Icons.square,
                     text: 'textGame'.tr(),
-                    textStyle: TextStyle(fontFamily: 'Fraunces', color: darkColor),
+                    textStyle: const TextStyle(fontFamily: 'Fraunces', color: darkColor),
                   ),
                   GButton(
                     icon: Icons.shop,
                     text: 'textStore'.tr(),
-                    textStyle: TextStyle(fontFamily: 'Fraunces', color: darkColor),
+                    textStyle: const TextStyle(fontFamily: 'Fraunces', color: darkColor),
                   ),
                   GButton(
                     icon: Icons.settings,
                     text: 'textSettings'.tr(),
-                    textStyle: TextStyle(fontFamily: 'Fraunces', color: darkColor),
+                    textStyle: const TextStyle(fontFamily: 'Fraunces', color: darkColor),
                   ),
                 ],
               ),

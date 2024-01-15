@@ -59,7 +59,7 @@ Question getPortugueseVerbQuestion() {
 
   while (randomVerb.conjugateVerb(randomMood, randomTense, randomNumber, randomPerson, g: randomGender) == 'DNE') {
     initConjugation();
-    print('$randomMood, $randomTense, $randomNumber, $randomPerson, $randomGender DNE');
+    // print('$randomMood, $randomTense, $randomNumber, $randomPerson, $randomGender DNE');
   }
 
   String lemma = randomVerb.infinitive;
@@ -90,7 +90,7 @@ Question getPortugueseNounQuestion() {
 
   while (randomNoun.declineNoun(randomNumber) == 'DNE') {
     initDeclension();
-    print('$randomNumber, DNE');
+    // print('$randomNumber, DNE');
   }
 
   String lemma = randomNumber == 's' ? randomNoun.declineNoun('p') : randomNoun.declineNoun('s');
@@ -118,7 +118,7 @@ Question getPortugueseAdjectiveNounQuestion() {
 
   while (randomNoun.declineNoun(randomNumber) == 'DNE') {
     initDeclension();
-    print('$randomNumber, DNE');
+    // print('$randomNumber, DNE');
   }
 
   PortugueseAdjective randomAdjective = portugueseAdjectives[random.nextInt(portugueseAdjectives.length)];

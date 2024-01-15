@@ -84,11 +84,10 @@ Question getItalianNounQuestion() {
 
   while (randomNoun.declineNoun(randomNumber) == 'DNE') {
     initDeclension();
-    print('$randomNumber, DNE');
   }
 
   //GENERATE QUESTION
-  String lemma = randomNumber == 's' ? randomNoun.declineNoun(Number.p) : randomNoun.declineNoun(Number.s);
+  String lemma = randomNumber == Number.s ? randomNoun.declineNoun(Number.p) : randomNoun.declineNoun(Number.s);
   List<String> demands = [
     lengthenNumber[randomNumber] ?? 'DNE',
   ];
@@ -110,7 +109,7 @@ Question getItalianAdjectiveNounQuestion() {
 
   while (randomNoun.declineNoun(randomNumber) == 'DNE') {
     initDeclension();
-    print('$randomNumber, DNE');
+    // print('$randomNumber, DNE');
   }
   //GET RANDOM ADJECTIVE
   ItalianAdjective randomAdjective = italianAdjectives[random.nextInt(italianAdjectives.length)];

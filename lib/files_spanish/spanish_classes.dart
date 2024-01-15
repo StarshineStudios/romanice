@@ -36,7 +36,7 @@ class SpanishVerb {
   });
 
   String conjugateVerb(String m, String t, String n, String p, {String g = 'm'}) {
-    print('hi'); //pres ind and pres cond are both simple, also all imp are simple
+    // print('hi'); //pres ind and pres cond are both simple, also all imp are simple
     if (m == 'r imp' || t == 'r pres' || t == 'r imp' || t == 'r fut' || t == 'r perf') {
       return conjugation[m]?[t]?[n]?[p] ?? 'DNE';
 

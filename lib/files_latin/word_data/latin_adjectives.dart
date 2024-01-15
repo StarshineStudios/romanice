@@ -1,3 +1,4 @@
+import 'package:colorguesser/core/enums.dart';
 import 'package:colorguesser/files_latin/latin_classes.dart';
 
 List<LatinAdjective> latinAdjectives = [
@@ -21,538 +22,538 @@ List<LatinAdjective> latinAdjectives = [
 
 LatinAdjective romanus = const LatinAdjective(
   declension: {
-    'nom': {
-      's': {'m': 'rōmānus', 'f': 'rōmāna', 'n': 'rōmānum'},
-      'p': {'m': 'rōmānī', 'f': 'rōmānae', 'n': 'rōmāna'}
+    Case.nom: {
+      Number.s: {Gender.m: 'rōmānus', Gender.f: 'rōmāna', Gender.n: 'rōmānum'},
+      Number.p: {Gender.m: 'rōmānī', Gender.f: 'rōmānae', Gender.n: 'rōmāna'}
     },
-    'acc': {
-      's': {'m': 'rōmānum', 'f': 'rōmānam', 'n': 'rōmānum'},
-      'p': {'m': 'rōmānōs', 'f': 'rōmānās', 'n': 'rōmāna'}
+    Case.acc: {
+      Number.s: {Gender.m: 'rōmānum', Gender.f: 'rōmānam', Gender.n: 'rōmānum'},
+      Number.p: {Gender.m: 'rōmānōs', Gender.f: 'rōmānās', Gender.n: 'rōmāna'}
     },
-    'gen': {
-      's': {'m': 'rōmānī', 'f': 'rōmānae', 'n': 'rōmānī'},
-      'p': {'m': 'rōmānōrum', 'f': 'rōmānārum', 'n': 'rōmānōrum'}
+    Case.gen: {
+      Number.s: {Gender.m: 'rōmānī', Gender.f: 'rōmānae', Gender.n: 'rōmānī'},
+      Number.p: {Gender.m: 'rōmānōrum', Gender.f: 'rōmānārum', Gender.n: 'rōmānōrum'}
     },
-    'dat': {
-      's': {'m': 'rōmānō', 'f': 'rōmānae', 'n': 'rōmānō'},
-      'p': {'m': 'rōmānīs', 'f': 'rōmānīs', 'n': 'rōmānīs'}
+    Case.dat: {
+      Number.s: {Gender.m: 'rōmānō', Gender.f: 'rōmānae', Gender.n: 'rōmānō'},
+      Number.p: {Gender.m: 'rōmānīs', Gender.f: 'rōmānīs', Gender.n: 'rōmānīs'}
     },
-    'abl': {
-      's': {'m': 'rōmānō', 'f': 'rōmānā', 'n': 'rōmānō'},
-      'p': {'m': 'rōmānīs', 'f': 'rōmānīs', 'n': 'rōmānīs'}
+    Case.abl: {
+      Number.s: {Gender.m: 'rōmānō', Gender.f: 'rōmānā', Gender.n: 'rōmānō'},
+      Number.p: {Gender.m: 'rōmānīs', Gender.f: 'rōmānīs', Gender.n: 'rōmānīs'}
     },
-    'voc': {
-      's': {'m': 'rōmāne', 'f': 'rōmāna', 'n': 'rōmānum'},
-      'p': {'m': 'rōmānī', 'f': 'rōmānae', 'n': 'rōmāna'}
+    Case.voc: {
+      Number.s: {Gender.m: 'rōmāne', Gender.f: 'rōmāna', Gender.n: 'rōmānum'},
+      Number.p: {Gender.m: 'rōmānī', Gender.f: 'rōmānae', Gender.n: 'rōmāna'}
     },
   },
 );
 LatinAdjective novus = const LatinAdjective(
   declension: {
-    'nom': {
-      's': {'m': 'novus', 'f': 'nova', 'n': 'novum'},
-      'p': {'m': 'novī', 'f': 'novae', 'n': 'nova'}
+    Case.nom: {
+      Number.s: {Gender.m: 'novus', Gender.f: 'nova', Gender.n: 'novum'},
+      Number.p: {Gender.m: 'novī', Gender.f: 'novae', Gender.n: 'nova'}
     },
-    'acc': {
-      's': {'m': 'novum', 'f': 'novam', 'n': 'novum'},
-      'p': {'m': 'novōs', 'f': 'novās', 'n': 'nova'}
+    Case.acc: {
+      Number.s: {Gender.m: 'novum', Gender.f: 'novam', Gender.n: 'novum'},
+      Number.p: {Gender.m: 'novōs', Gender.f: 'novās', Gender.n: 'nova'}
     },
-    'gen': {
-      's': {'m': 'novī', 'f': 'novae', 'n': 'novī'},
-      'p': {'m': 'novōrum', 'f': 'novārum', 'n': 'novōrum'}
+    Case.gen: {
+      Number.s: {Gender.m: 'novī', Gender.f: 'novae', Gender.n: 'novī'},
+      Number.p: {Gender.m: 'novōrum', Gender.f: 'novārum', Gender.n: 'novōrum'}
     },
-    'dat': {
-      's': {'m': 'novō', 'f': 'novae', 'n': 'novō'},
-      'p': {'m': 'novīs', 'f': 'novīs', 'n': 'novīs'}
+    Case.dat: {
+      Number.s: {Gender.m: 'novō', Gender.f: 'novae', Gender.n: 'novō'},
+      Number.p: {Gender.m: 'novīs', Gender.f: 'novīs', Gender.n: 'novīs'}
     },
-    'abl': {
-      's': {'m': 'novō', 'f': 'novā', 'n': 'novō'},
-      'p': {'m': 'novīs', 'f': 'novīs', 'n': 'novīs'}
+    Case.abl: {
+      Number.s: {Gender.m: 'novō', Gender.f: 'novā', Gender.n: 'novō'},
+      Number.p: {Gender.m: 'novīs', Gender.f: 'novīs', Gender.n: 'novīs'}
     },
-    'voc': {
-      's': {'m': 'nove', 'f': 'nova', 'n': 'novum'},
-      'p': {'m': 'novī', 'f': 'novae', 'n': 'nova'}
+    Case.voc: {
+      Number.s: {Gender.m: 'nove', Gender.f: 'nova', Gender.n: 'novum'},
+      Number.p: {Gender.m: 'novī', Gender.f: 'novae', Gender.n: 'nova'}
     },
   },
 );
 
 LatinAdjective bonus = const LatinAdjective(
   declension: {
-    'nom': {
-      's': {'m': 'bonus', 'f': 'bona', 'n': 'bonum'},
-      'p': {'m': 'bonī', 'f': 'bonae', 'n': 'bona'}
+    Case.nom: {
+      Number.s: {Gender.m: 'bonus', Gender.f: 'bona', Gender.n: 'bonum'},
+      Number.p: {Gender.m: 'bonī', Gender.f: 'bonae', Gender.n: 'bona'}
     },
-    'acc': {
-      's': {'m': 'bonum', 'f': 'bonam', 'n': 'bonum'},
-      'p': {'m': 'bonōs', 'f': 'bonās', 'n': 'bona'}
+    Case.acc: {
+      Number.s: {Gender.m: 'bonum', Gender.f: 'bonam', Gender.n: 'bonum'},
+      Number.p: {Gender.m: 'bonōs', Gender.f: 'bonās', Gender.n: 'bona'}
     },
-    'gen': {
-      's': {'m': 'bonī', 'f': 'bonae', 'n': 'bonī'},
-      'p': {'m': 'bonōrum', 'f': 'bonārum', 'n': 'bonōrum'}
+    Case.gen: {
+      Number.s: {Gender.m: 'bonī', Gender.f: 'bonae', Gender.n: 'bonī'},
+      Number.p: {Gender.m: 'bonōrum', Gender.f: 'bonārum', Gender.n: 'bonōrum'}
     },
-    'dat': {
-      's': {'m': 'bonō', 'f': 'bonae', 'n': 'bonō'},
-      'p': {'m': 'bonīs', 'f': 'bonīs', 'n': 'bonīs'}
+    Case.dat: {
+      Number.s: {Gender.m: 'bonō', Gender.f: 'bonae', Gender.n: 'bonō'},
+      Number.p: {Gender.m: 'bonīs', Gender.f: 'bonīs', Gender.n: 'bonīs'}
     },
-    'abl': {
-      's': {'m': 'bonō', 'f': 'bonā', 'n': 'bonō'},
-      'p': {'m': 'bonīs', 'f': 'bonīs', 'n': 'bonīs'}
+    Case.abl: {
+      Number.s: {Gender.m: 'bonō', Gender.f: 'bonā', Gender.n: 'bonō'},
+      Number.p: {Gender.m: 'bonīs', Gender.f: 'bonīs', Gender.n: 'bonīs'}
     },
-    'voc': {
-      's': {'m': 'bōne', 'f': 'bona', 'n': 'bonum'},
-      'p': {'m': 'bonī', 'f': 'bonae', 'n': 'bona'}
+    Case.voc: {
+      Number.s: {Gender.m: 'bōne', Gender.f: 'bona', Gender.n: 'bonum'},
+      Number.p: {Gender.m: 'bonī', Gender.f: 'bonae', Gender.n: 'bona'}
     },
   },
 );
 LatinAdjective magnus = const LatinAdjective(
   declension: {
-    'nom': {
-      's': {'m': 'magnus', 'f': 'magna', 'n': 'magnum'},
-      'p': {'m': 'magnī', 'f': 'magnae', 'n': 'magna'}
+    Case.nom: {
+      Number.s: {Gender.m: 'magnus', Gender.f: 'magna', Gender.n: 'magnum'},
+      Number.p: {Gender.m: 'magnī', Gender.f: 'magnae', Gender.n: 'magna'}
     },
-    'acc': {
-      's': {'m': 'magnum', 'f': 'magnam', 'n': 'magnum'},
-      'p': {'m': 'magnōs', 'f': 'magnās', 'n': 'magna'}
+    Case.acc: {
+      Number.s: {Gender.m: 'magnum', Gender.f: 'magnam', Gender.n: 'magnum'},
+      Number.p: {Gender.m: 'magnōs', Gender.f: 'magnās', Gender.n: 'magna'}
     },
-    'gen': {
-      's': {'m': 'magnī', 'f': 'magnae', 'n': 'magnī'},
-      'p': {'m': 'magnōrum', 'f': 'magnārum', 'n': 'magnōrum'}
+    Case.gen: {
+      Number.s: {Gender.m: 'magnī', Gender.f: 'magnae', Gender.n: 'magnī'},
+      Number.p: {Gender.m: 'magnōrum', Gender.f: 'magnārum', Gender.n: 'magnōrum'}
     },
-    'dat': {
-      's': {'m': 'magnō', 'f': 'magnae', 'n': 'magnō'},
-      'p': {'m': 'magnīs', 'f': 'magnīs', 'n': 'magnīs'}
+    Case.dat: {
+      Number.s: {Gender.m: 'magnō', Gender.f: 'magnae', Gender.n: 'magnō'},
+      Number.p: {Gender.m: 'magnīs', Gender.f: 'magnīs', Gender.n: 'magnīs'}
     },
-    'abl': {
-      's': {'m': 'magnō', 'f': 'magnā', 'n': 'magnō'},
-      'p': {'m': 'magnīs', 'f': 'magnīs', 'n': 'magnīs'}
+    Case.abl: {
+      Number.s: {Gender.m: 'magnō', Gender.f: 'magnā', Gender.n: 'magnō'},
+      Number.p: {Gender.m: 'magnīs', Gender.f: 'magnīs', Gender.n: 'magnīs'}
     },
-    'voc': {
-      's': {'m': 'magne', 'f': 'magna', 'n': 'magnum'},
-      'p': {'m': 'magnī', 'f': 'magnae', 'n': 'magna'}
+    Case.voc: {
+      Number.s: {Gender.m: 'magne', Gender.f: 'magna', Gender.n: 'magnum'},
+      Number.p: {Gender.m: 'magnī', Gender.f: 'magnae', Gender.n: 'magna'}
     },
   },
 );
 LatinAdjective multus = const LatinAdjective(
   declension: {
-    'nom': {
-      's': {'m': 'multus', 'f': 'multa', 'n': 'multum'},
-      'p': {'m': 'multī', 'f': 'multae', 'n': 'multa'}
+    Case.nom: {
+      Number.s: {Gender.m: 'multus', Gender.f: 'multa', Gender.n: 'multum'},
+      Number.p: {Gender.m: 'multī', Gender.f: 'multae', Gender.n: 'multa'}
     },
-    'acc': {
-      's': {'m': 'multum', 'f': 'multam', 'n': 'multum'},
-      'p': {'m': 'multōs', 'f': 'multās', 'n': 'multa'}
+    Case.acc: {
+      Number.s: {Gender.m: 'multum', Gender.f: 'multam', Gender.n: 'multum'},
+      Number.p: {Gender.m: 'multōs', Gender.f: 'multās', Gender.n: 'multa'}
     },
-    'gen': {
-      's': {'m': 'multī', 'f': 'multae', 'n': 'multī'},
-      'p': {'m': 'multōrum', 'f': 'multārum', 'n': 'multōrum'}
+    Case.gen: {
+      Number.s: {Gender.m: 'multī', Gender.f: 'multae', Gender.n: 'multī'},
+      Number.p: {Gender.m: 'multōrum', Gender.f: 'multārum', Gender.n: 'multōrum'}
     },
-    'dat': {
-      's': {'m': 'multō', 'f': 'multae', 'n': 'multō'},
-      'p': {'m': 'multīs', 'f': 'multīs', 'n': 'multīs'}
+    Case.dat: {
+      Number.s: {Gender.m: 'multō', Gender.f: 'multae', Gender.n: 'multō'},
+      Number.p: {Gender.m: 'multīs', Gender.f: 'multīs', Gender.n: 'multīs'}
     },
-    'abl': {
-      's': {'m': 'multō', 'f': 'multā', 'n': 'multō'},
-      'p': {'m': 'multīs', 'f': 'multīs', 'n': 'multīs'}
+    Case.abl: {
+      Number.s: {Gender.m: 'multō', Gender.f: 'multā', Gender.n: 'multō'},
+      Number.p: {Gender.m: 'multīs', Gender.f: 'multīs', Gender.n: 'multīs'}
     },
-    'voc': {
-      's': {'m': 'multe', 'f': 'multa', 'n': 'multum'},
-      'p': {'m': 'multī', 'f': 'multae', 'n': 'multa'}
+    Case.voc: {
+      Number.s: {Gender.m: 'multe', Gender.f: 'multa', Gender.n: 'multum'},
+      Number.p: {Gender.m: 'multī', Gender.f: 'multae', Gender.n: 'multa'}
     },
   },
 );
 
 LatinAdjective pulcher = const LatinAdjective(
   declension: {
-    'nom': {
-      's': {'m': 'pulcher', 'f': 'pulchra', 'n': 'pulchrum'},
-      'p': {'m': 'pulchrī', 'f': 'pulchrae', 'n': 'pulchra'}
+    Case.nom: {
+      Number.s: {Gender.m: 'pulcher', Gender.f: 'pulchra', Gender.n: 'pulchrum'},
+      Number.p: {Gender.m: 'pulchrī', Gender.f: 'pulchrae', Gender.n: 'pulchra'}
     },
-    'acc': {
-      's': {'m': 'pulchrum', 'f': 'pulchram', 'n': 'pulchrum'},
-      'p': {'m': 'pulchrōs', 'f': 'pulchrās', 'n': 'pulchra'}
+    Case.acc: {
+      Number.s: {Gender.m: 'pulchrum', Gender.f: 'pulchram', Gender.n: 'pulchrum'},
+      Number.p: {Gender.m: 'pulchrōs', Gender.f: 'pulchrās', Gender.n: 'pulchra'}
     },
-    'gen': {
-      's': {'m': 'pulchrī', 'f': 'pulchrae', 'n': 'pulchrī'},
-      'p': {'m': 'pulchrōrum', 'f': 'pulchrārum', 'n': 'pulchrōrum'}
+    Case.gen: {
+      Number.s: {Gender.m: 'pulchrī', Gender.f: 'pulchrae', Gender.n: 'pulchrī'},
+      Number.p: {Gender.m: 'pulchrōrum', Gender.f: 'pulchrārum', Gender.n: 'pulchrōrum'}
     },
-    'dat': {
-      's': {'m': 'pulchrō', 'f': 'pulchrae', 'n': 'pulchrō'},
-      'p': {'m': 'pulchrīs', 'f': 'pulchrīs', 'n': 'pulchrīs'}
+    Case.dat: {
+      Number.s: {Gender.m: 'pulchrō', Gender.f: 'pulchrae', Gender.n: 'pulchrō'},
+      Number.p: {Gender.m: 'pulchrīs', Gender.f: 'pulchrīs', Gender.n: 'pulchrīs'}
     },
-    'abl': {
-      's': {'m': 'pulchrō', 'f': 'pulchrā', 'n': 'pulchrō'},
-      'p': {'m': 'pulchrīs', 'f': 'pulchrīs', 'n': 'pulchrīs'}
+    Case.abl: {
+      Number.s: {Gender.m: 'pulchrō', Gender.f: 'pulchrā', Gender.n: 'pulchrō'},
+      Number.p: {Gender.m: 'pulchrīs', Gender.f: 'pulchrīs', Gender.n: 'pulchrīs'}
     },
-    'voc': {
-      's': {'m': 'pulcher', 'f': 'pulchra', 'n': 'pulchrum'},
-      'p': {'m': 'pulchrī', 'f': 'pulchrae', 'n': 'pulchra'}
+    Case.voc: {
+      Number.s: {Gender.m: 'pulcher', Gender.f: 'pulchra', Gender.n: 'pulchrum'},
+      Number.p: {Gender.m: 'pulchrī', Gender.f: 'pulchrae', Gender.n: 'pulchra'}
     }
   },
 );
 
 LatinAdjective parvus = const LatinAdjective(
   declension: {
-    'nom': {
-      's': {'m': 'parvus', 'f': 'parva', 'n': 'parvum'},
-      'p': {'m': 'parvī', 'f': 'parvae', 'n': 'parva'}
+    Case.nom: {
+      Number.s: {Gender.m: 'parvus', Gender.f: 'parva', Gender.n: 'parvum'},
+      Number.p: {Gender.m: 'parvī', Gender.f: 'parvae', Gender.n: 'parva'}
     },
-    'acc': {
-      's': {'m': 'parvum', 'f': 'parvam', 'n': 'parvum'},
-      'p': {'m': 'parvōs', 'f': 'parvās', 'n': 'parva'}
+    Case.acc: {
+      Number.s: {Gender.m: 'parvum', Gender.f: 'parvam', Gender.n: 'parvum'},
+      Number.p: {Gender.m: 'parvōs', Gender.f: 'parvās', Gender.n: 'parva'}
     },
-    'gen': {
-      's': {'m': 'parvī', 'f': 'parvae', 'n': 'parvī'},
-      'p': {'m': 'parvōrum', 'f': 'parvārum', 'n': 'parvōrum'}
+    Case.gen: {
+      Number.s: {Gender.m: 'parvī', Gender.f: 'parvae', Gender.n: 'parvī'},
+      Number.p: {Gender.m: 'parvōrum', Gender.f: 'parvārum', Gender.n: 'parvōrum'}
     },
-    'dat': {
-      's': {'m': 'parvō', 'f': 'parvae', 'n': 'parvō'},
-      'p': {'m': 'parvīs', 'f': 'parvīs', 'n': 'parvīs'}
+    Case.dat: {
+      Number.s: {Gender.m: 'parvō', Gender.f: 'parvae', Gender.n: 'parvō'},
+      Number.p: {Gender.m: 'parvīs', Gender.f: 'parvīs', Gender.n: 'parvīs'}
     },
-    'abl': {
-      's': {'m': 'parvō', 'f': 'parvā', 'n': 'parvō'},
-      'p': {'m': 'parvīs', 'f': 'parvīs', 'n': 'parvīs'}
+    Case.abl: {
+      Number.s: {Gender.m: 'parvō', Gender.f: 'parvā', Gender.n: 'parvō'},
+      Number.p: {Gender.m: 'parvīs', Gender.f: 'parvīs', Gender.n: 'parvīs'}
     },
-    'voc': {
-      's': {'m': 'parve', 'f': 'parva', 'n': 'parvum'},
-      'p': {'m': 'parvī', 'f': 'parvae', 'n': 'parva'}
+    Case.voc: {
+      Number.s: {Gender.m: 'parve', Gender.f: 'parva', Gender.n: 'parvum'},
+      Number.p: {Gender.m: 'parvī', Gender.f: 'parvae', Gender.n: 'parva'}
     }
   },
 );
 
 LatinAdjective fortis = const LatinAdjective(
   declension: {
-    'nom': {
-      's': {'m': 'fortis', 'f': 'fortis', 'n': 'forte'},
-      'p': {'m': 'fortēs', 'f': 'fortēs', 'n': 'fortia'}
+    Case.nom: {
+      Number.s: {Gender.m: 'fortis', Gender.f: 'fortis', Gender.n: 'forte'},
+      Number.p: {Gender.m: 'fortēs', Gender.f: 'fortēs', Gender.n: 'fortia'}
     },
-    'acc': {
-      's': {'m': 'fortem', 'f': 'fortem', 'n': 'forte'},
-      'p': {'m': 'fortēs', 'f': 'fortēs', 'n': 'fortia'}
+    Case.acc: {
+      Number.s: {Gender.m: 'fortem', Gender.f: 'fortem', Gender.n: 'forte'},
+      Number.p: {Gender.m: 'fortēs', Gender.f: 'fortēs', Gender.n: 'fortia'}
     },
-    'gen': {
-      's': {'m': 'fortis', 'f': 'fortis', 'n': 'fortis'},
-      'p': {'m': 'fortium', 'f': 'fortium', 'n': 'fortium'}
+    Case.gen: {
+      Number.s: {Gender.m: 'fortis', Gender.f: 'fortis', Gender.n: 'fortis'},
+      Number.p: {Gender.m: 'fortium', Gender.f: 'fortium', Gender.n: 'fortium'}
     },
-    'dat': {
-      's': {'m': 'fortī', 'f': 'fortī', 'n': 'fortī'},
-      'p': {'m': 'fortibus', 'f': 'fortibus', 'n': 'fortibus'}
+    Case.dat: {
+      Number.s: {Gender.m: 'fortī', Gender.f: 'fortī', Gender.n: 'fortī'},
+      Number.p: {Gender.m: 'fortibus', Gender.f: 'fortibus', Gender.n: 'fortibus'}
     },
-    'abl': {
-      's': {'m': 'fortī', 'f': 'fortī', 'n': 'fortī'},
-      'p': {'m': 'fortibus', 'f': 'fortibus', 'n': 'fortibus'}
+    Case.abl: {
+      Number.s: {Gender.m: 'fortī', Gender.f: 'fortī', Gender.n: 'fortī'},
+      Number.p: {Gender.m: 'fortibus', Gender.f: 'fortibus', Gender.n: 'fortibus'}
     },
-    'voc': {
-      's': {'m': 'fortis', 'f': 'fortis', 'n': 'forte'},
-      'p': {'m': 'fortēs', 'f': 'fortēs', 'n': 'fortia'}
+    Case.voc: {
+      Number.s: {Gender.m: 'fortis', Gender.f: 'fortis', Gender.n: 'forte'},
+      Number.p: {Gender.m: 'fortēs', Gender.f: 'fortēs', Gender.n: 'fortia'}
     }
   },
 );
 
 LatinAdjective latus = const LatinAdjective(
   declension: {
-    'nom': {
-      's': {'m': 'latus', 'f': 'lata', 'n': 'latum'},
-      'p': {'m': 'latī', 'f': 'latae', 'n': 'lata'}
+    Case.nom: {
+      Number.s: {Gender.m: 'latus', Gender.f: 'lata', Gender.n: 'latum'},
+      Number.p: {Gender.m: 'latī', Gender.f: 'latae', Gender.n: 'lata'}
     },
-    'acc': {
-      's': {'m': 'latum', 'f': 'latam', 'n': 'latum'},
-      'p': {'m': 'latōs', 'f': 'latās', 'n': 'lata'}
+    Case.acc: {
+      Number.s: {Gender.m: 'latum', Gender.f: 'latam', Gender.n: 'latum'},
+      Number.p: {Gender.m: 'latōs', Gender.f: 'latās', Gender.n: 'lata'}
     },
-    'gen': {
-      's': {'m': 'latī', 'f': 'latae', 'n': 'latī'},
-      'p': {'m': 'latōrum', 'f': 'latārum', 'n': 'latōrum'}
+    Case.gen: {
+      Number.s: {Gender.m: 'latī', Gender.f: 'latae', Gender.n: 'latī'},
+      Number.p: {Gender.m: 'latōrum', Gender.f: 'latārum', Gender.n: 'latōrum'}
     },
-    'dat': {
-      's': {'m': 'latō', 'f': 'latae', 'n': 'latō'},
-      'p': {'m': 'latīs', 'f': 'latīs', 'n': 'latīs'}
+    Case.dat: {
+      Number.s: {Gender.m: 'latō', Gender.f: 'latae', Gender.n: 'latō'},
+      Number.p: {Gender.m: 'latīs', Gender.f: 'latīs', Gender.n: 'latīs'}
     },
-    'abl': {
-      's': {'m': 'latō', 'f': 'latā', 'n': 'latō'},
-      'p': {'m': 'latīs', 'f': 'latīs', 'n': 'latīs'}
+    Case.abl: {
+      Number.s: {Gender.m: 'latō', Gender.f: 'latā', Gender.n: 'latō'},
+      Number.p: {Gender.m: 'latīs', Gender.f: 'latīs', Gender.n: 'latīs'}
     },
-    'voc': {
-      's': {'m': 'late', 'f': 'lata', 'n': 'latum'},
-      'p': {'m': 'latī', 'f': 'latae', 'n': 'lata'}
+    Case.voc: {
+      Number.s: {Gender.m: 'late', Gender.f: 'lata', Gender.n: 'latum'},
+      Number.p: {Gender.m: 'latī', Gender.f: 'latae', Gender.n: 'lata'}
     }
   },
 );
 LatinAdjective celer = const LatinAdjective(
   declension: {
-    'nom': {
-      's': {'m': 'celer', 'f': 'celer', 'n': 'celere'},
-      'p': {'m': 'celerēs', 'f': 'celerēs', 'n': 'celeria'}
+    Case.nom: {
+      Number.s: {Gender.m: 'celer', Gender.f: 'celer', Gender.n: 'celere'},
+      Number.p: {Gender.m: 'celerēs', Gender.f: 'celerēs', Gender.n: 'celeria'}
     },
-    'acc': {
-      's': {'m': 'celerem', 'f': 'celerem', 'n': 'celere'},
-      'p': {'m': 'celerēs', 'f': 'celerēs', 'n': 'celeria'}
+    Case.acc: {
+      Number.s: {Gender.m: 'celerem', Gender.f: 'celerem', Gender.n: 'celere'},
+      Number.p: {Gender.m: 'celerēs', Gender.f: 'celerēs', Gender.n: 'celeria'}
     },
-    'gen': {
-      's': {'m': 'celeris', 'f': 'celeris', 'n': 'celeris'},
-      'p': {'m': 'celerium', 'f': 'celerium', 'n': 'celerium'}
+    Case.gen: {
+      Number.s: {Gender.m: 'celeris', Gender.f: 'celeris', Gender.n: 'celeris'},
+      Number.p: {Gender.m: 'celerium', Gender.f: 'celerium', Gender.n: 'celerium'}
     },
-    'dat': {
-      's': {'m': 'celerī', 'f': 'celerī', 'n': 'celerī'},
-      'p': {'m': 'celeribus', 'f': 'celeribus', 'n': 'celeribus'}
+    Case.dat: {
+      Number.s: {Gender.m: 'celerī', Gender.f: 'celerī', Gender.n: 'celerī'},
+      Number.p: {Gender.m: 'celeribus', Gender.f: 'celeribus', Gender.n: 'celeribus'}
     },
-    'abl': {
-      's': {'m': 'celerī', 'f': 'celerī', 'n': 'celerī'},
-      'p': {'m': 'celeribus', 'f': 'celeribus', 'n': 'celeribus'}
+    Case.abl: {
+      Number.s: {Gender.m: 'celerī', Gender.f: 'celerī', Gender.n: 'celerī'},
+      Number.p: {Gender.m: 'celeribus', Gender.f: 'celeribus', Gender.n: 'celeribus'}
     },
-    'voc': {
-      's': {'m': 'celer', 'f': 'celer', 'n': 'celere'},
-      'p': {'m': 'celerēs', 'f': 'celerēs', 'n': 'celeria'}
+    Case.voc: {
+      Number.s: {Gender.m: 'celer', Gender.f: 'celer', Gender.n: 'celere'},
+      Number.p: {Gender.m: 'celerēs', Gender.f: 'celerēs', Gender.n: 'celeria'}
     }
   },
 );
 LatinAdjective altus = const LatinAdjective(
   declension: {
-    'nom': {
-      's': {'m': 'altus', 'f': 'alta', 'n': 'altum'},
-      'p': {'m': 'altī', 'f': 'altae', 'n': 'alta'}
+    Case.nom: {
+      Number.s: {Gender.m: 'altus', Gender.f: 'alta', Gender.n: 'altum'},
+      Number.p: {Gender.m: 'altī', Gender.f: 'altae', Gender.n: 'alta'}
     },
-    'acc': {
-      's': {'m': 'altum', 'f': 'altam', 'n': 'altum'},
-      'p': {'m': 'altōs', 'f': 'altās', 'n': 'alta'}
+    Case.acc: {
+      Number.s: {Gender.m: 'altum', Gender.f: 'altam', Gender.n: 'altum'},
+      Number.p: {Gender.m: 'altōs', Gender.f: 'altās', Gender.n: 'alta'}
     },
-    'gen': {
-      's': {'m': 'altī', 'f': 'altae', 'n': 'altī'},
-      'p': {'m': 'altōrum', 'f': 'altārum', 'n': 'altōrum'}
+    Case.gen: {
+      Number.s: {Gender.m: 'altī', Gender.f: 'altae', Gender.n: 'altī'},
+      Number.p: {Gender.m: 'altōrum', Gender.f: 'altārum', Gender.n: 'altōrum'}
     },
-    'dat': {
-      's': {'m': 'altō', 'f': 'altae', 'n': 'altō'},
-      'p': {'m': 'altīs', 'f': 'altīs', 'n': 'altīs'}
+    Case.dat: {
+      Number.s: {Gender.m: 'altō', Gender.f: 'altae', Gender.n: 'altō'},
+      Number.p: {Gender.m: 'altīs', Gender.f: 'altīs', Gender.n: 'altīs'}
     },
-    'abl': {
-      's': {'m': 'altō', 'f': 'altā', 'n': 'altō'},
-      'p': {'m': 'altīs', 'f': 'altīs', 'n': 'altīs'}
+    Case.abl: {
+      Number.s: {Gender.m: 'altō', Gender.f: 'altā', Gender.n: 'altō'},
+      Number.p: {Gender.m: 'altīs', Gender.f: 'altīs', Gender.n: 'altīs'}
     },
-    'voc': {
-      's': {'m': 'alte', 'f': 'alta', 'n': 'altum'},
-      'p': {'m': 'altī', 'f': 'altae', 'n': 'alta'}
+    Case.voc: {
+      Number.s: {Gender.m: 'alte', Gender.f: 'alta', Gender.n: 'altum'},
+      Number.p: {Gender.m: 'altī', Gender.f: 'altae', Gender.n: 'alta'}
     }
   },
 );
 LatinAdjective gravis = const LatinAdjective(
   declension: {
-    'nom': {
-      's': {'m': 'gravis', 'f': 'gravis', 'n': 'grave'},
-      'p': {'m': 'gravēs', 'f': 'gravēs', 'n': 'gravia'}
+    Case.nom: {
+      Number.s: {Gender.m: 'gravis', Gender.f: 'gravis', Gender.n: 'grave'},
+      Number.p: {Gender.m: 'gravēs', Gender.f: 'gravēs', Gender.n: 'gravia'}
     },
-    'acc': {
-      's': {'m': 'gravem', 'f': 'gravem', 'n': 'grave'},
-      'p': {'m': 'gravēs', 'f': 'gravēs', 'n': 'gravia'}
+    Case.acc: {
+      Number.s: {Gender.m: 'gravem', Gender.f: 'gravem', Gender.n: 'grave'},
+      Number.p: {Gender.m: 'gravēs', Gender.f: 'gravēs', Gender.n: 'gravia'}
     },
-    'gen': {
-      's': {'m': 'gravis', 'f': 'gravis', 'n': 'gravis'},
-      'p': {'m': 'gravium', 'f': 'gravium', 'n': 'gravium'}
+    Case.gen: {
+      Number.s: {Gender.m: 'gravis', Gender.f: 'gravis', Gender.n: 'gravis'},
+      Number.p: {Gender.m: 'gravium', Gender.f: 'gravium', Gender.n: 'gravium'}
     },
-    'dat': {
-      's': {'m': 'gravī', 'f': 'gravī', 'n': 'gravī'},
-      'p': {'m': 'gravis', 'f': 'gravis', 'n': 'gravis'}
+    Case.dat: {
+      Number.s: {Gender.m: 'gravī', Gender.f: 'gravī', Gender.n: 'gravī'},
+      Number.p: {Gender.m: 'gravis', Gender.f: 'gravis', Gender.n: 'gravis'}
     },
-    'abl': {
-      's': {'m': 'gravī', 'f': 'gravī', 'n': 'gravī'},
-      'p': {'m': 'gravis', 'f': 'gravis', 'n': 'gravis'}
+    Case.abl: {
+      Number.s: {Gender.m: 'gravī', Gender.f: 'gravī', Gender.n: 'gravī'},
+      Number.p: {Gender.m: 'gravis', Gender.f: 'gravis', Gender.n: 'gravis'}
     },
-    'voc': {
-      's': {'m': 'gravis', 'f': 'gravis', 'n': 'grave'},
-      'p': {'m': 'gravēs', 'f': 'gravēs', 'n': 'gravia'}
+    Case.voc: {
+      Number.s: {Gender.m: 'gravis', Gender.f: 'gravis', Gender.n: 'grave'},
+      Number.p: {Gender.m: 'gravēs', Gender.f: 'gravēs', Gender.n: 'gravia'}
     }
   },
 );
 LatinAdjective brevis = const LatinAdjective(
   declension: {
-    'nom': {
-      's': {'m': 'brevis', 'f': 'brevis', 'n': 'breve'},
-      'p': {'m': 'brevēs', 'f': 'brevēs', 'n': 'brevia'}
+    Case.nom: {
+      Number.s: {Gender.m: 'brevis', Gender.f: 'brevis', Gender.n: 'breve'},
+      Number.p: {Gender.m: 'brevēs', Gender.f: 'brevēs', Gender.n: 'brevia'}
     },
-    'acc': {
-      's': {'m': 'brevem', 'f': 'brevem', 'n': 'breve'},
-      'p': {'m': 'brevēs', 'f': 'brevēs', 'n': 'brevia'}
+    Case.acc: {
+      Number.s: {Gender.m: 'brevem', Gender.f: 'brevem', Gender.n: 'breve'},
+      Number.p: {Gender.m: 'brevēs', Gender.f: 'brevēs', Gender.n: 'brevia'}
     },
-    'gen': {
-      's': {'m': 'brevis', 'f': 'brevis', 'n': 'brevis'},
-      'p': {'m': 'brevium', 'f': 'brevium', 'n': 'brevium'}
+    Case.gen: {
+      Number.s: {Gender.m: 'brevis', Gender.f: 'brevis', Gender.n: 'brevis'},
+      Number.p: {Gender.m: 'brevium', Gender.f: 'brevium', Gender.n: 'brevium'}
     },
-    'dat': {
-      's': {'m': 'brevī', 'f': 'brevī', 'n': 'brevī'},
-      'p': {'m': 'brevibus', 'f': 'brevibus', 'n': 'brevibus'}
+    Case.dat: {
+      Number.s: {Gender.m: 'brevī', Gender.f: 'brevī', Gender.n: 'brevī'},
+      Number.p: {Gender.m: 'brevibus', Gender.f: 'brevibus', Gender.n: 'brevibus'}
     },
-    'abl': {
-      's': {'m': 'brevī', 'f': 'brevī', 'n': 'brevī'},
-      'p': {'m': 'brevibus', 'f': 'brevibus', 'n': 'brevibus'}
+    Case.abl: {
+      Number.s: {Gender.m: 'brevī', Gender.f: 'brevī', Gender.n: 'brevī'},
+      Number.p: {Gender.m: 'brevibus', Gender.f: 'brevibus', Gender.n: 'brevibus'}
     },
-    'voc': {
-      's': {'m': 'brevis', 'f': 'brevis', 'n': 'breve'},
-      'p': {'m': 'brevēs', 'f': 'brevēs', 'n': 'brevia'}
+    Case.voc: {
+      Number.s: {Gender.m: 'brevis', Gender.f: 'brevis', Gender.n: 'breve'},
+      Number.p: {Gender.m: 'brevēs', Gender.f: 'brevēs', Gender.n: 'brevia'}
     }
   },
 );
 LatinAdjective acer = const LatinAdjective(
   declension: {
-    'nom': {
-      's': {'m': 'acer', 'f': 'acer', 'n': 'acre'},
-      'p': {'m': 'acrēs', 'f': 'acrēs', 'n': 'acria'}
+    Case.nom: {
+      Number.s: {Gender.m: 'acer', Gender.f: 'acer', Gender.n: 'acre'},
+      Number.p: {Gender.m: 'acrēs', Gender.f: 'acrēs', Gender.n: 'acria'}
     },
-    'acc': {
-      's': {'m': 'acrem', 'f': 'acrem', 'n': 'acre'},
-      'p': {'m': 'acrēs', 'f': 'acrēs', 'n': 'acria'}
+    Case.acc: {
+      Number.s: {Gender.m: 'acrem', Gender.f: 'acrem', Gender.n: 'acre'},
+      Number.p: {Gender.m: 'acrēs', Gender.f: 'acrēs', Gender.n: 'acria'}
     },
-    'gen': {
-      's': {'m': 'acris', 'f': 'acris', 'n': 'acris'},
-      'p': {'m': 'acrium', 'f': 'acrium', 'n': 'acrium'}
+    Case.gen: {
+      Number.s: {Gender.m: 'acris', Gender.f: 'acris', Gender.n: 'acris'},
+      Number.p: {Gender.m: 'acrium', Gender.f: 'acrium', Gender.n: 'acrium'}
     },
-    'dat': {
-      's': {'m': 'acrī', 'f': 'acrī', 'n': 'acrī'},
-      'p': {'m': 'acribus', 'f': 'acribus', 'n': 'acribus'}
+    Case.dat: {
+      Number.s: {Gender.m: 'acrī', Gender.f: 'acrī', Gender.n: 'acrī'},
+      Number.p: {Gender.m: 'acribus', Gender.f: 'acribus', Gender.n: 'acribus'}
     },
-    'abl': {
-      's': {'m': 'acrī', 'f': 'acrī', 'n': 'acrī'},
-      'p': {'m': 'acribus', 'f': 'acribus', 'n': 'acribus'}
+    Case.abl: {
+      Number.s: {Gender.m: 'acrī', Gender.f: 'acrī', Gender.n: 'acrī'},
+      Number.p: {Gender.m: 'acribus', Gender.f: 'acribus', Gender.n: 'acribus'}
     },
-    'voc': {
-      's': {'m': 'acer', 'f': 'acer', 'n': 'acre'},
-      'p': {'m': 'acrēs', 'f': 'acrēs', 'n': 'acria'}
+    Case.voc: {
+      Number.s: {Gender.m: 'acer', Gender.f: 'acer', Gender.n: 'acre'},
+      Number.p: {Gender.m: 'acrēs', Gender.f: 'acrēs', Gender.n: 'acria'}
     }
   },
 );
 LatinAdjective dulcis = const LatinAdjective(
   declension: {
-    'nom': {
-      's': {'m': 'dulcis', 'f': 'dulcis', 'n': 'dulce'},
-      'p': {'m': 'dulcēs', 'f': 'dulcēs', 'n': 'dulcia'}
+    Case.nom: {
+      Number.s: {Gender.m: 'dulcis', Gender.f: 'dulcis', Gender.n: 'dulce'},
+      Number.p: {Gender.m: 'dulcēs', Gender.f: 'dulcēs', Gender.n: 'dulcia'}
     },
-    'acc': {
-      's': {'m': 'dulcem', 'f': 'dulcem', 'n': 'dulce'},
-      'p': {'m': 'dulcēs', 'f': 'dulcēs', 'n': 'dulcia'}
+    Case.acc: {
+      Number.s: {Gender.m: 'dulcem', Gender.f: 'dulcem', Gender.n: 'dulce'},
+      Number.p: {Gender.m: 'dulcēs', Gender.f: 'dulcēs', Gender.n: 'dulcia'}
     },
-    'gen': {
-      's': {'m': 'dulcis', 'f': 'dulcis', 'n': 'dulcis'},
-      'p': {'m': 'dulcium', 'f': 'dulcium', 'n': 'dulcium'}
+    Case.gen: {
+      Number.s: {Gender.m: 'dulcis', Gender.f: 'dulcis', Gender.n: 'dulcis'},
+      Number.p: {Gender.m: 'dulcium', Gender.f: 'dulcium', Gender.n: 'dulcium'}
     },
-    'dat': {
-      's': {'m': 'dulcī', 'f': 'dulcī', 'n': 'dulcī'},
-      'p': {'m': 'dulcibus', 'f': 'dulcibus', 'n': 'dulcibus'}
+    Case.dat: {
+      Number.s: {Gender.m: 'dulcī', Gender.f: 'dulcī', Gender.n: 'dulcī'},
+      Number.p: {Gender.m: 'dulcibus', Gender.f: 'dulcibus', Gender.n: 'dulcibus'}
     },
-    'abl': {
-      's': {'m': 'dulcī', 'f': 'dulcī', 'n': 'dulcī'},
-      'p': {'m': 'dulcibus', 'f': 'dulcibus', 'n': 'dulcibus'}
+    Case.abl: {
+      Number.s: {Gender.m: 'dulcī', Gender.f: 'dulcī', Gender.n: 'dulcī'},
+      Number.p: {Gender.m: 'dulcibus', Gender.f: 'dulcibus', Gender.n: 'dulcibus'}
     },
-    'voc': {
-      's': {'m': 'dulcis', 'f': 'dulcis', 'n': 'dulce'},
-      'p': {'m': 'dulcēs', 'f': 'dulcēs', 'n': 'dulcia'}
+    Case.voc: {
+      Number.s: {Gender.m: 'dulcis', Gender.f: 'dulcis', Gender.n: 'dulce'},
+      Number.p: {Gender.m: 'dulcēs', Gender.f: 'dulcēs', Gender.n: 'dulcia'}
     }
   },
 );
 LatinAdjective longus = const LatinAdjective(
   declension: {
-    'nom': {
-      's': {'m': 'longus', 'f': 'longa', 'n': 'longum'},
-      'p': {'m': 'longī', 'f': 'longae', 'n': 'longa'}
+    Case.nom: {
+      Number.s: {Gender.m: 'longus', Gender.f: 'longa', Gender.n: 'longum'},
+      Number.p: {Gender.m: 'longī', Gender.f: 'longae', Gender.n: 'longa'}
     },
-    'acc': {
-      's': {'m': 'longum', 'f': 'longam', 'n': 'longum'},
-      'p': {'m': 'longōs', 'f': 'longās', 'n': 'longa'}
+    Case.acc: {
+      Number.s: {Gender.m: 'longum', Gender.f: 'longam', Gender.n: 'longum'},
+      Number.p: {Gender.m: 'longōs', Gender.f: 'longās', Gender.n: 'longa'}
     },
-    'gen': {
-      's': {'m': 'longī', 'f': 'longae', 'n': 'longī'},
-      'p': {'m': 'longōrum', 'f': 'longārum', 'n': 'longōrum'}
+    Case.gen: {
+      Number.s: {Gender.m: 'longī', Gender.f: 'longae', Gender.n: 'longī'},
+      Number.p: {Gender.m: 'longōrum', Gender.f: 'longārum', Gender.n: 'longōrum'}
     },
-    'dat': {
-      's': {'m': 'longō', 'f': 'longae', 'n': 'longō'},
-      'p': {'m': 'longīs', 'f': 'longīs', 'n': 'longīs'}
+    Case.dat: {
+      Number.s: {Gender.m: 'longō', Gender.f: 'longae', Gender.n: 'longō'},
+      Number.p: {Gender.m: 'longīs', Gender.f: 'longīs', Gender.n: 'longīs'}
     },
-    'abl': {
-      's': {'m': 'longō', 'f': 'longā', 'n': 'longō'},
-      'p': {'m': 'longīs', 'f': 'longīs', 'n': 'longīs'}
+    Case.abl: {
+      Number.s: {Gender.m: 'longō', Gender.f: 'longā', Gender.n: 'longō'},
+      Number.p: {Gender.m: 'longīs', Gender.f: 'longīs', Gender.n: 'longīs'}
     },
-    'voc': {
-      's': {'m': 'longe', 'f': 'longa', 'n': 'longum'},
-      'p': {'m': 'longī', 'f': 'longae', 'n': 'longa'}
+    Case.voc: {
+      Number.s: {Gender.m: 'longe', Gender.f: 'longa', Gender.n: 'longum'},
+      Number.p: {Gender.m: 'longī', Gender.f: 'longae', Gender.n: 'longa'}
     }
   },
 );
 LatinAdjective curvus = const LatinAdjective(
   declension: {
-    'nom': {
-      's': {'m': 'curvus', 'f': 'curva', 'n': 'curvum'},
-      'p': {'m': 'curvī', 'f': 'curvae', 'n': 'curva'}
+    Case.nom: {
+      Number.s: {Gender.m: 'curvus', Gender.f: 'curva', Gender.n: 'curvum'},
+      Number.p: {Gender.m: 'curvī', Gender.f: 'curvae', Gender.n: 'curva'}
     },
-    'acc': {
-      's': {'m': 'curvum', 'f': 'curvam', 'n': 'curvum'},
-      'p': {'m': 'curvōs', 'f': 'curvās', 'n': 'curva'}
+    Case.acc: {
+      Number.s: {Gender.m: 'curvum', Gender.f: 'curvam', Gender.n: 'curvum'},
+      Number.p: {Gender.m: 'curvōs', Gender.f: 'curvās', Gender.n: 'curva'}
     },
-    'gen': {
-      's': {'m': 'curvī', 'f': 'curvae', 'n': 'curvī'},
-      'p': {'m': 'curvōrum', 'f': 'curvārum', 'n': 'curvōrum'}
+    Case.gen: {
+      Number.s: {Gender.m: 'curvī', Gender.f: 'curvae', Gender.n: 'curvī'},
+      Number.p: {Gender.m: 'curvōrum', Gender.f: 'curvārum', Gender.n: 'curvōrum'}
     },
-    'dat': {
-      's': {'m': 'curvō', 'f': 'curvae', 'n': 'curvō'},
-      'p': {'m': 'curvīs', 'f': 'curvīs', 'n': 'curvīs'}
+    Case.dat: {
+      Number.s: {Gender.m: 'curvō', Gender.f: 'curvae', Gender.n: 'curvō'},
+      Number.p: {Gender.m: 'curvīs', Gender.f: 'curvīs', Gender.n: 'curvīs'}
     },
-    'abl': {
-      's': {'m': 'curvō', 'f': 'curvā', 'n': 'curvō'},
-      'p': {'m': 'curvīs', 'f': 'curvīs', 'n': 'curvīs'}
+    Case.abl: {
+      Number.s: {Gender.m: 'curvō', Gender.f: 'curvā', Gender.n: 'curvō'},
+      Number.p: {Gender.m: 'curvīs', Gender.f: 'curvīs', Gender.n: 'curvīs'}
     },
-    'voc': {
-      's': {'m': 'curve', 'f': 'curva', 'n': 'curvum'},
-      'p': {'m': 'curvī', 'f': 'curvae', 'n': 'curva'}
+    Case.voc: {
+      Number.s: {Gender.m: 'curve', Gender.f: 'curva', Gender.n: 'curvum'},
+      Number.p: {Gender.m: 'curvī', Gender.f: 'curvae', Gender.n: 'curva'}
     }
   },
 );
 LatinAdjective liber = const LatinAdjective(
   declension: {
-    'nom': {
-      's': {'m': 'liber', 'f': 'libera', 'n': 'liberum'},
-      'p': {'m': 'liberī', 'f': 'liberae', 'n': 'libera'}
+    Case.nom: {
+      Number.s: {Gender.m: 'liber', Gender.f: 'libera', Gender.n: 'liberum'},
+      Number.p: {Gender.m: 'liberī', Gender.f: 'liberae', Gender.n: 'libera'}
     },
-    'acc': {
-      's': {'m': 'liberum', 'f': 'liberam', 'n': 'liberum'},
-      'p': {'m': 'liberōs', 'f': 'liberās', 'n': 'libera'}
+    Case.acc: {
+      Number.s: {Gender.m: 'liberum', Gender.f: 'liberam', Gender.n: 'liberum'},
+      Number.p: {Gender.m: 'liberōs', Gender.f: 'liberās', Gender.n: 'libera'}
     },
-    'gen': {
-      's': {'m': 'liberī', 'f': 'liberae', 'n': 'liberī'},
-      'p': {'m': 'liberōrum', 'f': 'liberārum', 'n': 'liberōrum'}
+    Case.gen: {
+      Number.s: {Gender.m: 'liberī', Gender.f: 'liberae', Gender.n: 'liberī'},
+      Number.p: {Gender.m: 'liberōrum', Gender.f: 'liberārum', Gender.n: 'liberōrum'}
     },
-    'dat': {
-      's': {'m': 'liberō', 'f': 'liberae', 'n': 'liberō'},
-      'p': {'m': 'liberīs', 'f': 'liberīs', 'n': 'liberīs'}
+    Case.dat: {
+      Number.s: {Gender.m: 'liberō', Gender.f: 'liberae', Gender.n: 'liberō'},
+      Number.p: {Gender.m: 'liberīs', Gender.f: 'liberīs', Gender.n: 'liberīs'}
     },
-    'abl': {
-      's': {'m': 'liberō', 'f': 'liberā', 'n': 'liberō'},
-      'p': {'m': 'liberīs', 'f': 'liberīs', 'n': 'liberīs'}
+    Case.abl: {
+      Number.s: {Gender.m: 'liberō', Gender.f: 'liberā', Gender.n: 'liberō'},
+      Number.p: {Gender.m: 'liberīs', Gender.f: 'liberīs', Gender.n: 'liberīs'}
     },
-    'voc': {
-      's': {'m': 'liber', 'f': 'libera', 'n': 'liberum'},
-      'p': {'m': 'liberī', 'f': 'liberae', 'n': 'libera'}
+    Case.voc: {
+      Number.s: {Gender.m: 'liber', Gender.f: 'libera', Gender.n: 'liberum'},
+      Number.p: {Gender.m: 'liberī', Gender.f: 'liberae', Gender.n: 'libera'}
     }
   },
 );
 LatinAdjective rectus = const LatinAdjective(
   declension: {
-    'nom': {
-      's': {'m': 'rectus', 'f': 'recta', 'n': 'rectum'},
-      'p': {'m': 'rectī', 'f': 'rectae', 'n': 'recta'}
+    Case.nom: {
+      Number.s: {Gender.m: 'rectus', Gender.f: 'recta', Gender.n: 'rectum'},
+      Number.p: {Gender.m: 'rectī', Gender.f: 'rectae', Gender.n: 'recta'}
     },
-    'acc': {
-      's': {'m': 'rectum', 'f': 'rectam', 'n': 'rectum'},
-      'p': {'m': 'rectōs', 'f': 'rectās', 'n': 'recta'}
+    Case.acc: {
+      Number.s: {Gender.m: 'rectum', Gender.f: 'rectam', Gender.n: 'rectum'},
+      Number.p: {Gender.m: 'rectōs', Gender.f: 'rectās', Gender.n: 'recta'}
     },
-    'gen': {
-      's': {'m': 'rectī', 'f': 'rectae', 'n': 'rectī'},
-      'p': {'m': 'rectōrum', 'f': 'rectārum', 'n': 'rectōrum'}
+    Case.gen: {
+      Number.s: {Gender.m: 'rectī', Gender.f: 'rectae', Gender.n: 'rectī'},
+      Number.p: {Gender.m: 'rectōrum', Gender.f: 'rectārum', Gender.n: 'rectōrum'}
     },
-    'dat': {
-      's': {'m': 'rectō', 'f': 'rectae', 'n': 'rectō'},
-      'p': {'m': 'rectīs', 'f': 'rectīs', 'n': 'rectīs'}
+    Case.dat: {
+      Number.s: {Gender.m: 'rectō', Gender.f: 'rectae', Gender.n: 'rectō'},
+      Number.p: {Gender.m: 'rectīs', Gender.f: 'rectīs', Gender.n: 'rectīs'}
     },
-    'abl': {
-      's': {'m': 'rectō', 'f': 'rectā', 'n': 'rectō'},
-      'p': {'m': 'rectīs', 'f': 'rectīs', 'n': 'rectīs'}
+    Case.abl: {
+      Number.s: {Gender.m: 'rectō', Gender.f: 'rectā', Gender.n: 'rectō'},
+      Number.p: {Gender.m: 'rectīs', Gender.f: 'rectīs', Gender.n: 'rectīs'}
     },
-    'voc': {
-      's': {'m': 'recte', 'f': 'recta', 'n': 'rectum'},
-      'p': {'m': 'rectī', 'f': 'rectae', 'n': 'recta'}
+    Case.voc: {
+      Number.s: {Gender.m: 'recte', Gender.f: 'recta', Gender.n: 'rectum'},
+      Number.p: {Gender.m: 'rectī', Gender.f: 'rectae', Gender.n: 'recta'}
     }
   },
 );

@@ -58,7 +58,7 @@ Question getSpanishVerbQuestion() {
 
   while (randomVerb.conjugateVerb(randomMood, randomTense, randomNumber, randomPerson, g: randomGender) == 'DNE') {
     initConjugation();
-    print('$randomMood, $randomTense, $randomNumber, $randomPerson, $randomGender DNE');
+    // print('$randomMood, $randomTense, $randomNumber, $randomPerson, $randomGender DNE');
   }
 
   String lemma = randomVerb.infinitive;
@@ -89,7 +89,7 @@ Question getSpanishNounQuestion() {
 
   while (randomNoun.declineNoun(randomNumber) == 'DNE') {
     initDeclension();
-    print('$randomNumber, DNE');
+    // print('$randomNumber, DNE');
   }
 
   String lemma = randomNumber == 's' ? randomNoun.declineNoun('p') : randomNoun.declineNoun('s');
@@ -117,7 +117,7 @@ Question getSpanishAdjectiveNounQuestion() {
 
   while (randomNoun.declineNoun(randomNumber) == 'DNE') {
     initDeclension();
-    print('$randomNumber, DNE');
+    // print('$randomNumber, DNE');
   }
 
   SpanishAdjective randomAdjective = spanishAdjectives[random.nextInt(spanishAdjectives.length)];
