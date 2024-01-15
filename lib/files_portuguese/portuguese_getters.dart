@@ -16,7 +16,7 @@ List<Gender> portugueseGenders = [
   Gender.m,
   Gender.f,
 ];
-List<Mood> portugueseMoods = [ind, sub, imp];
+List<Mood> portugueseMoods = [Mood.ind, Mood.sub, Mood.imp];
 List<Tense> portugueseTenses = [
   Tense.presentRomance,
   Tense.imperfectRomance,

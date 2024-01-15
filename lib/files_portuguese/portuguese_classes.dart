@@ -89,9 +89,9 @@ class PortugueseAuxiliaryVerb {
   });
 
   String conjugateVerb(Mood m, Tense t, Number n, Person p, {Gender g = Gender.m}) {
-    if (t == Tense.present ||
-        t == Tense.imperfect ||
-        t == Tense.perfect ||
+    if (t == Tense.presentRomance ||
+        t == Tense.imperfectRomance ||
+        t == Tense.perfectRomance ||
         t == Tense.pluperfectRomance ||
         t == Tense.futureRomance ||
         t == Tense.conditionalRomance) {

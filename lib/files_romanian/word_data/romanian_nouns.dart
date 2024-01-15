@@ -1,3 +1,5 @@
+import 'package:colorguesser/core/enums.dart';
+
 import '../romanian_classes.dart';
 
 List<RomanianNoun> romanianNouns = [
@@ -5,19 +7,10 @@ List<RomanianNoun> romanianNouns = [
 ];
 
 RomanianNoun stea = const RomanianNoun(
-  gender: 'f',
+  gender: Gender.f,
   declension: {
-    'nomacc': {
-      's': 'stea',
-      'p': 'stele',
-    },
-    'gendat': {
-      's': 'stele',
-      'p': 'stele',
-    },
-    'voc': {
-      's': 'stea',
-      'p': 'stelelor',
-    },
+    Case.nomacc: {Number.s: 'stea', Number.p: 'stele'},
+    Case.gendat: {Number.s: 'stele', Number.p: 'stele'},
+    Case.voc: {Number.s: 'stea', Number.p: 'stelelor'},
   },
 );

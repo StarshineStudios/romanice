@@ -1,6 +1,8 @@
 //These can apply to a lot of languages
 import 'dart:math';
 
+import 'package:colorguesser/core/enums.dart';
+
 import '../core/constants.dart';
 import 'word_data/romanian_adjectives.dart';
 import 'romanian_classes.dart';
@@ -8,46 +10,45 @@ import 'word_data/romanian_nouns.dart';
 import 'word_data/romanian_verbs.dart';
 import '../core/lengtheners.dart';
 
-List<String> romanianShortNumbers = ['s', 'p'];
+List<Number> romanianShortNumbers = [Number.s, Number.p];
 //neuter is similar to romanian, but it is not said to change, simply be neuter.
-List<String> romanianShortGenders = ['m', 'f', 'n'];
-List<String> romanianShortCases = ['nomacc', 'gendat', 'voc'];
-List<String> romanianShortMoods = ['ind', 'sub', 'optcon', 'pre', 'imp'];
-List<String> romanianShortPersons = ['1', '2', '3'];
+List<Gender> romanianShortGenders = [Gender.m, Gender.f, Gender.n];
+List<Case> romanianShortCases = [Case.nomacc, Case.gendat, Case.voc];
+List<Mood> romanianShortMoods = [Mood.ind, Mood.sub, Mood.optcon, Mood.pre, Mood.imp];
+List<Person> romanianShortPersons = [Person.first, Person.second, Person.third];
 
-List<String> romanianShortTenses = [
+List<Tense> romanianShortTenses = [
   //simple tenses
-  'r pres',
-  'r imp',
-  'r perf',
-  'r plup',
+  Tense.presentRomance,
+  Tense.imperfectRomance,
+  Tense.perfectRomance,
+  Tense.pluperfectRomance,
 
   //compound tenses
-  'r perf c', //perfect compus
-  'r fut c vrea',
-  'r futp c', // 'r futp c vrea': '', //I can just use future perfect c for this
+  Tense.perfectRomanceCompound, //perfect compus
+  Tense.futureRomanianCompoundVrea,
+  Tense.futurePerfectRomanceCompound, // Tense.futp c vrea: , //I can just use future perfect c foTense.this
 
-  'r fut c o', //o is a form of avea
-  'r fut c avea', //rare, but I will include it, it is basis of futpast
-  'r futpast c',
+  Tense.futureRomanianCompoundO, //o is a form of avea
+  Tense.futureRomanianCompoundAvea, //rare, but I will include it, it is basis of futpast
+  Tense.futurePastRomanianCompound,
 ];
 
 Question getRomanianVerbQuestion() {
-  final random = Random();
   //GET RANDOM VERB
-  RomanianVerb randomVerb = romanianVerbs[random.nextInt(romanianVerbs.length)];
+  RomanianVerb randomVerb = romanianVerbs.getRandom();
   //GET RANDOM VALID CONJUGATION
-  String randomMood = romanianShortMoods[random.nextInt(romanianShortMoods.length)];
-  String randomTense = romanianShortTenses[random.nextInt(romanianShortTenses.length)];
-  String randomNumber = romanianShortNumbers[random.nextInt(romanianShortNumbers.length)];
-  String randomPerson = romanianShortPersons[random.nextInt(romanianShortPersons.length)];
-  String randomGender = romanianShortGenders[random.nextInt(romanianShortGenders.length)];
+  Mood randomMood = romanianShortMoods.getRandom();
+  Tense randomTense = romanianShortTenses.getRandom();
+  Number randomNumber = romanianShortNumbers.getRandom();
+  Person randomPerson = romanianShortPersons.getRandom();
+  Gender randomGender = romanianShortGenders.getRandom();
   void initConjugation() {
-    randomMood = romanianShortMoods[random.nextInt(romanianShortMoods.length)];
-    randomTense = romanianShortTenses[random.nextInt(romanianShortTenses.length)];
-    randomNumber = romanianShortNumbers[random.nextInt(romanianShortNumbers.length)];
-    randomPerson = romanianShortPersons[random.nextInt(romanianShortPersons.length)];
-    randomGender = romanianShortGenders[random.nextInt(romanianShortGenders.length)];
+    randomMood = romanianShortMoods.getRandom();
+    randomTense = romanianShortTenses.getRandom();
+    randomNumber = romanianShortNumbers.getRandom();
+    randomPerson = romanianShortPersons.getRandom();
+    randomGender = romanianShortGenders.getRandom();
   }
 
   while (randomVerb.conjugateVerb(randomMood, randomTense, randomNumber, randomPerson) == 'DNE') {
@@ -72,11 +73,11 @@ Question getRomanianNounQuestion() {
   //GET RANDOM NOUN
   RomanianNoun randomNoun = romanianNouns[random.nextInt(romanianNouns.length)];
   //GET RANDOM VALID DECLENSION
-  String randomCase = romanianShortCases[random.nextInt(romanianShortCases.length)];
-  String randomNumber = romanianShortNumbers[random.nextInt(romanianShortNumbers.length)];
+  Case randomCase = romanianShortCases.getRandom();
+  Number randomNumber = romanianShortNumbers.getRandom();
   void initDeclension() {
-    randomCase = romanianShortCases[random.nextInt(romanianShortCases.length)];
-    randomNumber = romanianShortNumbers[random.nextInt(romanianShortNumbers.length)];
+    randomCase = romanianShortCases.getRandom();
+    randomNumber = romanianShortNumbers.getRandom();
   }
 
   while (randomNoun.declineNoun(randomCase, randomNumber) == 'DNE') {
@@ -85,7 +86,7 @@ Question getRomanianNounQuestion() {
   }
 
   //GENERATE QUESTION
-  String lemma = randomNoun.declension['nomacc']?['s'] ?? 'DNE';
+  String lemma = randomNoun.declension[Case.nomacc]?[Number.s] ?? 'DNE';
   List<String> demands = [
     lengthenCase[randomCase] ?? 'DNE',
     lengthenNumber[randomNumber] ?? 'DNE',
@@ -99,12 +100,12 @@ Question getRomanianNounQuestion() {
 Question getRomanianAdjectiveNounQuestion() {
   final random = Random();
   //GET RANDOM NOUN
-  RomanianNoun randomNoun = romanianNouns[random.nextInt(romanianNouns.length)];
-  String randomCase = romanianShortCases[random.nextInt(romanianShortCases.length)];
-  String randomNumber = romanianShortNumbers[random.nextInt(romanianShortNumbers.length)];
+  RomanianNoun randomNoun = romanianNouns.getRandom();
+  Case randomCase = romanianShortCases.getRandom();
+  Number randomNumber = romanianShortNumbers.getRandom();
   void initDeclension() {
-    randomCase = romanianShortCases[random.nextInt(romanianShortCases.length)];
-    randomNumber = romanianShortNumbers[random.nextInt(romanianShortNumbers.length)];
+    randomCase = romanianShortCases.getRandom();
+    randomNumber = romanianShortNumbers.getRandom();
   }
 
   while (randomNoun.declineNoun(randomCase, randomNumber) == 'DNE') {
@@ -113,7 +114,7 @@ Question getRomanianAdjectiveNounQuestion() {
   }
   //GET RANDOM ADJECTIVE
   RomanianAdjective randomAdjective = romanianAdjectives[random.nextInt(romanianAdjectives.length)];
-  String lemma = randomAdjective.declineAdjective('nomacc', 's', 'n');
+  String lemma = randomAdjective.declineAdjective(Case.nomacc, Number.s, Gender.n);
 
   //GENERATE QUESTION
   List<String> demands = [
@@ -137,29 +138,29 @@ Question getRomanianDeclineQuestion() {
   return isOutcomeA ? getRomanianNounQuestion() : getRomanianAdjectiveNounQuestion();
 }
 
-String getRomanianSubject(String mood, String number, String person, String gender) {
+String getRomanianSubject(Mood mood, Number number, Person person, Gender gender) {
   final random = Random();
 
-  String getThirdPersonSubject(String number, String gender) {
-    Map<String, Map<String, List<String>>> subjects = {
-      's': {
+  String getThirdPersonSubject(Number number, Gender gender) {
+    Map<Number, Map<Gender, List<String>>> subjects = {
+      Number.s: {
         // singular
-        'm': [
+        Gender.m: [
           // masculine
           'Andrei', 'Mihai', 'Ion', 'Alexandru', 'Florin', 'George', 'Nicolae', 'Adrian', 'Bogdan', 'Cătălin', 'el'
         ],
-        'f': [
+        Gender.f: [
           // feminine
           'Maria', 'Ana', 'Ioana', 'Elena', 'Andreea', 'Sofia', 'Gabriela', 'Carmen', 'Laura', 'Raluca', 'ea'
         ],
-        'n': [
+        Gender.n: [
           // neuter
           'Telefon', 'Calculator', 'Birou', 'Autoturism', 'Document', 'Hotel', 'Centru', 'Univers', 'Cuvânt', 'el'
         ],
       },
-      'p': {
+      Number.p: {
         // plural
-        'm': [
+        Gender.m: [
           // masculine
           'Andrei și Mihai',
           'Ion și Alexandru',
@@ -168,7 +169,7 @@ String getRomanianSubject(String mood, String number, String person, String gend
           'Bogdan și Cătălin',
           'ei'
         ],
-        'f': [
+        Gender.f: [
           // feminine
           'Maria și Ana',
           'Ioana și Elena',
@@ -177,7 +178,7 @@ String getRomanianSubject(String mood, String number, String person, String gend
           'Laura și Raluca',
           'ele'
         ],
-        'n': [
+        Gender.n: [
           // neuter
           'Telefoane',
           'Calculatoare',
@@ -199,12 +200,12 @@ String getRomanianSubject(String mood, String number, String person, String gend
 
   //if SECOND PERSON IMPERATIVE, we use the VOCATIVE or PRONOUNS
   //neuter second person is not allowed because it is rare
-  if (mood == 'imp') {
-    if (person == '2') {
-      Map<String, Map<String, List<String>>> vocativeSubjects = {
-        's': {
+  if (mood == Mood.imp) {
+    if (person == Person.second) {
+      Map<Number, Map<Gender, List<String>>> vocativeSubjects = {
+        Number.s: {
           // singular
-          'm': [
+          Gender.m: [
             // masculine
             'Andrei', // Original: Andrei
             'Mihai', // Original: Mihai
@@ -218,7 +219,7 @@ String getRomanianSubject(String mood, String number, String person, String gend
             'Cătăline', // Original: Cătălin
             'Tu' // Vocative for 'el'
           ],
-          'f': [
+          Gender.f: [
             // feminine
             'Mario', // Original: Maria
             'Ano', // Original: Ana
@@ -232,7 +233,7 @@ String getRomanianSubject(String mood, String number, String person, String gend
             'Raluco', // Original: Raluca
             'Tu' // Vocative for 'ea'
           ],
-          'n': [
+          Gender.n: [
             // neuter
             // Note: In Romanian, neuter nouns generally don't have a distinct vocative form, so the nominative form is used.
             'Telefon', // Original: Telefon
@@ -247,9 +248,9 @@ String getRomanianSubject(String mood, String number, String person, String gend
             'Tu' // Vocative for 'el' (used for neuter as well)
           ],
         },
-        'p': {
+        Number.p: {
           // plural
-          'm': [
+          Gender.m: [
             // masculine
             'Andrei și Mihai', // Original: Andrei și Mihai
             'Ion și Alexandru', // Original: Ion și Alexandru
@@ -258,7 +259,7 @@ String getRomanianSubject(String mood, String number, String person, String gend
             'Bogdan și Cătălin', // Original: Bogdan și Cătălin
             'Voi' // Vocative for 'ei'
           ],
-          'f': [
+          Gender.f: [
             // feminine
             'Maria și Ana', // Original: Maria și Ana
             'Ioana și Elena', // Original: Ioana și Elena
@@ -267,7 +268,7 @@ String getRomanianSubject(String mood, String number, String person, String gend
             'Laura și Raluca', // Original: Laura și Raluca
             'Voi' // Vocative for 'ele'
           ],
-          'n': [
+          Gender.n: [
             // neuter
             // Note: Same as singular, neuter nouns in plural don't have a distinct vocative form.
             'Telefoane', // Original: Telefoane
@@ -296,18 +297,18 @@ String getRomanianSubject(String mood, String number, String person, String gend
   } else {
     //wait neuter cant be first person
     String subject = '';
-    if (number == 's') {
+    if (number == Number.s) {
       if (person == '1') {
         subject = 'Eu';
-      } else if (person == '2') {
+      } else if (person == Person.second) {
         subject = 'Tu';
       } else if (person == '3') {
         subject = getThirdPersonSubject(number, gender);
       }
-    } else if (number == 'p') {
+    } else if (number == Number.p) {
       if (person == '1') {
         subject = 'Noi';
-      } else if (person == '2') {
+      } else if (person == Person.second) {
         subject = 'Voi';
       } else if (person == '3') {
         subject = getThirdPersonSubject(number, gender);

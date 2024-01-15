@@ -1,3 +1,5 @@
+import 'package:colorguesser/core/enums.dart';
+
 import '../romanian_classes.dart';
 
 List<RomanianVerb> romanianVerbs = [
@@ -9,55 +11,55 @@ RomanianVerb fi = RomanianVerb(
   gerund: 'fiind',
   participles: {
     //this would be weird to decline but whatever
-    'past': const RomanianAdjective(
+    Tense.perfectRomance: const RomanianAdjective(
       declension: {
-        'nomacc': {
-          's': {'m': 'fost', 'f': 'fostă', 'n': 'fost'},
-          'p': {'m': 'foști', 'f': 'foste', 'n': 'foste'}
+        Case.nomacc: {
+          Number.s: {Gender.m: 'fost', Gender.f: 'fostă', Gender.n: 'fost'},
+          Number.p: {Gender.m: 'foști', Gender.f: 'foste', Gender.n: 'foste'}
         },
-        'gendat': {
-          's': {'m': 'fost', 'f': 'foste', 'n': 'fost'},
-          'p': {'m': 'foști', 'f': 'foste', 'n': 'foste'}
+        Case.gendat: {
+          Number.s: {Gender.m: 'fost', Gender.f: 'foste', Gender.n: 'fost'},
+          Number.p: {Gender.m: 'foști', Gender.f: 'foste', Gender.n: 'foste'}
         },
         // 'voc': {
-        //   's': {'m': '', 'f': '', 'n': ''},
-        //   'p': {'m': '', 'f': '', 'n': ''}
+        //   Number.s: {Gender.m: '', Gender.f: '', Gender.n: ''},
+        //   Number.p: {Gender.m: '', Gender.f: '', Gender.n: ''}
         // },
       },
     ),
   },
   conjugation: {
-    'ind': {
-      'r pres': {
-        's': {'1': 'sunt', '2': 'ești', '3': 'este'},
-        'p': {'1': 'suntem', '2': 'sunteți', '3': 'sunt'},
+    Mood.ind: {
+      Tense.presentRomance: {
+        Number.s: {Person.first: 'sunt', Person.second: 'ești', Person.third: 'este'},
+        Number.p: {Person.first: 'suntem', Person.second: 'sunteți', Person.third: 'sunt'},
       },
-      'r imp': {
-        's': {'1': 'eram', '2': 'erai', '3': 'era'},
-        'p': {'1': 'eram', '2': 'erați', '3': 'erau'},
+      Tense.imperfectRomance: {
+        Number.s: {Person.first: 'eram', Person.second: 'erai', Person.third: 'era'},
+        Number.p: {Person.first: 'eram', Person.second: 'erați', Person.third: 'erau'},
       },
-      'r perf': {
-        's': {'1': 'fusei', '2': 'fuseși', '3': 'fuse'},
-        'p': {'1': 'fuserăm', '2': 'fuserăți', '3': 'fuseră'},
+      Tense.perfectRomance: {
+        Number.s: {Person.first: 'fusei', Person.second: 'fuseși', Person.third: 'fuse'},
+        Number.p: {Person.first: 'fuserăm', Person.second: 'fuserăți', Person.third: 'fuseră'},
       },
-      'r  plup': {
-        's': {'1': 'fusesem', '2': 'fuseseși', '3': 'fusese'},
-        'p': {'1': 'fuseserăm', '2': 'fuseserăți', '3': 'fuseseră'},
-      },
-    },
-    'sub': {
-      'r pres': {
-        's': {'1': 'să fiu', '2': 'să fii', '3': 'să fie'},
-        'p': {'1': 'să fim', '2': 'să fiți', '3': 'să fie'},
+      Tense.pluperfectRomance: {
+        Number.s: {Person.first: 'fusesem', Person.second: 'fuseseși', Person.third: 'fusese'},
+        Number.p: {Person.first: 'fuseserăm', Person.second: 'fuseserăți', Person.third: 'fuseseră'},
       },
     },
-    'imp': {
-      'r pres': {
-        's': {
-          '2': 'fii',
+    Mood.sub: {
+      Tense.presentRomance: {
+        Number.s: {Person.first: 'să fiu', Person.second: 'să fii', Person.third: 'să fie'},
+        Number.p: {Person.first: 'să fim', Person.second: 'să fiți', Person.third: 'să fie'},
+      },
+    },
+    Mood.imp: {
+      Tense.presentRomance: {
+        Number.s: {
+          Person.second: 'fii',
         },
-        'p': {
-          '2': 'fiți',
+        Number.p: {
+          Person.second: 'fiți',
         },
       },
     },
@@ -69,55 +71,55 @@ RomanianVerb avea = RomanianVerb(
   gerund: 'având',
   participles: {
     //this would be weird to decline but whatever
-    'past': const RomanianAdjective(
+    Tense.perfectRomance: const RomanianAdjective(
       declension: {
-        'nomacc': {
-          's': {'m': 'avut', 'f': 'avută', 'n': 'avut'},
-          'p': {'m': 'avuți', 'f': 'avute', 'n': 'avute'}
+        Case.nomacc: {
+          Number.s: {Gender.m: 'avut', Gender.f: 'avută', Gender.n: 'avut'},
+          Number.p: {Gender.m: 'avuți', Gender.f: 'avute', Gender.n: 'avute'}
         },
-        'gendat': {
-          's': {'m': 'avut', 'f': 'avute', 'n': 'avut'},
-          'p': {'m': 'avuți', 'f': 'avute', 'n': 'avute'}
+        Case.gendat: {
+          Number.s: {Gender.m: 'avut', Gender.f: 'avute', Gender.n: 'avut'},
+          Number.p: {Gender.m: 'avuți', Gender.f: 'avute', Gender.n: 'avute'}
         },
         // 'voc': {
-        //   's': {'m': '', 'f': '', 'n': ''},
-        //   'p': {'m': '', 'f': '', 'n': ''}
+        //   Number.s: {Gender.m: '', Gender.f: '', Gender.n: ''},
+        //   Number.p: {Gender.m: '', Gender.f: '', Gender.n: ''}
         // },
       },
     ),
   },
   conjugation: {
-    'ind': {
-      'r pres': {
-        's': {'1': 'am', '2': 'ai', '3': 'are'},
-        'p': {'1': 'avem', '2': 'aveți', '3': 'au'},
+    Mood.ind: {
+      Tense.presentRomance: {
+        Number.s: {Person.first: 'am', Person.second: 'ai', Person.third: 'are'},
+        Number.p: {Person.first: 'avem', Person.second: 'aveți', Person.third: 'au'},
       },
-      'r imp': {
-        's': {'1': 'aveam', '2': 'aveai', '3': 'avea'},
-        'p': {'1': 'aveam', '2': 'aveați', '3': 'aveau'},
+      Tense.imperfectRomance: {
+        Number.s: {Person.first: 'aveam', Person.second: 'aveai', Person.third: 'avea'},
+        Number.p: {Person.first: 'aveam', Person.second: 'aveați', Person.third: 'aveau'},
       },
-      'r perf': {
-        's': {'1': 'avui', '2': 'avuși', '3': 'avu'},
-        'p': {'1': 'avurăm', '2': 'avurăți', '3': 'avură'},
+      Tense.perfectRomance: {
+        Number.s: {Person.first: 'avui', Person.second: 'avuși', Person.third: 'avu'},
+        Number.p: {Person.first: 'avurăm', Person.second: 'avurăți', Person.third: 'avură'},
       },
-      'r  plup': {
-        's': {'1': 'avusem', '2': 'avuseși', '3': 'avuse'},
-        'p': {'1': 'avuserăm', '2': 'avuserăți', '3': 'avuseră'},
-      },
-    },
-    'sub': {
-      'r pres': {
-        's': {'1': 'să am', '2': 'să ai', '3': 'să aibă'},
-        'p': {'1': 'să avem', '2': 'să aveți', '3': 'să aibă'},
+      Tense.pluperfectRomance: {
+        Number.s: {Person.first: 'avusem', Person.second: 'avuseși', Person.third: 'avuse'},
+        Number.p: {Person.first: 'avuserăm', Person.second: 'avuserăți', Person.third: 'avuseră'},
       },
     },
-    'imp': {
-      'r pres': {
-        's': {
-          '2': 'ai',
+    Mood.sub: {
+      Tense.presentRomance: {
+        Number.s: {Person.first: 'să am', Person.second: 'să ai', Person.third: 'să aibă'},
+        Number.p: {Person.first: 'să avem', Person.second: 'să aveți', Person.third: 'să aibă'},
+      },
+    },
+    Mood.imp: {
+      Tense.presentRomance: {
+        Number.s: {
+          Person.second: 'ai',
         },
-        'p': {
-          '2': 'aveți',
+        Number.p: {
+          Person.second: 'aveți',
         },
       },
     },
@@ -128,10 +130,10 @@ RomanianVerb avea = RomanianVerb(
 RomanianAuxiliaryVerb avea2 = RomanianAuxiliaryVerb(
   infinitive: 'a avea',
   conjugation: {
-    'ind': {
-      'r pres': {
-        's': {'1': 'am', '2': 'ai', '3': 'a'},
-        'p': {'1': 'am', '2': 'ați', '3': 'au'},
+    Mood.ind: {
+      Tense.presentRomance: {
+        Number.s: {Person.first: 'am', Person.second: 'ai', Person.third: 'a'},
+        Number.p: {Person.first: 'am', Person.second: 'ați', Person.third: 'au'},
       },
     },
   },
@@ -141,10 +143,10 @@ RomanianAuxiliaryVerb avea2 = RomanianAuxiliaryVerb(
 RomanianAuxiliaryVerb avea3 = RomanianAuxiliaryVerb(
   infinitive: 'a avea',
   conjugation: {
-    'ind': {
-      'r pres': {
-        's': {'1': 'aș', '2': 'ai', '3': 'ar'},
-        'p': {'1': 'am', '2': 'ați', '3': 'ar'},
+    Mood.ind: {
+      Tense.presentRomance: {
+        Number.s: {Person.first: 'aș', Person.second: 'ai', Person.third: 'ar'},
+        Number.p: {Person.first: 'am', Person.second: 'ați', Person.third: 'ar'},
       },
     },
   },
@@ -155,55 +157,55 @@ RomanianVerb vrea = RomanianVerb(
   gerund: 'vrând',
   participles: {
     //this would be weird to decline but whatever
-    'past': const RomanianAdjective(
+    Tense.perfectRomance: const RomanianAdjective(
       declension: {
-        'nomacc': {
-          's': {'m': 'vrut', 'f': 'vrută', 'n': 'vrut'},
-          'p': {'m': 'vruți', 'f': 'vrute', 'n': 'vrute'}
+        Case.nomacc: {
+          Number.s: {Gender.m: 'vrut', Gender.f: 'vrută', Gender.n: 'vrut'},
+          Number.p: {Gender.m: 'vruți', Gender.f: 'vrute', Gender.n: 'vrute'}
         },
-        'gendat': {
-          's': {'m': 'vrut', 'f': 'vrute', 'n': 'vrut'},
-          'p': {'m': 'vruți', 'f': 'vrute', 'n': 'vrute'}
+        Case.gendat: {
+          Number.s: {Gender.m: 'vrut', Gender.f: 'vrute', Gender.n: 'vrut'},
+          Number.p: {Gender.m: 'vruți', Gender.f: 'vrute', Gender.n: 'vrute'}
         },
         // 'voc': {
-        //   's': {'m': '', 'f': '', 'n': ''},
-        //   'p': {'m': '', 'f': '', 'n': ''}
+        //   Number.s: {Gender.m: '', Gender.f: '', Gender.n: ''},
+        //   Number.p: {Gender.m: '', Gender.f: '', Gender.n: ''}
         // },
       },
     ),
   },
   conjugation: {
-    'ind': {
-      'r pres': {
-        's': {'1': 'vreau', '2': 'vrei', '3': 'vrea'},
-        'p': {'1': 'vrem', '2': 'vreți', '3': 'au'},
+    Mood.ind: {
+      Tense.presentRomance: {
+        Number.s: {Person.first: 'vreau', Person.second: 'vrei', Person.third: 'vrea'},
+        Number.p: {Person.first: 'vrem', Person.second: 'vreți', Person.third: 'au'},
       },
-      'r imp': {
-        's': {'1': 'vream', '2': 'vreai', '3': 'vrea'},
-        'p': {'1': 'vream', '2': 'vreați', '3': 'vreau'},
+      Tense.imperfectRomance: {
+        Number.s: {Person.first: 'vream', Person.second: 'vreai', Person.third: 'vrea'},
+        Number.p: {Person.first: 'vream', Person.second: 'vreați', Person.third: 'vreau'},
       },
-      'r perf': {
-        's': {'1': 'vrui', '2': 'vruși', '3': 'vruse'},
-        'p': {'1': 'vrurăm', '2': 'vrurăți', '3': 'vrură'},
+      Tense.perfectRomance: {
+        Number.s: {Person.first: 'vrui', Person.second: 'vruși', Person.third: 'vruse'},
+        Number.p: {Person.first: 'vrurăm', Person.second: 'vrurăți', Person.third: 'vrură'},
       },
-      'r  plup': {
-        's': {'1': 'vrusem', '2': 'vruseși', '3': 'vruse'},
-        'p': {'1': 'vruserăm', '2': 'vruserăți', '3': 'vruseră'},
-      },
-    },
-    'sub': {
-      'r pres': {
-        's': {'1': 'să vreau', '2': 'să vrei', '3': 'să vrea'},
-        'p': {'1': 'să vrem', '2': 'să vreți', '3': 'să vrea'},
+      Tense.pluperfectRomance: {
+        Number.s: {Person.first: 'vrusem', Person.second: 'vruseși', Person.third: 'vruse'},
+        Number.p: {Person.first: 'vruserăm', Person.second: 'vruserăți', Person.third: 'vruseră'},
       },
     },
-    'imp': {
-      'r pres': {
-        's': {
-          '2': 'vrei',
+    Mood.sub: {
+      Tense.presentRomance: {
+        Number.s: {Person.first: 'să vreau', Person.second: 'să vrei', Person.third: 'să vrea'},
+        Number.p: {Person.first: 'să vrem', Person.second: 'să vreți', Person.third: 'să vrea'},
+      },
+    },
+    Mood.imp: {
+      Tense.presentRomance: {
+        Number.s: {
+          Person.second: 'vrei',
         },
-        'p': {
-          '2': 'vreți',
+        Number.p: {
+          Person.second: 'vreți',
         },
       },
     },
@@ -214,10 +216,10 @@ RomanianVerb vrea = RomanianVerb(
 RomanianAuxiliaryVerb vrea2 = RomanianAuxiliaryVerb(
   infinitive: 'a avea',
   conjugation: {
-    'ind': {
-      'r pres': {
-        's': {'1': 'voi', '2': 'vei', '3': 'va'},
-        'p': {'1': 'vom', '2': 'veți', '3': 'vor'},
+    Mood.ind: {
+      Tense.presentRomance: {
+        Number.s: {Person.first: 'voi', Person.second: 'vei', Person.third: 'va'},
+        Number.p: {Person.first: 'vom', Person.second: 'veți', Person.third: 'vor'},
       },
     },
   },
@@ -227,10 +229,10 @@ RomanianAuxiliaryVerb vrea2 = RomanianAuxiliaryVerb(
 RomanianAuxiliaryVerb vrea3 = RomanianAuxiliaryVerb(
   infinitive: 'a avea',
   conjugation: {
-    'ind': {
-      'r pres': {
-        's': {'1': 'oi', '2': 'oi', '3': 'o'},
-        'p': {'1': 'om', '2': 'oți', '3': 'or'},
+    Mood.ind: {
+      Tense.presentRomance: {
+        Number.s: {Person.first: 'oi', Person.second: 'oi', Person.third: 'o'},
+        Number.p: {Person.first: 'om', Person.second: 'oți', Person.third: 'or'},
       },
     },
   },
@@ -243,55 +245,55 @@ RomanianVerb vedea = RomanianVerb(
     //This form is not listed in wiktionary but
     //it still certainly exists and is important
     //as more than just a participle for avea forms
-    'past': const RomanianAdjective(
+    Tense.perfectRomance: const RomanianAdjective(
       declension: {
-        'nomacc': {
-          's': {'m': 'văzut', 'f': 'văzută', 'n': 'văzut'},
-          'p': {'m': 'văzuți', 'f': 'văzute', 'n': 'văzute'}
+        Case.nomacc: {
+          Number.s: {Gender.m: 'văzut', Gender.f: 'văzută', Gender.n: 'văzut'},
+          Number.p: {Gender.m: 'văzuți', Gender.f: 'văzute', Gender.n: 'văzute'}
         },
-        'gendat': {
-          's': {'m': 'văzut', 'f': 'văzute', 'n': 'văzut'},
-          'p': {'m': 'văzuți', 'f': 'văzute', 'n': 'văzute'}
+        Case.gendat: {
+          Number.s: {Gender.m: 'văzut', Gender.f: 'văzute', Gender.n: 'văzut'},
+          Number.p: {Gender.m: 'văzuți', Gender.f: 'văzute', Gender.n: 'văzute'}
         },
         // 'voc': {
-        //   's': {'m': '', 'f': '', 'n': ''},
-        //   'p': {'m': '', 'f': '', 'n': ''}
+        //   Number.s: {Gender.m: '', Gender.f: '', Gender.n: ''},
+        //   Number.p: {Gender.m: '', Gender.f: '', Gender.n: ''}
         // },
       },
     ),
   },
   conjugation: {
-    'ind': {
-      'r pres': {
-        's': {'1': 'văd', '2': 'vezi', '3': 'vede'},
-        'p': {'1': 'vedem', '2': 'vedeţi', '3': 'văd'},
+    Mood.ind: {
+      Tense.presentRomance: {
+        Number.s: {Person.first: 'văd', Person.second: 'vezi', Person.third: 'vede'},
+        Number.p: {Person.first: 'vedem', Person.second: 'vedeţi', Person.third: 'văd'},
       },
-      'r imp': {
-        's': {'1': 'vedeam', '2': 'vedeai', '3': 'vedea'},
-        'p': {'1': 'vedeam', '2': 'vedeaţi', '3': 'vedeau'},
+      Tense.imperfectRomance: {
+        Number.s: {Person.first: 'vedeam', Person.second: 'vedeai', Person.third: 'vedea'},
+        Number.p: {Person.first: 'vedeam', Person.second: 'vedeaţi', Person.third: 'vedeau'},
       },
-      'r perf': {
-        's': {'1': 'văzui', '2': 'văzuşi', '3': 'văzu'},
-        'p': {'1': 'văzurăm', '2': 'văzurăţi', '3': 'văzură'},
+      Tense.perfectRomance: {
+        Number.s: {Person.first: 'văzui', Person.second: 'văzuşi', Person.third: 'văzu'},
+        Number.p: {Person.first: 'văzurăm', Person.second: 'văzurăţi', Person.third: 'văzură'},
       },
-      'r  plup': {
-        's': {'1': 'văzusem', '2': 'văzuseşi', '3': 'văzuse'},
-        'p': {'1': 'văzuserăm', '2': 'văzuserăţi', '3': 'văzuseră'},
-      },
-    },
-    'sub': {
-      'r pres': {
-        's': {'1': 'să văd', '2': 'să vezi', '3': 'să vadă'},
-        'p': {'1': 'să vedem', '2': 'să vedeți', '3': 'să vadă'},
+      Tense.pluperfectRomance: {
+        Number.s: {Person.first: 'văzusem', Person.second: 'văzuseşi', Person.third: 'văzuse'},
+        Number.p: {Person.first: 'văzuserăm', Person.second: 'văzuserăţi', Person.third: 'văzuseră'},
       },
     },
-    'imp': {
-      'r pres': {
-        's': {
-          '2': 'vezi',
+    Mood.sub: {
+      Tense.presentRomance: {
+        Number.s: {Person.first: 'să văd', Person.second: 'să vezi', Person.third: 'să vadă'},
+        Number.p: {Person.first: 'să vedem', Person.second: 'să vedeți', Person.third: 'să vadă'},
+      },
+    },
+    Mood.imp: {
+      Tense.presentRomance: {
+        Number.s: {
+          Person.second: 'vezi',
         },
-        'p': {
-          '2': 'vedeți',
+        Number.p: {
+          Person.second: 'vedeți',
         },
       },
     },

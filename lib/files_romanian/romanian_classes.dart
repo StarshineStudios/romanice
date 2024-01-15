@@ -1,27 +1,29 @@
+import 'package:colorguesser/core/enums.dart';
+
 import 'word_data/romanian_verbs.dart';
 
 class RomanianAdjective {
-  final Map<String, Map<String, Map<String, String>>> declension;
+  final Map<Case, Map<Number, Map<Gender, String>>> declension;
   const RomanianAdjective({
     //default value for tests and such
     required this.declension, // = defaultAdjectiveDeclension,
   });
 
-  String declineAdjective(String c, String n, String g) {
+  String declineAdjective(Case c, Number n, Gender g) {
     return declension[c]?[n]?[g] ?? 'DNE';
   }
 }
 
 class RomanianNoun {
-  final Map<String, Map<String, String>> declension;
-  final String gender;
+  final Map<Case, Map<Number, String>> declension;
+  final Gender gender;
   const RomanianNoun(
       {required this.gender,
       //default value for tests and such
       required this.declension //=defaultNounDeclension,
       });
 
-  String declineNoun(String c, String n) {
+  String declineNoun(Case c, Number n) {
     return declension[c]?[n] ?? 'DNE';
   }
 }
@@ -29,8 +31,8 @@ class RomanianNoun {
 class RomanianVerb {
   String infinitive;
   String gerund;
-  Map<String, RomanianAdjective> participles;
-  Map<String, Map<String, Map<String, Map<String, String>>>> conjugation;
+  Map<Tense, RomanianAdjective> participles;
+  Map<Mood, Map<Tense, Map<Number, Map<Person, String>>>> conjugation;
 
   RomanianVerb({
     required this.infinitive, //= defaultVerbInfinitives,
@@ -39,21 +41,21 @@ class RomanianVerb {
     required this.conjugation, //= defaultVerbConjugation,
   });
 
-  String conjugateVerb(String m, String t, String n, String p) {
+  String conjugateVerb(Mood m, Tense t, Number n, Person p) {
     //handle compound cases.
 
-    if (m == 'ind') {
-      if (t == 'r perf c') {
+    if (m == Mood.ind) {
+      if (t == Tense.perfectRomanceCompound) {
         //we use the aux form
-        String first = avea2.conjugateVerb('ind', 'r pres', n, p);
-        String second = participles['past']!.declineAdjective('nomacc', 's', 'm');
+        String first = avea2.conjugateVerb(Mood.ind, Tense.presentRomance, n, p);
+        String second = participles[Tense.perfectRomance]!.declineAdjective(Case.nomacc, Number.s, Gender.m);
         if (first == 'DNE' || second == 'DNE') {
           return 'DNE';
         }
         return '$first $second';
       } else if (t == 'r fut c vrea') {
         //we use the aux from of vrea
-        String first = vrea2.conjugateVerb('ind', 'r pres', n, p);
+        String first = vrea2.conjugateVerb(Mood.ind, Tense.presentRomance, n, p);
 
         String second = infinitive.replaceAll('a ', '');
 
@@ -63,7 +65,7 @@ class RomanianVerb {
         return '$first $second';
       } else if (t == 'r fut c o') {
         String first = 'o'; //a form of avea
-        String second = conjugateVerb('sub', 'r pres', n, p);
+        String second = conjugateVerb(Mood.sub, Tense.presentRomance, n, p);
         if (first == 'DNE' || second == 'DNE') {
           return 'DNE';
         }
@@ -71,8 +73,8 @@ class RomanianVerb {
       } else if (t == 'r fut c avea') {
         //we use the normal form of avea, not the aux form
 
-        String first = avea.conjugateVerb('ind', 'r pres', n, p);
-        String second = conjugateVerb('sub', 'r pres', n, p);
+        String first = avea.conjugateVerb(Mood.ind, Tense.presentRomance, n, p);
+        String second = conjugateVerb(Mood.sub, Tense.presentRomance, n, p);
         if (first == 'DNE' || second == 'DNE') {
           return 'DNE';
         }
@@ -80,16 +82,16 @@ class RomanianVerb {
       } else if (t == 'r futpast c') {
         //we use the normal form of avea, not the aux form
 
-        String first = avea.conjugateVerb('ind', 'r imp', n, p);
-        String second = conjugateVerb('sub', 'r pres', n, p);
+        String first = avea.conjugateVerb(Mood.ind, Tense.imperfect, n, p);
+        String second = conjugateVerb(Mood.sub, Tense.presentRomance, n, p);
         if (first == 'DNE' || second == 'DNE') {
           return 'DNE';
         }
         return '$first $second';
       } else if (t == 'r futp c') {
-        String first = vrea2.conjugateVerb('ind', 'r pres', n, p);
+        String first = vrea2.conjugateVerb(Mood.ind, Tense.presentRomance, n, p);
         String second = 'fi';
-        String third = participles['past']?.declineAdjective('nomacc', 's', 'm') ?? 'DNE';
+        String third = participles['past']?.declineAdjective(Case.nomacc, Number.s, Gender.m) ?? 'DNE';
         if (first == 'DNE' || second == 'DNE' || third == 'DNE') {
           return 'DNE';
         }
@@ -100,7 +102,7 @@ class RomanianVerb {
         //we use the aux form\
 
         String first = 'să fi';
-        String second = participles['past']?.declineAdjective('nomacc', 's', 'm') ?? 'DNE';
+        String second = participles['past']?.declineAdjective(Case.nomacc, Number.s, Gender.m) ?? 'DNE';
         if (first == 'DNE' || second == 'DNE') {
           return 'DNE';
         }
@@ -108,18 +110,18 @@ class RomanianVerb {
       }
     } else if (m == 'optcon') {
       if (t == 'r perf c') {
-        String first = avea3.conjugateVerb('ind', 'r pres', n, p);
-        String second = participles['past']?.declineAdjective('nomacc', 's', 'm') ?? 'DNE';
+        String first = avea3.conjugateVerb(Mood.ind, Tense.presentRomance, n, p);
+        String second = participles['past']?.declineAdjective(Case.nomacc, Number.s, Gender.m) ?? 'DNE';
         //we use the aux form with aș	ai ar	am	ați	ar
         if (first == 'DNE' || second == 'DNE') {
           return 'DNE';
         }
         return '$first $second';
-      } else if (t == 'r pres') {
-        String first = avea3.conjugateVerb('ind', 'r pres', n, p);
+      } else if (t == Tense.presentRomance) {
+        String first = avea3.conjugateVerb(Mood.ind, Tense.presentRomance, n, p);
 
         String second = 'fi';
-        String third = participles['past']?.declineAdjective('nomacc', 's', 'm') ?? 'DNE';
+        String third = participles['past']?.declineAdjective(Case.nomacc, Number.s, Gender.m) ?? 'DNE';
         if (first == 'DNE' || second == 'DNE' || third == 'DNE') {
           return 'DNE';
         }
@@ -128,16 +130,16 @@ class RomanianVerb {
     } else if (m == 'pre') {
       if (t == 'r perf c') {
         //we use the aux form of vrea with oi	oi	o	om	oți	or
-        String first = vrea3.conjugateVerb('ind', 'r pres', n, p);
-        String second = participles['past']?.declineAdjective('nomacc', 's', 'm') ?? 'DNE';
+        String first = vrea3.conjugateVerb(Mood.ind, Tense.presentRomance, n, p);
+        String second = participles['past']?.declineAdjective(Case.nomacc, Number.s, Gender.m) ?? 'DNE';
         if (first == 'DNE' || second == 'DNE') {
           return 'DNE';
         }
         return '$first $second';
       } else if (t == 'pres') {
-        String first = vrea3.conjugateVerb('ind', 'r pres', n, p);
+        String first = vrea3.conjugateVerb(Mood.ind, Tense.presentRomance, n, p);
         String second = 'fi';
-        String third = participles['past']?.declineAdjective('nomacc', 's', 'm') ?? 'DNE';
+        String third = participles['past']?.declineAdjective(Case.nomacc, Number.s, Gender.m) ?? 'DNE';
         if (first == 'DNE' || second == 'DNE' || third == 'DNE') {
           return 'DNE';
         }
@@ -151,14 +153,14 @@ class RomanianVerb {
 
 class RomanianAuxiliaryVerb {
   String infinitive;
-  Map<String, Map<String, Map<String, Map<String, String>>>> conjugation;
+  Map<Mood, Map<Tense, Map<Number, Map<Person, String>>>> conjugation;
 
   RomanianAuxiliaryVerb({
     required this.infinitive, //= defaultVerbInfinitives,
     required this.conjugation, //= defaultVerbConjugation,
   });
 
-  String conjugateVerb(String m, String t, String n, String p) {
+  String conjugateVerb(Mood m, Tense t, Number n, Person p) {
     return conjugation[m]?[t]?[n]?[p] ?? 'DNE';
   }
 }

@@ -1,3 +1,5 @@
+import 'package:colorguesser/core/enums.dart';
+
 import '../spanish_classes.dart';
 
 List<SpanishAdjective> spanishAdjectives = [
@@ -6,7 +8,7 @@ List<SpanishAdjective> spanishAdjectives = [
 
 SpanishAdjective romano = const SpanishAdjective(
   declension: {
-    's': {'m': 'romano', 'f': 'romana'},
-    'p': {'m': 'romanos', 'f': 'romanas'}
+    Number.s: {Gender.m: 'romano', Gender.f: 'romana'},
+    Number.p: {Gender.m: 'romanos', Gender.f: 'romanas'}
   },
 );

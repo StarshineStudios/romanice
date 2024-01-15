@@ -1,3 +1,5 @@
+import 'package:colorguesser/core/enums.dart';
+
 import '../romanian_classes.dart';
 
 List<RomanianAdjective> romanianAdjectives = [
@@ -6,13 +8,13 @@ List<RomanianAdjective> romanianAdjectives = [
 
 RomanianAdjective romano = const RomanianAdjective(
   declension: {
-    'nomacc': {
-      's': {'m': 'român', 'f': 'română', 'n': 'român'},
-      'p': {'m': 'români', 'f': 'române', 'n': 'române'}
+    Case.nomacc: {
+      Number.s: {Gender.m: 'român', Gender.f: 'română', Gender.n: 'român'},
+      Number.p: {Gender.m: 'români', Gender.f: 'române', Gender.n: 'române'}
     },
-    'gendat': {
-      's': {'m': 'român', 'f': 'române', 'n': 'român'},
-      'p': {'m': 'români', 'f': 'române', 'n': 'române'}
+    Case.gendat: {
+      Number.s: {Gender.m: 'român', Gender.f: 'române', Gender.n: 'român'},
+      Number.p: {Gender.m: 'români', Gender.f: 'române', Gender.n: 'române'}
     },
     //vocative case is just same for nom
   },

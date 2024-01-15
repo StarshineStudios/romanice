@@ -1,3 +1,5 @@
+import 'package:colorguesser/core/enums.dart';
+
 import '../spanish_classes.dart';
 
 List<SpanishNoun> spanishNouns = [
@@ -5,9 +7,9 @@ List<SpanishNoun> spanishNouns = [
 ];
 
 SpanishNoun estrella = const SpanishNoun(
-  gender: 'f',
+  gender: Gender.f,
   declension: {
-    's': 'estrella',
-    'p': 'estrellas',
+    Number.s: 'estrella',
+    Number.p: 'estrellas',
   },
 );
