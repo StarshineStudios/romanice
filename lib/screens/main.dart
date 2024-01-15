@@ -4,7 +4,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'language_list_screen.dart';
 import 'settings_screen.dart';
-import 'constants.dart';
+import '../core/constants.dart';
 import 'dart:io';
 
 import 'store_screen.dart';
@@ -22,7 +22,7 @@ void main() async {
 
 List<Widget> pages = [
   const LanguageBoxHolder(),
-  // const StoreScreen(),
+  const StoreScreen(),
   const SettingsScreen(),
 ];
 
@@ -118,11 +118,11 @@ class _AppScreenState extends State<AppScreen> {
                     text: 'textGame'.tr(),
                     textStyle: TextStyle(fontFamily: 'Fraunces', color: darkColor),
                   ),
-                  // GButton(
-                  //   icon: Icons.shop,
-                  //   text: 'textStore'.tr(),
-                  //   textStyle: TextStyle(fontFamily: 'Fraunces', color: darkColor),
-                  // ),
+                  GButton(
+                    icon: Icons.shop,
+                    text: 'textStore'.tr(),
+                    textStyle: TextStyle(fontFamily: 'Fraunces', color: darkColor),
+                  ),
                   GButton(
                     icon: Icons.settings,
                     text: 'textSettings'.tr(),

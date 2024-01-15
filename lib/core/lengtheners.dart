@@ -7,8 +7,11 @@
 //Sometimes DIFFERENT FORMS will have the SAME NAME
 //spanish PERFECT can mean BOTH has amado or amaste, while
 
-//forms names cna be confusing
+//forms names can be confusing
 
+//NOTE THAT ON THE RIGHT IS NOT WHAT WILL BE DISPLAYED, NOR IS IT THE ENGLISH FORM OF THE WORD.
+//THE ACTUAL FORM WILL BE TRANSLATED. THE WORD ROMANCE WILL NOT APPEAR IN FRONT OF ANY
+//THIS EXISTS ONLY TO SIMPLIFY THE CODE
 Map<String, String> lengthenNumber = {
   's': 'singular', //es, la, fr, it, pt, ro
   'p': 'plural', //es, la, fr, it, pt, ro
@@ -77,7 +80,7 @@ Map<String, String> lengthenTense = {
   'r imp': 'romance imperfect', //es, fr, it, pt, ro
   'r fut': 'romance future', //es, fr, it, pt
   'r perf': 'romance perfect', //es, fr, it, pt, ro
-  'r cond': 'romance conditional', //es, pt (other languages consider cond to be a mood)
+  'r con': 'romance conditional', //es, pt (other languages consider cond to be a mood)
   //romanian and portiuguese have a strange simple pluperfect tense
   'r plup': 'romance pluperfect', //ro, pt
 

@@ -1,12 +1,12 @@
 //These can apply to a lot of languages
 import 'dart:math';
 
-import '../constants.dart';
+import '../core/constants.dart';
 import 'word_data/italian_adjectives.dart';
 import 'italian_classes.dart';
 import 'word_data/italian_nouns.dart';
 import 'word_data/italian_verbs.dart';
-import '../lengtheners.dart';
+import '../core/lengtheners.dart';
 
 List<String> italianShortNumbers = ['s', 'p'];
 //i is used to represent neuter like words that change gender

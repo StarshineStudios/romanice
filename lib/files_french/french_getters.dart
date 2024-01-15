@@ -1,27 +1,30 @@
 import 'dart:math';
 
-import '../constants.dart';
+import 'package:colorguesser/core/enums.dart';
+
+import '../core/constants.dart';
 import 'word_data/french_adjectives.dart';
 import 'french_classes.dart';
 import 'word_data/french_nouns.dart';
 import 'word_data/french_verbs.dart';
-import '../lengtheners.dart';
+import '../core/lengtheners.dart';
 
-List<String> frenchShortNumbers = ['s', 'p'];
-List<String> frenchShortGenders = ['m', 'f'];
-List<String> frenchShortMoods = ['ind', 'sub', 'con', 'imp'];
-List<String> frenchShortPersons = ['1', '2', '3'];
-List<String> frenchShortTenses = [
-  'r pres',
-  'r imp',
-  'r fut',
-  'r perf',
+List<Number> frenchShortNumbers = [Number.s, Number.p];
+List<Gender> frenchShortGenders = [Gender.m, Gender.f];
+List<Mood> frenchShortMoods = [Mood.ind, Mood.sub, Mood.con, Mood.imp];
+List<Person> frenchShortPersons = [Person.first, Person.second, Person.third];
+List<Tense> frenchShortTenses = [
+  //non-compound forms
+  Tense.presentRomance,
+  Tense.imperfectRomance,
+  Tense.futureRomance,
+  Tense.perfectRomance,
 
   //compound forms
-  'r perf c',
-  'r plup c',
-  'r futp c',
-  'r ante c',
+  Tense.perfectRomanceCompound,
+  Tense.pluperfectRomanceCompound,
+  Tense.futurePerfectRomanceCompound,
+  Tense.anteriorRomanceCompound,
 ];
 
 Question getFrenchVerbQuestion() {
@@ -30,11 +33,11 @@ Question getFrenchVerbQuestion() {
   FrenchVerb randomVerb = frenchVerbs[random.nextInt(frenchVerbs.length)];
 
   //PICK RANDOM CONJUGATION
-  String randomMood = frenchShortMoods[random.nextInt(frenchShortMoods.length)];
-  String randomTense = frenchShortTenses[random.nextInt(frenchShortTenses.length)];
-  String randomNumber = frenchShortNumbers[random.nextInt(frenchShortNumbers.length)];
-  String randomPerson = frenchShortPersons[random.nextInt(frenchShortPersons.length)];
-  String randomGender = frenchShortGenders[random.nextInt(frenchShortGenders.length)];
+  Mood randomMood = frenchShortMoods[random.nextInt(frenchShortMoods.length)];
+  Tense randomTense = frenchShortTenses[random.nextInt(frenchShortTenses.length)];
+  Number randomNumber = frenchShortNumbers[random.nextInt(frenchShortNumbers.length)];
+  Person randomPerson = frenchShortPersons[random.nextInt(frenchShortPersons.length)];
+  Gender randomGender = frenchShortGenders[random.nextInt(frenchShortGenders.length)];
   void initConjugation() {
     randomMood = frenchShortMoods[random.nextInt(frenchShortMoods.length)];
     randomTense = frenchShortTenses[random.nextInt(frenchShortTenses.length)];
@@ -57,9 +60,15 @@ Question getFrenchVerbQuestion() {
     if (randomMood == 'imp') lengthenPerson[randomPerson] ?? 'DNE',
   ];
 
-  String prompt = getFrenchSubject(randomMood, randomNumber, randomPerson, randomGender);
   String blank = randomVerb.conjugateVerb(randomMood, randomTense, randomNumber, randomPerson, g: randomGender);
-  String answer = prompt.replaceAll('_____', blank);
+
+  //promt without elision: we dont want to give a clue
+  String prompt = getFrenchSubject(randomMood, randomNumber, randomPerson, randomGender, false);
+
+  //prompt with
+  String promptWithElision = getFrenchSubject(randomMood, randomNumber, randomPerson, randomGender, blank.startsWithVowelSound());
+
+  String answer = promptWithElision.replaceAll('_____', blank);
 
   return Question(lemma: lemma, demands: demands, prompt: prompt, answer: answer);
 }
@@ -71,7 +80,7 @@ Question getFrenchNounQuestion() {
   FrenchNoun randomNoun = frenchNouns[random.nextInt(frenchNouns.length)];
 
   //PICK A RANDOM DECLENSION
-  String randomNumber = frenchShortNumbers[random.nextInt(frenchShortNumbers.length)];
+  Number randomNumber = frenchShortNumbers[random.nextInt(frenchShortNumbers.length)];
   void initDeclension() {
     randomNumber = frenchShortNumbers[random.nextInt(frenchShortNumbers.length)];
   }
@@ -80,7 +89,7 @@ Question getFrenchNounQuestion() {
     initDeclension();
   }
 
-  String lemma = randomNumber == 's' ? randomNoun.declineNoun('p') : randomNoun.declineNoun('s');
+  String lemma = randomNumber == Number.s ? randomNoun.declineNoun(Number.p) : randomNoun.declineNoun(Number.s);
 
   List<String> demands = [
     lengthenNumber[randomNumber] ?? 'DNE',
@@ -98,7 +107,7 @@ Question getFrenchAdjectiveNounQuestion() {
   //PICK A RANDOM NOUN
   FrenchNoun randomNoun = frenchNouns[random.nextInt(frenchNouns.length)];
   //PICK A RANDOM ADJECTIVE
-  String randomNumber = frenchShortNumbers[random.nextInt(frenchShortNumbers.length)];
+  Number randomNumber = frenchShortNumbers[random.nextInt(frenchShortNumbers.length)];
   void initDeclension() {
     randomNumber = frenchShortNumbers[random.nextInt(frenchShortNumbers.length)];
   }
@@ -110,7 +119,7 @@ Question getFrenchAdjectiveNounQuestion() {
 
   FrenchAdjective randomAdjective = frenchAdjectives[random.nextInt(frenchAdjectives.length)];
 
-  String lemma = randomAdjective.declineAdjective('s', 'm');
+  String lemma = randomAdjective.declineAdjective(Number.s, Gender.m);
 
   List<String> demands = [
     lengthenNumber[randomNumber] ?? 'DNE',
@@ -137,17 +146,17 @@ Question getFrenchDeclineQuestion() {
   return isOutcomeA ? getFrenchNounQuestion() : getFrenchAdjectiveNounQuestion();
 }
 
-String getFrenchSubject(String mood, String number, String person, String gender) {
+String getFrenchSubject(Mood mood, Number number, Person person, Gender gender, bool elision) {
   final random = Random();
 
-  String getThirdPersonSubject(String number, String gender) {
-    Map<String, Map<String, List<String>>> subjects = {
-      's': {
-        'm': ['Gabriel', 'Léo', 'Raphaël', 'Maxime', 'Nicolas', 'Julien', 'Antoine', 'Lucas', 'Le professeur', 'Le voisin', 'il'],
-        'f': ['Léa', 'Emma', 'Manon', 'Chloé', 'Camille', 'Sarah', 'Julie', 'Marie', 'La professeure', 'La voisine', 'elle'],
+  String getThirdPersonSubject(Number number, Gender gender) {
+    Map<Number, Map<Gender, List<String>>> subjects = {
+      Number.s: {
+        Gender.m: ['Gabriel', 'Léo', 'Raphaël', 'Maxime', 'Nicolas', 'Julien', 'Antoine', 'Lucas', 'Le professeur', 'Le voisin', 'Il'],
+        Gender.f: ['Léa', 'Emma', 'Manon', 'Chloé', 'Camille', 'Sarah', 'Julie', 'Marie', 'La professeure', 'La voisine', 'Elle'],
       },
-      'p': {
-        'm': [
+      Number.p: {
+        Gender.m: [
           'Nicolas et Maxime',
           'Julien et Antoine',
           'Lucas et Gabriel',
@@ -158,9 +167,9 @@ String getFrenchSubject(String mood, String number, String person, String gender
           'Antoine et Emma',
           'Les professeurs',
           'Les voisins',
-          'ils'
+          'Ils'
         ],
-        'f': ['Emma et Chloé', 'Camille et Sarah', 'Julie et Marie', 'Léa et Manon', 'Les professeures', 'Les voisines', 'elles'],
+        Gender.f: ['Emma et Chloé', 'Camille et Sarah', 'Julie et Marie', 'Léa et Manon', 'Les professeures', 'Les voisines', 'Elles'],
       },
     };
 
@@ -170,22 +179,49 @@ String getFrenchSubject(String mood, String number, String person, String gender
 
   String subject = '';
 
-  if (number == 's') {
-    if (person == '1') {
-      subject = 'Je';
-    } else if (person == '2') {
-      subject = 'Tu';
-    } else if (person == '3') {
-      subject = getThirdPersonSubject(number, gender);
+  if (number == Number.s) {
+    if (person == Person.first) {
+      if (elision) {
+        subject = "J'";
+      } else {
+        subject = 'Je ';
+      }
+    } else if (person == Person.second) {
+      subject = 'Tu ';
+    } else if (person == Person.third) {
+      subject = '${getThirdPersonSubject(number, gender)} ';
     }
-  } else if (number == 'p') {
-    if (person == '1') {
-      subject = 'Nous';
-    } else if (person == '2') {
-      subject = 'Vous';
-    } else if (person == '3') {
-      subject = getThirdPersonSubject(number, gender);
+  } else if (number == Number.p) {
+    if (person == Person.first) {
+      subject = 'Nous ';
+    } else if (person == Person.second) {
+      subject = 'Vous ';
+    } else if (person == Person.third) {
+      subject = '${getThirdPersonSubject(number, gender)} ';
     }
   }
-  return '$subject _____';
+  return '${subject}_____';
+}
+
+extension StartsWithVowelSound on String {
+  bool startsWithVowelSound() {
+    if (isEmpty) {
+      return false;
+    }
+
+    final firstChar = this[0];
+    final vowelCharacters = ['a', 'e', 'i', 'o', 'u'];
+    final accentedVowels = ['à', 'â', 'é', 'è', 'ê', 'ë', 'î', 'ï', 'ô', 'œ', 'û', 'ü'];
+
+    if (vowelCharacters.contains(firstChar.toLowerCase())) {
+      return true;
+    } else if (firstChar.toLowerCase() == 'h' && length > 1) {
+      final secondChar = this[1];
+      if (vowelCharacters.contains(secondChar.toLowerCase()) || accentedVowels.contains(secondChar.toLowerCase())) {
+        return true;
+      }
+    }
+
+    return false;
+  }
 }

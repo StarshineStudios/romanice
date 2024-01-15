@@ -1,12 +1,12 @@
 //These can apply to a lot of languages
 import 'dart:math';
 
-import '../constants.dart';
+import '../core/constants.dart';
 import 'word_data/romanian_adjectives.dart';
 import 'romanian_classes.dart';
 import 'word_data/romanian_nouns.dart';
 import 'word_data/romanian_verbs.dart';
-import '../lengtheners.dart';
+import '../core/lengtheners.dart';
 
 List<String> romanianShortNumbers = ['s', 'p'];
 //neuter is similar to romanian, but it is not said to change, simply be neuter.

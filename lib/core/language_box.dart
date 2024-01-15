@@ -1,6 +1,6 @@
-import 'package:colorguesser/constants.dart';
-import 'package:colorguesser/latin_questions.dart';
-import 'package:colorguesser/practice_screen.dart';
+import 'package:colorguesser/core/constants.dart';
+import 'package:colorguesser/files_latin/latin_getters.dart';
+import 'package:colorguesser/screens/practice_screen.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 

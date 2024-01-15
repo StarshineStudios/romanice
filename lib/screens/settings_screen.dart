@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 // import 'package:flutter/material.dart';
-import 'constants.dart';
+import '../core/constants.dart';
 import 'dart:io';
 
 // import 'package:flutter_localizations/flutter_localizations.dart';

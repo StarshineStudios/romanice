@@ -1,3 +1,4 @@
+import '../../core/enums.dart';
 import '../french_classes.dart';
 
 List<FrenchNoun> frenchNouns = [
@@ -20,131 +21,81 @@ List<FrenchNoun> frenchNouns = [
 ];
 
 FrenchNoun etoile = const FrenchNoun(
-  gender: 'f',
-  declension: {
-    's': 'étoile',
-    'p': 'étoiles',
-  },
+  gender: Gender.f,
+  declension: {Number.s: 'étoile', Number.p: 'étoiles'},
 );
 
 FrenchNoun maison = const FrenchNoun(
-  gender: 'f',
-  declension: {
-    's': 'maison',
-    'p': 'maisons',
-  },
+  gender: Gender.f,
+  declension: {Number.s: 'maison', Number.p: 'maisons'},
 );
 
 FrenchNoun voiture = const FrenchNoun(
-  gender: 'f',
-  declension: {
-    's': 'voiture',
-    'p': 'voitures',
-  },
+  gender: Gender.f,
+  declension: {Number.s: 'voiture', Number.p: 'voitures'},
 );
 
 FrenchNoun chien = const FrenchNoun(
-  gender: 'm',
-  declension: {
-    's': 'chien',
-    'p': 'chiens',
-  },
+  gender: Gender.m,
+  declension: {Number.s: 'chien', Number.p: 'chiens'},
 );
 
 FrenchNoun chat = const FrenchNoun(
-  gender: 'm',
-  declension: {
-    's': 'chat',
-    'p': 'chats',
-  },
+  gender: Gender.m,
+  declension: {Number.s: 'chat', Number.p: 'chats'},
 );
 
 FrenchNoun pomme = const FrenchNoun(
-  gender: 'f',
-  declension: {
-    's': 'pomme',
-    'p': 'pommes',
-  },
+  gender: Gender.f,
+  declension: {Number.s: 'pomme', Number.p: 'pommes'},
 );
 
 FrenchNoun livre = const FrenchNoun(
-  gender: 'm',
-  declension: {
-    's': 'livre',
-    'p': 'livres',
-  },
+  gender: Gender.m,
+  declension: {Number.s: 'livre', Number.p: 'livres'},
 );
 
 FrenchNoun chaise = const FrenchNoun(
-  gender: 'f',
-  declension: {
-    's': 'chaise',
-    'p': 'chaises',
-  },
+  gender: Gender.f,
+  declension: {Number.s: 'chaise', Number.p: 'chaises'},
 );
 
 FrenchNoun table = const FrenchNoun(
-  gender: 'f',
-  declension: {
-    's': 'table',
-    'p': 'tables',
-  },
+  gender: Gender.f,
+  declension: {Number.s: 'table', Number.p: 'tables'},
 );
 
 FrenchNoun sac = const FrenchNoun(
-  gender: 'm',
-  declension: {
-    's': 'sac',
-    'p': 'sacs',
-  },
+  gender: Gender.m,
+  declension: {Number.s: 'sac', Number.p: 'sacs'},
 );
 
 FrenchNoun arbre = const FrenchNoun(
-  gender: 'm',
-  declension: {
-    's': 'arbre',
-    'p': 'arbres',
-  },
+  gender: Gender.m,
+  declension: {Number.s: 'arbre', Number.p: 'arbres'},
 );
 
-// Additional nouns
-
 FrenchNoun homme = const FrenchNoun(
-  gender: 'm',
-  declension: {
-    's': 'homme',
-    'p': 'hommes',
-  },
+  gender: Gender.m,
+  declension: {Number.s: 'homme', Number.p: 'hommes'},
 );
 
 FrenchNoun femme = const FrenchNoun(
-  gender: 'f',
-  declension: {
-    's': 'femme',
-    'p': 'femmes',
-  },
+  gender: Gender.f,
+  declension: {Number.s: 'femme', Number.p: 'femmes'},
 );
 
 FrenchNoun personne = const FrenchNoun(
-  gender: 'f',
-  declension: {
-    's': 'personne',
-    'p': 'personnes',
-  },
+  gender: Gender.f,
+  declension: {Number.s: 'personne', Number.p: 'personnes'},
 );
 
 FrenchNoun fille = const FrenchNoun(
-  gender: 'f',
-  declension: {
-    's': 'fille',
-    'p': 'filles',
-  },
+  gender: Gender.f,
+  declension: {Number.s: 'fille', Number.p: 'filles'},
 );
 
 FrenchNoun garcon = const FrenchNoun(
-  gender: 'm',
-  declension: {
-    's': 'garçon',
-    'p': 'garçons',
-  },
+  gender: Gender.m,
+  declension: {Number.s: 'garçon', Number.p: 'garçons'},
 );

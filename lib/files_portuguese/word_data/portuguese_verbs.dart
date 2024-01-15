@@ -1,117 +1,126 @@
 import '../portuguese_classes.dart';
 
 List<PortugueseVerb> portugueseVerbs = [
-  essere,
+  ser,
 ];
 
-PortugueseVerb essere = PortugueseVerb(
-  infinitive: 'èssere',
-  auxiliaryVerb: essere2,
-  gerund: 'essèndo',
+PortugueseVerb ser = PortugueseVerb(
+  infinitive: 'ser',
+  gerund: 'sendo',
   participles: {
-    //this would be weird to decline but whatever
     'past': const PortugueseAdjective(
       declension: {
-        's': {'m': 'stàto', 'f': 'stàta'},
-        'p': {'m': 'stàti', 'f': 'stàte'}
+        's': {'m': 'sido', 'f': 'sida'},
+        'p': {'m': 'sidos', 'f': 'sidas'}
       },
     ),
   },
   conjugation: {
     'ind': {
-      'rpres': {
-        's': {'1': 'sono', '2': 'sei', '3': 'è'},
-        'p': {'1': 'siamo', '2': 'siete', '3': 'sono'},
+      'r pres': {
+        's': {'1': 'sou', '2': 'és', '3': 'é'},
+        'p': {'1': 'somos', '2': 'sois', '3': 'são'},
       },
-      'rimp': {
-        's': {'1': 'ero', '2': 'eri', '3': 'era'},
-        'p': {'1': 'eravamo', '2': 'eravate', '3': 'erano'},
+      'r imp': {
+        's': {'1': 'era', '2': 'eras', '3': 'era'},
+        'p': {'1': 'éramos', '2': 'éreis', '3': 'eram'},
       },
-      'rfut': {
-        's': {'1': 'sarò', '2': 'sarai', '3': 'sarà'},
-        'p': {'1': 'saremo', '2': 'sarete', '3': 'saranno'},
+      'r perf': {
+        's': {'1': 'fui', '2': 'foste', '3': 'foi'},
+        'p': {'1': 'fomos', '2': 'fostes', '3': 'foram'},
       },
-      'rperf': {
-        's': {'1': 'fui', '2': 'fosti', '3': 'fu'},
-        'p': {'1': 'fummo', '2': 'foste', '3': 'furono'},
+      'r plup': {
+        's': {'1': 'fora', '2': 'foras', '3': 'fora'},
+        'p': {'1': 'fôramos', '2': 'fôreis', '3': 'foram'},
       },
-    },
-    'con': {
-      'rpres': {
-        's': {'1': 'sarò', '2': 'sarai', '3': 'sarà'},
-        'p': {'1': 'saremo', '2': 'sarete', '3': 'saranno'},
+      'r fut': {
+        's': {'1': 'serei', '2': 'serás', '3': 'será'},
+        'p': {'1': 'seremos', '2': 'sereis', '3': 'serão'},
+      },
+      'r cond': {
+        's': {'1': 'seria', '2': 'serias', '3': 'seria'},
+        'p': {'1': 'seríamos', '2': 'seríeis', '3': 'seriam'},
       },
     },
     'sub': {
-      'rpres': {
-        's': {'1': 'sia', '2': 'sia', '3': 'sia'},
-        'p': {'1': 'siamo', '2': 'siate', '3': 'siano'},
+      'r pres': {
+        's': {'1': 'seja', '2': 'sejas', '3': 'seja'},
+        'p': {'1': 'sejamos', '2': 'sejais', '3': 'sejam'},
       },
-      'rimp': {
-        's': {'1': 'fossi', '2': 'fossi', '3': 'fosse'},
-        'p': {'1': 'fossimo', '2': 'foste', '3': 'fossero'},
+      'r imp': {
+        's': {'1': 'fosse', '2': 'fosses', '3': 'fosse'},
+        'p': {'1': 'fôssemos', '2': 'fôsseis', '3': 'fossem'},
+      },
+      'r fut': {
+        's': {'1': 'for', '2': 'fores', '3': 'for'},
+        'p': {'1': 'formos', '2': 'fordes', '3': 'forem'},
       },
     },
     'imp': {
-      'rpres': {
-        's': {'2': 'sii', '3': 'sia'},
-        'p': {'1': 'siamo', '2': 'siate', '3': 'siano'},
+      'r pres': {
+        's': {'2': 'sê', '3': 'seja'},
+        'p': {'1': 'sejamos', '2': 'sede', '3': 'sejam'},
       },
     },
   },
 );
 
-PortugueseAuxiliaryVerb essere2 = PortugueseAuxiliaryVerb(
-  infinitive: 'èssere',
-  gerund: 'essèndo',
+PortugueseVerb ter = PortugueseVerb(
+  infinitive: 'ter',
+  gerund: 'tendo',
   participles: {
-    //this would be weird to decline but whatever
     'past': const PortugueseAdjective(
       declension: {
-        's': {'m': 'stàto', 'f': 'stàta'},
-        'p': {'m': 'stàti', 'f': 'stàte'}
+        's': {'m': 'tido', 'f': 'tida'},
+        'p': {'m': 'tidos', 'f': 'tidas'}
       },
     ),
   },
   conjugation: {
     'ind': {
-      'rpres': {
-        's': {'1': 'sono', '2': 'sei', '3': 'è'},
-        'p': {'1': 'siamo', '2': 'siete', '3': 'sono'},
+      'r pres': {
+        's': {'1': 'tenho', '2': 'tens', '3': 'tem'},
+        'p': {'1': 'temos', '2': 'tendes', '3': 'têm'},
       },
-      'rimp': {
-        's': {'1': 'ero', '2': 'eri', '3': 'era'},
-        'p': {'1': 'eravamo', '2': 'eravate', '3': 'erano'},
+      'r imp': {
+        's': {'1': 'tinha', '2': 'tinhas', '3': 'tinha'},
+        'p': {'1': 'tínhamos', '2': 'tínheis', '3': 'tinham'},
       },
-      'rfut': {
-        's': {'1': 'sarò', '2': 'sarai', '3': 'sarà'},
-        'p': {'1': 'saremo', '2': 'sarete', '3': 'saranno'},
+      'r perf': {
+        's': {'1': 'tive', '2': 'tiveste', '3': 'teve'},
+        'p': {'1': 'tivemos', '2': 'tivestes', '3': 'tiveram'},
       },
-      'rperf': {
-        's': {'1': 'fui', '2': 'fosti', '3': 'fu'},
-        'p': {'1': 'fummo', '2': 'foste', '3': 'furono'},
+      'r plup': {
+        's': {'1': 'tivera', '2': 'tiveras', '3': 'tivera'},
+        'p': {'1': 'tivéramos', '2': 'tivéreis', '3': 'tiveram'},
       },
-    },
-    'con': {
-      'pres': {
-        's': {'1': 'sarò', '2': 'sarai', '3': 'sarà'},
-        'p': {'1': 'saremo', '2': 'sarete', '3': 'saranno'},
+      'r fut': {
+        's': {'1': 'terei', '2': 'terás', '3': 'terá'},
+        'p': {'1': 'teremos', '2': 'tereis', '3': 'terão'},
+      },
+      'r cond': {
+        's': {'1': 'teria', '2': 'terias', '3': 'teria'},
+        'p': {'1': 'teríamos', '2': 'teríeis', '3': 'teriam'},
       },
     },
     'sub': {
-      'rpres': {
-        's': {'1': 'sia', '2': 'sia', '3': 'sia'},
-        'p': {'1': 'siamo', '2': 'siate', '3': 'siano'},
+      'r pres': {
+        's': {'1': 'tenha', '2': 'tenhas', '3': 'tenha'},
+        'p': {'1': 'tenhamos', '2': 'tenhais', '3': 'tenham'},
       },
-      'rimp': {
-        's': {'1': 'fossi', '2': 'fossi', '3': 'fosse'},
-        'p': {'1': 'fossimo', '2': 'foste', '3': 'fossero'},
+      'r imp': {
+        's': {'1': 'tivesse', '2': 'tivesses', '3': 'tivesse'},
+        'p': {'1': 'tivéssemos', '2': 'tivésseis', '3': 'tivessem'},
+      },
+      'r fut': {
+        's': {'1': 'tiver', '2': 'tiveres', '3': 'tiver'},
+        'p': {'1': 'tivermos', '2': 'tiverdes', '3': 'tiverem'},
       },
     },
     'imp': {
-      'rpres': {
-        's': {'2': 'sii', '3': 'sia'},
-        'p': {'1': 'siamo', '2': 'siate', '3': 'siano'},
+      'r pres': {
+        's': {'2': 'tem', '3': 'tenha'},
+        'p': {'1': 'tenhamos', '2': 'tende', '3': 'tenham'},
       },
     },
   },

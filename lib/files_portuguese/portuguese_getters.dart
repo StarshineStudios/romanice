@@ -1,12 +1,12 @@
 //These can apply to a lot of languages
 import 'dart:math';
 
-import '../constants.dart';
+import '../core/constants.dart';
 import 'word_data/portuguese_adjectives.dart';
 import 'portuguese_classes.dart';
 import 'word_data/portuguese_nouns.dart';
 import 'word_data/portuguese_verbs.dart';
-import '../lengtheners.dart';
+import '../core/lengtheners.dart';
 
 List<String> portugueseShortNumbers = ['s', 'p'];
 //i is used to represent neuter like words that change gender
@@ -16,18 +16,19 @@ List<String> portugueseShortGenders = [
 ];
 List<String> portugueseShortMoods = ['ind', 'sub', 'imp'];
 List<String> portugueseShortTenses = [
-  'rpres',
-  'rimp',
-  'rfut',
-  'rperf',
-  'rcond', //cond is tense in portuguese
+  'r pres',
+  'r imp',
+  'r fut',
+  'r perf',
+  'r plup',
+  'r cond', //cond is tense in portuguese
 
   //compound forms
-  'rperfc',
-  'rplup',
-  'rfutp',
-  'rant',
-  'rcondp',
+  'r perf c',
+  'r plup c',
+  'r futp c',
+  'r ante c',
+  'r condp c',
 ];
 List<String> portugueseShortPersons = ['1', '2', '3'];
 

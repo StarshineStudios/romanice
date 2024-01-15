@@ -4,10 +4,10 @@ import 'package:easy_localization/easy_localization.dart';
 
 import 'package:flutter/material.dart';
 
-import 'constants.dart';
+import '../core/constants.dart';
 import 'package:tinycolor2/tinycolor2.dart';
 
-import 'files_latin/latin_getters.dart';
+import '../files_latin/latin_getters.dart';
 // Import the necessary package
 
 class PracticeScreen extends StatefulWidget {

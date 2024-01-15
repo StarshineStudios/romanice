@@ -1,13 +1,14 @@
-import 'package:colorguesser/constants.dart';
-import 'package:colorguesser/practice_screen.dart';
+import 'package:colorguesser/core/constants.dart';
+import 'package:colorguesser/files_portuguese/portuguese_getters.dart';
+import 'package:colorguesser/screens/practice_screen.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
-import 'files_french/french_getters.dart';
-import 'files_italian/italian_getters.dart';
-import 'files_latin/latin_getters.dart';
-import 'files_romanian/romanian_getters.dart';
-import 'files_spanish/spanish_getters.dart';
+import '../files_french/french_getters.dart';
+import '../files_italian/italian_getters.dart';
+import '../files_latin/latin_getters.dart';
+import '../files_romanian/romanian_getters.dart';
+import '../files_spanish/spanish_getters.dart';
 
 class LanguageBox2 extends StatelessWidget {
   final String imagePath;
@@ -280,49 +281,53 @@ class _LanguageBoxHolderState extends State<LanguageBoxHolder> {
       LanguageBox2(
         imagePath: 'assets/FlagSpain.png',
         name: 'textSpanish'.tr(),
-        description: 'comingSoonText'.tr(),
+        description: '', //'comingSoonText'.tr(),
         index: 3,
         isExpanded: expandedIndex == 3,
         onPressed: () {
-          // changeExpandedIndex(3);
+          changeExpandedIndex(3);
         },
         onNounButtonPressed: () {
-          // launchGame(getSpanishDeclineQuestion);
+          launchGame(getSpanishDeclineQuestion);
         },
         onVerbButtonPressed: () {
-          // launchGame(getSpanishVerbQuestion);
+          launchGame(getSpanishVerbQuestion);
         },
       ),
 
       LanguageBox2(
         imagePath: 'assets/FlagPortugal.png',
         name: 'textPortuguese'.tr(),
-        description: 'comingSoonText'.tr(),
+        description: '', // 'comingSoonText'.tr(),
         index: 4,
         isExpanded: expandedIndex == 4,
         onPressed: () {
-          // changeExpandedIndex(4);
+          changeExpandedIndex(4);
         },
-        onNounButtonPressed: () {},
-        onVerbButtonPressed: () {},
+        onNounButtonPressed: () {
+          launchGame(getPortugueseDeclineQuestion);
+        },
+        onVerbButtonPressed: () {
+          launchGame(getPortugueseVerbQuestion);
+        },
       ),
       LanguageBox2(
         imagePath: 'assets/FlagRomania.png',
         name: 'textRomanian'.tr(),
-        description: 'comingSoonText'.tr(),
+        description: '', // 'comingSoonText'.tr(),
         index: 5,
         isExpanded: expandedIndex == 5,
         onPressed: () {
-          // changeExpandedIndex(5);
+          changeExpandedIndex(5);
         },
         onNounButtonPressed: () {
-          // launchGame(getRomanianDeclineQuestion);
+          launchGame(getRomanianDeclineQuestion);
         },
         onVerbButtonPressed: () {
-          // launchGame(getRomanianVerbQuestion);
+          launchGame(getRomanianVerbQuestion);
         },
       ),
-      SizedBox(
+      const SizedBox(
         height: 15,
       )
     ];

@@ -1,7 +1,17 @@
+import '../../core/enums.dart';
 import '../french_classes.dart';
 
 List<FrenchVerb> frenchVerbs = [
   etre,
+  avoir,
+  aller,
+  pouvoir,
+  vouloir,
+  faire,
+  parler,
+  demander,
+  savoir,
+  venir,
 ];
 
 FrenchVerb etre = FrenchVerb(
@@ -9,58 +19,58 @@ FrenchVerb etre = FrenchVerb(
   auxiliaryVerb: avoir2,
   participles: {
     //this would be weird to decline but whatever
-    'r pres': const FrenchAdjective(
+    Tense.presentRomance: const FrenchAdjective(
       declension: {
-        's': {'m': 'étant', 'f': 'étant'},
-        'p': {'m': 'étants', 'f': 'étants'}
+        Number.s: {Gender.m: 'étant', Gender.f: 'étant'},
+        Number.p: {Gender.m: 'étants', Gender.f: 'étants'}
       },
     ),
-    'r perf': const FrenchAdjective(
+    Tense.perfectRomance: const FrenchAdjective(
       declension: {
-        's': {'m': 'été', 'f': 'été'},
-        'p': {'m': 'été', 'f': 'été'}
+        Number.s: {Gender.m: 'été', Gender.f: 'été'},
+        Number.p: {Gender.m: 'été', Gender.f: 'été'}
       },
     ),
   },
   conjugation: {
-    'ind': {
-      'r pres': {
-        's': {'1': 'suis', '2': 'es', '3': 'est'},
-        'p': {'1': 'sommes', '2': 'êtes', '3': 'sont'},
+    Mood.ind: {
+      Tense.presentRomance: {
+        Number.s: {Person.first: 'suis', Person.second: 'es', Person.third: 'est'},
+        Number.p: {Person.first: 'sommes', Person.second: 'êtes', Person.third: 'sont'},
       },
-      'r imp': {
-        's': {'1': 'étais', '2': 'étais', '3': 'était'},
-        'p': {'1': 'étions', '2': 'étiez', '3': '	étaient'},
+      Tense.imperfectRomance: {
+        Number.s: {Person.first: 'étais', Person.second: 'étais', Person.third: 'était'},
+        Number.p: {Person.first: 'étions', Person.second: 'étiez', Person.third: '	étaient'},
       },
-      'r fut': {
-        's': {'1': 'serai', '2': 'seras', '3': 'sera'},
-        'p': {'1': 'serons', '2': 'serez', '3': 'seront'},
+      Tense.futureRomance: {
+        Number.s: {Person.first: 'serai', Person.second: 'seras', Person.third: 'sera'},
+        Number.p: {Person.first: 'serons', Person.second: 'serez', Person.third: 'seront'},
       },
-      'r perf': {
-        's': {'1': 'fus', '2': 'fus', '3': 'fut'},
-        'p': {'1': 'fûmes', '2': 'fûtes', '3': 'furent'},
-      },
-    },
-    'con': {
-      'r pres': {
-        's': {'1': 'serais', '2': 'serais', '3': 'serait'},
-        'p': {'1': 'serions', '2': 'seriez', '3': 'seraient'},
+      Tense.perfectRomance: {
+        Number.s: {Person.first: 'fus', Person.second: 'fus', Person.third: 'fut'},
+        Number.p: {Person.first: 'fûmes', Person.second: 'fûtes', Person.third: 'furent'},
       },
     },
-    'sub': {
-      'r pres': {
-        's': {'1': 'sois', '2': 'sois', '3': 'soit'},
-        'p': {'1': 'soyons', '2': 'soyez', '3': 'soient'},
-      },
-      'r imp': {
-        's': {'1': 'fusse', '2': 'fusses', '3': 'fût'},
-        'p': {'1': 'fussions	', '2': 'fussiez', '3': 'fussent'},
+    Mood.con: {
+      Tense.presentRomance: {
+        Number.s: {Person.first: 'serais', Person.second: 'serais', Person.third: 'serait'},
+        Number.p: {Person.first: 'serions', Person.second: 'seriez', Person.third: 'seraient'},
       },
     },
-    'imp': {
-      'r pres': {
-        's': {'2': 'sois'},
-        'p': {'1': 'soyons', '2': 'soyez'},
+    Mood.sub: {
+      Tense.presentRomance: {
+        Number.s: {Person.first: 'sois', Person.second: 'sois', Person.third: 'soit'},
+        Number.p: {Person.first: 'soyons', Person.second: 'soyez', Person.third: 'soient'},
+      },
+      Tense.imperfectRomance: {
+        Number.s: {Person.first: 'fusse', Person.second: 'fusses', Person.third: 'fût'},
+        Number.p: {Person.first: 'fussions	', Person.second: 'fussiez', Person.third: 'fussent'},
+      },
+    },
+    Mood.imp: {
+      Tense.presentRomance: {
+        Number.s: {Person.second: 'sois'},
+        Number.p: {Person.first: 'soyons', Person.second: 'soyez'},
       },
     },
   },
@@ -70,58 +80,58 @@ FrenchAuxiliaryVerb etre2 = FrenchAuxiliaryVerb(
   infinitive: 'être',
   participles: {
     //this would be weird to decline but whatever
-    'r pres': const FrenchAdjective(
+    Tense.presentRomance: const FrenchAdjective(
       declension: {
-        's': {'m': 'étant', 'f': 'étant'},
-        'p': {'m': 'étants', 'f': 'étants'}
+        Number.s: {Gender.m: 'étant', Gender.f: 'étant'},
+        Number.p: {Gender.m: 'étants', Gender.f: 'étants'}
       },
     ),
-    'r perf': const FrenchAdjective(
+    Tense.perfectRomance: const FrenchAdjective(
       declension: {
-        's': {'m': 'été', 'f': 'été'},
-        'p': {'m': 'été', 'f': 'été'}
+        Number.s: {Gender.m: 'été', Gender.f: 'été'},
+        Number.p: {Gender.m: 'été', Gender.f: 'été'}
       },
     ),
   },
   conjugation: {
-    'ind': {
-      'r pres': {
-        's': {'1': 'suis', '2': 'es', '3': 'est'},
-        'p': {'1': 'sommes', '2': 'êtes', '3': 'sont'},
+    Mood.ind: {
+      Tense.presentRomance: {
+        Number.s: {Person.first: 'suis', Person.second: 'es', Person.third: 'est'},
+        Number.p: {Person.first: 'sommes', Person.second: 'êtes', Person.third: 'sont'},
       },
-      'r imp': {
-        's': {'1': 'étais', '2': 'étais', '3': 'était'},
-        'p': {'1': 'étions', '2': 'étiez', '3': '	étaient'},
+      Tense.imperfectRomance: {
+        Number.s: {Person.first: 'étais', Person.second: 'étais', Person.third: 'était'},
+        Number.p: {Person.first: 'étions', Person.second: 'étiez', Person.third: '	étaient'},
       },
-      'r fut': {
-        's': {'1': 'serai', '2': 'seras', '3': 'sera'},
-        'p': {'1': 'serons', '2': 'serez', '3': 'seront'},
+      Tense.futureRomance: {
+        Number.s: {Person.first: 'serai', Person.second: 'seras', Person.third: 'sera'},
+        Number.p: {Person.first: 'serons', Person.second: 'serez', Person.third: 'seront'},
       },
-      'r perf': {
-        's': {'1': 'fus', '2': 'fus', '3': 'fut'},
-        'p': {'1': 'fûmes', '2': 'fûtes', '3': 'furent'},
-      },
-    },
-    'con': {
-      'r pres': {
-        's': {'1': 'serais', '2': 'serais', '3': 'serait'},
-        'p': {'1': 'serions', '2': 'seriez', '3': 'seraient'},
+      Tense.perfectRomance: {
+        Number.s: {Person.first: 'fus', Person.second: 'fus', Person.third: 'fut'},
+        Number.p: {Person.first: 'fûmes', Person.second: 'fûtes', Person.third: 'furent'},
       },
     },
-    'sub': {
-      'r pres': {
-        's': {'1': 'sois', '2': 'sois', '3': 'soit'},
-        'p': {'1': 'soyons', '2': 'soyez', '3': 'soient'},
-      },
-      'r imp': {
-        's': {'1': 'fusse', '2': 'fusses', '3': 'fût'},
-        'p': {'1': 'fussions	', '2': 'fussiez', '3': 'fussent'},
+    Mood.con: {
+      Tense.presentRomance: {
+        Number.s: {Person.first: 'serais', Person.second: 'serais', Person.third: 'serait'},
+        Number.p: {Person.first: 'serions', Person.second: 'seriez', Person.third: 'seraient'},
       },
     },
-    'imp': {
-      'r pres': {
-        's': {'2': 'sois'},
-        'p': {'1': 'soyons', '2': 'soyez'},
+    Mood.sub: {
+      Tense.presentRomance: {
+        Number.s: {Person.first: 'sois', Person.second: 'sois', Person.third: 'soit'},
+        Number.p: {Person.first: 'soyons', Person.second: 'soyez', Person.third: 'soient'},
+      },
+      Tense.imperfectRomance: {
+        Number.s: {Person.first: 'fusse', Person.second: 'fusses', Person.third: 'fût'},
+        Number.p: {Person.first: 'fussions	', Person.second: 'fussiez', Person.third: 'fussent'},
+      },
+    },
+    Mood.imp: {
+      Tense.presentRomance: {
+        Number.s: {Person.second: 'sois'},
+        Number.p: {Person.first: 'soyons', Person.second: 'soyez'},
       },
     },
   },
@@ -132,58 +142,58 @@ FrenchVerb avoir = FrenchVerb(
   auxiliaryVerb: avoir2,
   participles: {
     //this would be weird to decline but whatever
-    'r pres': const FrenchAdjective(
+    Tense.presentRomance: const FrenchAdjective(
       declension: {
-        's': {'m': 'ayant', 'f': 'ayant'},
-        'p': {'m': 'ayants', 'f': 'ayants'}
+        Number.s: {Gender.m: 'ayant', Gender.f: 'ayant'},
+        Number.p: {Gender.m: 'ayants', Gender.f: 'ayants'}
       },
     ),
-    'r perf': const FrenchAdjective(
+    Tense.perfectRomance: const FrenchAdjective(
       declension: {
-        's': {'m': 'eu', 'f': 'eue'},
-        'p': {'m': 'eus', 'f': 'eues'}
+        Number.s: {Gender.m: 'eu', Gender.f: 'eue'},
+        Number.p: {Gender.m: 'eus', Gender.f: 'eues'}
       },
     ),
   },
   conjugation: {
-    'ind': {
-      'r pres': {
-        's': {'1': 'ai', '2': 'as', '3': 'a'},
-        'p': {'1': 'avons', '2': 'avez', '3': 'ont'},
+    Mood.ind: {
+      Tense.presentRomance: {
+        Number.s: {Person.first: 'ai', Person.second: 'as', Person.third: 'a'},
+        Number.p: {Person.first: 'avons', Person.second: 'avez', Person.third: 'ont'},
       },
-      'r imp': {
-        's': {'1': 'avais', '2': 'avais', '3': 'avait'},
-        'p': {'1': 'avions', '2': 'aviez', '3': '	avaient'},
+      Tense.imperfectRomance: {
+        Number.s: {Person.first: 'avais', Person.second: 'avais', Person.third: 'avait'},
+        Number.p: {Person.first: 'avions', Person.second: 'aviez', Person.third: '	avaient'},
       },
-      'r fut': {
-        's': {'1': 'aurai', '2': 'auras', '3': 'aura'},
-        'p': {'1': 'aurons', '2': 'aurez', '3': 'auront'},
+      Tense.futureRomance: {
+        Number.s: {Person.first: 'aurai', Person.second: 'auras', Person.third: 'aura'},
+        Number.p: {Person.first: 'aurons', Person.second: 'aurez', Person.third: 'auront'},
       },
-      'r perf': {
-        's': {'1': 'eus', '2': 'eus', '3': 'eut'},
-        'p': {'1': 'eûmes', '2': 'eûtes', '3': 'eurent'},
-      },
-    },
-    'con': {
-      'r pres': {
-        's': {'1': 'aurais', '2': 'aurais', '3': 'aurait'},
-        'p': {'1': 'aurions', '2': 'auriez', '3': 'auraient'},
+      Tense.perfectRomance: {
+        Number.s: {Person.first: 'eus', Person.second: 'eus', Person.third: 'eut'},
+        Number.p: {Person.first: 'eûmes', Person.second: 'eûtes', Person.third: 'eurent'},
       },
     },
-    'sub': {
-      'r pres': {
-        's': {'1': 'aie', '2': 'aies', '3': 'ait'},
-        'p': {'1': 'ayons', '2': 'ayez', '3': 'aient'},
-      },
-      'r imp': {
-        's': {'1': 'eusse', '2': 'eusses', '3': 'eût'},
-        'p': {'1': 'eussions	', '2': 'eussiez', '3': 'eussent'},
+    Mood.con: {
+      Tense.presentRomance: {
+        Number.s: {Person.first: 'aurais', Person.second: 'aurais', Person.third: 'aurait'},
+        Number.p: {Person.first: 'aurions', Person.second: 'auriez', Person.third: 'auraient'},
       },
     },
-    'imp': {
-      'r pres': {
-        's': {'2': 'aie'},
-        'p': {'1': 'ayons', '2': 'ayez'},
+    Mood.sub: {
+      Tense.presentRomance: {
+        Number.s: {Person.first: 'aie', Person.second: 'aies', Person.third: 'ait'},
+        Number.p: {Person.first: 'ayons', Person.second: 'ayez', Person.third: 'aient'},
+      },
+      Tense.imperfectRomance: {
+        Number.s: {Person.first: 'eusse', Person.second: 'eusses', Person.third: 'eût'},
+        Number.p: {Person.first: 'eussions	', Person.second: 'eussiez', Person.third: 'eussent'},
+      },
+    },
+    Mood.imp: {
+      Tense.presentRomance: {
+        Number.s: {Person.second: 'aie'},
+        Number.p: {Person.first: 'ayons', Person.second: 'ayez'},
       },
     },
   },
@@ -193,58 +203,58 @@ FrenchAuxiliaryVerb avoir2 = FrenchAuxiliaryVerb(
   infinitive: 'avoir',
   participles: {
     //this would be weird to decline but whatever
-    'r pres': const FrenchAdjective(
+    Tense.presentRomance: const FrenchAdjective(
       declension: {
-        's': {'m': 'ayant', 'f': 'ayant'},
-        'p': {'m': 'ayants', 'f': 'ayants'}
+        Number.s: {Gender.m: 'ayant', Gender.f: 'ayant'},
+        Number.p: {Gender.m: 'ayants', Gender.f: 'ayants'}
       },
     ),
-    'r perf': const FrenchAdjective(
+    Tense.perfectRomance: const FrenchAdjective(
       declension: {
-        's': {'m': 'eu', 'f': 'eue'},
-        'p': {'m': 'eus', 'f': 'eues'}
+        Number.s: {Gender.m: 'eu', Gender.f: 'eue'},
+        Number.p: {Gender.m: 'eus', Gender.f: 'eues'}
       },
     ),
   },
   conjugation: {
-    'ind': {
-      'r pres': {
-        's': {'1': 'ai', '2': 'as', '3': 'a'},
-        'p': {'1': 'avons', '2': 'avez', '3': 'ont'},
+    Mood.ind: {
+      Tense.presentRomance: {
+        Number.s: {Person.first: 'ai', Person.second: 'as', Person.third: 'a'},
+        Number.p: {Person.first: 'avons', Person.second: 'avez', Person.third: 'ont'},
       },
-      'r imp': {
-        's': {'1': 'avais', '2': 'avais', '3': 'avait'},
-        'p': {'1': 'avions', '2': 'aviez', '3': '	avaient'},
+      Tense.imperfectRomance: {
+        Number.s: {Person.first: 'avais', Person.second: 'avais', Person.third: 'avait'},
+        Number.p: {Person.first: 'avions', Person.second: 'aviez', Person.third: '	avaient'},
       },
-      'r fut': {
-        's': {'1': 'aurai', '2': 'auras', '3': 'aura'},
-        'p': {'1': 'aurons', '2': 'aurez', '3': 'auront'},
+      Tense.futureRomance: {
+        Number.s: {Person.first: 'aurai', Person.second: 'auras', Person.third: 'aura'},
+        Number.p: {Person.first: 'aurons', Person.second: 'aurez', Person.third: 'auront'},
       },
-      'r perf': {
-        's': {'1': 'eus', '2': 'eus', '3': 'eut'},
-        'p': {'1': 'eûmes', '2': 'eûtes', '3': 'eurent'},
-      },
-    },
-    'con': {
-      'r pres': {
-        's': {'1': 'aurais', '2': 'aurais', '3': 'aurait'},
-        'p': {'1': 'aurions', '2': 'auriez', '3': 'auraient'},
+      Tense.perfectRomance: {
+        Number.s: {Person.first: 'eus', Person.second: 'eus', Person.third: 'eut'},
+        Number.p: {Person.first: 'eûmes', Person.second: 'eûtes', Person.third: 'eurent'},
       },
     },
-    'sub': {
-      'r pres': {
-        's': {'1': 'aie', '2': 'aies', '3': 'ait'},
-        'p': {'1': 'ayons', '2': 'ayez', '3': 'aient'},
-      },
-      'r imp': {
-        's': {'1': 'eusse', '2': 'eusses', '3': 'eût'},
-        'p': {'1': 'eussions	', '2': 'eussiez', '3': 'eussent'},
+    Mood.con: {
+      Tense.presentRomance: {
+        Number.s: {Person.first: 'aurais', Person.second: 'aurais', Person.third: 'aurait'},
+        Number.p: {Person.first: 'aurions', Person.second: 'auriez', Person.third: 'auraient'},
       },
     },
-    'imp': {
-      'r pres': {
-        's': {'2': 'aie'},
-        'p': {'1': 'ayons', '2': 'ayez'},
+    Mood.sub: {
+      Tense.presentRomance: {
+        Number.s: {Person.first: 'aie', Person.second: 'aies', Person.third: 'ait'},
+        Number.p: {Person.first: 'ayons', Person.second: 'ayez', Person.third: 'aient'},
+      },
+      Tense.imperfectRomance: {
+        Number.s: {Person.first: 'eusse', Person.second: 'eusses', Person.third: 'eût'},
+        Number.p: {Person.first: 'eussions	', Person.second: 'eussiez', Person.third: 'eussent'},
+      },
+    },
+    Mood.imp: {
+      Tense.presentRomance: {
+        Number.s: {Person.second: 'aie'},
+        Number.p: {Person.first: 'ayons', Person.second: 'ayez'},
       },
     },
   },
@@ -254,58 +264,58 @@ FrenchVerb aller = FrenchVerb(
   infinitive: 'aller',
   auxiliaryVerb: etre2, // Aller is one of the few verbs that uses 'être' as its auxiliary in compound tenses
   participles: {
-    'r pres': const FrenchAdjective(
+    Tense.presentRomance: const FrenchAdjective(
       declension: {
-        's': {'m': 'allant', 'f': 'allant'},
-        'p': {'m': 'allants', 'f': 'allants'}
+        Number.s: {Gender.m: 'allant', Gender.f: 'allant'},
+        Number.p: {Gender.m: 'allants', Gender.f: 'allants'}
       },
     ),
-    'r perf': const FrenchAdjective(
+    Tense.perfectRomance: const FrenchAdjective(
       declension: {
-        's': {'m': 'allé', 'f': 'allée'},
-        'p': {'m': 'allés', 'f': 'allées'}
+        Number.s: {Gender.m: 'allé', Gender.f: 'allée'},
+        Number.p: {Gender.m: 'allés', Gender.f: 'allées'}
       },
     ),
   },
   conjugation: {
-    'ind': {
-      'r pres': {
-        's': {'1': 'vais', '2': 'vas', '3': 'va'},
-        'p': {'1': 'allons', '2': 'allez', '3': 'vont'},
+    Mood.ind: {
+      Tense.presentRomance: {
+        Number.s: {Person.first: 'vais', Person.second: 'vas', Person.third: 'va'},
+        Number.p: {Person.first: 'allons', Person.second: 'allez', Person.third: 'vont'},
       },
-      'r imp': {
-        's': {'1': 'allais', '2': 'allais', '3': 'allait'},
-        'p': {'1': 'allions', '2': 'alliez', '3': 'allaient'},
+      Tense.imperfectRomance: {
+        Number.s: {Person.first: 'allais', Person.second: 'allais', Person.third: 'allait'},
+        Number.p: {Person.first: 'allions', Person.second: 'alliez', Person.third: 'allaient'},
       },
-      'r fut': {
-        's': {'1': 'irai', '2': 'iras', '3': 'ira'},
-        'p': {'1': 'irons', '2': 'irez', '3': 'iront'},
+      Tense.futureRomance: {
+        Number.s: {Person.first: 'irai', Person.second: 'iras', Person.third: 'ira'},
+        Number.p: {Person.first: 'irons', Person.second: 'irez', Person.third: 'iront'},
       },
-      'r perf': {
-        's': {'1': 'allai', '2': 'allas', '3': 'alla'},
-        'p': {'1': 'allâmes', '2': 'allâtes', '3': 'allèrent'},
-      },
-    },
-    'con': {
-      'r pres': {
-        's': {'1': 'irais', '2': 'irais', '3': 'irait'},
-        'p': {'1': 'irions', '2': 'iriez', '3': 'iraient'},
+      Tense.perfectRomance: {
+        Number.s: {Person.first: 'allai', Person.second: 'allas', Person.third: 'alla'},
+        Number.p: {Person.first: 'allâmes', Person.second: 'allâtes', Person.third: 'allèrent'},
       },
     },
-    'sub': {
-      'r pres': {
-        's': {'1': 'aille', '2': 'ailles', '3': 'aille'},
-        'p': {'1': 'allions', '2': 'alliez', '3': 'aillent'},
-      },
-      'r imp': {
-        's': {'1': 'allasse', '2': 'allasses', '3': 'allât'},
-        'p': {'1': 'allassions', '2': 'allassiez', '3': 'allassent'},
+    Mood.con: {
+      Tense.presentRomance: {
+        Number.s: {Person.first: 'irais', Person.second: 'irais', Person.third: 'irait'},
+        Number.p: {Person.first: 'irions', Person.second: 'iriez', Person.third: 'iraient'},
       },
     },
-    'imp': {
-      'r pres': {
-        's': {'2': 'va'},
-        'p': {'1': 'allons', '2': 'allez'},
+    Mood.sub: {
+      Tense.presentRomance: {
+        Number.s: {Person.first: 'aille', Person.second: 'ailles', Person.third: 'aille'},
+        Number.p: {Person.first: 'allions', Person.second: 'alliez', Person.third: 'aillent'},
+      },
+      Tense.imperfectRomance: {
+        Number.s: {Person.first: 'allasse', Person.second: 'allasses', Person.third: 'allât'},
+        Number.p: {Person.first: 'allassions', Person.second: 'allassiez', Person.third: 'allassent'},
+      },
+    },
+    Mood.imp: {
+      Tense.presentRomance: {
+        Number.s: {Person.second: 'va'},
+        Number.p: {Person.first: 'allons', Person.second: 'allez'},
       },
     },
   },
@@ -315,52 +325,52 @@ FrenchVerb pouvoir = FrenchVerb(
   infinitive: 'pouvoir',
   auxiliaryVerb: avoir2, // Most verbs, including pouvoir, use avoir as their auxiliary in compound tenses
   participles: {
-    'r pres': const FrenchAdjective(
+    Tense.presentRomance: const FrenchAdjective(
       declension: {
-        's': {'m': 'pouvant', 'f': 'pouvant'},
-        'p': {'m': 'pouvants', 'f': 'pouvants'}
+        Number.s: {Gender.m: 'pouvant', Gender.f: 'pouvant'},
+        Number.p: {Gender.m: 'pouvants', Gender.f: 'pouvants'}
       },
     ),
-    'r perf': const FrenchAdjective(
+    Tense.perfectRomance: const FrenchAdjective(
       declension: {
-        's': {'m': 'pu', 'f': 'pu'},
-        'p': {'m': 'pus', 'f': 'pus'}
+        Number.s: {Gender.m: 'pu', Gender.f: 'pu'},
+        Number.p: {Gender.m: 'pus', Gender.f: 'pus'}
       },
     ),
   },
   conjugation: {
-    'ind': {
-      'r pres': {
-        's': {'1': 'peux', '2': 'peux', '3': 'peut'},
-        'p': {'1': 'pouvons', '2': 'pouvez', '3': 'peuvent'},
+    Mood.ind: {
+      Tense.presentRomance: {
+        Number.s: {Person.first: 'peux', Person.second: 'peux', Person.third: 'peut'},
+        Number.p: {Person.first: 'pouvons', Person.second: 'pouvez', Person.third: 'peuvent'},
       },
-      'r imp': {
-        's': {'1': 'pouvais', '2': 'pouvais', '3': 'pouvait'},
-        'p': {'1': 'pouvions', '2': 'pouviez', '3': 'pouvaient'},
+      Tense.imperfectRomance: {
+        Number.s: {Person.first: 'pouvais', Person.second: 'pouvais', Person.third: 'pouvait'},
+        Number.p: {Person.first: 'pouvions', Person.second: 'pouviez', Person.third: 'pouvaient'},
       },
-      'r fut': {
-        's': {'1': 'pourrai', '2': 'pourras', '3': 'pourra'},
-        'p': {'1': 'pourrons', '2': 'pourrez', '3': 'pourront'},
+      Tense.futureRomance: {
+        Number.s: {Person.first: 'pourrai', Person.second: 'pourras', Person.third: 'pourra'},
+        Number.p: {Person.first: 'pourrons', Person.second: 'pourrez', Person.third: 'pourront'},
       },
-      'r perf': {
-        's': {'1': 'pus', '2': 'pus', '3': 'put'},
-        'p': {'1': 'pûmes', '2': 'pûtes', '3': 'purent'},
-      },
-    },
-    'con': {
-      'r pres': {
-        's': {'1': 'pourrais', '2': 'pourrais', '3': 'pourrait'},
-        'p': {'1': 'pourrions', '2': 'pourriez', '3': 'pourraient'},
+      Tense.perfectRomance: {
+        Number.s: {Person.first: 'pus', Person.second: 'pus', Person.third: 'put'},
+        Number.p: {Person.first: 'pûmes', Person.second: 'pûtes', Person.third: 'purent'},
       },
     },
-    'sub': {
-      'r pres': {
-        's': {'1': 'puisse', '2': 'puisses', '3': 'puisse'},
-        'p': {'1': 'puissions', '2': 'puissiez', '3': 'puissent'},
+    Mood.con: {
+      Tense.presentRomance: {
+        Number.s: {Person.first: 'pourrais', Person.second: 'pourrais', Person.third: 'pourrait'},
+        Number.p: {Person.first: 'pourrions', Person.second: 'pourriez', Person.third: 'pourraient'},
       },
-      'r imp': {
-        's': {'1': 'pusse', '2': 'pusses', '3': 'pût'},
-        'p': {'1': 'pussions', '2': 'pussiez', '3': 'pussent'},
+    },
+    Mood.sub: {
+      Tense.presentRomance: {
+        Number.s: {Person.first: 'puisse', Person.second: 'puisses', Person.third: 'puisse'},
+        Number.p: {Person.first: 'puissions', Person.second: 'puissiez', Person.third: 'puissent'},
+      },
+      Tense.imperfectRomance: {
+        Number.s: {Person.first: 'pusse', Person.second: 'pusses', Person.third: 'pût'},
+        Number.p: {Person.first: 'pussions', Person.second: 'pussiez', Person.third: 'pussent'},
       },
     },
     // No imperative form for 'pouvoir'
@@ -371,58 +381,58 @@ FrenchVerb vouloir = FrenchVerb(
   infinitive: 'vouloir',
   auxiliaryVerb: avoir2, // Vouloir uses avoir as its auxiliary in compound tenses
   participles: {
-    'r pres': const FrenchAdjective(
+    Tense.presentRomance: const FrenchAdjective(
       declension: {
-        's': {'m': 'voulant', 'f': 'voulant'},
-        'p': {'m': 'voulants', 'f': 'voulants'}
+        Number.s: {Gender.m: 'voulant', Gender.f: 'voulant'},
+        Number.p: {Gender.m: 'voulants', Gender.f: 'voulants'}
       },
     ),
-    'r perf': const FrenchAdjective(
+    Tense.perfectRomance: const FrenchAdjective(
       declension: {
-        's': {'m': 'voulu', 'f': 'voulu'},
-        'p': {'m': 'voulus', 'f': 'voulus'}
+        Number.s: {Gender.m: 'voulu', Gender.f: 'voulu'},
+        Number.p: {Gender.m: 'voulus', Gender.f: 'voulus'}
       },
     ),
   },
   conjugation: {
-    'ind': {
-      'r pres': {
-        's': {'1': 'veux', '2': 'veux', '3': 'veut'},
-        'p': {'1': 'voulons', '2': 'voulez', '3': 'veulent'},
+    Mood.ind: {
+      Tense.presentRomance: {
+        Number.s: {Person.first: 'veux', Person.second: 'veux', Person.third: 'veut'},
+        Number.p: {Person.first: 'voulons', Person.second: 'voulez', Person.third: 'veulent'},
       },
-      'r imp': {
-        's': {'1': 'voulais', '2': 'voulais', '3': 'voulait'},
-        'p': {'1': 'voulions', '2': 'vouliez', '3': 'voulaient'},
+      Tense.imperfectRomance: {
+        Number.s: {Person.first: 'voulais', Person.second: 'voulais', Person.third: 'voulait'},
+        Number.p: {Person.first: 'voulions', Person.second: 'vouliez', Person.third: 'voulaient'},
       },
-      'r fut': {
-        's': {'1': 'voudrai', '2': 'voudras', '3': 'voudra'},
-        'p': {'1': 'voudrons', '2': 'voudrez', '3': 'voudront'},
+      Tense.futureRomance: {
+        Number.s: {Person.first: 'voudrai', Person.second: 'voudras', Person.third: 'voudra'},
+        Number.p: {Person.first: 'voudrons', Person.second: 'voudrez', Person.third: 'voudront'},
       },
-      'r perf': {
-        's': {'1': 'voulus', '2': 'voulus', '3': 'voulut'},
-        'p': {'1': 'voulûmes', '2': 'voulûtes', '3': 'voulurent'},
-      },
-    },
-    'con': {
-      'r pres': {
-        's': {'1': 'voudrais', '2': 'voudrais', '3': 'voudrait'},
-        'p': {'1': 'voudrions', '2': 'voudriez', '3': 'voudraient'},
+      Tense.perfectRomance: {
+        Number.s: {Person.first: 'voulus', Person.second: 'voulus', Person.third: 'voulut'},
+        Number.p: {Person.first: 'voulûmes', Person.second: 'voulûtes', Person.third: 'voulurent'},
       },
     },
-    'sub': {
-      'r pres': {
-        's': {'1': 'veuille', '2': 'veuilles', '3': 'veuille'},
-        'p': {'1': 'voulions', '2': 'vouliez', '3': 'veuillent'},
-      },
-      'r imp': {
-        's': {'1': 'voulusse', '2': 'voulusses', '3': 'voulût'},
-        'p': {'1': 'voulussions', '2': 'voulussiez', '3': 'voulussent'},
+    Mood.con: {
+      Tense.presentRomance: {
+        Number.s: {Person.first: 'voudrais', Person.second: 'voudrais', Person.third: 'voudrait'},
+        Number.p: {Person.first: 'voudrions', Person.second: 'voudriez', Person.third: 'voudraient'},
       },
     },
-    'imp': {
-      'r pres': {
-        's': {'2': 'veux'},
-        'p': {'1': 'voulons', '2': 'voulez'},
+    Mood.sub: {
+      Tense.presentRomance: {
+        Number.s: {Person.first: 'veuille', Person.second: 'veuilles', Person.third: 'veuille'},
+        Number.p: {Person.first: 'voulions', Person.second: 'vouliez', Person.third: 'veuillent'},
+      },
+      Tense.imperfectRomance: {
+        Number.s: {Person.first: 'voulusse', Person.second: 'voulusses', Person.third: 'voulût'},
+        Number.p: {Person.first: 'voulussions', Person.second: 'voulussiez', Person.third: 'voulussent'},
+      },
+    },
+    Mood.imp: {
+      Tense.presentRomance: {
+        Number.s: {Person.second: 'veux'},
+        Number.p: {Person.first: 'voulons', Person.second: 'voulez'},
       },
     },
   },
@@ -432,58 +442,58 @@ FrenchVerb faire = FrenchVerb(
   infinitive: 'faire',
   auxiliaryVerb: avoir2, // Faire uses avoir as its auxiliary in compound tenses
   participles: {
-    'r pres': const FrenchAdjective(
+    Tense.presentRomance: const FrenchAdjective(
       declension: {
-        's': {'m': 'faisant', 'f': 'faisant'},
-        'p': {'m': 'faisants', 'f': 'faisants'}
+        Number.s: {Gender.m: 'faisant', Gender.f: 'faisant'},
+        Number.p: {Gender.m: 'faisants', Gender.f: 'faisants'}
       },
     ),
-    'r perf': const FrenchAdjective(
+    Tense.perfectRomance: const FrenchAdjective(
       declension: {
-        's': {'m': 'fait', 'f': 'faite'},
-        'p': {'m': 'faits', 'f': 'faites'}
+        Number.s: {Gender.m: 'fait', Gender.f: 'faite'},
+        Number.p: {Gender.m: 'faits', Gender.f: 'faites'}
       },
     ),
   },
   conjugation: {
-    'ind': {
-      'r pres': {
-        's': {'1': 'fais', '2': 'fais', '3': 'fait'},
-        'p': {'1': 'faisons', '2': 'faites', '3': 'font'},
+    Mood.ind: {
+      Tense.presentRomance: {
+        Number.s: {Person.first: 'fais', Person.second: 'fais', Person.third: 'fait'},
+        Number.p: {Person.first: 'faisons', Person.second: 'faites', Person.third: 'font'},
       },
-      'r imp': {
-        's': {'1': 'faisais', '2': 'faisais', '3': 'faisait'},
-        'p': {'1': 'faisions', '2': 'faisiez', '3': 'faisaient'},
+      Tense.imperfectRomance: {
+        Number.s: {Person.first: 'faisais', Person.second: 'faisais', Person.third: 'faisait'},
+        Number.p: {Person.first: 'faisions', Person.second: 'faisiez', Person.third: 'faisaient'},
       },
-      'r fut': {
-        's': {'1': 'ferai', '2': 'feras', '3': 'fera'},
-        'p': {'1': 'ferons', '2': 'ferez', '3': 'feront'},
+      Tense.futureRomance: {
+        Number.s: {Person.first: 'ferai', Person.second: 'feras', Person.third: 'fera'},
+        Number.p: {Person.first: 'ferons', Person.second: 'ferez', Person.third: 'feront'},
       },
-      'r perf': {
-        's': {'1': 'fis', '2': 'fis', '3': 'fit'},
-        'p': {'1': 'fîmes', '2': 'fîtes', '3': 'firent'},
-      },
-    },
-    'con': {
-      'r pres': {
-        's': {'1': 'ferais', '2': 'ferais', '3': 'ferait'},
-        'p': {'1': 'ferions', '2': 'feriez', '3': 'feraient'},
+      Tense.perfectRomance: {
+        Number.s: {Person.first: 'fis', Person.second: 'fis', Person.third: 'fit'},
+        Number.p: {Person.first: 'fîmes', Person.second: 'fîtes', Person.third: 'firent'},
       },
     },
-    'sub': {
-      'r pres': {
-        's': {'1': 'fasse', '2': 'fasses', '3': 'fasse'},
-        'p': {'1': 'fassions', '2': 'fassiez', '3': 'fassent'},
-      },
-      'r imp': {
-        's': {'1': 'fisse', '2': 'fisses', '3': 'fît'},
-        'p': {'1': 'fissions', '2': 'fissiez', '3': 'fissent'},
+    Mood.con: {
+      Tense.presentRomance: {
+        Number.s: {Person.first: 'ferais', Person.second: 'ferais', Person.third: 'ferait'},
+        Number.p: {Person.first: 'ferions', Person.second: 'feriez', Person.third: 'feraient'},
       },
     },
-    'imp': {
-      'r pres': {
-        's': {'2': 'fais'},
-        'p': {'1': 'faisons', '2': 'faites'},
+    Mood.sub: {
+      Tense.presentRomance: {
+        Number.s: {Person.first: 'fasse', Person.second: 'fasses', Person.third: 'fasse'},
+        Number.p: {Person.first: 'fassions', Person.second: 'fassiez', Person.third: 'fassent'},
+      },
+      Tense.imperfectRomance: {
+        Number.s: {Person.first: 'fisse', Person.second: 'fisses', Person.third: 'fît'},
+        Number.p: {Person.first: 'fissions', Person.second: 'fissiez', Person.third: 'fissent'},
+      },
+    },
+    Mood.imp: {
+      Tense.presentRomance: {
+        Number.s: {Person.second: 'fais'},
+        Number.p: {Person.first: 'faisons', Person.second: 'faites'},
       },
     },
   },
@@ -493,58 +503,58 @@ FrenchVerb parler = FrenchVerb(
   infinitive: 'parler',
   auxiliaryVerb: avoir2, // Parler uses avoir as its auxiliary in compound tenses
   participles: {
-    'r pres': const FrenchAdjective(
+    Tense.presentRomance: const FrenchAdjective(
       declension: {
-        's': {'m': 'parlant', 'f': 'parlant'},
-        'p': {'m': 'parlants', 'f': 'parlants'}
+        Number.s: {Gender.m: 'parlant', Gender.f: 'parlant'},
+        Number.p: {Gender.m: 'parlants', Gender.f: 'parlants'}
       },
     ),
-    'r perf': const FrenchAdjective(
+    Tense.perfectRomance: const FrenchAdjective(
       declension: {
-        's': {'m': 'parlé', 'f': 'parlée'},
-        'p': {'m': 'parlés', 'f': 'parlées'}
+        Number.s: {Gender.m: 'parlé', Gender.f: 'parlée'},
+        Number.p: {Gender.m: 'parlés', Gender.f: 'parlées'}
       },
     ),
   },
   conjugation: {
-    'ind': {
-      'r pres': {
-        's': {'1': 'parle', '2': 'parles', '3': 'parle'},
-        'p': {'1': 'parlons', '2': 'parlez', '3': 'parlent'},
+    Mood.ind: {
+      Tense.presentRomance: {
+        Number.s: {Person.first: 'parle', Person.second: 'parles', Person.third: 'parle'},
+        Number.p: {Person.first: 'parlons', Person.second: 'parlez', Person.third: 'parlent'},
       },
-      'r imp': {
-        's': {'1': 'parlais', '2': 'parlais', '3': 'parlait'},
-        'p': {'1': 'parlions', '2': 'parliez', '3': 'parlaient'},
+      Tense.imperfectRomance: {
+        Number.s: {Person.first: 'parlais', Person.second: 'parlais', Person.third: 'parlait'},
+        Number.p: {Person.first: 'parlions', Person.second: 'parliez', Person.third: 'parlaient'},
       },
-      'r fut': {
-        's': {'1': 'parlerai', '2': 'parleras', '3': 'parlera'},
-        'p': {'1': 'parlerons', '2': 'parlerez', '3': 'parleront'},
+      Tense.futureRomance: {
+        Number.s: {Person.first: 'parlerai', Person.second: 'parleras', Person.third: 'parlera'},
+        Number.p: {Person.first: 'parlerons', Person.second: 'parlerez', Person.third: 'parleront'},
       },
-      'r perf': {
-        's': {'1': 'parlai', '2': 'parlas', '3': 'parla'},
-        'p': {'1': 'parlâmes', '2': 'parlâtes', '3': 'parlèrent'},
-      },
-    },
-    'con': {
-      'r pres': {
-        's': {'1': 'parlerais', '2': 'parlerais', '3': 'parlerait'},
-        'p': {'1': 'parlerions', '2': 'parleriez', '3': 'parleraient'},
+      Tense.perfectRomance: {
+        Number.s: {Person.first: 'parlai', Person.second: 'parlas', Person.third: 'parla'},
+        Number.p: {Person.first: 'parlâmes', Person.second: 'parlâtes', Person.third: 'parlèrent'},
       },
     },
-    'sub': {
-      'r pres': {
-        's': {'1': 'parle', '2': 'parles', '3': 'parle'},
-        'p': {'1': 'parlions', '2': 'parliez', '3': 'parlent'},
-      },
-      'r imp': {
-        's': {'1': 'parlasse', '2': 'parlasses', '3': 'parlât'},
-        'p': {'1': 'parlassions', '2': 'parlassiez', '3': 'parlassent'},
+    Mood.con: {
+      Tense.presentRomance: {
+        Number.s: {Person.first: 'parlerais', Person.second: 'parlerais', Person.third: 'parlerait'},
+        Number.p: {Person.first: 'parlerions', Person.second: 'parleriez', Person.third: 'parleraient'},
       },
     },
-    'imp': {
-      'r pres': {
-        's': {'2': 'parle'},
-        'p': {'1': 'parlons', '2': 'parlez'},
+    Mood.sub: {
+      Tense.presentRomance: {
+        Number.s: {Person.first: 'parle', Person.second: 'parles', Person.third: 'parle'},
+        Number.p: {Person.first: 'parlions', Person.second: 'parliez', Person.third: 'parlent'},
+      },
+      Tense.imperfectRomance: {
+        Number.s: {Person.first: 'parlasse', Person.second: 'parlasses', Person.third: 'parlât'},
+        Number.p: {Person.first: 'parlassions', Person.second: 'parlassiez', Person.third: 'parlassent'},
+      },
+    },
+    Mood.imp: {
+      Tense.presentRomance: {
+        Number.s: {Person.second: 'parle'},
+        Number.p: {Person.first: 'parlons', Person.second: 'parlez'},
       },
     },
   },
@@ -554,58 +564,58 @@ FrenchVerb demander = FrenchVerb(
   infinitive: 'demander',
   auxiliaryVerb: avoir2, // Demander uses avoir as its auxiliary in compound tenses
   participles: {
-    'r pres': const FrenchAdjective(
+    Tense.presentRomance: const FrenchAdjective(
       declension: {
-        's': {'m': 'demandant', 'f': 'demandant'},
-        'p': {'m': 'demandants', 'f': 'demandants'}
+        Number.s: {Gender.m: 'demandant', Gender.f: 'demandant'},
+        Number.p: {Gender.m: 'demandants', Gender.f: 'demandants'}
       },
     ),
-    'r perf': const FrenchAdjective(
+    Tense.perfectRomance: const FrenchAdjective(
       declension: {
-        's': {'m': 'demandé', 'f': 'demandée'},
-        'p': {'m': 'demandés', 'f': 'demandées'}
+        Number.s: {Gender.m: 'demandé', Gender.f: 'demandée'},
+        Number.p: {Gender.m: 'demandés', Gender.f: 'demandées'}
       },
     ),
   },
   conjugation: {
-    'ind': {
-      'r pres': {
-        's': {'1': 'demande', '2': 'demandes', '3': 'demande'},
-        'p': {'1': 'demandons', '2': 'demandez', '3': 'demandent'},
+    Mood.ind: {
+      Tense.presentRomance: {
+        Number.s: {Person.first: 'demande', Person.second: 'demandes', Person.third: 'demande'},
+        Number.p: {Person.first: 'demandons', Person.second: 'demandez', Person.third: 'demandent'},
       },
-      'r imp': {
-        's': {'1': 'demandais', '2': 'demandais', '3': 'demandait'},
-        'p': {'1': 'demandions', '2': 'demandiez', '3': 'demandaient'},
+      Tense.imperfectRomance: {
+        Number.s: {Person.first: 'demandais', Person.second: 'demandais', Person.third: 'demandait'},
+        Number.p: {Person.first: 'demandions', Person.second: 'demandiez', Person.third: 'demandaient'},
       },
-      'r fut': {
-        's': {'1': 'demanderai', '2': 'demanderas', '3': 'demandera'},
-        'p': {'1': 'demanderons', '2': 'demanderez', '3': 'demanderont'},
+      Tense.futureRomance: {
+        Number.s: {Person.first: 'demanderai', Person.second: 'demanderas', Person.third: 'demandera'},
+        Number.p: {Person.first: 'demanderons', Person.second: 'demanderez', Person.third: 'demanderont'},
       },
-      'r perf': {
-        's': {'1': 'demandai', '2': 'demandas', '3': 'demanda'},
-        'p': {'1': 'demandâmes', '2': 'demandâtes', '3': 'demandèrent'},
-      },
-    },
-    'con': {
-      'r pres': {
-        's': {'1': 'demanderais', '2': 'demanderais', '3': 'demanderait'},
-        'p': {'1': 'demanderions', '2': 'demanderiez', '3': 'demanderaient'},
+      Tense.perfectRomance: {
+        Number.s: {Person.first: 'demandai', Person.second: 'demandas', Person.third: 'demanda'},
+        Number.p: {Person.first: 'demandâmes', Person.second: 'demandâtes', Person.third: 'demandèrent'},
       },
     },
-    'sub': {
-      'r pres': {
-        's': {'1': 'demande', '2': 'demandes', '3': 'demande'},
-        'p': {'1': 'demandions', '2': 'demandiez', '3': 'demandent'},
-      },
-      'r imp': {
-        's': {'1': 'demandasse', '2': 'demandasses', '3': 'demandât'},
-        'p': {'1': 'demandassions', '2': 'demandassiez', '3': 'demandassent'},
+    Mood.con: {
+      Tense.presentRomance: {
+        Number.s: {Person.first: 'demanderais', Person.second: 'demanderais', Person.third: 'demanderait'},
+        Number.p: {Person.first: 'demanderions', Person.second: 'demanderiez', Person.third: 'demanderaient'},
       },
     },
-    'imp': {
-      'r pres': {
-        's': {'2': 'demande'},
-        'p': {'1': 'demandons', '2': 'demandez'},
+    Mood.sub: {
+      Tense.presentRomance: {
+        Number.s: {Person.first: 'demande', Person.second: 'demandes', Person.third: 'demande'},
+        Number.p: {Person.first: 'demandions', Person.second: 'demandiez', Person.third: 'demandent'},
+      },
+      Tense.imperfectRomance: {
+        Number.s: {Person.first: 'demandasse', Person.second: 'demandasses', Person.third: 'demandât'},
+        Number.p: {Person.first: 'demandassions', Person.second: 'demandassiez', Person.third: 'demandassent'},
+      },
+    },
+    Mood.imp: {
+      Tense.presentRomance: {
+        Number.s: {Person.second: 'demande'},
+        Number.p: {Person.first: 'demandons', Person.second: 'demandez'},
       },
     },
   },
@@ -615,58 +625,58 @@ FrenchVerb savoir = FrenchVerb(
   infinitive: 'savoir',
   auxiliaryVerb: avoir2, // Savoir uses avoir as its auxiliary in compound tenses
   participles: {
-    'r pres': const FrenchAdjective(
+    Tense.presentRomance: const FrenchAdjective(
       declension: {
-        's': {'m': 'sachant', 'f': 'sachant'},
-        'p': {'m': 'sachants', 'f': 'sachants'}
+        Number.s: {Gender.m: 'sachant', Gender.f: 'sachant'},
+        Number.p: {Gender.m: 'sachants', Gender.f: 'sachants'}
       },
     ),
-    'r perf': const FrenchAdjective(
+    Tense.perfectRomance: const FrenchAdjective(
       declension: {
-        's': {'m': 'su', 'f': 'su'},
-        'p': {'m': 'sus', 'f': 'sus'}
+        Number.s: {Gender.m: 'su', Gender.f: 'su'},
+        Number.p: {Gender.m: 'sus', Gender.f: 'sus'}
       },
     ),
   },
   conjugation: {
-    'ind': {
-      'r pres': {
-        's': {'1': 'sais', '2': 'sais', '3': 'sait'},
-        'p': {'1': 'savons', '2': 'savez', '3': 'savent'},
+    Mood.ind: {
+      Tense.presentRomance: {
+        Number.s: {Person.first: 'sais', Person.second: 'sais', Person.third: 'sait'},
+        Number.p: {Person.first: 'savons', Person.second: 'savez', Person.third: 'savent'},
       },
-      'r imp': {
-        's': {'1': 'savais', '2': 'savais', '3': 'savait'},
-        'p': {'1': 'savions', '2': 'saviez', '3': 'savaient'},
+      Tense.imperfectRomance: {
+        Number.s: {Person.first: 'savais', Person.second: 'savais', Person.third: 'savait'},
+        Number.p: {Person.first: 'savions', Person.second: 'saviez', Person.third: 'savaient'},
       },
-      'r fut': {
-        's': {'1': 'saurai', '2': 'sauras', '3': 'saura'},
-        'p': {'1': 'saurons', '2': 'saurez', '3': 'sauront'},
+      Tense.futureRomance: {
+        Number.s: {Person.first: 'saurai', Person.second: 'sauras', Person.third: 'saura'},
+        Number.p: {Person.first: 'saurons', Person.second: 'saurez', Person.third: 'sauront'},
       },
-      'r perf': {
-        's': {'1': 'sus', '2': 'sus', '3': 'sut'},
-        'p': {'1': 'sûmes', '2': 'sûtes', '3': 'surent'},
-      },
-    },
-    'con': {
-      'r pres': {
-        's': {'1': 'saurais', '2': 'saurais', '3': 'saurait'},
-        'p': {'1': 'saurions', '2': 'sauriez', '3': 'sauraient'},
+      Tense.perfectRomance: {
+        Number.s: {Person.first: 'sus', Person.second: 'sus', Person.third: 'sut'},
+        Number.p: {Person.first: 'sûmes', Person.second: 'sûtes', Person.third: 'surent'},
       },
     },
-    'sub': {
-      'r pres': {
-        's': {'1': 'sache', '2': 'saches', '3': 'sache'},
-        'p': {'1': 'sachions', '2': 'sachiez', '3': 'sachent'},
-      },
-      'r imp': {
-        's': {'1': 'susse', '2': 'susses', '3': 'sût'},
-        'p': {'1': 'sussions', '2': 'sussiez', '3': 'sussent'},
+    Mood.con: {
+      Tense.presentRomance: {
+        Number.s: {Person.first: 'saurais', Person.second: 'saurais', Person.third: 'saurait'},
+        Number.p: {Person.first: 'saurions', Person.second: 'sauriez', Person.third: 'sauraient'},
       },
     },
-    'imp': {
-      'r pres': {
-        's': {'2': 'sache'},
-        'p': {'1': 'sachons', '2': 'sachez'},
+    Mood.sub: {
+      Tense.presentRomance: {
+        Number.s: {Person.first: 'sache', Person.second: 'saches', Person.third: 'sache'},
+        Number.p: {Person.first: 'sachions', Person.second: 'sachiez', Person.third: 'sachent'},
+      },
+      Tense.imperfectRomance: {
+        Number.s: {Person.first: 'susse', Person.second: 'susses', Person.third: 'sût'},
+        Number.p: {Person.first: 'sussions', Person.second: 'sussiez', Person.third: 'sussent'},
+      },
+    },
+    Mood.imp: {
+      Tense.presentRomance: {
+        Number.s: {Person.second: 'sache'},
+        Number.p: {Person.first: 'sachons', Person.second: 'sachez'},
       },
     },
   },
@@ -676,58 +686,58 @@ FrenchVerb venir = FrenchVerb(
   infinitive: 'venir',
   auxiliaryVerb: etre2, // Venir uses être as its auxiliary in compound tenses
   participles: {
-    'r pres': const FrenchAdjective(
+    Tense.presentRomance: const FrenchAdjective(
       declension: {
-        's': {'m': 'venant', 'f': 'venant'},
-        'p': {'m': 'venants', 'f': 'venants'}
+        Number.s: {Gender.m: 'venant', Gender.f: 'venant'},
+        Number.p: {Gender.m: 'venants', Gender.f: 'venants'}
       },
     ),
-    'r perf': const FrenchAdjective(
+    Tense.perfectRomance: const FrenchAdjective(
       declension: {
-        's': {'m': 'venu', 'f': 'venue'},
-        'p': {'m': 'venus', 'f': 'venues'}
+        Number.s: {Gender.m: 'venu', Gender.f: 'venue'},
+        Number.p: {Gender.m: 'venus', Gender.f: 'venues'}
       },
     ),
   },
   conjugation: {
-    'ind': {
-      'r pres': {
-        's': {'1': 'viens', '2': 'viens', '3': 'vient'},
-        'p': {'1': 'venons', '2': 'venez', '3': 'viennent'},
+    Mood.ind: {
+      Tense.presentRomance: {
+        Number.s: {Person.first: 'viens', Person.second: 'viens', Person.third: 'vient'},
+        Number.p: {Person.first: 'venons', Person.second: 'venez', Person.third: 'viennent'},
       },
-      'r imp': {
-        's': {'1': 'venais', '2': 'venais', '3': 'venait'},
-        'p': {'1': 'venions', '2': 'veniez', '3': 'venaient'},
+      Tense.imperfectRomance: {
+        Number.s: {Person.first: 'venais', Person.second: 'venais', Person.third: 'venait'},
+        Number.p: {Person.first: 'venions', Person.second: 'veniez', Person.third: 'venaient'},
       },
-      'r fut': {
-        's': {'1': 'viendrai', '2': 'viendras', '3': 'viendra'},
-        'p': {'1': 'viendrons', '2': 'viendrez', '3': 'viendront'},
+      Tense.futureRomance: {
+        Number.s: {Person.first: 'viendrai', Person.second: 'viendras', Person.third: 'viendra'},
+        Number.p: {Person.first: 'viendrons', Person.second: 'viendrez', Person.third: 'viendront'},
       },
-      'r perf': {
-        's': {'1': 'vins', '2': 'vins', '3': 'vint'},
-        'p': {'1': 'vînmes', '2': 'vîntes', '3': 'vinrent'},
-      },
-    },
-    'con': {
-      'r pres': {
-        's': {'1': 'viendrais', '2': 'viendrais', '3': 'viendrait'},
-        'p': {'1': 'viendrions', '2': 'viendriez', '3': 'viendraient'},
+      Tense.perfectRomance: {
+        Number.s: {Person.first: 'vins', Person.second: 'vins', Person.third: 'vint'},
+        Number.p: {Person.first: 'vînmes', Person.second: 'vîntes', Person.third: 'vinrent'},
       },
     },
-    'sub': {
-      'r pres': {
-        's': {'1': 'vienne', '2': 'viennes', '3': 'vienne'},
-        'p': {'1': 'venions', '2': 'veniez', '3': 'viennent'},
-      },
-      'r imp': {
-        's': {'1': 'vinsse', '2': 'vinsses', '3': 'vînt'},
-        'p': {'1': 'vinssions', '2': 'vinssiez', '3': 'vinssent'},
+    Mood.con: {
+      Tense.presentRomance: {
+        Number.s: {Person.first: 'viendrais', Person.second: 'viendrais', Person.third: 'viendrait'},
+        Number.p: {Person.first: 'viendrions', Person.second: 'viendriez', Person.third: 'viendraient'},
       },
     },
-    'imp': {
-      'r pres': {
-        's': {'2': 'viens'},
-        'p': {'1': 'venons', '2': 'venez'},
+    Mood.sub: {
+      Tense.presentRomance: {
+        Number.s: {Person.first: 'vienne', Person.second: 'viennes', Person.third: 'vienne'},
+        Number.p: {Person.first: 'venions', Person.second: 'veniez', Person.third: 'viennent'},
+      },
+      Tense.imperfectRomance: {
+        Number.s: {Person.first: 'vinsse', Person.second: 'vinsses', Person.third: 'vînt'},
+        Number.p: {Person.first: 'vinssions', Person.second: 'vinssiez', Person.third: 'vinssent'},
+      },
+    },
+    Mood.imp: {
+      Tense.presentRomance: {
+        Number.s: {Person.second: 'viens'},
+        Number.p: {Person.first: 'venons', Person.second: 'venez'},
       },
     },
   },

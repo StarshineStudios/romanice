@@ -1,3 +1,4 @@
+import '../../core/enums.dart';
 import '../french_classes.dart';
 
 List<FrenchAdjective> frenchAdjectives = [
@@ -7,7 +8,7 @@ List<FrenchAdjective> frenchAdjectives = [
   beau,
   jeune,
   vieux,
-  bon,
+  bon, //make it go before in the code!
   mauvais,
   gros,
   long,
@@ -22,104 +23,104 @@ List<FrenchAdjective> frenchAdjectives = [
 
 FrenchAdjective romain = const FrenchAdjective(
   declension: {
-    's': {'m': 'romain', 'f': 'romaine'},
-    'p': {'m': 'romains', 'f': 'romaines'}
+    Number.s: {Gender.m: 'romain', Gender.f: 'romaine'},
+    Number.p: {Gender.m: 'romains', Gender.f: 'romaines'}
   },
 );
 
 FrenchAdjective grand = const FrenchAdjective(
   declension: {
-    's': {'m': 'grand', 'f': 'grande'},
-    'p': {'m': 'grands', 'f': 'grandes'}
+    Number.s: {Gender.m: 'grand', Gender.f: 'grande'},
+    Number.p: {Gender.m: 'grands', Gender.f: 'grandes'}
   },
 );
 FrenchAdjective petit = const FrenchAdjective(
   declension: {
-    's': {'m': 'petit', 'f': 'petite'},
-    'p': {'m': 'petits', 'f': 'petites'}
+    Number.s: {Gender.m: 'petit', Gender.f: 'petite'},
+    Number.p: {Gender.m: 'petits', Gender.f: 'petites'}
   },
 );
 FrenchAdjective beau = const FrenchAdjective(
   declension: {
-    's': {'m': 'beau', 'f': 'belle'},
-    'p': {'m': 'beaux', 'f': 'belles'}
+    Number.s: {Gender.m: 'beau', Gender.f: 'belle'},
+    Number.p: {Gender.m: 'beaux', Gender.f: 'belles'}
   },
 );
 FrenchAdjective jeune = const FrenchAdjective(
   declension: {
-    's': {'m': 'jeune', 'f': 'jeune'},
-    'p': {'m': 'jeunes', 'f': 'jeunes'}
+    Number.s: {Gender.m: 'jeune', Gender.f: 'jeune'},
+    Number.p: {Gender.m: 'jeunes', Gender.f: 'jeunes'}
   },
 );
 FrenchAdjective vieux = const FrenchAdjective(
   declension: {
-    's': {'m': 'vieux', 'f': 'vieille'},
-    'p': {'m': 'vieux', 'f': 'vieilles'}
+    Number.s: {Gender.m: 'vieux', Gender.f: 'vieille'},
+    Number.p: {Gender.m: 'vieux', Gender.f: 'vieilles'}
   },
 );
 FrenchAdjective bon = const FrenchAdjective(
   declension: {
-    's': {'m': 'bon', 'f': 'bonne'},
-    'p': {'m': 'bons', 'f': 'bonnes'}
+    Number.s: {Gender.m: 'bon', Gender.f: 'bonne'},
+    Number.p: {Gender.m: 'bons', Gender.f: 'bonnes'}
   },
 );
 FrenchAdjective mauvais = const FrenchAdjective(
   declension: {
-    's': {'m': 'mauvais', 'f': 'mauvaise'},
-    'p': {'m': 'mauvais', 'f': 'mauvaises'}
+    Number.s: {Gender.m: 'mauvais', Gender.f: 'mauvaise'},
+    Number.p: {Gender.m: 'mauvais', Gender.f: 'mauvaises'}
   },
 );
 FrenchAdjective gros = const FrenchAdjective(
   declension: {
-    's': {'m': 'gros', 'f': 'grosse'},
-    'p': {'m': 'gros', 'f': 'grosses'}
+    Number.s: {Gender.m: 'gros', Gender.f: 'grosse'},
+    Number.p: {Gender.m: 'gros', Gender.f: 'grosses'}
   },
 );
 FrenchAdjective long = const FrenchAdjective(
   declension: {
-    's': {'m': 'long', 'f': 'longue'},
-    'p': {'m': 'longs', 'f': 'longues'}
+    Number.s: {Gender.m: 'long', Gender.f: 'longue'},
+    Number.p: {Gender.m: 'longs', Gender.f: 'longues'}
   },
 );
 FrenchAdjective court = const FrenchAdjective(
   declension: {
-    's': {'m': 'court', 'f': 'courte'},
-    'p': {'m': 'courts', 'f': 'courtes'}
+    Number.s: {Gender.m: 'court', Gender.f: 'courte'},
+    Number.p: {Gender.m: 'courts', Gender.f: 'courtes'}
   },
 );
 FrenchAdjective haut = const FrenchAdjective(
   declension: {
-    's': {'m': 'haut', 'f': 'haute'},
-    'p': {'m': 'hauts', 'f': 'hautes'}
+    Number.s: {Gender.m: 'haut', Gender.f: 'haute'},
+    Number.p: {Gender.m: 'hauts', Gender.f: 'hautes'}
   },
 );
 FrenchAdjective nouveau = const FrenchAdjective(
   declension: {
-    's': {'m': 'nouveau', 'f': 'nouvelle'},
-    'p': {'m': 'nouveaux', 'f': 'nouvelles'}
+    Number.s: {Gender.m: 'nouveau', Gender.f: 'nouvelle'},
+    Number.p: {Gender.m: 'nouveaux', Gender.f: 'nouvelles'}
   },
 );
 FrenchAdjective vivant = const FrenchAdjective(
   declension: {
-    's': {'m': 'vivant', 'f': 'vivante'},
-    'p': {'m': 'vivants', 'f': 'vivantes'}
+    Number.s: {Gender.m: 'vivant', Gender.f: 'vivante'},
+    Number.p: {Gender.m: 'vivants', Gender.f: 'vivantes'}
   },
 );
 FrenchAdjective mort = const FrenchAdjective(
   declension: {
-    's': {'m': 'mort', 'f': 'morte'},
-    'p': {'m': 'morts', 'f': 'mortes'}
+    Number.s: {Gender.m: 'mort', Gender.f: 'morte'},
+    Number.p: {Gender.m: 'morts', Gender.f: 'mortes'}
   },
 );
 FrenchAdjective froid = const FrenchAdjective(
   declension: {
-    's': {'m': 'froid', 'f': 'froide'},
-    'p': {'m': 'froids', 'f': 'froides'}
+    Number.s: {Gender.m: 'froid', Gender.f: 'froide'},
+    Number.p: {Gender.m: 'froids', Gender.f: 'froides'}
   },
 );
 FrenchAdjective chaud = const FrenchAdjective(
   declension: {
-    's': {'m': 'chaud', 'f': 'chaude'},
-    'p': {'m': 'chauds', 'f': 'chaudes'}
+    Number.s: {Gender.m: 'chaud', Gender.f: 'chaude'},
+    Number.p: {Gender.m: 'chauds', Gender.f: 'chaudes'}
   },
 );

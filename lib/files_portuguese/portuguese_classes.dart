@@ -25,46 +25,39 @@ class PortugueseNoun {
 class PortugueseVerb {
   String infinitive;
   String gerund;
-  PortugueseAuxiliaryVerb auxiliaryVerb;
   Map<String, PortugueseAdjective> participles;
   Map<String, Map<String, Map<String, Map<String, String>>>> conjugation;
 
   PortugueseVerb({
     required this.infinitive,
     required this.gerund,
-    required this.auxiliaryVerb,
     required this.participles,
     required this.conjugation,
   });
 
   String conjugateVerb(String m, String t, String n, String p, {String g = 'm'}) {
     print('hi'); //pres ind and pres cond are both simple, also all imp are simple
-    if (m == 'imp' || t == 'pres' || t == 'imp' || t == 'fut' || t == 'perf') {
+    if (m == 'r pres' || t == 'r imp' || t == 'r perf' || t == 'r plup' || t == 'r fut' || t == 'r cond') {
       return conjugation[m]?[t]?[n]?[p] ?? 'DNE';
 
       //else if the verb is not simple and is compound
     } else {
       String auxiliaryTense = '';
 
-      if (t == 'perfc') {
-        auxiliaryTense = 'pres';
-      } else if (t == 'plup') {
-        auxiliaryTense = 'imp';
-      } else if (t == 'ant') {
-        auxiliaryTense = 'perf';
-      } else if (t == 'futp') {
-        auxiliaryTense = 'fut';
-      } else if (m == 'con' && t == 'perfc') {
+      if (t == 'r perf c') {
+        auxiliaryTense = 'r pres';
+      } else if (t == 'r plup c') {
+        auxiliaryTense = 'r imp';
+      } else if (t == 'r ante c') {
+        auxiliaryTense = 'r perf c';
+      } else if (t == 'r futp c') {
+        auxiliaryTense = 'r fut';
+      } else if (t == 'r condp c') {
         auxiliaryTense = 'pres';
       }
 
-      //if it is essere it is gender dependant
-
-      //mood is same,
-      String participleGender = auxiliaryVerb == essere2 ? g : 'm';
-
-      String aux = auxiliaryVerb.conjugateVerb(m, auxiliaryTense, n, p);
-      String part = participles['past']!.declineAdjective(n, participleGender);
+      String aux = ter.conjugateVerb(m, auxiliaryTense, n, p);
+      String part = participles['past']!.declineAdjective('s', 'm');
 
       if (aux == 'DNE' || part == 'DNE') {
         return 'DNE';

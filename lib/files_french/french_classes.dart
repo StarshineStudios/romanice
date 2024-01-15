@@ -1,20 +1,22 @@
+import '../core/enums.dart';
 import 'word_data/french_verbs.dart';
+import '../../core/constants.dart';
 
 class FrenchAdjective {
-  final Map<String, Map<String, String>> declension;
+  final Map<Number, Map<Gender, String>> declension;
   const FrenchAdjective({required this.declension});
 
-  String declineAdjective(String n, String g) {
+  String declineAdjective(Number n, Gender g) {
     return declension[n]?[g] ?? 'DNE';
   }
 }
 
 class FrenchNoun {
-  final Map<String, String> declension;
-  final String gender;
+  final Map<Number, String> declension;
+  final Gender gender;
   const FrenchNoun({required this.gender, required this.declension});
 
-  String declineNoun(String n) {
+  String declineNoun(Number n) {
     return declension[n] ?? 'DNE';
   }
 }
@@ -22,8 +24,8 @@ class FrenchNoun {
 class FrenchVerb {
   String infinitive;
   FrenchAuxiliaryVerb auxiliaryVerb;
-  Map<String, FrenchAdjective> participles;
-  Map<String, Map<String, Map<String, Map<String, String>>>> conjugation;
+  Map<Tense, FrenchAdjective> participles;
+  Map<Mood, Map<Tense, Map<Number, Map<Person, String>>>> conjugation;
 
   FrenchVerb({
     required this.infinitive,
@@ -32,32 +34,34 @@ class FrenchVerb {
     required this.conjugation,
   });
 
-  //we need the gender for forms involving participles.
-  String conjugateVerb(String m, String t, String n, String p, {String g = 'm'}) {
+  //we need the gender for forms involving participles. If no gender is put in, we assume masculine
+
+  String conjugateVerb(Mood m, Tense t, Number n, Person p, {g = Gender.m}) {
     //first, check if the verb is simple or not.
-    if ('r pres' == t || 'r imp' == t || 'r fut' == t || 'r perf' == t) {
+    if (Tense.presentRomance == t || Tense.imperfectRomance == t || Tense.futureRomance == t || Tense.perfectRomance == t) {
       return conjugation[m]?[t]?[n]?[p] ?? 'DNE';
     }
 
     //else if the verb is not simple and is compound
-    String auxiliaryTense = '';
-    if (t == 'r perf c') {
-      auxiliaryTense = 'r pres';
-    } else if (t == 'r plup c') {
-      auxiliaryTense = 'r imp';
-    } else if (t == 'r ante c') {
-      auxiliaryTense = 'r perf';
-    } else if (t == 'r futp c') {
-      auxiliaryTense = 'r fut';
+    var auxiliaryTense;
+    if (t == Tense.perfectRomanceCompound) {
+      auxiliaryTense = Tense.presentRomance;
+    } else if (t == Tense.pluperfectRomanceCompound) {
+      auxiliaryTense = Tense.imperfectRomance;
+    } else if (t == Tense.anteriorRomanceCompound) {
+      auxiliaryTense = Tense.perfectRomance;
+    } else {
+      //if (t == Tense.futurePerfectRomanceCompound) {
+      auxiliaryTense = Tense.futureRomance;
     }
 
     //if the auxiliary verb is etre, it is gender and number dependant.
     //else, we use the masculine singular form with avoir
-    String participleNumber = auxiliaryVerb == etre2 ? n : 'm';
-    String participleGender = auxiliaryVerb == etre2 ? g : 'm';
+    Number participleNumber = auxiliaryVerb == etre2 ? n : Number.s; //singular with avoir
+    Gender participleGender = auxiliaryVerb == etre2 ? g : Gender.m; //masculine with avoir
 
     String aux = auxiliaryVerb.conjugateVerb(m, auxiliaryTense, n, p);
-    String part = participles['r perf']!.declineAdjective(participleNumber, participleGender);
+    String part = participles[Tense.perfectRomance]!.declineAdjective(participleNumber, participleGender);
 
     if (aux == 'DNE' || part == 'DNE') {
       return 'DNE';
@@ -69,8 +73,8 @@ class FrenchVerb {
 //The behave just like normal verbs but do not have aux verbs of their own to prevent paradoxes.
 class FrenchAuxiliaryVerb {
   String infinitive;
-  Map<String, FrenchAdjective> participles;
-  Map<String, Map<String, Map<String, Map<String, String>>>> conjugation;
+  Map<Tense, FrenchAdjective> participles;
+  Map<Mood, Map<Tense, Map<Number, Map<Person, String>>>> conjugation;
 
   FrenchAuxiliaryVerb({
     required this.infinitive,
@@ -78,7 +82,7 @@ class FrenchAuxiliaryVerb {
     required this.conjugation,
   });
 
-  String conjugateVerb(String m, String t, String n, String p, {String g = 'm'}) {
+  String conjugateVerb(Mood m, Tense t, Number n, Person p, {g = Gender.m}) {
     return conjugation[m]?[t]?[n]?[p] ?? 'DNE';
   }
 }

@@ -355,28 +355,28 @@ LatinNoun fructus = const LatinNoun(
   gender: 'm',
   declension: {
     'nom': {
-      's': 'fructus',
-      'p': 'fructūs',
+      's': 'frūctus',
+      'p': 'frūctūs',
     },
     'acc': {
-      's': 'fructum',
-      'p': 'fructūs',
+      's': 'frūctum',
+      'p': 'frūctūs',
     },
     'gen': {
-      's': 'fructūs',
-      'p': 'fructuum',
+      's': 'frūctūs',
+      'p': 'frūctuum',
     },
     'dat': {
-      's': 'fructuī',
-      'p': 'fructibus',
+      's': 'frūctuī',
+      'p': 'frūctibus',
     },
     'abl': {
-      's': 'fructū',
-      'p': 'fructibus',
+      's': 'frūctū',
+      'p': 'frūctibus',
     },
     'voc': {
-      's': 'fructus',
-      'p': 'fructūs',
+      's': 'frūctus',
+      'p': 'frūctūs',
     },
   },
 );
