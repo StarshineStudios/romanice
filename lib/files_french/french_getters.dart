@@ -7,24 +7,6 @@ import 'word_data/french_nouns.dart';
 import 'word_data/french_verbs.dart';
 import '../core/lengtheners.dart';
 
-List<Number> frenchNumbers = [Number.s, Number.p];
-List<Gender> frenchGenders = [Gender.m, Gender.f];
-List<Mood> frenchMoods = [Mood.ind, Mood.sub, Mood.con, Mood.imp];
-List<Person> frenchPersons = [Person.first, Person.second, Person.third];
-List<Tense> frenchTenses = [
-  //non-compound forms
-  Tense.presentRomance,
-  Tense.imperfectRomance,
-  Tense.futureRomance,
-  Tense.perfectRomance,
-
-  //compound forms
-  Tense.perfectRomanceCompound,
-  Tense.pluperfectRomanceCompound,
-  Tense.futurePerfectRomanceCompound,
-  Tense.anteriorRomanceCompound,
-];
-
 ////////////////////////////////////////////////////////////////
 
 //VERBS

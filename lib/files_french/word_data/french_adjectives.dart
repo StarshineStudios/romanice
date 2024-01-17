@@ -16,9 +16,9 @@ List<FrenchAdjective> frenchAdjectives = [
   haut, // Before the noun
   nouveau, // Before the noun
   vivant,
-  mort, // Before the noun
-  froid, // Before the noun
-  chaud, // Before the noun
+  mort,
+  froid,
+  chaud,
 ];
 
 FrenchAdjective romain = const FrenchAdjective(
@@ -119,21 +119,21 @@ FrenchAdjective vivant = const FrenchAdjective(
   },
 );
 FrenchAdjective mort = const FrenchAdjective(
-  before: true,
+  before: false,
   declension: {
     Number.s: {Gender.m: 'mort', Gender.f: 'morte'},
     Number.p: {Gender.m: 'morts', Gender.f: 'mortes'}
   },
 );
 FrenchAdjective froid = const FrenchAdjective(
-  before: true,
+  before: false,
   declension: {
     Number.s: {Gender.m: 'froid', Gender.f: 'froide'},
     Number.p: {Gender.m: 'froids', Gender.f: 'froides'}
   },
 );
 FrenchAdjective chaud = const FrenchAdjective(
-  before: true,
+  before: false,
   declension: {
     Number.s: {Gender.m: 'chaud', Gender.f: 'chaude'},
     Number.p: {Gender.m: 'chauds', Gender.f: 'chaudes'}
