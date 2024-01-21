@@ -11,7 +11,7 @@ Map<Mood, Map<Tense, Map<Number, Map<Person, String>>>> conjugation = {
     },
     Tense.imperfectRomance: {
       Number.s: {Person.first: 'étais', Person.second: 'étais', Person.third: 'était'},
-      Number.p: {Person.first: 'étions', Person.second: 'étiez', Person.third: '	étaient'},
+      Number.p: {Person.first: 'étions', Person.second: 'étiez', Person.third: 'étaient'},
     },
     Tense.futureRomance: {
       Number.s: {Person.first: 'serai', Person.second: 'seras', Person.third: 'sera'},

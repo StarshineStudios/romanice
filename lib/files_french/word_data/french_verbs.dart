@@ -40,7 +40,7 @@ FrenchVerb etre = FrenchVerb(
       },
       Tense.imperfectRomance: {
         Number.s: {Person.first: 'étais', Person.second: 'étais', Person.third: 'était'},
-        Number.p: {Person.first: 'étions', Person.second: 'étiez', Person.third: '	étaient'},
+        Number.p: {Person.first: 'étions', Person.second: 'étiez', Person.third: 'étaient'},
       },
       Tense.futureRomance: {
         Number.s: {Person.first: 'serai', Person.second: 'seras', Person.third: 'sera'},
@@ -101,7 +101,7 @@ FrenchAuxiliaryVerb etre2 = FrenchAuxiliaryVerb(
       },
       Tense.imperfectRomance: {
         Number.s: {Person.first: 'étais', Person.second: 'étais', Person.third: 'était'},
-        Number.p: {Person.first: 'étions', Person.second: 'étiez', Person.third: '	étaient'},
+        Number.p: {Person.first: 'étions', Person.second: 'étiez', Person.third: 'étaient'},
       },
       Tense.futureRomance: {
         Number.s: {Person.first: 'serai', Person.second: 'seras', Person.third: 'sera'},
@@ -163,7 +163,7 @@ FrenchVerb avoir = FrenchVerb(
       },
       Tense.imperfectRomance: {
         Number.s: {Person.first: 'avais', Person.second: 'avais', Person.third: 'avait'},
-        Number.p: {Person.first: 'avions', Person.second: 'aviez', Person.third: '	avaient'},
+        Number.p: {Person.first: 'avions', Person.second: 'aviez', Person.third: 'avaient'},
       },
       Tense.futureRomance: {
         Number.s: {Person.first: 'aurai', Person.second: 'auras', Person.third: 'aura'},
@@ -224,7 +224,7 @@ FrenchAuxiliaryVerb avoir2 = FrenchAuxiliaryVerb(
       },
       Tense.imperfectRomance: {
         Number.s: {Person.first: 'avais', Person.second: 'avais', Person.third: 'avait'},
-        Number.p: {Person.first: 'avions', Person.second: 'aviez', Person.third: '	avaient'},
+        Number.p: {Person.first: 'avions', Person.second: 'aviez', Person.third: 'avaient'},
       },
       Tense.futureRomance: {
         Number.s: {Person.first: 'aurai', Person.second: 'auras', Person.third: 'aura'},

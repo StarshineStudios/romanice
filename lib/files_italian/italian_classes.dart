@@ -1,6 +1,14 @@
+import 'package:colorguesser/auxiliaryTenses.dart';
 import 'package:colorguesser/core/enums.dart';
-
+import 'dart:math';
+import 'package:colorguesser/core/constants.dart';
+import 'package:colorguesser/core/lengtheners.dart';
+import 'package:colorguesser/files_italian/italian_classes.dart';
+import 'package:colorguesser/files_italian/italian_lists.dart';
+import 'package:colorguesser/files_italian/italian_getters.dart';
+import '../core/enums.dart';
 import 'word_data/italian_verbs.dart';
+import 'italian_lists.dart';
 
 class ItalianAdjective {
   final Map<Number, Map<Gender, String>> declension;
@@ -45,39 +53,111 @@ class ItalianVerb {
     required this.participles,
     required this.conjugation,
   });
+  Question randomConjugation() {
+    //If compound forms are activated
+    Random r = new Random();
+    bool isSimple = r.nextDouble() <= 0.5;
+
+    Mood randomMood;
+    Tense randomTense;
+    Number randomNumber;
+    Person randomPerson;
+
+    Gender randomGender; //only used if not simple
+
+    List<String> demands = [];
+
+    if (isSimple) {
+      //Find a random String from the conjugation table
+      var randomCoordinate = getRandomCoordinate(conjugation);
+
+      randomMood = randomCoordinate.mood;
+      randomTense = randomCoordinate.tense;
+      randomNumber = randomCoordinate.number;
+      randomPerson = randomCoordinate.person;
+    } else {
+      //THIS IS NOT EQUIPPED TO HANDLE DEFECTIVE VERBS!!!!!!!!! TODO
+      List<Mood> weightedMoods = [
+        ...List.filled(4, Mood.ind), // 4/12 chance
+        ...List.filled(2, Mood.sub), // 2/12 chance
+        ...List.filled(1, Mood.con), // 1/12 chance
+        ...List.filled(1, Mood.imp), // 1/12 chance
+      ];
+      randomMood = weightedMoods.getRandom();
+
+      if (randomMood == Mood.ind) {
+        randomTense = italianCompoundTenses.getRandom();
+      } else if (randomMood == Mood.sub) {
+        randomTense = [
+          //compound forms
+          Tense.perfectRomanceCompound,
+          Tense.pluperfectRomanceCompound,
+        ].getRandom();
+      } else if (randomMood == Mood.con) {
+        randomTense = [
+          //compound forms
+          Tense.perfectRomanceCompound,
+        ].getRandom();
+      } else {
+        randomTense = [
+          //compound forms
+          Tense.perfectRomanceCompound,
+        ].getRandom();
+      }
+
+      randomNumber = italianNumbers.getRandom();
+      randomPerson = italianPersons.getRandom();
+    }
+
+    randomGender = italianGenders.getRandom();
+    String lemma = infinitive;
+
+    demands = [
+      lengthenTense[randomTense]!,
+      lengthenMood[randomMood]!,
+      //if it is imperative, person matters.
+      if (randomMood == Mood.imp) lengthenPerson[randomPerson]!,
+      if (!isSimple) lengthenGender[randomGender]!,
+    ];
+    String blank = conjugateVerb(randomMood, randomTense, randomNumber, randomPerson, g: randomGender)!;
+    //promt without elision: we dont want to give a clue
+    String prompt = getItalianSubject(randomMood, randomNumber, randomPerson, randomGender);
+
+    //prompt with Elision
+    String promptWithElision = getItalianSubject(randomMood, randomNumber, randomPerson, randomGender);
+    String answer = promptWithElision.replaceAll('_____', blank);
+    return Question(lemma: lemma, demands: demands, prompt: prompt, answer: answer);
+  }
 
   //we need the gender for forms involving participles.
-  String conjugateVerb(Mood m, Tense t, Number n, Person p, {Gender g = Gender.m}) {
-    //first, check if the verb is simple or not.
-    if (Tense.presentRomance == t || Tense.imperfectRomance == t || Tense.futureRomance == t || Tense.perfectRomance == t) {
-      return conjugation[m]?[t]?[n]?[p] ?? 'DNE';
+  String? conjugateVerb(Mood m, Tense t, Number n, Person p, {Gender g = Gender.m}) {
+    //If it is a simple tense and the conjugation contains it.
+    if (italianSimpleTenses.contains(t)) {
+      return conjugation[m]?[t]?[n]?[p];
+    }
+    //if it is a complex tense
+    if (italianCompoundTenses.contains(t)) {
+      Tense? auxiliaryTense = auxiliaryTenseOf[t];
+
+      if (auxiliaryTense == null) {
+        return null;
+      }
+      String? aux = auxiliaryVerb.conjugateVerb(m, auxiliaryTense, n, p);
+
+      //If the aux verb is etre, then it is number and gender dependant
+      Number participleNumber = auxiliaryVerb == essere2 ? n : Number.s; //singular with avere
+      Gender participleGender = auxiliaryVerb == essere2 ? g : Gender.m; //masculine with avere
+
+      String? part = participles[Tense.perfectRomance]!.declineAdjective(participleNumber, participleGender);
+
+      if (aux == null || part == null) {
+        return null;
+      }
+      return '$aux $part';
     }
 
-    //else if the verb is not simple and is compound
-    Tense auxiliaryTense;
-    if (t == Tense.perfectRomanceCompound) {
-      auxiliaryTense = Tense.presentRomance;
-    } else if (t == Tense.pluperfectRomanceCompound) {
-      auxiliaryTense = Tense.imperfectRomance;
-    } else if (t == Tense.anteriorRomanceCompound) {
-      auxiliaryTense = Tense.perfectRomance;
-    } else {
-      //if (t == Tense.futurePerfectRomanceCompound) {
-      auxiliaryTense = Tense.futureRomance;
-    }
-
-    //if the auxiliary verb is essere, it is gender and number dependant.
-    //else, we use the masculine singular form with avere
-    Number participleNumber = auxiliaryVerb == essere2 ? n : Number.s;
-    Gender participleGender = auxiliaryVerb == essere2 ? g : Gender.m;
-
-    String aux = auxiliaryVerb.conjugateVerb(m, auxiliaryTense, n, p);
-    String part = participles[Tense.perfectRomance]!.declineAdjective(participleNumber, participleGender);
-
-    if (aux == 'DNE' || part == 'DNE') {
-      return 'DNE';
-    }
-    return '$aux $part';
+    //it is not anything
+    return null;
   }
 }
 
@@ -96,7 +176,10 @@ class ItalianAuxiliaryVerb {
     required this.conjugation,
   });
 
-  String conjugateVerb(Mood m, Tense t, Number n, Person p, {Gender g = Gender.m}) {
-    return conjugation[m]?[t]?[n]?[p] ?? 'DNE';
+  String? conjugateVerb(Mood m, Tense t, Number n, Person p, {Gender g = Gender.m}) {
+    if (italianSimpleTenses.contains(t)) {
+      return conjugation[m]?[t]?[n]?[p];
+    }
+    return null;
   }
 }

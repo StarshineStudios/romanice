@@ -1,5 +1,6 @@
 import 'dart:math';
 import 'package:colorguesser/core/enums.dart';
+import 'package:colorguesser/files_french/french_constants.dart';
 import '../core/constants.dart';
 import 'word_data/french_adjectives.dart';
 import 'french_classes.dart';
@@ -7,130 +8,79 @@ import 'word_data/french_nouns.dart';
 import 'word_data/french_verbs.dart';
 import '../core/lengtheners.dart';
 
-////////////////////////////////////////////////////////////////
-
 //VERBS
 Question getFrenchVerbQuestion() {
-  final random = Random();
-  //PICK RANDOM VERB
-  FrenchVerb randomVerb = frenchVerbs[random.nextInt(frenchVerbs.length)];
-
-  //PICK RANDOM CONJUGATION
-  Mood randomMood = frenchMoods.getRandom();
-  Tense randomTense = frenchTenses.getRandom();
-  Number randomNumber = frenchNumbers.getRandom();
-  Person randomPerson = frenchPersons.getRandom();
+  //Pick a random verb
+  FrenchVerb randomVerb = frenchVerbs.getRandom();
+  //Pick a random coordinate. Note this does not include gender
+  FrenchCoordinate randomFrenchCoordinate = randomVerb.conjugationStructure.getRandomCoordinate();
+  //Pick a random gender
   Gender randomGender = frenchGenders.getRandom();
-  void initConjugation() {
-    randomMood = frenchMoods.getRandom();
-    randomTense = frenchTenses.getRandom();
-    randomNumber = frenchNumbers.getRandom();
-    randomPerson = frenchPersons.getRandom();
-    randomGender = frenchGenders.getRandom();
-  }
 
-  while (randomVerb.conjugateVerb(randomMood, randomTense, randomNumber, randomPerson, g: randomGender) == 'DNE') {
-    initConjugation();
-  }
-
-  //ONCE WE HAVE FOUND A VALID CONJUGATION FOR THE VERB
+  //Begin to fill out the parameters for the Question
   String lemma = randomVerb.infinitive;
-
   List<String> demands = [
-    lengthenTense[randomTense] ?? 'DNE',
-    lengthenMood[randomMood] ?? 'DNE',
+    lengthenTense[randomFrenchCoordinate.tense]!,
+    lengthenMood[randomFrenchCoordinate.mood]!,
     //if it is imperative, person matters.
-    if (randomMood == Mood.imp) lengthenPerson[randomPerson] ?? 'DNE',
+    if (randomFrenchCoordinate.mood == Mood.imp) lengthenPerson[randomFrenchCoordinate.person]!,
+    //if it is complex, it matters. This may be redundant with some prompts, but i will keep it to account for personal pronouns
+    if (frenchCompoundTenses.contains(randomFrenchCoordinate.tense)) lengthenGender[randomGender]!,
   ];
+  String prompt = getFrenchSubject(randomFrenchCoordinate.mood, randomFrenchCoordinate.number, randomFrenchCoordinate.person, randomGender);
+  //what is the answer part
+  String blank = randomVerb.conjugateVerb(
+    randomFrenchCoordinate.mood,
+    randomFrenchCoordinate.tense,
+    randomFrenchCoordinate.number,
+    randomFrenchCoordinate.person,
+    //gender: optional but very important.
+    g: randomGender,
+  )!;
 
-  String blank = randomVerb.conjugateVerb(randomMood, randomTense, randomNumber, randomPerson, g: randomGender);
-
-  //promt without elision: we dont want to give a clue
-  String prompt = getFrenchSubject(randomMood, randomNumber, randomPerson, randomGender, false);
-
-  //prompt with
-  String promptWithElision = getFrenchSubject(randomMood, randomNumber, randomPerson, randomGender, blank.startsWithVowelSound());
-
-  String answer = promptWithElision.replaceAll('_____', blank);
-
-  return Question(lemma: lemma, demands: demands, prompt: prompt, answer: answer);
-}
-
-//This is comically easy and I will not include it
-Question getFrenchNounQuestion() {
-  final random = Random();
-  //PICK A RANDOM NOUN
-  FrenchNoun randomNoun = frenchNouns[random.nextInt(frenchNouns.length)];
-
-  //PICK A RANDOM DECLENSION
-  Number randomNumber = frenchNumbers[random.nextInt(frenchNumbers.length)];
-  void initDeclension() {
-    randomNumber = frenchNumbers[random.nextInt(frenchNumbers.length)];
+  //We must account for elision in french  for the word "Je"
+  if (prompt == 'Je _____' && blank.startsWithVowelSound()) {
+    prompt == "J'_____";
   }
 
-  while (randomNoun.declineNoun(randomNumber) == 'DNE') {
-    initDeclension();
-  }
-
-  String lemma = randomNumber == Number.s ? randomNoun.declineNoun(Number.p) : randomNoun.declineNoun(Number.s);
-
-  List<String> demands = [
-    lengthenNumber[randomNumber] ?? 'DNE',
-  ];
-  String prompt = '_____';
-
-  String blank = randomNoun.declineNoun(randomNumber);
+  //create the final answer with the blank filled in.
   String answer = prompt.replaceAll('_____', blank);
-
+  //return the question
   return Question(lemma: lemma, demands: demands, prompt: prompt, answer: answer);
 }
 
 Question getFrenchAdjectiveNounQuestion() {
-  final random = Random();
-  //PICK A RANDOM NOUN
-  FrenchNoun randomNoun = frenchNouns[random.nextInt(frenchNouns.length)];
-  //PICK A RANDOM ADJECTIVE
-  Number randomNumber = frenchNumbers[random.nextInt(frenchNumbers.length)];
-  void initDeclension() {
-    randomNumber = frenchNumbers[random.nextInt(frenchNumbers.length)];
-  }
+  //Get a random number.
+  Number randomNumber = frenchNumbers.getRandom();
+  //Get the random words
+  FrenchNoun randomNoun = frenchNouns.getRandom();
+  FrenchAdjective randomAdjective = frenchAdjectives.getRandom();
 
-  while (randomNoun.declineNoun(randomNumber) == 'DNE') {
-    initDeclension();
-  }
-
-  FrenchAdjective randomAdjective = frenchAdjectives[random.nextInt(frenchAdjectives.length)];
-
-  String lemma = randomAdjective.declineAdjective(Number.s, Gender.m);
+  //get the lemma form of singular masculine
+  String lemma = randomAdjective.declineAdjective(Number.s, Gender.m)!;
 
   List<String> demands = [
-    lengthenNumber[randomNumber] ?? 'DNE',
-    lengthenGender[randomNoun.gender] ?? 'DNE', //disable in hard mode? maybe
+    lengthenNumber[randomNumber]!,
+    lengthenGender[randomNoun.gender]!, //disable in hard mode? maybe
   ];
 
-  String declinedNoun = randomNoun.declineNoun(randomNumber);
+  String declinedNoun = randomNoun.declineNoun(randomNumber)!;
 
   //some french adjectives go before
   String prompt = randomAdjective.before ? '_____ $declinedNoun' : '$declinedNoun _____';
-
-  String blank = randomAdjective.declineAdjective(randomNumber, randomNoun.gender);
+  String blank = randomAdjective.declineAdjective(randomNumber, randomNoun.gender)!;
   String answer = prompt.replaceAll('_____', blank);
-
-  if (answer == 'DNE') {
-    return getFrenchAdjectiveNounQuestion();
-  }
 
   return Question(lemma: lemma, demands: demands, prompt: prompt, answer: answer);
 }
 
 Question getFrenchDeclineQuestion() {
-  final random = Random();
-  // Simulate a chance
-  bool isOutcomeA = random.nextDouble() < 0;
-  return isOutcomeA ? getFrenchNounQuestion() : getFrenchAdjectiveNounQuestion();
+  //I may add more types of declining questions later
+  return getFrenchAdjectiveNounQuestion();
 }
 
-String getFrenchSubject(Mood mood, Number number, Person person, Gender gender, bool elision) {
+//Helper function
+String getFrenchSubject(Mood mood, Number number, Person person, Gender gender) {
   final random = Random();
 
   String getThirdPersonSubject(Number number, Gender gender) {
@@ -165,11 +115,7 @@ String getFrenchSubject(Mood mood, Number number, Person person, Gender gender, 
 
   if (number == Number.s) {
     if (person == Person.first) {
-      if (elision) {
-        subject = "J'";
-      } else {
-        subject = 'Je ';
-      }
+      subject = 'Je ';
     } else if (person == Person.second) {
       subject = 'Tu ';
     } else if (person == Person.third) {
@@ -192,11 +138,9 @@ extension StartsWithVowelSound on String {
     if (isEmpty) {
       return false;
     }
-
     final firstChar = this[0];
     final vowelCharacters = ['a', 'e', 'i', 'o', 'u'];
     final accentedVowels = ['à', 'â', 'é', 'è', 'ê', 'ë', 'î', 'ï', 'ô', 'œ', 'û', 'ü'];
-
     if (vowelCharacters.contains(firstChar.toLowerCase())) {
       return true;
     } else if (firstChar.toLowerCase() == 'h' && length > 1) {
@@ -205,7 +149,6 @@ extension StartsWithVowelSound on String {
         return true;
       }
     }
-
     return false;
   }
 }

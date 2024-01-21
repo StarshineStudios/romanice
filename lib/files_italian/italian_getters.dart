@@ -2,6 +2,7 @@
 import 'dart:math';
 
 import 'package:colorguesser/core/enums.dart';
+import 'package:colorguesser/files_italian/italian_lists.dart';
 
 import '../core/constants.dart';
 import 'word_data/italian_adjectives.dart';
@@ -10,66 +11,11 @@ import 'word_data/italian_nouns.dart';
 import 'word_data/italian_verbs.dart';
 import '../core/lengtheners.dart';
 
-List<Number> italianShortNumbers = [Number.s, Number.p];
-//i is used to represent neuter like words that change gender
-//I do not currently use this.
-List<Gender> italianShortFullGenders = [Gender.m, Gender.f, Gender.i];
-List<Gender> italianShortGenders = [Gender.m, Gender.f];
-
-List<Mood> italianShortMoods = [Mood.ind, Mood.sub, Mood.con, Mood.imp];
-List<Person> italianShortPersons = [Person.first, Person.second, Person.third];
-List<Tense> italianShortTenses = [
-  //non-compound forms
-  Tense.presentRomance,
-  Tense.imperfectRomance,
-  Tense.futureRomance,
-  Tense.perfectRomance,
-
-  //compound forms
-  Tense.perfectRomanceCompound,
-  Tense.pluperfectRomanceCompound,
-  Tense.futurePerfectRomanceCompound,
-  Tense.anteriorRomanceCompound,
-];
-
 Question getItalianVerbQuestion() {
+  final random = Random();
   //PICK RANDOM VERB
-  ItalianVerb randomVerb = italianVerbs.getRandom();
-
-  //PICK RANDOM CONJUGATION
-  Mood randomMood = italianShortMoods.getRandom();
-  Tense randomTense = italianShortTenses.getRandom();
-  Number randomNumber = italianShortNumbers.getRandom();
-  Person randomPerson = italianShortPersons.getRandom();
-  //not include irregular because that is wrong
-  Gender randomGender = italianShortGenders.getRandom();
-  void initConjugation() {
-    randomMood = italianShortMoods.getRandom();
-    randomTense = italianShortTenses.getRandom();
-    randomNumber = italianShortNumbers.getRandom();
-    randomPerson = italianShortPersons.getRandom();
-    randomGender = italianShortGenders.getRandom();
-  }
-
-  while (randomVerb.conjugateVerb(randomMood, randomTense, randomNumber, randomPerson, g: randomGender) == 'DNE') {
-    initConjugation();
-  }
-
-  //ONCE WE HAVE FOUND A VALID CONJUGATION FOR THE VERB
-  String lemma = randomVerb.infinitive;
-
-  List<String> demands = [
-    lengthenTense[randomTense] ?? 'DNE',
-    lengthenMood[randomMood] ?? 'DNE',
-    //if it is imperative, person matters.
-    if (randomMood == Mood.imp) lengthenPerson[randomPerson] ?? 'DNE',
-  ];
-
-  //GENERATE QUESTION
-  String prompt = getItalianSubject(randomMood, randomNumber, randomPerson, randomGender);
-  String blank = randomVerb.conjugateVerb(randomMood, randomTense, randomNumber, randomPerson, g: randomGender);
-  String answer = prompt.replaceAll('_____', blank);
-  return Question(lemma: lemma, demands: demands, prompt: prompt, answer: answer);
+  ItalianVerb randomVerb = italianVerbs[random.nextInt(italianVerbs.length)];
+  return randomVerb.randomConjugation();
 }
 
 Question getItalianNounQuestion() {
@@ -77,9 +23,9 @@ Question getItalianNounQuestion() {
   //PICK RANDOM NOUN
   ItalianNoun randomNoun = italianNouns[random.nextInt(italianNouns.length)];
   //PICK RANDOM DECLENSION
-  Number randomNumber = italianShortNumbers[random.nextInt(italianShortNumbers.length)];
+  Number randomNumber = italianNumbers[random.nextInt(italianNumbers.length)];
   void initDeclension() {
-    randomNumber = italianShortNumbers[random.nextInt(italianShortNumbers.length)];
+    randomNumber = italianNumbers[random.nextInt(italianNumbers.length)];
   }
 
   while (randomNoun.declineNoun(randomNumber) == 'DNE') {
@@ -102,9 +48,9 @@ Question getItalianAdjectiveNounQuestion() {
   //GET RANDOM NOUN
   ItalianNoun randomNoun = italianNouns[random.nextInt(italianNouns.length)];
   //GET RANDOM NUMBER
-  Number randomNumber = italianShortNumbers[random.nextInt(italianShortNumbers.length)];
+  Number randomNumber = italianNumbers[random.nextInt(italianNumbers.length)];
   void initDeclension() {
-    randomNumber = italianShortNumbers[random.nextInt(italianShortNumbers.length)];
+    randomNumber = italianNumbers[random.nextInt(italianNumbers.length)];
   }
 
   while (randomNoun.declineNoun(randomNumber) == 'DNE') {

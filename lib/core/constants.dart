@@ -1,5 +1,6 @@
 import 'package:tinycolor2/tinycolor2.dart';
 import 'package:flutter/material.dart';
+import 'enums.dart';
 
 import 'dart:math';
 
