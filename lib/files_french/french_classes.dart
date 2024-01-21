@@ -1,7 +1,4 @@
-import 'dart:math';
 import 'package:colorguesser/auxiliaryTenses.dart';
-import 'package:colorguesser/core/constants.dart';
-import 'package:colorguesser/core/lengtheners.dart';
 import 'package:colorguesser/files_french/french_constants.dart';
 import '../core/enums.dart';
 import 'word_data/french_verbs.dart';

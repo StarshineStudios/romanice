@@ -1,14 +1,7 @@
 import 'package:colorguesser/auxiliaryTenses.dart';
 import 'package:colorguesser/core/enums.dart';
-import 'dart:math';
-import 'package:colorguesser/core/constants.dart';
-import 'package:colorguesser/core/lengtheners.dart';
-import 'package:colorguesser/files_italian/italian_classes.dart';
-import 'package:colorguesser/files_italian/italian_lists.dart';
-import 'package:colorguesser/files_italian/italian_getters.dart';
-import '../core/enums.dart';
+import 'package:colorguesser/files_italian/italian_constants.dart';
 import 'word_data/italian_verbs.dart';
-import 'italian_lists.dart';
 
 class ItalianAdjective {
   final Map<Number, Map<Gender, String>> declension;
@@ -21,8 +14,11 @@ class ItalianAdjective {
 
 class ItalianNoun {
   final Map<Number, String> declension;
-  final Gender gender;
-  const ItalianNoun({required this.gender, required this.declension});
+  final Gender _gender;
+  const ItalianNoun({
+    required this.declension,
+    required Gender gender,
+  }) : _gender = gender;
 
   String declineNoun(Number n) {
     return declension[n] ?? 'DNE';
@@ -30,11 +26,11 @@ class ItalianNoun {
 
   Gender getGender(Number n) {
     //check if irregular
-    if (gender == Gender.i) {
+    if (_gender == Gender.i) {
       //masc in singular, fem in plural
       return n == Number.s ? Gender.m : Gender.f;
     } else {
-      return gender;
+      return _gender;
     }
   }
 }
@@ -45,6 +41,7 @@ class ItalianVerb {
   ItalianAuxiliaryVerb auxiliaryVerb;
   Map<Tense, ItalianAdjective> participles;
   Map<Mood, Map<Tense, Map<Number, Map<Person, String>>>> conjugation;
+  Map<Mood, Map<Tense, Map<Number, List<Person>>>> conjugationStructure;
 
   ItalianVerb({
     required this.infinitive,
@@ -52,82 +49,8 @@ class ItalianVerb {
     required this.auxiliaryVerb,
     required this.participles,
     required this.conjugation,
+    this.conjugationStructure = italianConjugationStructure,
   });
-  Question randomConjugation() {
-    //If compound forms are activated
-    Random r = new Random();
-    bool isSimple = r.nextDouble() <= 0.5;
-
-    Mood randomMood;
-    Tense randomTense;
-    Number randomNumber;
-    Person randomPerson;
-
-    Gender randomGender; //only used if not simple
-
-    List<String> demands = [];
-
-    if (isSimple) {
-      //Find a random String from the conjugation table
-      var randomCoordinate = getRandomCoordinate(conjugation);
-
-      randomMood = randomCoordinate.mood;
-      randomTense = randomCoordinate.tense;
-      randomNumber = randomCoordinate.number;
-      randomPerson = randomCoordinate.person;
-    } else {
-      //THIS IS NOT EQUIPPED TO HANDLE DEFECTIVE VERBS!!!!!!!!! TODO
-      List<Mood> weightedMoods = [
-        ...List.filled(4, Mood.ind), // 4/12 chance
-        ...List.filled(2, Mood.sub), // 2/12 chance
-        ...List.filled(1, Mood.con), // 1/12 chance
-        ...List.filled(1, Mood.imp), // 1/12 chance
-      ];
-      randomMood = weightedMoods.getRandom();
-
-      if (randomMood == Mood.ind) {
-        randomTense = italianCompoundTenses.getRandom();
-      } else if (randomMood == Mood.sub) {
-        randomTense = [
-          //compound forms
-          Tense.perfectRomanceCompound,
-          Tense.pluperfectRomanceCompound,
-        ].getRandom();
-      } else if (randomMood == Mood.con) {
-        randomTense = [
-          //compound forms
-          Tense.perfectRomanceCompound,
-        ].getRandom();
-      } else {
-        randomTense = [
-          //compound forms
-          Tense.perfectRomanceCompound,
-        ].getRandom();
-      }
-
-      randomNumber = italianNumbers.getRandom();
-      randomPerson = italianPersons.getRandom();
-    }
-
-    randomGender = italianGenders.getRandom();
-    String lemma = infinitive;
-
-    demands = [
-      lengthenTense[randomTense]!,
-      lengthenMood[randomMood]!,
-      //if it is imperative, person matters.
-      if (randomMood == Mood.imp) lengthenPerson[randomPerson]!,
-      if (!isSimple) lengthenGender[randomGender]!,
-    ];
-    String blank = conjugateVerb(randomMood, randomTense, randomNumber, randomPerson, g: randomGender)!;
-    //promt without elision: we dont want to give a clue
-    String prompt = getItalianSubject(randomMood, randomNumber, randomPerson, randomGender);
-
-    //prompt with Elision
-    String promptWithElision = getItalianSubject(randomMood, randomNumber, randomPerson, randomGender);
-    String answer = promptWithElision.replaceAll('_____', blank);
-    return Question(lemma: lemma, demands: demands, prompt: prompt, answer: answer);
-  }
 
   //we need the gender for forms involving participles.
   String? conjugateVerb(Mood m, Tense t, Number n, Person p, {Gender g = Gender.m}) {

@@ -2,7 +2,7 @@
 import 'dart:math';
 
 import 'package:colorguesser/core/enums.dart';
-import 'package:colorguesser/files_italian/italian_lists.dart';
+import 'package:colorguesser/files_italian/italian_constants.dart';
 
 import '../core/constants.dart';
 import 'word_data/italian_adjectives.dart';
@@ -12,10 +12,38 @@ import 'word_data/italian_verbs.dart';
 import '../core/lengtheners.dart';
 
 Question getItalianVerbQuestion() {
-  final random = Random();
-  //PICK RANDOM VERB
-  ItalianVerb randomVerb = italianVerbs[random.nextInt(italianVerbs.length)];
-  return randomVerb.randomConjugation();
+  //Pick a random verb
+  ItalianVerb randomVerb = italianVerbs.getRandom();
+  //Pick a random coordinate. Note this does not include gender
+  ItalianCoordinate randomItalianCoordinate = randomVerb.conjugationStructure.getRandomCoordinate();
+  //Pick a random gender
+  Gender randomGender = italianGenders.getRandom();
+
+  //Begin to fill out the parameters for the Question
+  String lemma = randomVerb.infinitive;
+  List<String> demands = [
+    lengthenTense[randomItalianCoordinate.tense]!,
+    lengthenMood[randomItalianCoordinate.mood]!,
+    //if it is imperative, person matters.
+    if (randomItalianCoordinate.mood == Mood.imp) lengthenPerson[randomItalianCoordinate.person]!,
+    //if it is complex, it matters. This may be redundant with some prompts, but i will keep it to account for personal pronouns
+    if (italianCompoundTenses.contains(randomItalianCoordinate.tense)) lengthenGender[randomGender]!,
+  ];
+  String prompt = getItalianSubject(randomItalianCoordinate.mood, randomItalianCoordinate.number, randomItalianCoordinate.person, randomGender);
+  //what is the answer part
+  String blank = randomVerb.conjugateVerb(
+    randomItalianCoordinate.mood,
+    randomItalianCoordinate.tense,
+    randomItalianCoordinate.number,
+    randomItalianCoordinate.person,
+    //gender: optional but very important.
+    g: randomGender,
+  )!;
+
+  //create the final answer with the blank filled in.
+  String answer = prompt.replaceAll('_____', blank);
+  //return the question
+  return Question(lemma: lemma, demands: demands, prompt: prompt, answer: answer);
 }
 
 Question getItalianNounQuestion() {
