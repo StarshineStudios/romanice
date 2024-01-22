@@ -2,6 +2,7 @@
 import 'dart:math';
 
 import 'package:colorguesser/core/enums.dart';
+import 'package:colorguesser/files_latin/latin_constants.dart';
 
 import '../core/constants.dart';
 import 'word_data/latin_adjectives.dart';
@@ -10,154 +11,101 @@ import 'word_data/latin_nouns.dart';
 import 'word_data/latin_verbs.dart';
 import '../core/lengtheners.dart';
 
-List<Number> latinShortNumbers = [Number.s, Number.p];
-List<Gender> latinShortGenders = [Gender.m, Gender.f, Gender.n];
-List<Case> latinShortCases = [
-  Case.nom,
-  Case.acc,
-  Case.gen,
-  Case.dat,
-  Case.abl,
-  Case.voc,
-];
-List<Case> latinShortFullCases = [
-  Case.nom,
-  Case.acc,
-  Case.gen,
-  Case.dat,
-  Case.abl,
-  Case.voc,
-  Case.loc,
-];
-List<Mood> latinShortMoods = [
-  Mood.ind,
-  Mood.sub,
-  Mood.imp,
-];
-List<Voice> latinShortVoices = [
-  Voice.act,
-  Voice.pas,
-];
-List<Tense> latinShortTenses = [
-  Tense.present,
-  Tense.imperfect,
-  Tense.future,
-  Tense.perfect,
-  Tense.pluperfect,
-  Tense.futurePerfect,
-];
-List<Person> latinShortPersons = [Person.first, Person.second, Person.third];
-
 Question getLatinVerbQuestion() {
-  //GET RANDOM VERB
+//Pick a random verb
   LatinVerb randomVerb = latinVerbs.getRandom();
-  //GET RANDOM CONJUGATION
-  Mood randomMood = latinShortMoods.getRandom();
-  Voice randomVoice = latinShortVoices.getRandom();
-  Tense randomTense = latinShortTenses.getRandom();
-  Number randomNumber = latinShortNumbers.getRandom();
-  Person randomPerson = latinShortPersons.getRandom();
-  Gender randomGender = latinShortGenders.getRandom();
-  void initConjugation() {
-    randomMood = latinShortMoods.getRandom();
-    randomVoice = latinShortVoices.getRandom();
-    randomTense = latinShortTenses.getRandom();
-    randomNumber = latinShortNumbers.getRandom();
-    randomPerson = latinShortPersons.getRandom();
-    randomGender = latinShortGenders.getRandom();
-  }
+  //Pick a random coordinate. Note this does not include gender
+  LatinCoordinate randomLatinCoordinate = randomVerb.conjugationStructure.getRandomCoordinate();
+  //Pick a random gender
+  Gender randomGender = latinGenders.getRandom();
 
-  //I will not allow second person neuter because that is very rare
-  while (randomVerb.conjugateVerb(randomMood, randomVoice, randomTense, randomNumber, randomPerson, g: randomGender) == 'DNE' ||
-      (randomGender == Gender.n && randomPerson == Person.second)) {
-    initConjugation();
-    // print('$randomMood, $randomVoice, $randomTense, $randomNumber, $randomPerson, $randomGender DNE');
-  }
+  bool isComplex = (randomVerb is LatinDeponentVerb)
+      ? (randomLatinCoordinate.voice == Voice.act &&
+          (randomLatinCoordinate.tense == Tense.perfect ||
+              randomLatinCoordinate.tense == Tense.pluperfect ||
+              randomLatinCoordinate.tense == Tense.futurePerfect))
+      : (randomLatinCoordinate.voice == Voice.pas &&
+          (randomLatinCoordinate.tense == Tense.perfect ||
+              randomLatinCoordinate.tense == Tense.pluperfect ||
+              randomLatinCoordinate.tense == Tense.futurePerfect));
 
-  String lemma = randomVerb.infinitives[Tense.present]?[Voice.act] ?? 'DNE';
+  //Begin to fill out the parameters for the Question
+  String lemma = randomVerb.infinitives[Voice.act]![Tense.present]!;
   List<String> demands = [
-    lengthenTense[randomTense] ?? 'DNE',
-    lengthenMood[randomMood] ?? 'DNE',
-    //if it is imperative, you need to know the person, as the subject/vocative forms are often identical and can be confusing
-    if (randomMood == Mood.imp) lengthenPerson[randomPerson] ?? 'DNE',
-    lengthenVoice[randomVoice] ?? 'DNE',
+    lengthenTense[randomLatinCoordinate.tense]!,
+    lengthenMood[randomLatinCoordinate.mood]!,
+    //if it is imperative, person matters.
+    if (randomLatinCoordinate.mood == Mood.imp) lengthenPerson[randomLatinCoordinate.person]!,
+    //if it is complex, it matters. This may be redundant with some prompts, but i will keep it to account for personal pronouns
+    if (isComplex) lengthenGender[randomGender]!,
+    lengthenVoice[randomLatinCoordinate.voice]!,
   ];
+  String prompt = getLatinSubject(randomLatinCoordinate.mood, randomLatinCoordinate.number, randomLatinCoordinate.person, randomGender)!;
+  //what is the answer part
+  String blank = randomVerb.conjugateVerb(
+    randomLatinCoordinate.mood,
+    randomLatinCoordinate.voice,
+    randomLatinCoordinate.tense,
+    randomLatinCoordinate.number,
+    randomLatinCoordinate.person,
+    //gender: optional but very important.
+    g: randomGender,
+  )!;
 
-  String prompt = getLatinSubject(randomMood, randomNumber, randomPerson, randomGender);
-  String blank = randomVerb.conjugateVerb(randomMood, randomVoice, randomTense, randomNumber, randomPerson, g: randomGender);
+  //create the final answer with the blank filled in.
   String answer = prompt.replaceAll('_____', blank);
+  //return the question
   return Question(lemma: lemma, demands: demands, prompt: prompt, answer: answer);
 }
 
 Question getLatinNounQuestion() {
-  final random = Random();
   //GET RANDOM NOUN
-  LatinNoun randomNoun = latinNouns[random.nextInt(latinNouns.length)];
+  LatinNoun randomNoun = latinNouns.getRandom();
   //GET RANDOM VALID DECLENSION
-  Case randomCase = latinShortFullCases[random.nextInt(latinShortFullCases.length)];
-  Number randomNumber = latinShortNumbers[random.nextInt(latinShortNumbers.length)];
-  void initDeclension() {
-    randomCase = latinShortFullCases[random.nextInt(latinShortFullCases.length)];
-    randomNumber = latinShortNumbers[random.nextInt(latinShortNumbers.length)];
-  }
-
-  while (randomNoun.declineNoun(randomCase, randomNumber) == 'DNE') {
-    initDeclension();
-    // print('$randomCase, $randomNumber, DNE');
-  }
+  Case randomCase = randomNoun.declension.keys.toList().getRandom();
+  Number randomNumber = randomNoun.declension[randomCase]!.keys.toList().getRandom();
 
   //ACCOUNT FOR THE FACT THAT IT MAY BE PLURAL ONLY
-  String lemma = randomNoun.declension[Case.nom]?[Number.s] ?? randomNoun.declension[Case.nom]?[Number.p] ?? 'TERRIBLE ERROR';
+  String? lemma = randomNoun.declension[Case.nom]?[Number.s] ?? randomNoun.declension[Case.nom]?[Number.p];
 
   //PREPARE QUESTION
   List<String> demands = [
-    lengthenCase[randomCase] ?? 'DNE',
-    lengthenNumber[randomNumber] ?? 'DNE',
+    lengthenCase[randomCase]!,
+    lengthenNumber[randomNumber]!,
   ];
   String prompt = '_____';
-  String blank = randomNoun.declineNoun(randomCase, randomNumber);
-  String answer = prompt.replaceAll('_____', blank);
-  return Question(lemma: lemma, demands: demands, prompt: prompt, answer: answer);
+  String? blank = randomNoun.declineNoun(randomCase, randomNumber);
+  String answer = prompt.replaceAll('_____', blank!);
+  return Question(lemma: lemma!, demands: demands, prompt: prompt, answer: answer);
 }
 
 //match adjective to noun
 Question getLatinAdjectiveNounQuestion() {
-  final random = Random();
-  LatinNoun randomNoun = latinNouns[random.nextInt(latinNouns.length)];
-  Case randomCase = latinShortFullCases[random.nextInt(latinShortFullCases.length)];
-  Number randomNumber = latinShortNumbers[random.nextInt(latinShortNumbers.length)];
+//GET RANDOM NOUN
+  LatinNoun randomNoun = latinNouns.getRandom();
+  //GET RANDOM VALID DECLENSION
+  // Case randomCase = randomNoun.declension.keys.toList().getRandom();
+  //I do not want locative
+  Case randomCase = latinCases.getRandom();
+  Number randomNumber = randomNoun.declension[randomCase]!.keys.toList().getRandom();
 
-  void initDeclension() {
-    randomCase = latinShortFullCases[random.nextInt(latinShortFullCases.length)];
-    randomNumber = latinShortNumbers[random.nextInt(latinShortNumbers.length)];
-  }
+  LatinAdjective randomAdjective = latinAdjectives.getRandom();
 
-  while (randomNoun.declineNoun(randomCase, randomNumber) == 'DNE') {
-    initDeclension();
-    // print('$randomCase, $randomNumber, DNE');
-  }
-
-  LatinAdjective randomAdjective = latinAdjectives[random.nextInt(latinAdjectives.length)];
-
-  String lemma = randomAdjective.declineAdjective(Case.nom, Number.s, Gender.n);
+  String? lemma = randomAdjective.declineAdjective(Case.nom, Number.s, Gender.n);
 
   List<String> demands = [
-    lengthenCase[randomCase] ?? 'DNE',
-    lengthenNumber[randomNumber] ?? 'DNE',
-    lengthenGender[randomNoun.gender] ?? 'DNE', //disable in hard mode? maybe
+    lengthenCase[randomCase]!,
+    lengthenNumber[randomNumber]!,
+    lengthenGender[randomNoun.gender]!, //disable in hard mode? maybe
   ];
 
-  String declinedNoun = randomNoun.declineNoun(randomCase, randomNumber);
+  String? declinedNoun = randomNoun.declineNoun(randomCase, randomNumber);
   String prompt = '$declinedNoun _____';
 
-  String blank = randomAdjective.declineAdjective(randomCase, randomNumber, randomNoun.gender);
-  String answer = prompt.replaceAll('_____', blank);
+  String? blank = randomAdjective.declineAdjective(randomCase, randomNumber, randomNoun.gender);
+  String answer = prompt.replaceAll('_____', blank!);
 
-  if (answer == 'DNE') {
-    return getLatinAdjectiveNounQuestion();
-  }
-
-  return Question(lemma: lemma, demands: demands, prompt: prompt, answer: answer);
+  return Question(lemma: lemma!, demands: demands, prompt: prompt, answer: answer);
 }
 
 Question getLatinDeclineQuestion() {
@@ -168,7 +116,7 @@ Question getLatinDeclineQuestion() {
   return isOutcomeA ? getLatinNounQuestion() : getLatinAdjectiveNounQuestion();
 }
 
-String getLatinSubject(Mood mood, Number number, Person person, Gender gender) {
+String? getLatinSubject(Mood mood, Number number, Person person, Gender gender) {
   final random = Random();
 
   //In order to get them
@@ -240,7 +188,7 @@ String getLatinSubject(Mood mood, Number number, Person person, Gender gender) {
       String subject = getThirdPersonSubject(number, gender);
       return '_____ $subject';
     } else {
-      return 'DNE'; //imperatives cannot be first person
+      return null; //imperatives cannot be first person
     }
   } else {
     //wait neuter cant be first person

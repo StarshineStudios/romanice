@@ -9,7 +9,7 @@ class FrenchAdjective {
   const FrenchAdjective({required this.declension, this.before = false});
 
   String? declineAdjective(Number n, Gender g) {
-    return declension[n]![g];
+    return declension[n]?[g];
   }
 }
 
@@ -38,7 +38,7 @@ class FrenchVerb {
     this.conjugationStructure = frenchConjugationStructure,
   });
 
-  String? conjugateVerb(Mood m, Tense t, Number n, Person p, {g = Gender.m}) {
+  String? conjugateVerb(Mood m, Tense t, Number n, Person p, {Gender g = Gender.m}) {
     //If it is a simple tense and the conjugation contains it.
     if (frenchSimpleTenses.contains(t)) {
       return conjugation[m]?[t]?[n]?[p];

@@ -7,8 +7,8 @@ class ItalianAdjective {
   final Map<Number, Map<Gender, String>> declension;
   const ItalianAdjective({required this.declension});
 
-  String declineAdjective(Number n, Gender g) {
-    return declension[n]?[g] ?? 'DNE';
+  String? declineAdjective(Number n, Gender g) {
+    return declension[n]?[g];
   }
 }
 
@@ -20,8 +20,8 @@ class ItalianNoun {
     required Gender gender,
   }) : _gender = gender;
 
-  String declineNoun(Number n) {
-    return declension[n] ?? 'DNE';
+  String? declineNoun(Number n) {
+    return declension[n];
   }
 
   Gender getGender(Number n) {

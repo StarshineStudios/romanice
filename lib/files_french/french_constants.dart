@@ -44,9 +44,9 @@ class FrenchCoordinate {
   FrenchCoordinate(this.mood, this.tense, this.number, this.person);
 }
 
-typedef ConjugationStructure = Map<Mood, Map<Tense, Map<Number, List<Person>>>>;
+typedef FrenchConjugationStructure = Map<Mood, Map<Tense, Map<Number, List<Person>>>>;
 
-extension ConjugationStructureExtensions on ConjugationStructure {
+extension ConjugationStructureExtensions on FrenchConjugationStructure {
   FrenchCoordinate getRandomCoordinate() {
     List<FrenchCoordinate> coordinates = [];
 

@@ -126,3 +126,64 @@ PortugueseVerb ter = PortugueseVerb(
     },
   },
 );
+
+PortugueseAuxiliaryVerb ter2 = PortugueseAuxiliaryVerb(
+  infinitive: 'ter',
+  gerund: 'tendo',
+  participles: {
+    Tense.perfectRomance: const PortugueseAdjective(
+      declension: {
+        Number.s: {Gender.m: 'tido', Gender.f: 'tida'},
+        Number.p: {Gender.m: 'tidos', Gender.f: 'tidas'}
+      },
+    ),
+  },
+  conjugation: {
+    Mood.ind: {
+      Tense.presentRomance: {
+        Number.s: {Person.first: 'tenho', Person.second: 'tens', Person.third: 'tem'},
+        Number.p: {Person.first: 'temos', Person.second: 'tendes', Person.third: 'têm'},
+      },
+      Tense.imperfectRomance: {
+        Number.s: {Person.first: 'tinha', Person.second: 'tinhas', Person.third: 'tinha'},
+        Number.p: {Person.first: 'tínhamos', Person.second: 'tínheis', Person.third: 'tinham'},
+      },
+      Tense.perfectRomance: {
+        Number.s: {Person.first: 'tive', Person.second: 'tiveste', Person.third: 'teve'},
+        Number.p: {Person.first: 'tivemos', Person.second: 'tivestes', Person.third: 'tiveram'},
+      },
+      Tense.pluperfectRomance: {
+        Number.s: {Person.first: 'tivera', Person.second: 'tiveras', Person.third: 'tivera'},
+        Number.p: {Person.first: 'tivéramos', Person.second: 'tivéreis', Person.third: 'tiveram'},
+      },
+      Tense.futureRomance: {
+        Number.s: {Person.first: 'terei', Person.second: 'terás', Person.third: 'terá'},
+        Number.p: {Person.first: 'teremos', Person.second: 'tereis', Person.third: 'terão'},
+      },
+      Tense.conditionalRomance: {
+        Number.s: {Person.first: 'teria', Person.second: 'terias', Person.third: 'teria'},
+        Number.p: {Person.first: 'teríamos', Person.second: 'teríeis', Person.third: 'teriam'},
+      },
+    },
+    Mood.sub: {
+      Tense.presentRomance: {
+        Number.s: {Person.first: 'tenha', Person.second: 'tenhas', Person.third: 'tenha'},
+        Number.p: {Person.first: 'tenhamos', Person.second: 'tenhais', Person.third: 'tenham'},
+      },
+      Tense.imperfectRomance: {
+        Number.s: {Person.first: 'tivesse', Person.second: 'tivesses', Person.third: 'tivesse'},
+        Number.p: {Person.first: 'tivéssemos', Person.second: 'tivésseis', Person.third: 'tivessem'},
+      },
+      Tense.futureRomance: {
+        Number.s: {Person.first: 'tiver', Person.second: 'tiveres', Person.third: 'tiver'},
+        Number.p: {Person.first: 'tivermos', Person.second: 'tiverdes', Person.third: 'tiverem'},
+      },
+    },
+    Mood.imp: {
+      Tense.presentRomance: {
+        Number.s: {Person.second: 'tem', Person.third: 'tenha'},
+        Number.p: {Person.first: 'tenhamos', Person.second: 'tende', Person.third: 'tenham'},
+      },
+    },
+  },
+);

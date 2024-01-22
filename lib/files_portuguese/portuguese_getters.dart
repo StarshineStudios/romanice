@@ -2,6 +2,7 @@
 import 'dart:math';
 
 import 'package:colorguesser/core/enums.dart';
+import 'package:colorguesser/files_portuguese/portuguese_constants.dart';
 
 import '../core/constants.dart';
 import 'word_data/portuguese_adjectives.dart';
@@ -9,30 +10,6 @@ import 'portuguese_classes.dart';
 import 'word_data/portuguese_nouns.dart';
 import 'word_data/portuguese_verbs.dart';
 import '../core/lengtheners.dart';
-
-List<Number> portugueseNumbers = [Number.s, Number.p];
-//i is used to represent neuter like words that change gender
-List<Gender> portugueseGenders = [
-  Gender.m,
-  Gender.f,
-];
-List<Mood> portugueseMoods = [Mood.ind, Mood.sub, Mood.imp];
-List<Tense> portugueseTenses = [
-  Tense.presentRomance,
-  Tense.imperfectRomance,
-  Tense.futureRomance,
-  Tense.perfectRomance,
-  Tense.pluperfectRomance,
-  Tense.conditionalRomance, //cond is tense in portuguese
-
-  //compound forms
-  Tense.perfectRomanceCompound,
-  Tense.pluperfectRomanceCompound,
-  Tense.futurePerfectRomanceCompound,
-  Tense.anteriorRomanceCompound,
-  Tense.conditionalPerfectRomanceCompound,
-];
-List<Person> portuguesePersons = [Person.first, Person.second, Person.third];
 
 Question getPortugueseVerbQuestion() {
   PortugueseVerb randomVerb = portugueseVerbs.getRandom();

@@ -1,64 +1,66 @@
 import 'package:colorguesser/core/constants.dart';
 import 'package:colorguesser/core/enums.dart';
 
-List<Number> italianNumbers = [Number.s, Number.p];
-//i is used to represent neuter like words that change gender
-//I do not currently use this.
-// List<Gender> italianFullGenders = [Gender.m, Gender.f, Gender.i];
-List<Gender> italianGenders = [Gender.m, Gender.f];
-
-List<Mood> italianMoods = [Mood.ind, Mood.sub, Mood.con, Mood.imp];
-List<Person> italianPersons = [Person.first, Person.second, Person.third];
-List<Tense> italianTenses = [
-  //non-compound forms
+List<Number> portugueseNumbers = [Number.s, Number.p];
+List<Gender> portugueseGenders = [
+  Gender.m,
+  Gender.f,
+];
+List<Mood> portugueseMoods = [Mood.ind, Mood.sub, Mood.imp];
+List<Tense> portugueseTenses = [
   Tense.presentRomance,
   Tense.imperfectRomance,
   Tense.futureRomance,
   Tense.perfectRomance,
+  Tense.pluperfectRomance,
+  Tense.conditionalRomance, //cond is tense in portuguese
 
   //compound forms
   Tense.perfectRomanceCompound,
   Tense.pluperfectRomanceCompound,
   Tense.futurePerfectRomanceCompound,
   Tense.anteriorRomanceCompound,
+  Tense.conditionalPerfectRomanceCompound,
 ];
 
-List<Tense> italianSimpleTenses = [
-  //non-compound forms
+List<Tense> portugueseSimpleTenses = [
   Tense.presentRomance,
   Tense.imperfectRomance,
   Tense.futureRomance,
   Tense.perfectRomance,
+  Tense.pluperfectRomance,
+  Tense.conditionalRomance, //cond is tense in portuguese
 ];
-
-List<Tense> italianCompoundTenses = [
-  //compound forms
+List<Tense> portugueseCompoundTenses = [
   Tense.perfectRomanceCompound,
   Tense.pluperfectRomanceCompound,
   Tense.futurePerfectRomanceCompound,
   Tense.anteriorRomanceCompound,
+  Tense.conditionalPerfectRomanceCompound,
 ];
 
-class ItalianCoordinate {
+List<Person> portuguesePersons = [Person.first, Person.second, Person.third];
+
+class PortugueseCoordinate {
   final Mood mood;
   final Tense tense;
   final Number number;
   final Person person;
 
-  ItalianCoordinate(this.mood, this.tense, this.number, this.person);
+  PortugueseCoordinate(this.mood, this.tense, this.number, this.person);
 }
 
-typedef ItalianConjugationStructure = Map<Mood, Map<Tense, Map<Number, List<Person>>>>;
+typedef PortugueseConjugationStructure = Map<Mood, Map<Tense, Map<Number, List<Person>>>>;
 
-extension ConjugationStructureExtensions on ItalianConjugationStructure {
-  ItalianCoordinate getRandomCoordinate() {
-    List<ItalianCoordinate> coordinates = [];
+extension ConjugationStructureExtensions on PortugueseConjugationStructure {
+  PortugueseCoordinate getRandomCoordinate() {
+    List<PortugueseCoordinate> coordinates = [];
 
     forEach((mood, tenses) {
       tenses.forEach((tense, numbers) {
         numbers.forEach((number, persons) {
           for (var person in persons) {
-            coordinates.add(ItalianCoordinate(mood, tense, number, person));
+            coordinates.add(PortugueseCoordinate(mood, tense, number, person));
           }
         });
       });
@@ -72,10 +74,8 @@ extension ConjugationStructureExtensions on ItalianConjugationStructure {
   }
 }
 
-//The default conjugation for italian verbs.
-const Map<Mood, Map<Tense, Map<Number, List<Person>>>> italianConjugationStructure = {
+const Map<Mood, Map<Tense, Map<Number, List<Person>>>> portugueseConjugationStructure = {
   Mood.ind: {
-    //SIMPLE
     Tense.presentRomance: {
       Number.s: [Person.first, Person.second, Person.third],
       Number.p: [Person.first, Person.second, Person.third],
@@ -84,39 +84,19 @@ const Map<Mood, Map<Tense, Map<Number, List<Person>>>> italianConjugationStructu
       Number.s: [Person.first, Person.second, Person.third],
       Number.p: [Person.first, Person.second, Person.third],
     },
-    Tense.futureRomance: {
-      Number.s: [Person.first, Person.second, Person.third],
-      Number.p: [Person.first, Person.second, Person.third],
-    },
     Tense.perfectRomance: {
       Number.s: [Person.first, Person.second, Person.third],
       Number.p: [Person.first, Person.second, Person.third],
     },
-
-    //COMPOUND
-    Tense.perfectRomanceCompound: {
+    Tense.pluperfectRomance: {
       Number.s: [Person.first, Person.second, Person.third],
       Number.p: [Person.first, Person.second, Person.third],
     },
-    Tense.pluperfectRomanceCompound: {
+    Tense.futureRomance: {
       Number.s: [Person.first, Person.second, Person.third],
       Number.p: [Person.first, Person.second, Person.third],
     },
-    Tense.futurePerfectRomanceCompound: {
-      Number.s: [Person.first, Person.second, Person.third],
-      Number.p: [Person.first, Person.second, Person.third],
-    },
-    Tense.anteriorRomanceCompound: {
-      Number.s: [Person.first, Person.second, Person.third],
-      Number.p: [Person.first, Person.second, Person.third],
-    },
-  },
-  Mood.con: {
-    Tense.presentRomance: {
-      Number.s: [Person.first, Person.second, Person.third],
-      Number.p: [Person.first, Person.second, Person.third],
-    },
-    Tense.perfectRomanceCompound: {
+    Tense.conditionalRomance: {
       Number.s: [Person.first, Person.second, Person.third],
       Number.p: [Person.first, Person.second, Person.third],
     },
@@ -130,11 +110,7 @@ const Map<Mood, Map<Tense, Map<Number, List<Person>>>> italianConjugationStructu
       Number.s: [Person.first, Person.second, Person.third],
       Number.p: [Person.first, Person.second, Person.third],
     },
-    Tense.perfectRomanceCompound: {
-      Number.s: [Person.first, Person.second, Person.third],
-      Number.p: [Person.first, Person.second, Person.third],
-    },
-    Tense.pluperfectRomanceCompound: {
+    Tense.futureRomance: {
       Number.s: [Person.first, Person.second, Person.third],
       Number.p: [Person.first, Person.second, Person.third],
     },

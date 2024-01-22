@@ -46,72 +46,33 @@ Question getItalianVerbQuestion() {
   return Question(lemma: lemma, demands: demands, prompt: prompt, answer: answer);
 }
 
-Question getItalianNounQuestion() {
-  final random = Random();
-  //PICK RANDOM NOUN
-  ItalianNoun randomNoun = italianNouns[random.nextInt(italianNouns.length)];
-  //PICK RANDOM DECLENSION
-  Number randomNumber = italianNumbers[random.nextInt(italianNumbers.length)];
-  void initDeclension() {
-    randomNumber = italianNumbers[random.nextInt(italianNumbers.length)];
-  }
-
-  while (randomNoun.declineNoun(randomNumber) == 'DNE') {
-    initDeclension();
-  }
-
-  //GENERATE QUESTION
-  String lemma = randomNumber == Number.s ? randomNoun.declineNoun(Number.p) : randomNoun.declineNoun(Number.s);
-  List<String> demands = [
-    lengthenNumber[randomNumber] ?? 'DNE',
-  ];
-  String prompt = '_____';
-  String blank = randomNoun.declineNoun(randomNumber);
-  String answer = prompt.replaceAll('_____', blank);
-  return Question(lemma: lemma, demands: demands, prompt: prompt, answer: answer);
-}
-
 Question getItalianAdjectiveNounQuestion() {
-  final random = Random();
-  //GET RANDOM NOUN
-  ItalianNoun randomNoun = italianNouns[random.nextInt(italianNouns.length)];
-  //GET RANDOM NUMBER
-  Number randomNumber = italianNumbers[random.nextInt(italianNumbers.length)];
-  void initDeclension() {
-    randomNumber = italianNumbers[random.nextInt(italianNumbers.length)];
-  }
+  //Get a random number.
+  Number randomNumber = italianNumbers.getRandom();
+  //Get the random words
+  ItalianNoun randomNoun = italianNouns.getRandom();
+  ItalianAdjective randomAdjective = italianAdjectives.getRandom();
 
-  while (randomNoun.declineNoun(randomNumber) == 'DNE') {
-    initDeclension();
-    // print('$randomNumber, DNE');
-  }
-  //GET RANDOM ADJECTIVE
-  ItalianAdjective randomAdjective = italianAdjectives[random.nextInt(italianAdjectives.length)];
+  //get the lemma form of singular masculine
+  String lemma = randomAdjective.declineAdjective(Number.s, Gender.m)!;
 
-  //GENERATE QUESTION
-  String lemma = randomAdjective.declineAdjective(Number.s, Gender.m);
   List<String> demands = [
-    lengthenNumber[randomNumber] ?? 'DNE',
-    lengthenGender[randomNoun.getGender(randomNumber)] ?? 'DNE', //disable in hard mode? maybe
+    lengthenNumber[randomNumber]!,
+    lengthenGender[randomNoun.getGender(randomNumber)]!, //disable in hard mode? maybe
   ];
 
-  String declinedNoun = randomNoun.declineNoun(randomNumber);
+  String declinedNoun = randomNoun.declineNoun(randomNumber)!;
+
+  //some italian adjectives go before
   String prompt = '$declinedNoun _____';
-  String blank = randomAdjective.declineAdjective(randomNumber, randomNoun.getGender(randomNumber));
+  String blank = randomAdjective.declineAdjective(randomNumber, randomNoun.getGender(randomNumber))!;
   String answer = prompt.replaceAll('_____', blank);
 
-  if (answer == 'DNE') {
-    return getItalianAdjectiveNounQuestion();
-  }
   return Question(lemma: lemma, demands: demands, prompt: prompt, answer: answer);
 }
 
 Question getItalianDeclineQuestion() {
-  final random = Random();
-  // Simulate a 60/40 chance
-  bool isOutcomeA = random.nextDouble() < 0;
-
-  return isOutcomeA ? getItalianNounQuestion() : getItalianAdjectiveNounQuestion();
+  return getItalianAdjectiveNounQuestion();
 }
 
 String getItalianSubject(Mood mood, Number number, Person person, Gender gender) {

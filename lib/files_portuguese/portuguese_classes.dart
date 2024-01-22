@@ -1,16 +1,15 @@
+import 'package:colorguesser/auxiliaryTenses.dart';
 import 'package:colorguesser/core/enums.dart';
+import 'package:colorguesser/files_portuguese/portuguese_constants.dart';
 
 import 'word_data/portuguese_verbs.dart';
 
 class PortugueseAdjective {
   final Map<Number, Map<Gender, String>> declension;
-  const PortugueseAdjective(
-      {
-      //default value for tests and such\
-      required this.declension});
+  const PortugueseAdjective({required this.declension});
 
-  String declineAdjective(Number n, Gender g) {
-    return declension[n]?[g] ?? 'DNE';
+  String? declineAdjective(Number n, Gender g) {
+    return declension[n]?[g];
   }
 }
 
@@ -19,59 +18,51 @@ class PortugueseNoun {
   final Gender gender;
   const PortugueseNoun({required this.gender, required this.declension});
 
-  String declineNoun(Number n) {
-    return declension[n] ?? 'DNE';
+  String? declineNoun(Number n) {
+    return declension[n];
   }
 }
 
 class PortugueseVerb {
   String infinitive;
   String gerund;
+
   Map<Tense, PortugueseAdjective> participles;
   Map<Mood, Map<Tense, Map<Number, Map<Person, String>>>> conjugation;
+  Map<Mood, Map<Tense, Map<Number, List<Person>>>> conjugationStructure;
 
   PortugueseVerb({
     required this.infinitive,
     required this.gerund,
     required this.participles,
     required this.conjugation,
+    this.conjugationStructure = portugueseConjugationStructure,
   });
 
-  String conjugateVerb(Mood m, Tense t, Number n, Person p, {Gender g = Gender.m}) {
-    // print('hi'); //pres ind and pres cond are both simple, also all imp are simple
-    if (t == Tense.presentRomance ||
-        t == Tense.imperfectRomance ||
-        t == Tense.perfectRomance ||
-        t == Tense.pluperfectRomance ||
-        t == Tense.futureRomance ||
-        t == Tense.conditionalRomance) {
-      return conjugation[m]?[t]?[n]?[p] ?? 'DNE';
+  String? conjugateVerb(Mood m, Tense t, Number n, Person p, {Gender g = Gender.m}) {
+    //If it is a simple tense and the conjugation contains it.
+    if (portugueseSimpleTenses.contains(t)) {
+      return conjugation[m]?[t]?[n]?[p];
+    }
+    //if it is a complex tense
+    if (portugueseCompoundTenses.contains(t)) {
+      Tense? auxiliaryTense = auxiliaryTenseOf[t];
 
-      //else if the verb is not simple and is compound
-    } else {
-      Tense auxiliaryTense;
-
-      if (t == Tense.perfectRomanceCompound) {
-        auxiliaryTense = Tense.presentRomance;
-      } else if (t == Tense.pluperfectRomanceCompound) {
-        auxiliaryTense = Tense.imperfectRomance;
-      } else if (t == Tense.anteriorRomanceCompound) {
-        auxiliaryTense = Tense.perfectRomanceCompound;
-      } else if (t == Tense.futurePerfectRomanceCompound) {
-        auxiliaryTense = Tense.futureRomance;
-      } else {
-        //if (t == Tense.conditionalPerfectRomanceCompound) {
-        auxiliaryTense = Tense.present; //will be conditional
+      if (auxiliaryTense == null) {
+        return null;
       }
+      String? aux = ter2.conjugateVerb(m, auxiliaryTense, n, p);
 
-      String aux = ter.conjugateVerb(m, auxiliaryTense, n, p);
-      String part = participles[Tense.perfectRomance]!.declineAdjective(Number.s, Gender.m);
+      String? part = participles[Tense.perfectRomance]!.declineAdjective(Number.s, Gender.m);
 
-      if (aux == 'DNE' || part == 'DNE') {
-        return 'DNE';
+      if (aux == null || part == null) {
+        return null;
       }
       return '$aux $part';
     }
+
+    //it is not anything
+    return null;
   }
 }
 
@@ -88,15 +79,7 @@ class PortugueseAuxiliaryVerb {
     required this.conjugation,
   });
 
-  String conjugateVerb(Mood m, Tense t, Number n, Person p, {Gender g = Gender.m}) {
-    if (t == Tense.presentRomance ||
-        t == Tense.imperfectRomance ||
-        t == Tense.perfectRomance ||
-        t == Tense.pluperfectRomance ||
-        t == Tense.futureRomance ||
-        t == Tense.conditionalRomance) {
-      return conjugation[m]?[t]?[n]?[p] ?? 'DNE';
-    }
-    return 'DNE';
+  String? conjugateVerb(Mood m, Tense t, Number n, Person p, {Gender g = Gender.m}) {
+    return conjugation[m]?[t]?[n]?[p];
   }
 }

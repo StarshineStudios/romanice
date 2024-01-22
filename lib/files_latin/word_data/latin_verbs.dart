@@ -1,4 +1,5 @@
 import 'package:colorguesser/core/enums.dart';
+import 'package:colorguesser/files_latin/latin_constants.dart';
 
 import '../latin_classes.dart';
 
@@ -164,6 +165,7 @@ LatinVerb posse = LatinVerb(
       ),
     },
   },
+  conjugationStructure: latinActiveOnlyConjugationStructureWithNoImperative,
   conjugation: {
     Mood.ind: {
       Voice.act: {
@@ -694,6 +696,7 @@ LatinVerb volo = LatinVerb(
       ),
     }
   },
+  conjugationStructure: latinActiveOnlyConjugationStructureWithNoImperative,
   conjugation: {
     Mood.ind: {
       Voice.act: {
@@ -786,6 +789,7 @@ LatinVerb nolo = LatinVerb(
       ),
     },
   },
+  conjugationStructure: latinActiveOnlyConjugationStructure,
   conjugation: {
     Mood.ind: {
       Voice.act: {
