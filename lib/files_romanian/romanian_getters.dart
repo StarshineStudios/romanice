@@ -2,6 +2,7 @@
 import 'dart:math';
 
 import 'package:colorguesser/core/enums.dart';
+import 'package:colorguesser/files_romanian/romanian_constants.dart';
 
 import '../core/constants.dart';
 import 'word_data/romanian_adjectives.dart';
@@ -10,126 +11,84 @@ import 'word_data/romanian_nouns.dart';
 import 'word_data/romanian_verbs.dart';
 import '../core/lengtheners.dart';
 
-List<Number> romanianShortNumbers = [Number.s, Number.p];
-//neuter is similar to romanian, but it is not said to change, simply be neuter.
-List<Gender> romanianShortGenders = [Gender.m, Gender.f, Gender.n];
-List<Case> romanianShortCases = [Case.nomacc, Case.gendat, Case.voc];
-List<Mood> romanianShortMoods = [Mood.ind, Mood.sub, Mood.optcon, Mood.pre, Mood.imp];
-List<Person> romanianShortPersons = [Person.first, Person.second, Person.third];
-
-List<Tense> romanianShortTenses = [
-  //simple tenses
-  Tense.presentRomance,
-  Tense.imperfectRomance,
-  Tense.perfectRomance,
-  Tense.pluperfectRomance,
-
-  //compound tenses
-  Tense.perfectRomanceCompound, //perfect compus
-  Tense.futureRomanianCompoundVrea,
-  Tense.futurePerfectRomanceCompound, // Tense.futp c vrea: , //I can just use future perfect c foTense.this
-
-  Tense.futureRomanianCompoundO, //o is a form of avea
-  Tense.futureRomanianCompoundAvea, //rare, but I will include it, it is basis of futpast
-  Tense.futurePastRomanianCompound,
-];
-
 Question getRomanianVerbQuestion() {
-  //GET RANDOM VERB
+  //Pick a random verb
   RomanianVerb randomVerb = romanianVerbs.getRandom();
-  //GET RANDOM VALID CONJUGATION
-  Mood randomMood = romanianShortMoods.getRandom();
-  Tense randomTense = romanianShortTenses.getRandom();
-  Number randomNumber = romanianShortNumbers.getRandom();
-  Person randomPerson = romanianShortPersons.getRandom();
-  Gender randomGender = romanianShortGenders.getRandom();
-  void initConjugation() {
-    randomMood = romanianShortMoods.getRandom();
-    randomTense = romanianShortTenses.getRandom();
-    randomNumber = romanianShortNumbers.getRandom();
-    randomPerson = romanianShortPersons.getRandom();
-    randomGender = romanianShortGenders.getRandom();
-  }
+  //Pick a random coordinate. Note this does not include gender
+  RomanianCoordinate randomRomanianCoordinate = randomVerb.conjugationStructure.getRandomCoordinate();
+  //Pick a random gender
+  Gender randomGender = romanianGenders.getRandom();
 
-  while (randomVerb.conjugateVerb(randomMood, randomTense, randomNumber, randomPerson) == 'DNE') {
-    initConjugation();
-    // print('$randomMood, $randomTense, $randomNumber, $randomPerson, $randomGender DNE');
-  }
-  //GENERATE QUESTION
+  //Begin to fill out the parameters for the Question
   String lemma = randomVerb.infinitive;
   List<String> demands = [
-    lengthenTense[randomTense] ?? 'DNE',
-    lengthenMood[randomMood] ?? 'DNE',
-    if (randomMood == Mood.imp) lengthenPerson[randomPerson] ?? 'DNE',
+    lengthenTense[randomRomanianCoordinate.tense]!,
+    lengthenMood[randomRomanianCoordinate.mood]!,
+    //if it is imperative, person matters.
+    if (randomRomanianCoordinate.mood == Mood.imp) lengthenPerson[randomRomanianCoordinate.person]!,
   ];
-  String prompt = getRomanianSubject(randomMood, randomNumber, randomPerson, randomGender);
-  String blank = randomVerb.conjugateVerb(randomMood, randomTense, randomNumber, randomPerson);
+  String prompt = getRomanianSubject(randomRomanianCoordinate.mood, randomRomanianCoordinate.number, randomRomanianCoordinate.person, randomGender);
+  //what is the answer part
+  String blank = randomVerb.conjugateVerb(
+    randomRomanianCoordinate.mood,
+    randomRomanianCoordinate.tense,
+    randomRomanianCoordinate.number,
+    randomRomanianCoordinate.person,
+  )!;
+
+  //create the final answer with the blank filled in.
   String answer = prompt.replaceAll('_____', blank);
+  //return the question
   return Question(lemma: lemma, demands: demands, prompt: prompt, answer: answer);
 }
 
 Question getRomanianNounQuestion() {
-  final random = Random();
   //GET RANDOM NOUN
-  RomanianNoun randomNoun = romanianNouns[random.nextInt(romanianNouns.length)];
+  RomanianNoun randomNoun = romanianNouns.getRandom();
   //GET RANDOM VALID DECLENSION
-  Case randomCase = romanianShortCases.getRandom();
-  Number randomNumber = romanianShortNumbers.getRandom();
-  void initDeclension() {
-    randomCase = romanianShortCases.getRandom();
-    randomNumber = romanianShortNumbers.getRandom();
-  }
+  Case randomCase = randomNoun.declension.keys.toList().getRandom();
+  Number randomNumber = randomNoun.declension[randomCase]!.keys.toList().getRandom();
 
-  while (randomNoun.declineNoun(randomCase, randomNumber) == 'DNE') {
-    initDeclension();
-    // print('$randomCase, $randomNumber, DNE');
-  }
+  //ACCOUNT FOR THE FACT THAT IT MAY BE PLURAL ONLY
+  String? lemma = randomNoun.declension[Case.nom]?[Number.s] ?? randomNoun.declension[Case.nom]?[Number.p];
 
-  //GENERATE QUESTION
-  String lemma = randomNoun.declension[Case.nomacc]?[Number.s] ?? 'DNE';
+  //PREPARE QUESTION
   List<String> demands = [
-    lengthenCase[randomCase] ?? 'DNE',
-    lengthenNumber[randomNumber] ?? 'DNE',
+    lengthenCase[randomCase]!,
+    lengthenNumber[randomNumber]!,
   ];
   String prompt = '_____';
-  String blank = randomNoun.declineNoun(randomCase, randomNumber);
-  String answer = prompt.replaceAll('_____', blank);
-  return Question(lemma: lemma, demands: demands, prompt: prompt, answer: answer);
+  String? blank = randomNoun.declineNoun(randomCase, randomNumber);
+  String answer = prompt.replaceAll('_____', blank!);
+  return Question(lemma: lemma!, demands: demands, prompt: prompt, answer: answer);
 }
 
 Question getRomanianAdjectiveNounQuestion() {
-  final random = Random();
   //GET RANDOM NOUN
   RomanianNoun randomNoun = romanianNouns.getRandom();
-  Case randomCase = romanianShortCases.getRandom();
-  Number randomNumber = romanianShortNumbers.getRandom();
-  void initDeclension() {
-    randomCase = romanianShortCases.getRandom();
-    randomNumber = romanianShortNumbers.getRandom();
-  }
+  //GET RANDOM VALID DECLENSION
+  // Case randomCase = randomNoun.declension.keys.toList().getRandom();
+  //I do not want locative
+  Case randomCase = romanianCases.getRandom();
+  Number randomNumber = randomNoun.declension[randomCase]!.keys.toList().getRandom();
 
-  while (randomNoun.declineNoun(randomCase, randomNumber) == 'DNE') {
-    initDeclension();
-    // print('$randomCase, $randomNumber, DNE');
-  }
-  //GET RANDOM ADJECTIVE
-  RomanianAdjective randomAdjective = romanianAdjectives[random.nextInt(romanianAdjectives.length)];
-  String lemma = randomAdjective.declineAdjective(Case.nomacc, Number.s, Gender.n);
+  RomanianAdjective randomAdjective = romanianAdjectives.getRandom();
 
-  //GENERATE QUESTION
+  String? lemma = randomAdjective.declineAdjective(Case.nom, Number.s, Gender.n);
+
   List<String> demands = [
-    lengthenCase[randomCase] ?? 'DNE',
-    lengthenNumber[randomNumber] ?? 'DNE',
-    lengthenGender[randomNoun.gender] ?? 'DNE', //disable in hard mode? maybe
+    lengthenCase[randomCase]!,
+    lengthenNumber[randomNumber]!,
+    lengthenGender[randomNoun.gender]!, //disable in hard mode? maybe
   ];
-  String declinedNoun = randomNoun.declineNoun(randomCase, randomNumber);
+
+  String? declinedNoun = randomNoun.declineNoun(randomCase, randomNumber);
   String prompt = '$declinedNoun _____';
-  String blank = randomAdjective.declineAdjective(randomCase, randomNumber, randomNoun.gender);
-  String answer = prompt.replaceAll('_____', blank);
-  if (answer == 'DNE') {
-    return getRomanianAdjectiveNounQuestion();
-  }
-  return Question(lemma: lemma, demands: demands, prompt: prompt, answer: answer);
+
+  String? blank = randomAdjective.declineAdjective(randomCase, randomNumber, randomNoun.gender);
+  String answer = prompt.replaceAll('_____', blank!);
+
+  return Question(lemma: lemma!, demands: demands, prompt: prompt, answer: answer);
 }
 
 Question getRomanianDeclineQuestion() {

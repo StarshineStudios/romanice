@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:colorguesser/core/constants.dart';
 import 'package:colorguesser/core/enums.dart';
 
@@ -56,15 +54,14 @@ class Coordinate {
 }
 
 Coordinate getRandomCoordinate(Map<Mood, Map<Tense, Map<Number, Map<Person, String>>>> conjugation) {
-  var rng = Random();
   List<Coordinate> allCoordinates = [];
 
   conjugation.forEach((mood, tenses) {
     tenses.forEach((tense, numbers) {
       numbers.forEach((number, persons) {
-        persons.keys.forEach((person) {
+        for (var person in persons.keys) {
           allCoordinates.add(Coordinate(mood, tense, number, person));
-        });
+        }
       });
     });
   });
@@ -99,7 +96,7 @@ void main() {
   }
   var summary = summarizeList(results);
   summary.forEach((key, value) {
-    print('$key: $value');
+    // print('$key: $value');
   });
 
   // Retrieve the string using the random coordinate

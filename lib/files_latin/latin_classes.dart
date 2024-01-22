@@ -1,4 +1,4 @@
-import 'package:colorguesser/auxiliaryTenses.dart';
+import 'package:colorguesser/auxiliary_tenses.dart';
 import 'package:colorguesser/core/enums.dart';
 import 'package:colorguesser/files_latin/latin_constants.dart';
 

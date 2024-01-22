@@ -4,6 +4,9 @@ import '../romanian_classes.dart';
 
 List<RomanianVerb> romanianVerbs = [
   fi,
+  avea,
+  vrea,
+  vedea,
 ];
 
 RomanianVerb fi = RomanianVerb(

@@ -1,5 +1,4 @@
 //These can apply to a lot of languages
-import 'dart:math';
 
 import 'package:colorguesser/core/enums.dart';
 import 'package:colorguesser/files_portuguese/portuguese_constants.dart';
@@ -12,112 +11,65 @@ import 'word_data/portuguese_verbs.dart';
 import '../core/lengtheners.dart';
 
 Question getPortugueseVerbQuestion() {
+  //Pick a random verb
   PortugueseVerb randomVerb = portugueseVerbs.getRandom();
-  Mood randomMood = portugueseMoods.getRandom();
-  Tense randomTense = portugueseTenses.getRandom();
-  Number randomNumber = portugueseNumbers.getRandom();
-  Person randomPerson = portuguesePersons.getRandom();
+  //Pick a random coordinate. Note this does not include gender
+  PortugueseCoordinate randomPortugueseCoordinate = randomVerb.conjugationStructure.getRandomCoordinate();
+  //Pick a random gender
   Gender randomGender = portugueseGenders.getRandom();
 
-  void initConjugation() {
-    randomMood = portugueseMoods.getRandom();
-    randomTense = portugueseTenses.getRandom();
-    randomNumber = portugueseNumbers.getRandom();
-    randomPerson = portuguesePersons.getRandom();
-    randomGender = portugueseGenders.getRandom();
-  }
-
-  while (randomVerb.conjugateVerb(randomMood, randomTense, randomNumber, randomPerson, g: randomGender) == 'DNE') {
-    initConjugation();
-    // print('$randomMood, $randomTense, $randomNumber, $randomPerson, $randomGender DNE');
-  }
-
+  //Begin to fill out the parameters for the Question
   String lemma = randomVerb.infinitive;
-
   List<String> demands = [
-    lengthenTense[randomTense] ?? 'DNE',
-    lengthenMood[randomMood] ?? 'DNE',
-    if (randomMood == Mood.imp) lengthenPerson[randomPerson] ?? 'DNE',
+    lengthenTense[randomPortugueseCoordinate.tense]!,
+    lengthenMood[randomPortugueseCoordinate.mood]!,
+    //if it is imperative, person matters.
+    if (randomPortugueseCoordinate.mood == Mood.imp) lengthenPerson[randomPortugueseCoordinate.person]!,
   ];
-  String prompt = getPortugueseSubject(randomMood, randomNumber, randomPerson, randomGender);
+  String prompt = getPortugueseSubject(randomPortugueseCoordinate.mood, randomPortugueseCoordinate.number, randomPortugueseCoordinate.person, randomGender);
+  //what is the answer part
+  String blank = randomVerb.conjugateVerb(
+    randomPortugueseCoordinate.mood,
+    randomPortugueseCoordinate.tense,
+    randomPortugueseCoordinate.number,
+    randomPortugueseCoordinate.person,
+    //gender: optional but very important.
+    g: randomGender,
+  )!;
 
-  String blank = randomVerb.conjugateVerb(randomMood, randomTense, randomNumber, randomPerson, g: randomGender);
+  //create the final answer with the blank filled in.
   String answer = prompt.replaceAll('_____', blank);
-
-  return Question(lemma: lemma, demands: demands, prompt: prompt, answer: answer);
-  // return Question(lemma: 'lemma', demands: ['demands'], prompt: 'prompt', answer: 'answer');
-}
-
-Question getPortugueseNounQuestion() {
-  PortugueseNoun randomNoun = portugueseNouns.getRandom();
-
-  Number randomNumber = portugueseNumbers.getRandom();
-
-  void initDeclension() {
-    randomNumber = portugueseNumbers.getRandom();
-  }
-
-  while (randomNoun.declineNoun(randomNumber) == 'DNE') {
-    initDeclension();
-    // print('$randomNumber, DNE');
-  }
-
-  String lemma = randomNumber == Number.s ? randomNoun.declineNoun(Number.p) : randomNoun.declineNoun(Number.s);
-
-  List<String> demands = [
-    lengthenNumber[randomNumber] ?? 'DNE',
-  ];
-  String prompt = '_____';
-
-  String blank = randomNoun.declineNoun(randomNumber);
-  String answer = prompt.replaceAll('_____', blank);
-
+  //return the question
   return Question(lemma: lemma, demands: demands, prompt: prompt, answer: answer);
 }
 
 //match adjective to noun
 Question getPortugueseAdjectiveNounQuestion() {
-  final random = Random();
-  PortugueseNoun randomNoun = portugueseNouns[random.nextInt(portugueseNouns.length)];
+  //Get a random number.
   Number randomNumber = portugueseNumbers.getRandom();
+  //Get the random words
+  PortugueseNoun randomNoun = portugueseNouns.getRandom();
+  PortugueseAdjective randomAdjective = portugueseAdjectives.getRandom();
 
-  void initDeclension() {
-    randomNumber = portugueseNumbers.getRandom();
-  }
-
-  while (randomNoun.declineNoun(randomNumber) == 'DNE') {
-    initDeclension();
-    // print('$randomNumber, DNE');
-  }
-
-  PortugueseAdjective randomAdjective = portugueseAdjectives[random.nextInt(portugueseAdjectives.length)];
-
-  String lemma = randomAdjective.declineAdjective(Number.s, Gender.m);
+  //get the lemma form of singular masculine
+  String lemma = randomAdjective.declineAdjective(Number.s, Gender.m)!;
 
   List<String> demands = [
-    lengthenNumber[randomNumber] ?? 'DNE',
-    lengthenGender[randomNoun.gender] ?? 'DNE', //disable in hard mode? maybe
+    lengthenNumber[randomNumber]!,
+    lengthenGender[randomNoun.gender]!, //disable in hard mode? maybe
   ];
 
-  String declinedNoun = randomNoun.declineNoun(randomNumber);
+  String declinedNoun = randomNoun.declineNoun(randomNumber)!;
+
   String prompt = '$declinedNoun _____';
-
-  String blank = randomAdjective.declineAdjective(randomNumber, randomNoun.gender);
+  String blank = randomAdjective.declineAdjective(randomNumber, randomNoun.gender)!;
   String answer = prompt.replaceAll('_____', blank);
-
-  if (answer == 'DNE') {
-    return getPortugueseAdjectiveNounQuestion();
-  }
 
   return Question(lemma: lemma, demands: demands, prompt: prompt, answer: answer);
 }
 
 Question getPortugueseDeclineQuestion() {
-  final random = Random();
-  // Simulate a 60/40 chance
-  bool isOutcomeA = random.nextDouble() < 0.5;
-
-  return isOutcomeA ? getPortugueseNounQuestion() : getPortugueseAdjectiveNounQuestion();
+  return getPortugueseAdjectiveNounQuestion();
 }
 
 String getPortugueseSubject(Mood mood, Number number, Person person, Gender gender) {
@@ -143,17 +95,17 @@ String getPortugueseSubject(Mood mood, Number number, Person person, Gender gend
 
   if (number == Number.s) {
     if (person == Person.first) {
-      subject = 'TEMP Egō';
+      subject = 'Eu';
     } else if (person == Person.second) {
-      subject = 'TEMP Tū';
+      subject = 'Tu';
     } else if (person == Person.third) {
       subject = getThirdPersonSubject(number, gender);
     }
   } else if (number == Number.p) {
     if (person == Person.first) {
-      subject = 'TEMP Nōs';
+      subject = 'Nós';
     } else if (person == Person.second) {
-      subject = 'TEMP Vōs';
+      subject = 'Vós';
     } else if (person == Person.third) {
       subject = getThirdPersonSubject(number, gender);
     }

@@ -1,4 +1,4 @@
-import 'package:colorguesser/auxiliaryTenses.dart';
+import 'package:colorguesser/auxiliary_tenses.dart';
 import 'package:colorguesser/core/enums.dart';
 import 'package:colorguesser/files_italian/italian_constants.dart';
 import 'word_data/italian_verbs.dart';
