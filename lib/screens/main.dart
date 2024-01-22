@@ -1,3 +1,4 @@
+import 'package:colorguesser/screens/info_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -23,6 +24,7 @@ void main() async {
 List<Widget> pages = [
   const LanguageBoxHolder(),
   const StoreScreen(),
+  const InfoScreen(),
   const SettingsScreen(),
 ];
 
@@ -114,13 +116,18 @@ class _AppScreenState extends State<AppScreen> {
                 },
                 tabs: [
                   GButton(
-                    icon: Icons.square,
+                    icon: Icons.menu_book,
                     text: 'textGame'.tr(),
                     textStyle: const TextStyle(fontFamily: 'Fraunces', color: darkColor),
                   ),
                   GButton(
-                    icon: Icons.shop,
+                    icon: Icons.store,
                     text: 'textStore'.tr(),
+                    textStyle: const TextStyle(fontFamily: 'Fraunces', color: darkColor),
+                  ),
+                  GButton(
+                    icon: Icons.info,
+                    text: 'Information'.tr(),
                     textStyle: const TextStyle(fontFamily: 'Fraunces', color: darkColor),
                   ),
                   GButton(

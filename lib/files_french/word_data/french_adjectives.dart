@@ -5,16 +5,16 @@ List<FrenchAdjective> frenchAdjectives = [
   romain,
   grand, // Before the noun
   petit, // Before the noun
-  beau, // Before the noun
+  // beau, // Before the noun //needs to be fixed
   jeune, // Before the noun
-  vieux, // Before the noun
-  bon, // Before the noun
+  // vieux, // Before the noun
+  bon, // Before the noun //this can be different
   mauvais, // Before the noun
   gros, // Before the noun
   long, // Before the noun
   court, // Before the noun
   haut, // Before the noun
-  nouveau, // Before the noun
+  // nouveau, // Before the noun
   vivant,
   mort,
   froid,
@@ -42,13 +42,13 @@ FrenchAdjective petit = const FrenchAdjective(
     Number.p: {Gender.m: 'petits', Gender.f: 'petites'}
   },
 );
-FrenchAdjective beau = const FrenchAdjective(
-  before: true,
-  declension: {
-    Number.s: {Gender.m: 'beau', Gender.f: 'belle'},
-    Number.p: {Gender.m: 'beaux', Gender.f: 'belles'}
-  },
-);
+// FrenchAdjective beau = const FrenchAdjective(
+//   before: true,
+//   declension: {
+//     Number.s: {Gender.m: 'beau', Gender.f: 'belle'},
+//     Number.p: {Gender.m: 'beaux', Gender.f: 'belles'}
+//   },
+// );
 FrenchAdjective jeune = const FrenchAdjective(
   before: true,
   declension: {
@@ -56,13 +56,13 @@ FrenchAdjective jeune = const FrenchAdjective(
     Number.p: {Gender.m: 'jeunes', Gender.f: 'jeunes'}
   },
 );
-FrenchAdjective vieux = const FrenchAdjective(
-  before: true,
-  declension: {
-    Number.s: {Gender.m: 'vieux', Gender.f: 'vieille'},
-    Number.p: {Gender.m: 'vieux', Gender.f: 'vieilles'}
-  },
-);
+// FrenchAdjective vieux = const FrenchAdjective(
+//   before: true,
+//   declension: {
+//     Number.s: {Gender.m: 'vieux', Gender.f: 'vieille'},
+//     Number.p: {Gender.m: 'vieux', Gender.f: 'vieilles'}
+//   },
+// );
 FrenchAdjective bon = const FrenchAdjective(
   before: true,
   declension: {
@@ -105,13 +105,13 @@ FrenchAdjective haut = const FrenchAdjective(
     Number.p: {Gender.m: 'hauts', Gender.f: 'hautes'}
   },
 );
-FrenchAdjective nouveau = const FrenchAdjective(
-  before: true,
-  declension: {
-    Number.s: {Gender.m: 'nouveau', Gender.f: 'nouvelle'},
-    Number.p: {Gender.m: 'nouveaux', Gender.f: 'nouvelles'}
-  },
-);
+// FrenchAdjective nouveau = const FrenchAdjective(
+//   before: true,
+//   declension: {
+//     Number.s: {Gender.m: 'nouveau', Gender.f: 'nouvelle'},
+//     Number.p: {Gender.m: 'nouveaux', Gender.f: 'nouvelles'}
+//   },
+// );
 FrenchAdjective vivant = const FrenchAdjective(
   declension: {
     Number.s: {Gender.m: 'vivant', Gender.f: 'vivante'},

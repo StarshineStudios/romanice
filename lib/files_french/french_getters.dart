@@ -25,7 +25,7 @@ Question getFrenchVerbQuestion() {
     //if it is imperative, person matters.
     if (randomFrenchCoordinate.mood == Mood.imp) lengthenPerson[randomFrenchCoordinate.person]!,
     //if it is complex, it matters. This may be redundant with some prompts, but i will keep it to account for personal pronouns
-    if (frenchCompoundTenses.contains(randomFrenchCoordinate.tense)) lengthenGender[randomGender]!,
+    if (frenchCompoundTenses.contains(randomFrenchCoordinate.tense) && randomVerb.auxiliaryVerb == etre2) lengthenGender[randomGender]!,
   ];
   String prompt = getFrenchSubject(randomFrenchCoordinate.mood, randomFrenchCoordinate.number, randomFrenchCoordinate.person, randomGender);
   //what is the answer part

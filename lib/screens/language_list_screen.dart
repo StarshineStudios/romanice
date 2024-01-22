@@ -314,11 +314,27 @@ class _LanguageBoxHolderState extends State<LanguageBoxHolder> {
       LanguageBox2(
         imagePath: 'assets/FlagRomania.png',
         name: 'textRomanian'.tr(),
-        description: '', // 'comingSoonText'.tr(),
+        description: 'comingSoonText'.tr(),
         index: 5,
         isExpanded: expandedIndex == 5,
         onPressed: () {
-          changeExpandedIndex(5);
+          // changeExpandedIndex(5);
+        },
+        onNounButtonPressed: () {
+          launchGame(getRomanianDeclineQuestion);
+        },
+        onVerbButtonPressed: () {
+          launchGame(getRomanianVerbQuestion);
+        },
+      ),
+      LanguageBox2(
+        imagePath: 'assets/FlagCatalonia.png',
+        name: 'textCatalan'.tr(),
+        description: 'comingSoonText'.tr(),
+        index: 6,
+        isExpanded: expandedIndex == 6,
+        onPressed: () {
+          // changeExpandedIndex(6);
         },
         onNounButtonPressed: () {
           launchGame(getRomanianDeclineQuestion);

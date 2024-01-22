@@ -27,7 +27,7 @@ Question getItalianVerbQuestion() {
     //if it is imperative, person matters.
     if (randomItalianCoordinate.mood == Mood.imp) lengthenPerson[randomItalianCoordinate.person]!,
     //if it is complex, it matters. This may be redundant with some prompts, but i will keep it to account for personal pronouns
-    if (italianCompoundTenses.contains(randomItalianCoordinate.tense)) lengthenGender[randomGender]!,
+    if (italianCompoundTenses.contains(randomItalianCoordinate.tense) && randomVerb.auxiliaryVerb == essere2) lengthenGender[randomGender]!,
   ];
   String prompt = getItalianSubject(randomItalianCoordinate.mood, randomItalianCoordinate.number, randomItalianCoordinate.person, randomGender);
   //what is the answer part
