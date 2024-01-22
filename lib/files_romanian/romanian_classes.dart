@@ -85,16 +85,22 @@ class RomanianVerb {
       } else if (t == Tense.futurePastRomanianCompound) {
         //we use the normal form of avea, not the aux form
 
-        String? first = avea.conjugateVerb(Mood.ind, Tense.imperfect, n, p);
+        String? first = avea.conjugateVerb(Mood.ind, Tense.imperfectRomance, n, p);
         String? second = conjugateVerb(Mood.sub, Tense.presentRomance, n, p);
         if (first == null || second == null) {
+          if (first == null) {
+            print('first null');
+          }
+          if (second == null) {
+            print('second null');
+          }
           return null;
         }
         return '$first $second';
       } else if (t == Tense.futurePerfectRomanceCompound) {
         String? first = vrea2.conjugateVerb(Mood.ind, Tense.presentRomance, n, p);
         String second = 'fi';
-        String? third = participles['past']?.declineAdjective(Case.nomacc, Number.s, Gender.m);
+        String? third = participles[Tense.perfectRomance]?.declineAdjective(Case.nomacc, Number.s, Gender.m);
         if (first == null || third == null) {
           return null;
         }
@@ -105,7 +111,7 @@ class RomanianVerb {
         //we use the aux form\
 
         String first = 'să fi';
-        String? second = participles['past']?.declineAdjective(Case.nomacc, Number.s, Gender.m);
+        String? second = participles[Tense.perfectRomance]?.declineAdjective(Case.nomacc, Number.s, Gender.m);
         if (second == null) {
           return null;
         }
@@ -114,7 +120,7 @@ class RomanianVerb {
     } else if (m == Mood.optcon) {
       if (t == Tense.perfectRomanceCompound) {
         String? first = avea3.conjugateVerb(Mood.ind, Tense.presentRomance, n, p);
-        String? second = participles['past']?.declineAdjective(Case.nomacc, Number.s, Gender.m);
+        String? second = participles[Tense.perfectRomance]?.declineAdjective(Case.nomacc, Number.s, Gender.m);
         //we use the aux form with aș	ai ar	am	ați	ar
         if (first == null || second == null) {
           return null;
@@ -124,7 +130,7 @@ class RomanianVerb {
         String? first = avea3.conjugateVerb(Mood.ind, Tense.presentRomance, n, p);
 
         String second = 'fi';
-        String? third = participles['past']?.declineAdjective(Case.nomacc, Number.s, Gender.m);
+        String? third = participles[Tense.perfectRomance]?.declineAdjective(Case.nomacc, Number.s, Gender.m);
         if (first == null || third == null) {
           return null;
         }
@@ -134,7 +140,7 @@ class RomanianVerb {
       if (t == Tense.perfectRomanceCompound) {
         //we use the aux form of vrea with oi	oi	o	om	oți	or
         String? first = vrea3.conjugateVerb(Mood.ind, Tense.presentRomance, n, p);
-        String? second = participles['past']?.declineAdjective(Case.nomacc, Number.s, Gender.m);
+        String? second = participles[Tense.perfectRomance]?.declineAdjective(Case.nomacc, Number.s, Gender.m);
         if (first == null || second == null) {
           return null;
         }
@@ -142,7 +148,7 @@ class RomanianVerb {
       } else if (t == Tense.presentRomance) {
         String? first = vrea3.conjugateVerb(Mood.ind, Tense.presentRomance, n, p);
         String second = 'fi';
-        String? third = participles['past']?.declineAdjective(Case.nomacc, Number.s, Gender.m);
+        String? third = participles[Tense.perfectRomance]?.declineAdjective(Case.nomacc, Number.s, Gender.m);
         if (first == null || third == null) {
           return null;
         }

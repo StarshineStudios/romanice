@@ -95,6 +95,8 @@ Map<Tense, String> lengthenTense = {
   //spanish only soubjunctive imperfect forms
   Tense.imperfectSpanishRa: 'imperfect (ra)', //es
   Tense.imperfectSpanishSe: 'imperfect (se)', //es
+  Tense.pluperfectSpanishCompoundRa: 'pluperfect (ra)',
+  Tense.pluperfectSpanishCompoundSe: 'pluperfect (se)',
 
   //Romanian only future forms
   Tense.futureRomanianCompoundVrea: 'future (vrea)',

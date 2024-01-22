@@ -29,6 +29,8 @@ Question getRomanianVerbQuestion() {
   ];
   String prompt = getRomanianSubject(randomRomanianCoordinate.mood, randomRomanianCoordinate.number, randomRomanianCoordinate.person, randomGender);
   //what is the answer part
+  print(
+      ' ${randomVerb.infinitive} ${randomRomanianCoordinate.mood},${randomRomanianCoordinate.tense},${randomRomanianCoordinate.number},${randomRomanianCoordinate.person},');
   String blank = randomVerb.conjugateVerb(
     randomRomanianCoordinate.mood,
     randomRomanianCoordinate.tense,
@@ -50,7 +52,7 @@ Question getRomanianNounQuestion() {
   Number randomNumber = randomNoun.declension[randomCase]!.keys.toList().getRandom();
 
   //ACCOUNT FOR THE FACT THAT IT MAY BE PLURAL ONLY
-  String? lemma = randomNoun.declension[Case.nom]?[Number.s] ?? randomNoun.declension[Case.nom]?[Number.p];
+  String? lemma = randomNoun.declension[Case.nomacc]?[Number.s] ?? randomNoun.declension[Case.nomacc]?[Number.p];
 
   //PREPARE QUESTION
   List<String> demands = [
@@ -74,7 +76,7 @@ Question getRomanianAdjectiveNounQuestion() {
 
   RomanianAdjective randomAdjective = romanianAdjectives.getRandom();
 
-  String? lemma = randomAdjective.declineAdjective(Case.nom, Number.s, Gender.n);
+  String? lemma = randomAdjective.declineAdjective(Case.nomacc, Number.s, Gender.n);
 
   List<String> demands = [
     lengthenCase[randomCase]!,

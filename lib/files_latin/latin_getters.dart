@@ -30,7 +30,7 @@ Question getLatinVerbQuestion() {
               randomLatinCoordinate.tense == Tense.futurePerfect));
 
   //Begin to fill out the parameters for the Question
-  String lemma = randomVerb.infinitives[Voice.act]![Tense.present]!;
+  String lemma = randomVerb.infinitives[Tense.present]![Voice.act]!;
   List<String> demands = [
     lengthenTense[randomLatinCoordinate.tense]!,
     lengthenMood[randomLatinCoordinate.mood]!,

@@ -17,5 +17,9 @@ RomanianAdjective romano = const RomanianAdjective(
       Number.p: {Gender.m: 'români', Gender.f: 'române', Gender.n: 'române'}
     },
     //vocative case is just same for nom
+    Case.voc: {
+      Number.s: {Gender.m: 'român', Gender.f: 'română', Gender.n: 'român'},
+      Number.p: {Gender.m: 'români', Gender.f: 'române', Gender.n: 'române'}
+    },
   },
 );

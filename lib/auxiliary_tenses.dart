@@ -16,5 +16,10 @@ Map<Tense, Tense> auxiliaryTenseOf = {
   //Paradigm two
   Tense.conditionalPerfectRomanceCompound: Tense.conditionalRomance,
 
+  //Spanish
+  Tense.pluperfectSpanishCompoundRa: Tense.imperfectSpanishRa,
+  Tense.pluperfectSpanishCompoundSe: Tense.imperfectSpanishSe,
+
   //romanian ones are so weird they must be dealt with individually.
+  //For now they are hard coded. I'll keep it that way until I find any problems with it.
 };

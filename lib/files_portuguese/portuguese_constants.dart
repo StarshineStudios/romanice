@@ -100,6 +100,26 @@ const Map<Mood, Map<Tense, Map<Number, List<Person>>>> portugueseConjugationStru
       Number.s: [Person.first, Person.second, Person.third],
       Number.p: [Person.first, Person.second, Person.third],
     },
+    Tense.perfectRomanceCompound: {
+      Number.s: [Person.first, Person.second, Person.third],
+      Number.p: [Person.first, Person.second, Person.third],
+    },
+    Tense.pluperfectRomanceCompound: {
+      Number.s: [Person.first, Person.second, Person.third],
+      Number.p: [Person.first, Person.second, Person.third],
+    },
+    Tense.futurePerfectRomanceCompound: {
+      Number.s: [Person.first, Person.second, Person.third],
+      Number.p: [Person.first, Person.second, Person.third],
+    },
+    Tense.anteriorRomanceCompound: {
+      Number.s: [Person.first, Person.second, Person.third],
+      Number.p: [Person.first, Person.second, Person.third],
+    },
+    Tense.conditionalPerfectRomanceCompound: {
+      Number.s: [Person.first, Person.second, Person.third],
+      Number.p: [Person.first, Person.second, Person.third],
+    },
   },
   Mood.sub: {
     Tense.presentRomance: {
@@ -111,6 +131,18 @@ const Map<Mood, Map<Tense, Map<Number, List<Person>>>> portugueseConjugationStru
       Number.p: [Person.first, Person.second, Person.third],
     },
     Tense.futureRomance: {
+      Number.s: [Person.first, Person.second, Person.third],
+      Number.p: [Person.first, Person.second, Person.third],
+    },
+    Tense.perfectRomanceCompound: {
+      Number.s: [Person.first, Person.second, Person.third],
+      Number.p: [Person.first, Person.second, Person.third],
+    },
+    Tense.pluperfectRomance: {
+      Number.s: [Person.first, Person.second, Person.third],
+      Number.p: [Person.first, Person.second, Person.third],
+    },
+    Tense.futurePerfectRomanceCompound: {
       Number.s: [Person.first, Person.second, Person.third],
       Number.p: [Person.first, Person.second, Person.third],
     },

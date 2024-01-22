@@ -1,50 +1,68 @@
 import 'package:colorguesser/core/constants.dart';
 import 'package:colorguesser/core/enums.dart';
 
-List<Number> romanianNumbers = [Number.s, Number.p];
-//neuter is similar to It irregular, but it is not said to change, simply be neuter.
-List<Gender> romanianGenders = [Gender.m, Gender.f, Gender.n];
-List<Case> romanianCases = [Case.nomacc, Case.gendat, Case.voc];
-List<Mood> romanianMoods = [Mood.ind, Mood.sub, Mood.optcon, Mood.pre, Mood.imp];
-List<Person> romanianPersons = [Person.first, Person.second, Person.third];
-
-List<Tense> romanianTenses = [
-  //simple tenses
+List<Number> spanishNumbers = [Number.s, Number.p];
+List<Gender> spanishGenders = [Gender.m, Gender.f];
+List<Mood> spanishMoods = [Mood.ind, Mood.sub, Mood.imp];
+List<Tense> spanishTenses = [
   Tense.presentRomance,
   Tense.imperfectRomance,
+
+  Tense.imperfectSpanishSe,
+  Tense.imperfectSpanishRa,
+  Tense.futureRomance,
   Tense.perfectRomance,
-  Tense.pluperfectRomance,
+  Tense.conditionalRomance, //cond is tense in spanish
 
-  //compound tenses
-  Tense.perfectRomanceCompound, //perfect compus
-  Tense.futureRomanianCompoundVrea,
-  Tense.futurePerfectRomanceCompound, // Tense.futp c vrea: , //I can just use future perfect c foTense.this
-
-  Tense.futureRomanianCompoundO, //o is a form of avea
-  Tense.futureRomanianCompoundAvea, //rare, but I will include it, it is basis of futpast
-  Tense.futurePastRomanianCompound,
+  //compound forms
+  Tense.perfectRomanceCompound,
+  Tense.pluperfectRomanceCompound,
+  Tense.futurePerfectRomanceCompound,
+  Tense.anteriorRomanceCompound,
+  Tense.conditionalPerfectRomanceCompound,
 ];
+List<Tense> spanishSimpleTenses = [
+  Tense.presentRomance,
+  Tense.imperfectRomance,
 
-class RomanianCoordinate {
+  Tense.imperfectSpanishSe,
+  Tense.imperfectSpanishRa,
+  Tense.futureRomance,
+  Tense.perfectRomance,
+  Tense.conditionalRomance, //cond is tense in spanish
+];
+List<Tense> spanishCompoundTenses = [
+  //compound forms
+  Tense.perfectRomanceCompound,
+  Tense.pluperfectRomanceCompound,
+  Tense.futurePerfectRomanceCompound,
+  Tense.anteriorRomanceCompound,
+  Tense.conditionalPerfectRomanceCompound,
+  Tense.pluperfectSpanishCompoundRa,
+  Tense.pluperfectSpanishCompoundSe,
+];
+List<Person> spanishPersons = [Person.first, Person.second, Person.third];
+
+class SpanishCoordinate {
   final Mood mood;
   final Tense tense;
   final Number number;
   final Person person;
 
-  RomanianCoordinate(this.mood, this.tense, this.number, this.person);
+  SpanishCoordinate(this.mood, this.tense, this.number, this.person);
 }
 
-typedef RomanianConjugationStructure = Map<Mood, Map<Tense, Map<Number, List<Person>>>>;
+typedef SpanishConjugationStructure = Map<Mood, Map<Tense, Map<Number, List<Person>>>>;
 
-extension ConjugationStructureExtensions on RomanianConjugationStructure {
-  RomanianCoordinate getRandomCoordinate() {
-    List<RomanianCoordinate> coordinates = [];
+extension ConjugationStructureExtensions on SpanishConjugationStructure {
+  SpanishCoordinate getRandomCoordinate() {
+    List<SpanishCoordinate> coordinates = [];
 
     forEach((mood, tenses) {
       tenses.forEach((tense, numbers) {
         numbers.forEach((number, persons) {
           for (var person in persons) {
-            coordinates.add(RomanianCoordinate(mood, tense, number, person));
+            coordinates.add(SpanishCoordinate(mood, tense, number, person));
           }
         });
       });
@@ -58,7 +76,7 @@ extension ConjugationStructureExtensions on RomanianConjugationStructure {
   }
 }
 
-const Map<Mood, Map<Tense, Map<Number, List<Person>>>> romanianConjugationStructure = {
+const Map<Mood, Map<Tense, Map<Number, List<Person>>>> portugueseConjugationStructure = {
   Mood.ind: {
     Tense.presentRomance: {
       Number.s: [Person.first, Person.second, Person.third],
@@ -68,36 +86,36 @@ const Map<Mood, Map<Tense, Map<Number, List<Person>>>> romanianConjugationStruct
       Number.s: [Person.first, Person.second, Person.third],
       Number.p: [Person.first, Person.second, Person.third],
     },
+    Tense.futureRomance: {
+      Number.s: [Person.first, Person.second, Person.third],
+      Number.p: [Person.first, Person.second, Person.third],
+    },
     Tense.perfectRomance: {
       Number.s: [Person.first, Person.second, Person.third],
       Number.p: [Person.first, Person.second, Person.third],
     },
-    Tense.pluperfectRomance: {
+    Tense.conditionalRomance: {
       Number.s: [Person.first, Person.second, Person.third],
       Number.p: [Person.first, Person.second, Person.third],
     },
-    //compound
+    //Compound
     Tense.perfectRomanceCompound: {
       Number.s: [Person.first, Person.second, Person.third],
       Number.p: [Person.first, Person.second, Person.third],
     },
-    Tense.futureRomanianCompoundAvea: {
-      Number.s: [Person.first, Person.second, Person.third],
-      Number.p: [Person.first, Person.second, Person.third],
-    },
-    Tense.futureRomanianCompoundO: {
-      Number.s: [Person.first, Person.second, Person.third],
-      Number.p: [Person.first, Person.second, Person.third],
-    },
-    Tense.futureRomanianCompoundVrea: {
-      Number.s: [Person.first, Person.second, Person.third],
-      Number.p: [Person.first, Person.second, Person.third],
-    },
-    Tense.futurePastRomanianCompound: {
+    Tense.pluperfectRomanceCompound: {
       Number.s: [Person.first, Person.second, Person.third],
       Number.p: [Person.first, Person.second, Person.third],
     },
     Tense.futurePerfectRomanceCompound: {
+      Number.s: [Person.first, Person.second, Person.third],
+      Number.p: [Person.first, Person.second, Person.third],
+    },
+    Tense.anteriorRomanceCompound: {
+      Number.s: [Person.first, Person.second, Person.third],
+      Number.p: [Person.first, Person.second, Person.third],
+    },
+    Tense.conditionalPerfectRomanceCompound: {
       Number.s: [Person.first, Person.second, Person.third],
       Number.p: [Person.first, Person.second, Person.third],
     },
@@ -107,40 +125,40 @@ const Map<Mood, Map<Tense, Map<Number, List<Person>>>> romanianConjugationStruct
       Number.s: [Person.first, Person.second, Person.third],
       Number.p: [Person.first, Person.second, Person.third],
     },
+    Tense.imperfectSpanishRa: {
+      Number.s: [Person.first, Person.second, Person.third],
+      Number.p: [Person.first, Person.second, Person.third],
+    },
+    Tense.imperfectSpanishSe: {
+      Number.s: [Person.first, Person.second, Person.third],
+      Number.p: [Person.first, Person.second, Person.third],
+    },
+    Tense.futureRomance: {
+      Number.s: [Person.first, Person.second, Person.third],
+      Number.p: [Person.first, Person.second, Person.third],
+    },
+    //Compound
     Tense.perfectRomanceCompound: {
       Number.s: [Person.first, Person.second, Person.third],
       Number.p: [Person.first, Person.second, Person.third],
     },
-  },
-  Mood.optcon: {
-    Tense.presentRomance: {
+    Tense.pluperfectSpanishCompoundRa: {
       Number.s: [Person.first, Person.second, Person.third],
       Number.p: [Person.first, Person.second, Person.third],
     },
-    Tense.perfectRomanceCompound: {
+    Tense.pluperfectSpanishCompoundSe: {
       Number.s: [Person.first, Person.second, Person.third],
       Number.p: [Person.first, Person.second, Person.third],
     },
-  },
-  Mood.pre: {
-    Tense.presentRomance: {
-      Number.s: [Person.first, Person.second, Person.third],
-      Number.p: [Person.first, Person.second, Person.third],
-    },
-    //I do not include progressive tenses
-    Tense.perfectRomanceCompound: {
+    Tense.futurePerfectRomanceCompound: {
       Number.s: [Person.first, Person.second, Person.third],
       Number.p: [Person.first, Person.second, Person.third],
     },
   },
   Mood.imp: {
     Tense.presentRomance: {
-      Number.s: [
-        Person.second,
-      ],
-      Number.p: [
-        Person.second,
-      ],
+      Number.s: [Person.second, Person.third],
+      Number.p: [Person.first, Person.second, Person.third],
     },
   },
 };

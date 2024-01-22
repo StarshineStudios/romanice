@@ -196,7 +196,8 @@ class TypeWriter extends StatelessWidget {
                       fit: BoxFit.scaleDown,
                       child: Text(
                         text,
-                        style: const TextStyle(fontSize: 40, color: darkColor, fontFamily: 'Fraunces'),
+                        style: const TextStyle(fontSize: 30, color: darkColor, fontFamily: 'Fraunces'),
+                        softWrap: true,
                       ),
                     ),
                   ),

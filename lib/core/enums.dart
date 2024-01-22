@@ -36,6 +36,8 @@ enum Tense {
   //Special Spanish Subjunctive Imperfect Tenses
   imperfectSpanishRa,
   imperfectSpanishSe,
+  pluperfectSpanishCompoundRa,
+  pluperfectSpanishCompoundSe,
 
   //Special Romanian Tenses
   futureRomanianCompoundVrea,
