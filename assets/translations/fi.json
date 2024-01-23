@@ -7,6 +7,7 @@
 
 
   "textSettings": "Configūrātiōnēs",
+  "Library": "Bibliothēca",
   "textSystemLanguage": "Lingua Systematis",
   "useSystemDefaultLanguageText": "Utī Linguā Systematis orīginālī",
   "resetProgressText": "Omnia data delēre",
@@ -43,6 +44,13 @@
   "nominative/accusative": "nōminātīvus/accūsātīvus",
   "genitive/dative": "genitīvus/datīvus",
 
+  "indicative (active)": "indicātīvus (āctīva)",
+  "subjunctive (active)": "coniūnctīvus (āctīva)",
+  "imperative (active)": "imperātīvus (āctīva)",
+  "indicative (passive)": "indicātīvus (passīva)",
+  "subjunctive (passive)": "coniūnctīvus (passīva)",
+  "imperative (passive)": "imperātīvus (passīva)",
+
   "indicative": "indicātīvus",
   "subjunctive": "coniūnctīvus",
   "imperative": "imperātīvus",
@@ -59,7 +67,7 @@
   "perfect": "perfectum",
   "pluperfect": "plūsquamperfectum",
   "future perfect": "fūtūrum perfectum",
-
+  
   "romance present": "praesēns",
   "romance imperfect": "imperfectum",
   "romance future": "fūtūrum",
@@ -93,5 +101,9 @@
   "conditional perfect": "condītiōnāle perfectum",
 
   "completed": "complētum",
-  "tap to reveal": "revēlāre pulsandō"
+  "tap to reveal": "revēlāre pulsandō",
+
+  "adjectives": "adjectīva",
+  "nouns": "nōmina",
+  "verbs": "verba"
 }

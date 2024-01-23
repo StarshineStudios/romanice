@@ -78,7 +78,7 @@ class LanguageBox2 extends StatelessWidget {
                               if (description != '')
                                 Text(
                                   description,
-                                  style: const TextStyle(fontSize: 25, color: darkColor, fontFamily: 'Fraunces'),
+                                  style: const TextStyle(fontSize: 25, color: darkColor, fontFamily: 'Fraunces', fontWeight: FontWeight.w100),
                                 ),
                             ],
                           ),
@@ -314,11 +314,11 @@ class _LanguageBoxHolderState extends State<LanguageBoxHolder> {
       LanguageBox2(
         imagePath: 'assets/FlagRomania.png',
         name: 'textRomanian'.tr(),
-        description: 'comingSoonText'.tr(),
+        description: '', //'comingSoonText'.tr(),
         index: 5,
         isExpanded: expandedIndex == 5,
         onPressed: () {
-          // changeExpandedIndex(5);
+          changeExpandedIndex(5);
         },
         onNounButtonPressed: () {
           launchGame(getRomanianDeclineQuestion);

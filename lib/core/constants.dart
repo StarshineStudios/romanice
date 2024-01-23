@@ -10,6 +10,13 @@ const Color fadedColor = Color.fromRGBO(170, 167, 162, 1);
 const Color lightColor = Color.fromRGBO(235, 227, 213, 1);
 const Color almostWhiteColor = Color.fromRGBO(243, 238, 234, 1);
 
+const Color pastelRed = Color.fromRGBO(255, 179, 186, 1);
+const Color pastelOrange = Color.fromRGBO(255, 223, 186, 1);
+const Color pastelYellow = Color.fromRGBO(255, 255, 186, 1);
+const Color pastelGreen = Color.fromRGBO(186, 255, 201, 1);
+const Color pastelBlue = Color.fromRGBO(186, 225, 255, 1);
+const Color pastelPurple = Color.fromRGBO(207, 186, 255, 1);
+
 class NiceButton extends StatefulWidget {
   final Color color;
   final Color inactiveColor;

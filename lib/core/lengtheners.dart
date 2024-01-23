@@ -110,3 +110,9 @@ Map<Person, String> lengthenPerson = {
   Person.second: 'second person',
   Person.third: 'third person',
 };
+
+Map<WordTypePlural, String> lengthenWordTypePlural = {
+  WordTypePlural.nouns: 'nouns',
+  WordTypePlural.adjectives: 'adjectives',
+  WordTypePlural.verbs: 'verbs',
+};

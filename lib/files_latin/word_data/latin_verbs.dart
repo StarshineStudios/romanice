@@ -5,24 +5,18 @@ import '../latin_classes.dart';
 
 List<LatinVerb> latinVerbs = [
   esse,
-  posse,
+  habere,
   amare,
-  volo,
-  nolo,
-  video,
-
-// eō
-// volō
-// nōlō
-// mālō
-// ferō
-// fīō
-// edō
-// dō
-// inquam
+  videre,
+  facere,
+  velle,
+  nolle,
+  posse,
+  ire,
+  scire,
 ];
 
-LatinVerb esse = LatinAuxiliaryVerb(
+LatinVerb esse = LatinVerb(
   infinitives: {
     Tense.present: {Voice.act: 'esse'},
     Tense.perfect: {Voice.act: 'fuisse'},
@@ -60,6 +54,7 @@ LatinVerb esse = LatinAuxiliaryVerb(
       ),
     }
   },
+  conjugationStructure: latinActiveOnlyConjugationStructure,
   conjugation: {
     Mood.ind: {
       Voice.act: {
@@ -127,7 +122,678 @@ LatinVerb esse = LatinAuxiliaryVerb(
     },
   },
 );
+LatinVerb scire = LatinVerb(
+  infinitives: {
+    Tense.present: {
+      Voice.act: 'scīre',
+    },
+    Tense.perfect: {
+      Voice.act: 'scīvisse',
+      Voice.pas: 'scīrī',
+    },
+    Tense.future: {
+      Voice.act: 'scītūrum esse',
+    },
+  },
+  participles: {
+    Tense.present: {
+      Voice.act: const LatinAdjective(
+        declension: {
+          Case.nom: {
+            Number.s: {Gender.m: 'sciēns', Gender.f: 'sciēns', Gender.n: 'sciēns'},
+            Number.p: {Gender.m: 'scientēs', Gender.f: 'scientēs', Gender.n: 'scientia'}
+          },
+          Case.acc: {
+            Number.s: {Gender.m: 'scientem', Gender.f: 'scientem', Gender.n: 'sciēns'},
+            Number.p: {Gender.m: 'scientēs', Gender.f: 'scientēs', Gender.n: 'scientia'}
+          },
+          Case.gen: {
+            Number.s: {Gender.m: 'scientis', Gender.f: 'scientis', Gender.n: 'scientis'},
+            Number.p: {Gender.m: 'scientium', Gender.f: 'scientium', Gender.n: 'scientium'}
+          },
+          Case.dat: {
+            Number.s: {Gender.m: 'scientī', Gender.f: 'scientī', Gender.n: 'scientī'},
+            Number.p: {Gender.m: 'scientibus', Gender.f: 'scientibus', Gender.n: 'scientibus'}
+          },
+          Case.abl: {
+            Number.s: {Gender.m: 'sciente', Gender.f: 'sciente', Gender.n: 'sciente'},
+            Number.p: {Gender.m: 'scientibus', Gender.f: 'scientibus', Gender.n: 'scientibus'}
+          },
+          Case.voc: {
+            Number.s: {Gender.m: 'sciēns', Gender.f: 'sciēns', Gender.n: 'sciēns'},
+            Number.p: {Gender.m: 'scientēs', Gender.f: 'scientēs', Gender.n: 'scientia'}
+          },
+        },
+      ),
+    },
+    Tense.perfect: {
+      Voice.act: const LatinAdjective(
+        declension: {
+          Case.nom: {
+            Number.s: {Gender.m: 'scītus', Gender.f: 'scīta', Gender.n: 'scītum'},
+          },
+          Case.acc: {
+            Number.s: {Gender.m: 'scītum', Gender.f: 'scītam', Gender.n: 'scītum'},
+          },
+          Case.gen: {
+            Number.s: {Gender.m: 'scītī', Gender.f: 'scītae', Gender.n: 'scītī'},
+          },
+          Case.dat: {
+            Number.s: {Gender.m: 'scītō', Gender.f: 'scītae', Gender.n: 'scītō'},
+          },
+          Case.abl: {
+            Number.s: {Gender.m: 'scītō', Gender.f: 'scītā', Gender.n: 'scītō'},
+          },
+          Case.voc: {
+            Number.s: {Gender.m: 'scīte', Gender.f: 'scīta', Gender.n: 'scītum'},
+          },
+        },
+      ),
+      Voice.pas: const LatinAdjective(
+        declension: {
+          Case.nom: {
+            Number.s: {Gender.m: 'scītus', Gender.f: 'scīta', Gender.n: 'scītum'},
+          },
+          Case.acc: {
+            Number.s: {Gender.m: 'scītum', Gender.f: 'scītam', Gender.n: 'scītum'},
+          },
+          Case.gen: {
+            Number.s: {Gender.m: 'scītī', Gender.f: 'scītae', Gender.n: 'scītī'},
+          },
+          Case.dat: {
+            Number.s: {Gender.m: 'scītō', Gender.f: 'scītae', Gender.n: 'scītō'},
+          },
+          Case.abl: {
+            Number.s: {Gender.m: 'scītō', Gender.f: 'scītā', Gender.n: 'scītō'},
+          },
+          Case.voc: {
+            Number.s: {Gender.m: 'scīte', Gender.f: 'scīta', Gender.n: 'scītum'},
+          },
+        },
+      ),
+    },
+    Tense.future: {
+      Voice.act: const LatinAdjective(
+        declension: {
+          Case.nom: {
+            Number.s: {Gender.m: 'scītūrus', Gender.f: 'scītūra', Gender.n: 'scītūrum'},
+          },
+          Case.acc: {
+            Number.s: {Gender.m: 'scītūrum', Gender.f: 'scītūram', Gender.n: 'scītūrum'},
+          },
+          Case.gen: {
+            Number.s: {Gender.m: 'scītūrī', Gender.f: 'scītūrae', Gender.n: 'scītūrī'},
+          },
+          Case.dat: {
+            Number.s: {Gender.m: 'scītūrō', Gender.f: 'scītūrae', Gender.n: 'scītūrō'},
+          },
+          Case.abl: {
+            Number.s: {Gender.m: 'scītūrō', Gender.f: 'scītūrā', Gender.n: 'scītūrō'},
+          },
+          Case.voc: {
+            Number.s: {Gender.m: 'scītūre', Gender.f: 'scītūra', Gender.n: 'scītūrum'},
+          },
+        },
+      ),
+    },
+  },
+  conjugation: {
+    Mood.ind: {
+      Voice.act: {
+        Tense.present: {
+          Number.s: {Person.first: 'sciō', Person.second: 'scīs', Person.third: 'scit'},
+          Number.p: {Person.first: 'scīmus', Person.second: 'scītis', Person.third: 'sciunt'},
+        },
+        Tense.imperfect: {
+          Number.s: {Person.first: 'sciēbam', Person.second: 'sciēbās', Person.third: 'sciēbat'},
+          Number.p: {Person.first: 'sciēbāmus', Person.second: 'sciēbātis', Person.third: 'sciēbant'},
+        },
+        Tense.future: {
+          Number.s: {Person.first: 'sciam', Person.second: 'sciēs', Person.third: 'sciet'},
+          Number.p: {Person.first: 'sciēmus', Person.second: 'sciētis', Person.third: 'scient'},
+        },
+        Tense.perfect: {
+          Number.s: {Person.first: 'scīvī', Person.second: 'scīvistī', Person.third: 'scīvit'},
+          Number.p: {Person.first: 'scīvimus', Person.second: 'scīvistis', Person.third: 'scīvērunt'},
+        },
+        Tense.pluperfect: {
+          Number.s: {Person.first: 'scīveram', Person.second: 'scieram', Person.third: 'scīverat'},
+          Number.p: {Person.first: 'scīverāmus', Person.second: 'scierāmus', Person.third: 'scīverant'},
+        },
+        Tense.futurePerfect: {
+          Number.s: {Person.first: 'scīverō', Person.second: 'scierō', Person.third: 'scīverit'},
+          Number.p: {Person.first: 'scīverimus', Person.second: 'scierimus', Person.third: 'scīverint'},
+        },
+      },
+      Voice.pas: {
+        Tense.present: {
+          Number.s: {Person.first: 'scior', Person.second: 'scīris', Person.third: 'scītur'},
+          Number.p: {Person.first: 'scīmur', Person.second: 'scīminī', Person.third: 'sciuntur'},
+        },
+        Tense.imperfect: {
+          Number.s: {Person.first: 'sciēbar', Person.second: 'sciēbāris', Person.third: 'sciēbātur'},
+          Number.p: {Person.first: 'sciēbāmur', Person.second: 'sciēbāminī', Person.third: 'sciēbantur'},
+        },
+        Tense.future: {
+          Number.s: {Person.first: 'sciar', Person.second: 'sciēris', Person.third: 'sciētur'},
+          Number.p: {Person.first: 'sciēmur', Person.second: 'sciēminī', Person.third: 'scientur'},
+        },
+      },
+    },
+    Mood.sub: {
+      Voice.act: {
+        Tense.present: {
+          Number.s: {Person.first: 'sciam', Person.second: 'sciās', Person.third: 'sciat'},
+          Number.p: {Person.first: 'sciāmus', Person.second: 'sciātis', Person.third: 'sciant'},
+        },
+        Tense.imperfect: {
+          Number.s: {Person.first: 'scīrem', Person.second: 'scīrēs', Person.third: 'scīret'},
+          Number.p: {Person.first: 'scīrēmus', Person.second: 'scīrētis', Person.third: 'scīrent'},
+        },
+        Tense.perfect: {
+          Number.s: {Person.first: 'scīverim', Person.second: 'scierim', Person.third: 'scīverit'},
+          Number.p: {Person.first: 'scīverīmus', Person.second: 'scierīmus', Person.third: 'scīverint'},
+        },
+        Tense.pluperfect: {
+          Number.s: {Person.first: 'scīvissem', Person.second: 'sciissem', Person.third: 'scīvisset'},
+          Number.p: {Person.first: 'scīvissēmus', Person.second: 'sciissēmus', Person.third: 'scīvissent'},
+        },
+      },
+      Voice.pas: {
+        Tense.present: {
+          Number.s: {Person.first: 'sciar', Person.second: 'sciāris', Person.third: 'sciātur'},
+          Number.p: {Person.first: 'sciāmur', Person.second: 'sciāminī', Person.third: 'sciāntur'},
+        },
+        Tense.imperfect: {
+          Number.s: {Person.first: 'scīrer', Person.second: 'scīrēris', Person.third: 'scīrētur'},
+          Number.p: {Person.first: 'scīrēmur', Person.second: 'scīrēminī', Person.third: 'scīrentur'},
+        },
+      },
+    },
+    Mood.imp: {
+      Voice.act: {
+        Tense.present: {
+          Number.s: {Person.second: 'scī'},
+          Number.p: {Person.second: 'scīte'},
+        },
+        Tense.future: {
+          Number.s: {Person.second: 'scītō', Person.third: 'scītō'},
+          Number.p: {Person.second: 'scītōte', Person.third: 'sciuntō'},
+        },
+      },
+      Voice.pas: {
+        Tense.present: {
+          Number.s: {Person.second: 'scīre'},
+          Number.p: {Person.second: 'sciāminī'},
+        },
+        Tense.future: {
+          Number.s: {Person.second: 'scītor', Person.third: 'scītor'},
+          Number.p: {Person.third: 'sciuntor'},
+        },
+      },
+    },
+  },
+);
 
+LatinVerb habere = LatinVerb(
+  infinitives: {
+    Tense.present: {
+      Voice.act: 'habēre',
+      Voice.pas: 'habērī',
+    },
+    Tense.perfect: {
+      Voice.act: 'habuerisse',
+    },
+  },
+  participles: {
+    Tense.present: {
+      Voice.act: const LatinAdjective(
+        declension: {
+          Case.nom: {
+            Number.s: {Gender.m: 'habēns', Gender.f: 'habēns', Gender.n: 'habēns'},
+            Number.p: {Gender.m: 'habēntēs', Gender.f: 'habēntēs', Gender.n: 'habēntia'}
+          },
+          Case.acc: {
+            Number.s: {Gender.m: 'habēntem', Gender.f: 'habēntem', Gender.n: 'habēns'},
+            Number.p: {Gender.m: 'habēntēs', Gender.f: 'habēntēs', Gender.n: 'habēntia'}
+          },
+          Case.gen: {
+            Number.s: {Gender.m: 'habēntis', Gender.f: 'habēntis', Gender.n: 'habēntis'},
+            Number.p: {Gender.m: 'habēntium', Gender.f: 'habēntium', Gender.n: 'habēntium'}
+          },
+          Case.dat: {
+            Number.s: {Gender.m: 'habēntī', Gender.f: 'habēntī', Gender.n: 'habēntī'},
+            Number.p: {Gender.m: 'habēntibus', Gender.f: 'habēntibus', Gender.n: 'habēntibus'}
+          },
+          Case.abl: {
+            Number.s: {Gender.m: 'habēnte', Gender.f: 'habēnte', Gender.n: 'habēnte'},
+            Number.p: {Gender.m: 'habēntibus', Gender.f: 'habēntibus', Gender.n: 'habēntibus'}
+          },
+          Case.voc: {
+            Number.s: {Gender.m: 'habēns', Gender.f: 'habēns', Gender.n: 'habēns'},
+            Number.p: {Gender.m: 'habēntēs', Gender.f: 'habēntēs', Gender.n: 'habēntia'}
+          },
+        },
+      ),
+    },
+    Tense.perfect: {
+      Voice.act: const LatinAdjective(
+        declension: {
+          Case.nom: {
+            Number.s: {Gender.m: 'habitus', Gender.f: 'habita', Gender.n: 'habitum'},
+            Number.p: {Gender.m: 'habitī', Gender.f: 'habitae', Gender.n: 'habitae'}
+          },
+          Case.acc: {
+            Number.s: {Gender.m: 'habitum', Gender.f: 'habitam', Gender.n: 'habitum'},
+            Number.p: {Gender.m: 'habitōs', Gender.f: 'habitās', Gender.n: 'habitae'}
+          },
+          Case.gen: {
+            Number.s: {Gender.m: 'habitiī', Gender.f: 'habitae', Gender.n: 'habitiī'},
+            Number.p: {Gender.m: 'habitōrum', Gender.f: 'habitārum', Gender.n: 'habitārum'}
+          },
+          Case.dat: {
+            Number.s: {Gender.m: 'habitō', Gender.f: 'habitae', Gender.n: 'habitō'},
+            Number.p: {Gender.m: 'habitiīs', Gender.f: 'habitiīs', Gender.n: 'habitiīs'}
+          },
+          Case.abl: {
+            Number.s: {Gender.m: 'habitō', Gender.f: 'habitā', Gender.n: 'habitō'},
+            Number.p: {Gender.m: 'habitiīs', Gender.f: 'habitiīs', Gender.n: 'habitiīs'}
+          },
+          Case.voc: {
+            Number.s: {Gender.m: 'habite', Gender.f: 'habita', Gender.n: 'habitum'},
+            Number.p: {Gender.m: 'habitī', Gender.f: 'habitae', Gender.n: 'habitae'}
+          },
+        },
+      ),
+    },
+    Tense.future: {
+      Voice.act: const LatinAdjective(
+        declension: {
+          Case.nom: {
+            Number.s: {Gender.m: 'habitūrus', Gender.f: 'habitūra', Gender.n: 'habitūrum'},
+            Number.p: {Gender.m: 'habitūrī', Gender.f: 'habitūrae', Gender.n: 'habitūra'}
+          },
+          Case.acc: {
+            Number.s: {Gender.m: 'habitūrum', Gender.f: 'habitūram', Gender.n: 'habitūrum'},
+            Number.p: {Gender.m: 'habitūrōs', Gender.f: 'habitūrās', Gender.n: 'habitūra'}
+          },
+          Case.gen: {
+            Number.s: {Gender.m: 'habitūrī', Gender.f: 'habitūrae', Gender.n: 'habitūrī'},
+            Number.p: {Gender.m: 'habitūrōrum', Gender.f: 'habitūrārum', Gender.n: 'habitūrōrum'}
+          },
+          Case.dat: {
+            Number.s: {Gender.m: 'habitūrō', Gender.f: 'habitūrae', Gender.n: 'habitūrō'},
+            Number.p: {Gender.m: 'habitūrīs', Gender.f: 'habitūrīs', Gender.n: 'habitūrīs'}
+          },
+          Case.abl: {
+            Number.s: {Gender.m: 'habitūrō', Gender.f: 'habitūrā', Gender.n: 'habitūrō'},
+            Number.p: {Gender.m: 'habitūrīs', Gender.f: 'habitūrīs', Gender.n: 'habitūrīs'}
+          },
+          Case.voc: {
+            Number.s: {Gender.m: 'habitūre', Gender.f: 'habitūra', Gender.n: 'habitūrum'},
+            Number.p: {Gender.m: 'habitūrī', Gender.f: 'habitūrae', Gender.n: 'habitūra'}
+          },
+        },
+      ),
+      Voice.pas: const LatinAdjective(
+        declension: {
+          Case.nom: {
+            Number.s: {Gender.m: 'habendus', Gender.f: 'habenda', Gender.n: 'habendum'},
+            Number.p: {Gender.m: 'habendī', Gender.f: 'habendae', Gender.n: 'habenda'}
+          },
+          Case.acc: {
+            Number.s: {Gender.m: 'habendum', Gender.f: 'habendam', Gender.n: 'habendum'},
+            Number.p: {Gender.m: 'habendōs', Gender.f: 'habendās', Gender.n: 'habenda'}
+          },
+          Case.gen: {
+            Number.s: {Gender.m: 'habendī', Gender.f: 'habendae', Gender.n: 'habendī'},
+            Number.p: {Gender.m: 'habendōrum', Gender.f: 'habendārum', Gender.n: 'habendārum'}
+          },
+          Case.dat: {
+            Number.s: {Gender.m: 'habendō', Gender.f: 'habendae', Gender.n: 'habendō'},
+            Number.p: {Gender.m: 'habendīs', Gender.f: 'habendīs', Gender.n: 'habendīs'}
+          },
+          Case.abl: {
+            Number.s: {Gender.m: 'habendō', Gender.f: 'habendā', Gender.n: 'habendō'},
+            Number.p: {Gender.m: 'habendīs', Gender.f: 'habendīs', Gender.n: 'habendīs'}
+          },
+          Case.voc: {
+            Number.s: {Gender.m: 'habende', Gender.f: 'habenda', Gender.n: 'habendum'},
+            Number.p: {Gender.m: 'habendī', Gender.f: 'habendae', Gender.n: 'habenda'}
+          },
+        },
+      ),
+    },
+  },
+  conjugation: {
+    Mood.ind: {
+      Voice.act: {
+        Tense.present: {
+          Number.s: {Person.first: 'habeō', Person.second: 'habēs', Person.third: 'habet'},
+          Number.p: {Person.first: 'habēmus', Person.second: 'habētis', Person.third: 'habēnt'},
+        },
+        Tense.imperfect: {
+          Number.s: {Person.first: 'habēbam', Person.second: 'habēbās', Person.third: 'habēbat'},
+          Number.p: {Person.first: 'habēbāmus', Person.second: 'habēbātis', Person.third: 'habēbant'},
+        },
+        Tense.future: {
+          Number.s: {Person.first: 'habēbō', Person.second: 'habēbis', Person.third: 'habēbit'},
+          Number.p: {Person.first: 'habēbimus', Person.second: 'habēbitis', Person.third: 'habēbunt'},
+        },
+        Tense.perfect: {
+          Number.s: {Person.first: 'habuī', Person.second: 'habuīsti', Person.third: 'habuit'},
+          Number.p: {Person.first: 'habuīmus', Person.second: 'habuīstis', Person.third: 'habuērunt'},
+        },
+        Tense.pluperfect: {
+          Number.s: {Person.first: 'habueram', Person.second: 'habueras', Person.third: 'habuerat'},
+          Number.p: {Person.first: 'habueramus', Person.second: 'habueratis', Person.third: 'habuerant'},
+        },
+        Tense.futurePerfect: {
+          Number.s: {Person.first: 'habuero', Person.second: 'habueris', Person.third: 'habuerit'},
+          Number.p: {Person.first: 'habuerimus', Person.second: 'habueritis', Person.third: 'habuerint'},
+        },
+      },
+      Voice.pas: {
+        Tense.present: {
+          Number.s: {Person.first: 'habeor', Person.second: 'habēris', Person.third: 'habētur'},
+          Number.p: {Person.first: 'habēmur', Person.second: 'habēminī', Person.third: 'habēntur'},
+        },
+        Tense.imperfect: {
+          Number.s: {Person.first: 'habēbar', Person.second: 'habēbāris', Person.third: 'habēbātur'},
+          Number.p: {Person.first: 'habēbāmur', Person.second: 'habēbāminī', Person.third: 'habēbantur'},
+        },
+        Tense.future: {
+          Number.s: {Person.first: 'habēbor', Person.second: 'habēberis', Person.third: 'habēbitur'},
+          Number.p: {Person.first: 'habēbimur', Person.second: 'habēbiminī', Person.third: 'habēbuntur'},
+        },
+        // Tense.perfect: {
+        //   Number.s: {Person.first: 'habitus sum', Person.second: 'habitus es', Person.third: 'habitus est'},
+        //   Number.p: {Person.first: 'habiti sumus', Person.second: 'habiti estis', Person.third: 'habiti sunt'},
+        // },
+        // Tense.pluperfect: {
+        //   Number.s: {Person.first: 'habitus eram', Person.second: 'habitus eras', Person.third: 'habitus erat'},
+        //   Number.p: {Person.first: 'habiti eramus', Person.second: 'habiti eratis', Person.third: 'habiti erant'},
+        // },
+        // Tense.futurePerfect: {
+        //   Number.s: {Person.first: 'habitus ero', Person.second: 'habitus eris', Person.third: 'habitus erit'},
+        //   Number.p: {Person.first: 'habiti erimus', Person.second: 'habiti eritis', Person.third: 'habiti erint'},
+        // },
+      },
+    },
+    Mood.sub: {
+      Voice.act: {
+        Tense.present: {
+          Number.s: {Person.first: 'habeam', Person.second: 'habeās', Person.third: 'habeat'},
+          Number.p: {Person.first: 'habeāmus', Person.second: 'habeātis', Person.third: 'habeant'},
+        },
+        Tense.imperfect: {
+          Number.s: {Person.first: 'habērem', Person.second: 'habērēs', Person.third: 'habēret'},
+          Number.p: {Person.first: 'habērēmus', Person.second: 'habērētis', Person.third: 'habērent'},
+        },
+        Tense.perfect: {
+          Number.s: {Person.first: 'habuerim', Person.second: 'habueris', Person.third: 'habuerit'},
+          Number.p: {Person.first: 'habuerimus', Person.second: 'habueritis', Person.third: 'habuerint'},
+        },
+        Tense.pluperfect: {
+          Number.s: {Person.first: 'habuissem', Person.second: 'habuisses', Person.third: 'habuisset'},
+          Number.p: {Person.first: 'habuissēmus', Person.second: 'habuissētis', Person.third: 'habuissent'},
+        },
+      },
+      Voice.pas: {
+        Tense.present: {
+          Number.s: {Person.first: 'habear', Person.second: 'habeāris', Person.third: 'habeātur'},
+          Number.p: {Person.first: 'habeāmur', Person.second: 'habeāminī', Person.third: 'habeantur'},
+        },
+        Tense.imperfect: {
+          Number.s: {Person.first: 'habērer', Person.second: 'habērēris', Person.third: 'habērētur'},
+          Number.p: {Person.first: 'habērēmur', Person.second: 'habērēminī', Person.third: 'habērentur'},
+        },
+        // Tense.perfect: {
+        //   Number.s: {Person.first: 'habitus sim', Person.second: 'habitus sis', Person.third: 'habitus sit'},
+        //   Number.p: {Person.first: 'habiti sīmus', Person.second: 'habiti sītis', Person.third: 'habiti sint'},
+        // },
+        // Tense.pluperfect: {
+        //   Number.s: {Person.first: 'habitus essem', Person.second: 'habitus esses', Person.third: 'habitus esset'},
+        //   Number.p: {Person.first: 'habiti essēmus', Person.second: 'habiti essētis', Person.third: 'habiti essent'},
+        // },
+      },
+    },
+    Mood.imp: {
+      Voice.act: {
+        Tense.present: {
+          Number.s: {Person.second: 'habē'},
+          Number.p: {Person.second: 'habēte'},
+        },
+        Tense.future: {
+          Number.s: {Person.second: 'habētō', Person.third: 'habētō'},
+          Number.p: {Person.second: 'habētōte', Person.third: 'habentō'},
+        },
+      },
+      Voice.pas: {
+        Tense.present: {
+          Number.s: {Person.second: 'habēre'},
+          Number.p: {Person.second: 'habēminī'},
+        },
+        Tense.future: {
+          Number.s: {Person.second: 'habētor', Person.third: 'habētor'},
+          Number.p: {Person.third: 'habentor'},
+        },
+      },
+    },
+  },
+);
+LatinVerb ire = LatinVerb(
+  infinitives: {
+    Tense.present: {
+      Voice.act: 'īre',
+    },
+    Tense.perfect: {
+      Voice.act: 'īsse',
+      Voice.pas: 'īrī',
+    },
+    Tense.future: {
+      Voice.act: 'itūrum esse',
+    },
+  },
+  participles: {
+    Tense.present: {
+      Voice.act: const LatinAdjective(
+        declension: {
+          Case.nom: {
+            Number.s: {Gender.m: 'iēns', Gender.f: 'iēns', Gender.n: 'iēns'},
+            Number.p: {Gender.m: 'ientēs', Gender.f: 'ientēs', Gender.n: 'ientia'}
+          },
+          Case.acc: {
+            Number.s: {Gender.m: 'ientem', Gender.f: 'ientem', Gender.n: 'iēns'},
+            Number.p: {Gender.m: 'ientēs', Gender.f: 'ientēs', Gender.n: 'ientia'}
+          },
+          Case.gen: {
+            Number.s: {Gender.m: 'ientis', Gender.f: 'ientis', Gender.n: 'ientis'},
+            Number.p: {Gender.m: 'ientium', Gender.f: 'ientium', Gender.n: 'ientium'}
+          },
+          Case.dat: {
+            Number.s: {Gender.m: 'ientī', Gender.f: 'ientī', Gender.n: 'ientī'},
+            Number.p: {Gender.m: 'ientibus', Gender.f: 'ientibus', Gender.n: 'ientibus'}
+          },
+          Case.abl: {
+            Number.s: {Gender.m: 'iente', Gender.f: 'iente', Gender.n: 'iente'},
+            Number.p: {Gender.m: 'ientibus', Gender.f: 'ientibus', Gender.n: 'ientibus'}
+          },
+          Case.voc: {
+            Number.s: {Gender.m: 'iēns', Gender.f: 'iēns', Gender.n: 'iēns'},
+            Number.p: {Gender.m: 'ientēs', Gender.f: 'ientēs', Gender.n: 'ientia'}
+          },
+        },
+      ),
+    },
+    Tense.perfect: {
+      Voice.act: const LatinAdjective(
+        declension: {
+          Case.nom: {
+            Number.s: {Gender.m: 'itus', Gender.f: 'ita', Gender.n: 'itum'},
+          },
+          Case.acc: {
+            Number.s: {Gender.m: 'itum', Gender.f: 'itam', Gender.n: 'itum'},
+          },
+          Case.gen: {
+            Number.s: {Gender.m: 'itī', Gender.f: 'itae', Gender.n: 'itī'},
+          },
+          Case.dat: {
+            Number.s: {Gender.m: 'itō', Gender.f: 'itae', Gender.n: 'itō'},
+          },
+          Case.abl: {
+            Number.s: {Gender.m: 'itō', Gender.f: 'itā', Gender.n: 'itō'},
+          },
+          Case.voc: {
+            Number.s: {Gender.m: 'ite', Gender.f: 'ita', Gender.n: 'itum'},
+          },
+        },
+      ),
+      Voice.pas: const LatinAdjective(
+        declension: {
+          Case.nom: {
+            Number.s: {Gender.m: 'itus', Gender.f: 'ita', Gender.n: 'itum'},
+          },
+          Case.acc: {
+            Number.s: {Gender.m: 'itum', Gender.f: 'itam', Gender.n: 'itum'},
+          },
+          Case.gen: {
+            Number.s: {Gender.m: 'itī', Gender.f: 'itae', Gender.n: 'itī'},
+          },
+          Case.dat: {
+            Number.s: {Gender.m: 'itō', Gender.f: 'itae', Gender.n: 'itō'},
+          },
+          Case.abl: {
+            Number.s: {Gender.m: 'itō', Gender.f: 'itā', Gender.n: 'itō'},
+          },
+          Case.voc: {
+            Number.s: {Gender.m: 'ite', Gender.f: 'ita', Gender.n: 'itum'},
+          },
+        },
+      ),
+    },
+    Tense.future: {
+      Voice.act: const LatinAdjective(
+        declension: {
+          Case.nom: {
+            Number.s: {Gender.m: 'itūrus', Gender.f: 'itūra', Gender.n: 'itūrum'},
+          },
+          Case.acc: {
+            Number.s: {Gender.m: 'itūrum', Gender.f: 'itūram', Gender.n: 'itūrum'},
+          },
+          Case.gen: {
+            Number.s: {Gender.m: 'itūrī', Gender.f: 'itūrae', Gender.n: 'itūrī'},
+          },
+          Case.dat: {
+            Number.s: {Gender.m: 'itūrō', Gender.f: 'itūrae', Gender.n: 'itūrō'},
+          },
+          Case.abl: {
+            Number.s: {Gender.m: 'itūrō', Gender.f: 'itūrā', Gender.n: 'itūrō'},
+          },
+          Case.voc: {
+            Number.s: {Gender.m: 'itūre', Gender.f: 'itūra', Gender.n: 'itūrum'},
+          },
+        },
+      ),
+    },
+  },
+  conjugation: {
+    Mood.ind: {
+      Voice.act: {
+        Tense.present: {
+          Number.s: {Person.first: 'eō', Person.second: 'īs', Person.third: 'it'},
+          Number.p: {Person.first: 'īmus', Person.second: 'ītis', Person.third: 'eunt'},
+        },
+        Tense.imperfect: {
+          Number.s: {Person.first: 'ībam', Person.second: 'ībās', Person.third: 'ībat'},
+          Number.p: {Person.first: 'ībāmus', Person.second: 'ībātis', Person.third: 'ībant'},
+        },
+        Tense.future: {
+          Number.s: {Person.first: 'ībō', Person.second: 'ībis', Person.third: 'ībit'},
+          Number.p: {Person.first: 'ībimus', Person.second: 'ībitis', Person.third: 'ībunt'},
+        },
+        Tense.perfect: {
+          Number.s: {Person.first: 'iī', Person.second: 'īvistī', Person.third: 'īvit'},
+          Number.p: {Person.first: 'iimus', Person.second: 'īstis', Person.third: 'iērunt'},
+        },
+        Tense.pluperfect: {
+          Number.s: {Person.first: 'ieram', Person.second: 'ierās', Person.third: 'ierat'},
+          Number.p: {Person.first: 'ierāmus', Person.second: 'ierātis', Person.third: 'ierant'},
+        },
+        Tense.futurePerfect: {
+          Number.s: {Person.first: 'ierō', Person.second: 'ieris', Person.third: 'ierit'},
+          Number.p: {Person.first: 'ierimus', Person.second: 'ieritis', Person.third: 'ierint'},
+        },
+      },
+      Voice.pas: {
+        Tense.present: {
+          Number.s: {Person.first: 'eor', Person.second: 'īris', Person.third: 'ītur'},
+          Number.p: {Person.first: 'īmur', Person.second: 'īminī', Person.third: 'euntur'},
+        },
+        Tense.imperfect: {
+          Number.s: {Person.first: 'ībar', Person.second: 'ībāris', Person.third: 'ībātur'},
+          Number.p: {Person.first: 'ībāmur', Person.second: 'ībāminī', Person.third: 'ībantur'},
+        },
+        Tense.future: {
+          Number.s: {Person.first: 'ībor', Person.second: 'īberis', Person.third: 'ībitur'},
+          Number.p: {Person.first: 'ībimur', Person.second: 'ībiminī', Person.third: 'ībuntur'},
+        },
+      },
+    },
+    Mood.sub: {
+      Voice.act: {
+        Tense.present: {
+          Number.s: {Person.first: 'eam', Person.second: 'eās', Person.third: 'eat'},
+          Number.p: {Person.first: 'eāmus', Person.second: 'eātis', Person.third: 'eant'},
+        },
+        Tense.imperfect: {
+          Number.s: {Person.first: 'īrem', Person.second: 'īrēs', Person.third: 'īret'},
+          Number.p: {Person.first: 'īrēmus', Person.second: 'īrētis', Person.third: 'īrent'},
+        },
+        Tense.perfect: {
+          Number.s: {Person.first: 'ierim', Person.second: 'ierīs', Person.third: 'ierit'},
+          Number.p: {Person.first: 'ierīmus', Person.second: 'ierītis', Person.third: 'ierint'},
+        },
+        Tense.pluperfect: {
+          Number.s: {Person.first: 'īssem', Person.second: 'īssēs', Person.third: 'īsset'},
+          Number.p: {Person.first: 'īssēmus', Person.second: 'īssētis', Person.third: 'īssent'},
+        },
+      },
+      Voice.pas: {
+        Tense.present: {
+          Number.s: {Person.first: 'ear', Person.second: 'eāris', Person.third: 'eātur'},
+          Number.p: {Person.first: 'eāmur', Person.second: 'eāminī', Person.third: 'eantur'},
+        },
+        Tense.imperfect: {
+          Number.s: {Person.first: 'īrer', Person.second: 'īrēris', Person.third: 'īrētur'},
+          Number.p: {Person.first: 'īrēmur', Person.second: 'īrēminī', Person.third: 'īrentur'},
+        },
+      },
+    },
+    Mood.imp: {
+      Voice.act: {
+        Tense.present: {
+          Number.s: {Person.second: 'ī'},
+          Number.p: {Person.second: 'īte'},
+        },
+        Tense.future: {
+          Number.s: {Person.second: 'ītō', Person.third: 'ītō'},
+          Number.p: {Person.second: 'ītōte', Person.third: 'euntō'},
+        },
+      },
+      Voice.pas: {
+        Tense.present: {
+          Number.s: {Person.second: 'īre'},
+          Number.p: {Person.second: 'īminī'},
+        },
+        Tense.future: {
+          Number.s: {Person.second: 'ītor', Person.third: 'ītor'},
+          Number.p: {Person.third: 'euntor'},
+        },
+      },
+    },
+  },
+);
 LatinVerb posse = LatinVerb(
   infinitives: {
     Tense.present: {Voice.act: 'posse'},
@@ -466,7 +1132,191 @@ LatinVerb amare = LatinVerb(
     },
   },
 );
-
+LatinVerb facere = LatinVerb(
+  infinitives: {
+    Tense.present: {
+      Voice.act: 'facere',
+    },
+    Tense.perfect: {
+      Voice.act: 'fēcisse',
+    },
+    Tense.future: {
+      Voice.act: 'factūrum esse',
+    },
+  },
+  participles: {
+    Tense.present: {
+      Voice.act: const LatinAdjective(
+        declension: {
+          Case.nom: {
+            Number.s: {Gender.m: 'faciēns', Gender.f: 'faciēns', Gender.n: 'faciēns'},
+            Number.p: {Gender.m: 'facientes', Gender.f: 'facientes', Gender.n: 'facientia'}
+          },
+          Case.acc: {
+            Number.s: {Gender.m: 'facientem', Gender.f: 'facientem', Gender.n: 'faciēns'},
+            Number.p: {Gender.m: 'facientes', Gender.f: 'facientes', Gender.n: 'facientia'}
+          },
+          Case.gen: {
+            Number.s: {Gender.m: 'facientis', Gender.f: 'facientis', Gender.n: 'facientis'},
+            Number.p: {Gender.m: 'facientium', Gender.f: 'facientium', Gender.n: 'facientium'}
+          },
+          Case.dat: {
+            Number.s: {Gender.m: 'facientī', Gender.f: 'facientī', Gender.n: 'facientī'},
+            Number.p: {Gender.m: 'facientibus', Gender.f: 'facientibus', Gender.n: 'facientibus'}
+          },
+          Case.abl: {
+            Number.s: {Gender.m: 'faciente', Gender.f: 'faciente', Gender.n: 'faciente'},
+            Number.p: {Gender.m: 'facientibus', Gender.f: 'facientibus', Gender.n: 'facientibus'}
+          },
+          Case.voc: {
+            Number.s: {Gender.m: 'faciēns', Gender.f: 'faciēns', Gender.n: 'faciēns'},
+            Number.p: {Gender.m: 'facientes', Gender.f: 'facientes', Gender.n: 'facientia'}
+          },
+        },
+      ),
+    },
+    Tense.perfect: {
+      Voice.act: const LatinAdjective(
+        declension: {
+          Case.nom: {
+            Number.s: {Gender.m: 'factus', Gender.f: 'facta', Gender.n: 'factum'},
+          },
+          Case.acc: {
+            Number.s: {Gender.m: 'factum', Gender.f: 'factam', Gender.n: 'factum'},
+          },
+          Case.gen: {
+            Number.s: {Gender.m: 'factī', Gender.f: 'factae', Gender.n: 'factī'},
+          },
+          Case.dat: {
+            Number.s: {Gender.m: 'factō', Gender.f: 'factae', Gender.n: 'factō'},
+          },
+          Case.abl: {
+            Number.s: {Gender.m: 'factō', Gender.f: 'factā', Gender.n: 'factō'},
+          },
+          Case.voc: {
+            Number.s: {Gender.m: 'facte', Gender.f: 'facta', Gender.n: 'factum'},
+          },
+        },
+      ),
+    },
+    Tense.future: {
+      Voice.act: const LatinAdjective(
+        declension: {
+          Case.nom: {
+            Number.s: {Gender.m: 'factūrus', Gender.f: 'factūra', Gender.n: 'factūrum'},
+          },
+          Case.acc: {
+            Number.s: {Gender.m: 'factūrum', Gender.f: 'factūram', Gender.n: 'factūrum'},
+          },
+          Case.gen: {
+            Number.s: {Gender.m: 'factūrī', Gender.f: 'factūrae', Gender.n: 'factūrī'},
+          },
+          Case.dat: {
+            Number.s: {Gender.m: 'factūrō', Gender.f: 'factūrae', Gender.n: 'factūrō'},
+          },
+          Case.abl: {
+            Number.s: {Gender.m: 'factūrō', Gender.f: 'factūrā', Gender.n: 'factūrō'},
+          },
+          Case.voc: {
+            Number.s: {Gender.m: 'factūre', Gender.f: 'factūra', Gender.n: 'factūrum'},
+          },
+        },
+      ),
+    },
+  },
+  conjugation: {
+    Mood.ind: {
+      Voice.act: {
+        Tense.present: {
+          Number.s: {Person.first: 'faciō', Person.second: 'facis', Person.third: 'facit'},
+          Number.p: {Person.first: 'facimus', Person.second: 'facitis', Person.third: 'faciunt'},
+        },
+        Tense.imperfect: {
+          Number.s: {Person.first: 'faciēbam', Person.second: 'faciēbās', Person.third: 'faciēbat'},
+          Number.p: {Person.first: 'faciēbāmus', Person.second: 'faciēbātis', Person.third: 'faciēbant'},
+        },
+        Tense.future: {
+          Number.s: {Person.first: 'faciam', Person.second: 'faciēs', Person.third: 'faciet'},
+          Number.p: {Person.first: 'faciemus', Person.second: 'facietis', Person.third: 'facient'},
+        },
+        Tense.perfect: {
+          Number.s: {Person.first: 'fēcī', Person.second: 'fēcistī', Person.third: 'fēcit'},
+          Number.p: {Person.first: 'fēcimus', Person.second: 'fēcistis', Person.third: 'fēcērunt'},
+        },
+        Tense.pluperfect: {
+          Number.s: {Person.first: 'fēceram', Person.second: 'fēcerās', Person.third: 'fēcerat'},
+          Number.p: {Person.first: 'fēcerāmus', Person.second: 'fēcerātis', Person.third: 'fēcerant'},
+        },
+        Tense.futurePerfect: {
+          Number.s: {Person.first: 'fēcerō', Person.second: 'fēceris', Person.third: 'fēcerit'},
+          Number.p: {Person.first: 'fēcerimus', Person.second: 'fēceritis', Person.third: 'fēcerint'},
+        },
+      },
+      Voice.pas: {
+        Tense.present: {
+          Number.s: {Person.first: 'fīō', Person.second: 'fīs', Person.third: 'fit'},
+          Number.p: {Person.first: 'fīmus', Person.second: 'fītis', Person.third: 'fīunt'},
+        },
+        Tense.imperfect: {
+          Number.s: {Person.first: 'fīēbam', Person.second: 'fīēbās', Person.third: 'fīēbat'},
+          Number.p: {Person.first: 'fīēbāmus', Person.second: 'fīēbātis', Person.third: 'fīēbant'},
+        },
+        Tense.future: {
+          Number.s: {Person.first: 'fīam', Person.second: 'fīēs', Person.third: 'fīet'},
+          Number.p: {Person.first: 'fīēmus', Person.second: 'fīētis', Person.third: 'fīent'},
+        },
+      },
+    },
+    Mood.sub: {
+      Voice.act: {
+        Tense.present: {
+          Number.s: {Person.first: 'faciam', Person.second: 'faciās', Person.third: 'faciat'},
+          Number.p: {Person.first: 'faciāmus', Person.second: 'faciātis', Person.third: 'faciant'},
+        },
+        Tense.imperfect: {
+          Number.s: {Person.first: 'facerem', Person.second: 'facerēs', Person.third: 'faceret'},
+          Number.p: {Person.first: 'facerēmus', Person.second: 'facerētis', Person.third: 'facerent'},
+        },
+        Tense.perfect: {
+          Number.s: {Person.first: 'fēcerim', Person.second: 'fēcerīs', Person.third: 'fēcerit'},
+          Number.p: {Person.first: 'fēcerīmus', Person.second: 'fēcerītis', Person.third: 'fēcerint'},
+        },
+      },
+      Voice.pas: {
+        Tense.present: {
+          Number.s: {Person.first: 'fīam', Person.second: 'fīās', Person.third: 'fīat'},
+          Number.p: {Person.first: 'fīāmus', Person.second: 'fīātis', Person.third: 'fīant'},
+        },
+        Tense.imperfect: {
+          Number.s: {Person.first: 'fierem', Person.second: 'fierēs', Person.third: 'fieret'},
+          Number.p: {Person.first: 'fierēmus', Person.second: 'fierētis', Person.third: 'fierent'},
+        },
+      },
+    },
+    Mood.imp: {
+      Voice.act: {
+        Tense.present: {
+          Number.s: {Person.second: 'fac'},
+          Number.p: {Person.second: 'facite'},
+        },
+        Tense.future: {
+          Number.s: {Person.second: 'facitō', Person.third: 'facitō'},
+          Number.p: {Person.second: 'facitōte', Person.third: 'faciantō'},
+        },
+      },
+      Voice.pas: {
+        Tense.present: {
+          Number.s: {Person.second: 'fī'},
+          Number.p: {Person.second: 'fīte'},
+        },
+        Tense.future: {
+          Number.s: {Person.second: 'fītō', Person.third: 'fītō'},
+          Number.p: {Person.third: 'fīuntō'},
+        },
+      },
+    },
+  },
+);
 LatinDeponentVerb loquor = LatinDeponentVerb(
   infinitives: {
     Tense.present: {
@@ -659,7 +1509,7 @@ LatinDeponentVerb loquor = LatinDeponentVerb(
   },
 );
 
-LatinVerb volo = LatinVerb(
+LatinVerb velle = LatinVerb(
   infinitives: {
     Tense.present: {Voice.act: 'velle'},
     Tense.perfect: {Voice.act: 'voluisse'},
@@ -750,7 +1600,7 @@ LatinVerb volo = LatinVerb(
   },
 );
 
-LatinVerb nolo = LatinVerb(
+LatinVerb nolle = LatinVerb(
   infinitives: {
     Tense.present: {
       Voice.act: 'nōlle',
@@ -856,7 +1706,7 @@ LatinVerb nolo = LatinVerb(
   },
 );
 
-LatinVerb video = LatinVerb(
+LatinVerb videre = LatinVerb(
   infinitives: {
     Tense.present: {Voice.act: 'vidēre', Voice.pas: 'vīdērī'},
     Tense.perfect: {Voice.act: 'vīdisse'},

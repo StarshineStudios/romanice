@@ -10,6 +10,8 @@ enum Voice { act, pas }
 
 enum Person { first, second, third }
 
+enum WordTypePlural { nouns, adjectives, verbs }
+
 enum Tense {
   //Latin-Exclusive Tenses
   present,

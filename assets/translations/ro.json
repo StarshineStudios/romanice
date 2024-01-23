@@ -7,6 +7,7 @@
 
 
   "textSettings": "Setări",
+  "Library": "Bibliotecă",
   "textSystemLanguage": "Limba Sistemului",
   "useSystemDefaultLanguageText": "Folosește Limba Implicită a Sistemului",
   "resetProgressText": "Resetează Progresul",
@@ -49,6 +50,13 @@
   "optative/conditional": "optativ/condițional",
   "conditional": "condițional",
   "presumptive": "presumtiv",
+
+  "indicative (active)": "indicativ (activ)",
+  "subjunctive (active)": "conjunctiv (activ)",
+  "imperative (active)": "imperativ (activ)",
+  "indicative (passive)": "indicativ (pasiv)",
+  "subjunctive (passive)": "conjunctiv (pasiv)",
+  "imperative (passive)": "imperativ (pasiv)",
 
   "active": "activ",
   "passive": "pasiv",
@@ -93,5 +101,9 @@
   "conditional perfect": "condițional perfect",
 
   "completed": "completat",
-  "tap to reveal": "atinge pentru a dezvălui"
+  "tap to reveal": "atinge pentru a dezvălui",
+
+  "adjectives": "adjective",
+  "nouns": "substantive",
+  "verbs": "verbe"
 }

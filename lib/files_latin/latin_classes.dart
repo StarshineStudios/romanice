@@ -1,19 +1,59 @@
 import 'package:colorguesser/auxiliary_tenses.dart';
 import 'package:colorguesser/core/enums.dart';
+import 'package:colorguesser/core/lengtheners.dart';
 import 'package:colorguesser/files_latin/latin_constants.dart';
+import 'package:colorguesser/temp/romance_classes.dart';
 
 import 'word_data/latin_verbs.dart';
 
-class LatinAdjective {
+class LatinAdjective implements RomanceAdjective {
   final Map<Case, Map<Number, Map<Gender, String>>> declension;
   const LatinAdjective({required this.declension});
 
   String? declineAdjective(Case c, Number n, Gender g) {
     return declension[c]?[n]?[g];
   }
+
+  @override
+  String? getLemma() {
+    return declension[Case.nom]?[Number.s]?[Gender.n] ?? declension[Case.nom]?[Number.p]?[Gender.n];
+  }
+
+  @override
+  List<Section> getDisplayInflection() {
+    List<Section> sections = [];
+
+    // Loop through numbers first to create sections based on number
+    for (Number number in latinNumbers) {
+      List<Subsection> subsections = [];
+
+      // Then loop through cases to create subsections
+      for (Case caseType in latinCases) {
+        Map<String, String> entries = {};
+
+        // Finally, loop through genders to create entries
+        for (Gender gender in latinGenders) {
+          String key = lengthenGender[gender]!;
+          String declensionString = declineAdjective(caseType, number, gender) ?? '-';
+          entries[key] = declensionString;
+        }
+
+        if (entries.isNotEmpty) {
+          Subsection tempSubsection = Subsection(entries: entries, subsectionName: lengthenCase[caseType]!);
+          subsections.add(tempSubsection);
+        }
+      }
+
+      if (subsections.isNotEmpty) {
+        sections.add(Section(subsections: subsections, sectionName: lengthenNumber[number]!));
+      }
+    }
+
+    return sections;
+  }
 }
 
-class LatinNoun {
+class LatinNoun implements RomanceNoun {
   final Map<Case, Map<Number, String>> declension;
   final Gender gender;
   const LatinNoun({required this.gender, required this.declension});
@@ -21,9 +61,47 @@ class LatinNoun {
   String? declineNoun(Case c, Number n) {
     return declension[c]?[n];
   }
+
+  @override
+  String? getLemma() {
+    return declension[Case.nom]?[Number.s] ?? declension[Case.nom]?[Number.p];
+  }
+
+  @override
+  List<Section> getDisplayInflection() {
+    List<Section> sections = [];
+
+    // Outer loop: Iterate through numbers to create sections for each number
+    for (Number number in latinNumbers) {
+      List<Subsection> subsections = [];
+
+      // Inner loop: Iterate through cases to create subsections
+      for (Case caseType in declension.keys.toList()) {
+        Map<String, String> entries = {};
+
+        // Create a single entry per case
+        String key = lengthenCase[caseType]!; // Convert Case enum to string
+        String declensionString = declineNoun(caseType, number) ?? '-';
+        entries[key] = declensionString;
+
+        // Create a subsection for this case
+        Subsection tempSubsection = Subsection(entries: entries, subsectionName: '');
+        subsections.add(tempSubsection);
+      }
+
+      // Create a section for this number
+      if (subsections.isNotEmpty) {
+        String sectionName = lengthenNumber[number]!; // Convert Number enum to string (singular/plural)
+        Section numberSection = Section(subsections: subsections, sectionName: sectionName);
+        sections.add(numberSection);
+      }
+    }
+
+    return sections;
+  }
 }
 
-class LatinVerb {
+class LatinVerb implements RomanceVerb {
   //Latin has multiple infinitives.
   Map<Tense, Map<Voice, String>> infinitives;
   Map<Tense, Map<Voice, LatinAdjective>> participles;
@@ -54,6 +132,47 @@ class LatinVerb {
     }
     //If they are not complex, just return this
     return conjugation[m]?[v]?[t]?[n]?[p];
+  }
+
+  @override
+  String? getLemma() {
+    return infinitives[Tense.present]?[Voice.act];
+  }
+
+  @override
+  List<Section> getDisplayInflection() {
+    List<Section> sections = [];
+
+    for (Mood mood in conjugationStructure.keys) {
+      for (Voice voice in conjugationStructure[mood]!.keys) {
+        List<Subsection> subsections = [];
+
+        for (Tense tense in conjugationStructure[mood]![voice]!.keys) {
+          Map<String, String> entries = {};
+
+          for (Number number in conjugationStructure[mood]![voice]![tense]!.keys) {
+            for (Person person in conjugationStructure[mood]![voice]![tense]![number]!) {
+              // Use masculine as default gender for conjugation
+              String? conjugatedVerb = conjugateVerb(mood, voice, tense, number, person, g: Gender.m);
+
+              //TODO add other genders
+
+              String key = getLatinSubjectPronoun(person, number, Gender.m)!; //"${lengthenPerson[person]}, ${lengthenNumber[number]}";
+              entries[key] = conjugatedVerb ?? '-';
+            }
+          }
+
+          Subsection subsection = Subsection(entries: entries, subsectionName: lengthenTense[tense]!);
+          subsections.add(subsection);
+        }
+
+        String sectionName = "${lengthenMood[mood]!} (${lengthenVoice[voice]!})";
+        Section section = Section(subsections: subsections, sectionName: sectionName);
+        sections.add(section);
+      }
+    }
+
+    return sections;
   }
 }
 
@@ -99,4 +218,43 @@ class LatinAuxiliaryVerb extends LatinVerb {
     //Aux verbs do not need to care about participles.
     return conjugation[m]?[v]?[t]?[n]?[p];
   }
+
+  @override
+  String? getLemma() {
+    return infinitives[Tense.present]?[Voice.act];
+  }
+}
+
+String? getLatinSubjectPronoun(Person person, Number number, Gender gender) {
+  String subject = '';
+  if (number == Number.s) {
+    if (person == Person.first) {
+      subject = 'Egō';
+    } else if (person == Person.second) {
+      subject = 'Tū';
+    } else if (person == Person.third) {
+      if (gender == Gender.m) {
+        subject = 'Is';
+      } else if (gender == Gender.f) {
+        subject = 'Ea';
+      } else {
+        subject = 'Id';
+      }
+    }
+  } else if (number == Number.p) {
+    if (person == Person.first) {
+      subject = 'Nōs';
+    } else if (person == Person.second) {
+      subject = 'Vōs';
+    } else if (person == Person.third) {
+      if (gender == Gender.m) {
+        subject = 'Eī';
+      } else if (gender == Gender.f) {
+        subject = 'Eae';
+      } else {
+        subject = 'Ea';
+      }
+    }
+  }
+  return subject;
 }

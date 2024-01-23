@@ -3,21 +3,122 @@ import 'package:colorguesser/core/enums.dart';
 import '../latin_classes.dart';
 
 List<LatinNoun> latinNouns = [
-  stella,
+  homo,
+  vir,
+  femina,
+
   puer,
+  puella,
+
+  feles,
+  canis,
+
+  liber,
+  arbor,
+
+  stella,
+  aedificium,
+
   bellum,
   pax,
-  homo,
   tempus,
   domus,
   dies,
   aqua,
   via,
-  arbor,
   fructus,
-  liber,
   // Add the rest of the new nouns here
 ];
+
+LatinNoun puella = const LatinNoun(
+  gender: Gender.f,
+  declension: {
+    Case.nom: {
+      Number.s: 'puella',
+      Number.p: 'puellae',
+    },
+    Case.acc: {
+      Number.s: 'puellam',
+      Number.p: 'puellās',
+    },
+    Case.gen: {
+      Number.s: 'puellae',
+      Number.p: 'puellārum',
+    },
+    Case.dat: {
+      Number.s: 'puellae',
+      Number.p: 'puellīs',
+    },
+    Case.abl: {
+      Number.s: 'puellā',
+      Number.p: 'puellīs',
+    },
+    Case.voc: {
+      Number.s: 'puella',
+      Number.p: 'puellae',
+    },
+  },
+);
+
+LatinNoun feles = const LatinNoun(
+  gender: Gender.f,
+  declension: {
+    Case.nom: {
+      Number.s: 'fēlēs',
+      Number.p: 'fēlēs',
+    },
+    Case.acc: {
+      Number.s: 'fēlēs',
+      Number.p: 'fēlēs',
+    },
+    Case.gen: {
+      Number.s: 'fēlis',
+      Number.p: 'fēlium',
+    },
+    Case.dat: {
+      Number.s: 'fēlī',
+      Number.p: 'fēlibus',
+    },
+    Case.abl: {
+      Number.s: 'fēle',
+      Number.p: 'fēlibus',
+    },
+    Case.voc: {
+      Number.s: 'fēlēs',
+      Number.p: 'fēlēs',
+    },
+  },
+);
+
+LatinNoun femina = const LatinNoun(
+  gender: Gender.f,
+  declension: {
+    Case.nom: {
+      Number.s: 'fēmina',
+      Number.p: 'fēminae',
+    },
+    Case.acc: {
+      Number.s: 'fēminam',
+      Number.p: 'fēminās',
+    },
+    Case.gen: {
+      Number.s: 'fēminae',
+      Number.p: 'fēminārum',
+    },
+    Case.dat: {
+      Number.s: 'fēminae',
+      Number.p: 'fēminīs',
+    },
+    Case.abl: {
+      Number.s: 'fēminā',
+      Number.p: 'fēminīs',
+    },
+    Case.voc: {
+      Number.s: 'fēmina',
+      Number.p: 'fēminae',
+    },
+  },
+);
 
 LatinNoun stella = const LatinNoun(
   gender: Gender.f,
@@ -45,6 +146,36 @@ LatinNoun stella = const LatinNoun(
     Case.voc: {
       Number.s: 'stēlla',
       Number.p: 'stēllae',
+    },
+  },
+);
+
+LatinNoun vir = const LatinNoun(
+  gender: Gender.m,
+  declension: {
+    Case.nom: {
+      Number.s: 'vir',
+      Number.p: 'virī',
+    },
+    Case.acc: {
+      Number.s: 'virum',
+      Number.p: 'virōs',
+    },
+    Case.gen: {
+      Number.s: 'virī',
+      Number.p: 'virōrum',
+    },
+    Case.dat: {
+      Number.s: 'virō',
+      Number.p: 'virīs',
+    },
+    Case.abl: {
+      Number.s: 'virō',
+      Number.p: 'virīs',
+    },
+    Case.voc: {
+      Number.s: 'vir',
+      Number.p: 'virī',
     },
   },
 );
@@ -108,7 +239,64 @@ LatinNoun bellum = const LatinNoun(
     },
   },
 );
-
+LatinNoun aedificium = const LatinNoun(
+  gender: Gender.n,
+  declension: {
+    Case.nom: {
+      Number.s: 'aedificium',
+      Number.p: 'aedificia',
+    },
+    Case.acc: {
+      Number.s: 'aedificium',
+      Number.p: 'aedificia',
+    },
+    Case.gen: {
+      Number.s: 'aedificiī',
+      Number.p: 'aedificiōrum',
+    },
+    Case.dat: {
+      Number.s: 'aedificiō',
+      Number.p: 'aedificiīs',
+    },
+    Case.abl: {
+      Number.s: 'aedificiō',
+      Number.p: 'aedificiīs',
+    },
+    Case.voc: {
+      Number.s: 'aedificium',
+      Number.p: 'aedificia',
+    },
+  },
+);
+LatinNoun canis = const LatinNoun(
+  gender: Gender.m,
+  declension: {
+    Case.nom: {
+      Number.s: 'canis',
+      Number.p: 'canēs',
+    },
+    Case.acc: {
+      Number.s: 'canem',
+      Number.p: 'canēs',
+    },
+    Case.gen: {
+      Number.s: 'canis',
+      Number.p: 'canum',
+    },
+    Case.dat: {
+      Number.s: 'canī',
+      Number.p: 'canibus',
+    },
+    Case.abl: {
+      Number.s: 'cane',
+      Number.p: 'canibus',
+    },
+    Case.voc: {
+      Number.s: 'canis',
+      Number.p: 'canēs',
+    },
+  },
+);
 LatinNoun pax = const LatinNoun(
   gender: Gender.f,
   declension: {

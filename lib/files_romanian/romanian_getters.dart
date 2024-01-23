@@ -29,8 +29,8 @@ Question getRomanianVerbQuestion() {
   ];
   String prompt = getRomanianSubject(randomRomanianCoordinate.mood, randomRomanianCoordinate.number, randomRomanianCoordinate.person, randomGender);
   //what is the answer part
-  print(
-      ' ${randomVerb.infinitive} ${randomRomanianCoordinate.mood},${randomRomanianCoordinate.tense},${randomRomanianCoordinate.number},${randomRomanianCoordinate.person},');
+  // print(
+  //     ' ${randomVerb.infinitive} ${randomRomanianCoordinate.mood},${randomRomanianCoordinate.tense},${randomRomanianCoordinate.number},${randomRomanianCoordinate.person},');
   String blank = randomVerb.conjugateVerb(
     randomRomanianCoordinate.mood,
     randomRomanianCoordinate.tense,

@@ -4,16 +4,19 @@ import '../french_classes.dart';
 List<FrenchVerb> frenchVerbs = [
   etre,
   avoir,
-  aller,
-  pouvoir,
-  vouloir,
+  aimer,
+  voir,
   faire,
-  parler,
-  demander,
+  vouloir,
+  pouvoir,
+  devoir,
+  aller,
   savoir,
-  venir,
 ];
 
+// parler,
+// demander,
+// venir,
 FrenchVerb etre = FrenchVerb(
   infinitive: 'être',
   auxiliaryVerb: avoir2,
@@ -255,6 +258,186 @@ FrenchAuxiliaryVerb avoir2 = FrenchAuxiliaryVerb(
       Tense.presentRomance: {
         Number.s: {Person.second: 'aie'},
         Number.p: {Person.first: 'ayons', Person.second: 'ayez'},
+      },
+    },
+  },
+);
+FrenchVerb aimer = FrenchVerb(
+  infinitive: 'aimer',
+  auxiliaryVerb: avoir2, // Assuming 'avoir' is previously defined as it's generally used as the auxiliary for 'aimer'
+  participles: {
+    Tense.presentRomance: const FrenchAdjective(
+      declension: {
+        Number.s: {Gender.m: 'aimant', Gender.f: 'aimant'},
+        Number.p: {Gender.m: 'aimants', Gender.f: 'aimants'}
+      },
+    ),
+    Tense.perfectRomance: const FrenchAdjective(
+      declension: {
+        Number.s: {Gender.m: 'aimé', Gender.f: 'aimée'},
+        Number.p: {Gender.m: 'aimés', Gender.f: 'aimées'}
+      },
+    ),
+  },
+  conjugation: {
+    Mood.ind: {
+      Tense.presentRomance: {
+        Number.s: {Person.first: 'aime', Person.second: 'aimes', Person.third: 'aime'},
+        Number.p: {Person.first: 'aimons', Person.second: 'aimez', Person.third: 'aiment'},
+      },
+      Tense.imperfectRomance: {
+        Number.s: {Person.first: 'aimais', Person.second: 'aimais', Person.third: 'aimait'},
+        Number.p: {Person.first: 'aimions', Person.second: 'aimiez', Person.third: 'aimaient'},
+      },
+      Tense.futureRomance: {
+        Number.s: {Person.first: 'aimerai', Person.second: 'aimeras', Person.third: 'aimera'},
+        Number.p: {Person.first: 'aimerons', Person.second: 'aimerez', Person.third: 'aimeront'},
+      },
+      Tense.perfectRomance: {
+        Number.s: {Person.first: 'aimai', Person.second: 'aimas', Person.third: 'aima'},
+        Number.p: {Person.first: 'aimâmes', Person.second: 'aimâtes', Person.third: 'aimèrent'},
+      },
+    },
+    Mood.con: {
+      Tense.presentRomance: {
+        Number.s: {Person.first: 'aimerais', Person.second: 'aimerais', Person.third: 'aimerait'},
+        Number.p: {Person.first: 'aimerions', Person.second: 'aimeriez', Person.third: 'aimeraient'},
+      },
+    },
+    Mood.sub: {
+      Tense.presentRomance: {
+        Number.s: {Person.first: 'aime', Person.second: 'aimes', Person.third: 'aime'},
+        Number.p: {Person.first: 'aimions', Person.second: 'aimiez', Person.third: 'aiment'},
+      },
+      Tense.imperfectRomance: {
+        Number.s: {Person.first: 'aimasse', Person.second: 'aimasses', Person.third: 'aimât'},
+        Number.p: {Person.first: 'aimassions', Person.second: 'aimassiez', Person.third: 'aimassent'},
+      },
+    },
+    Mood.imp: {
+      Tense.presentRomance: {
+        Number.s: {Person.second: 'aime'},
+        Number.p: {Person.first: 'aimons', Person.second: 'aimez'},
+      },
+    },
+  },
+);
+FrenchVerb voir = FrenchVerb(
+  infinitive: 'voir',
+  auxiliaryVerb: avoir2, // 'avoir' is the auxiliary verb for 'voir'
+  participles: {
+    Tense.presentRomance: const FrenchAdjective(
+      declension: {
+        Number.s: {Gender.m: 'voyant', Gender.f: 'voyant'},
+        Number.p: {Gender.m: 'voyants', Gender.f: 'voyants'}
+      },
+    ),
+    Tense.perfectRomance: const FrenchAdjective(
+      declension: {
+        Number.s: {Gender.m: 'vu', Gender.f: 'vue'},
+        Number.p: {Gender.m: 'vus', Gender.f: 'vues'}
+      },
+    ),
+  },
+  conjugation: {
+    Mood.ind: {
+      Tense.presentRomance: {
+        Number.s: {Person.first: 'vois', Person.second: 'vois', Person.third: 'voit'},
+        Number.p: {Person.first: 'voyons', Person.second: 'voyez', Person.third: 'voient'},
+      },
+      Tense.imperfectRomance: {
+        Number.s: {Person.first: 'voyais', Person.second: 'voyais', Person.third: 'voyait'},
+        Number.p: {Person.first: 'voyions', Person.second: 'voyiez', Person.third: 'voyaient'},
+      },
+      Tense.futureRomance: {
+        Number.s: {Person.first: 'verrai', Person.second: 'verras', Person.third: 'verra'},
+        Number.p: {Person.first: 'verrons', Person.second: 'verrez', Person.third: 'verront'},
+      },
+      Tense.perfectRomance: {
+        Number.s: {Person.first: 'vis', Person.second: 'vis', Person.third: 'vit'},
+        Number.p: {Person.first: 'vîmes', Person.second: 'vîtes', Person.third: 'virent'},
+      },
+    },
+    Mood.con: {
+      Tense.presentRomance: {
+        Number.s: {Person.first: 'verrais', Person.second: 'verrais', Person.third: 'verrait'},
+        Number.p: {Person.first: 'verrions', Person.second: 'verriez', Person.third: 'verraient'},
+      },
+    },
+    Mood.sub: {
+      Tense.presentRomance: {
+        Number.s: {Person.first: 'voie', Person.second: 'voies', Person.third: 'voie'},
+        Number.p: {Person.first: 'voyions', Person.second: 'voyiez', Person.third: 'voient'},
+      },
+      Tense.imperfectRomance: {
+        Number.s: {Person.first: 'visse', Person.second: 'visses', Person.third: 'vît'},
+        Number.p: {Person.first: 'vissions', Person.second: 'vissiez', Person.third: 'vissent'},
+      },
+    },
+    Mood.imp: {
+      Tense.presentRomance: {
+        Number.s: {Person.second: 'vois'},
+        Number.p: {Person.first: 'voyons', Person.second: 'voyez'},
+      },
+    },
+  },
+);
+FrenchVerb devoir = FrenchVerb(
+  infinitive: 'devoir',
+  auxiliaryVerb: avoir2, // 'avoir' is the auxiliary verb for 'devoir'
+  participles: {
+    Tense.presentRomance: const FrenchAdjective(
+      declension: {
+        Number.s: {Gender.m: 'devant', Gender.f: 'devant'},
+        Number.p: {Gender.m: 'devants', Gender.f: 'devants'}
+      },
+    ),
+    Tense.perfectRomance: const FrenchAdjective(
+      declension: {
+        Number.s: {Gender.m: 'dû', Gender.f: 'due'},
+        Number.p: {Gender.m: 'dus', Gender.f: 'dues'}
+      },
+    ),
+  },
+  conjugation: {
+    Mood.ind: {
+      Tense.presentRomance: {
+        Number.s: {Person.first: 'dois', Person.second: 'dois', Person.third: 'doit'},
+        Number.p: {Person.first: 'devons', Person.second: 'devez', Person.third: 'doivent'},
+      },
+      Tense.imperfectRomance: {
+        Number.s: {Person.first: 'devais', Person.second: 'devais', Person.third: 'devait'},
+        Number.p: {Person.first: 'devions', Person.second: 'deviez', Person.third: 'devaient'},
+      },
+      Tense.futureRomance: {
+        Number.s: {Person.first: 'devrai', Person.second: 'devras', Person.third: 'devra'},
+        Number.p: {Person.first: 'devrons', Person.second: 'devrez', Person.third: 'devront'},
+      },
+      Tense.perfectRomance: {
+        Number.s: {Person.first: 'dus', Person.second: 'dus', Person.third: 'dut'},
+        Number.p: {Person.first: 'dûmes', Person.second: 'dûtes', Person.third: 'durent'},
+      },
+    },
+    Mood.con: {
+      Tense.presentRomance: {
+        Number.s: {Person.first: 'devrais', Person.second: 'devrais', Person.third: 'devrait'},
+        Number.p: {Person.first: 'devrions', Person.second: 'devriez', Person.third: 'devraient'},
+      },
+    },
+    Mood.sub: {
+      Tense.presentRomance: {
+        Number.s: {Person.first: 'doive', Person.second: 'doives', Person.third: 'doive'},
+        Number.p: {Person.first: 'devions', Person.second: 'deviez', Person.third: 'doivent'},
+      },
+      Tense.imperfectRomance: {
+        Number.s: {Person.first: 'dusse', Person.second: 'dusses', Person.third: 'dût'},
+        Number.p: {Person.first: 'dussions', Person.second: 'dussiez', Person.third: 'dussent'},
+      },
+    },
+    Mood.imp: {
+      Tense.presentRomance: {
+        Number.s: {Person.second: 'dois'},
+        Number.p: {Person.first: 'devons', Person.second: 'devez'},
       },
     },
   },

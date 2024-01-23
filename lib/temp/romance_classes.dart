@@ -1,90 +1,102 @@
-// import '../core/enums.dart';
+class Word {
+  String? getLemma() {
+    return null;
+  }
+}
 
-// class RomanceAdjective {
-//   final Map<String, Map<String, String>> declension;
-//   const RomanceAdjective({required this.declension});
+class Section {
+  final String sectionName;
+  final List<Subsection> subsections;
+  const Section({required this.subsections, required this.sectionName});
+}
 
-//   String declineAdjective(String n, String g) {
-//     return declension[n]?[g] ?? 'DNE';
-//   }
-// }
+class Subsection {
+  final String subsectionName;
+  final Map<String, String> entries;
+  const Subsection({required this.entries, required this.subsectionName});
+}
 
-// class RomanceNoun {
-//   final Map<String, String> declension;
-//   final String gender;
-//   const RomanceNoun({required this.gender, required this.declension});
+class RomanceAdjective implements Word {
+  // final Map<Number, Map<Gender, String>> declension;
+  // const RomanceAdjective({
+  //   required this.declension,
+  // });
 
-//   String declineNoun(String n) {
-//     return declension[n] ?? 'DNE';
-//   }
-// }
+  @override
+  String? getLemma() {
+    return null;
+  }
 
-// class RomanceVerb {
-//   String infinitive;
-//   RomanceAuxiliaryVerb auxiliaryVerb;
-//   Map<String, RomanceAdjective> participles;
-//   Map<String, Map<String, Map<String, Map<String, String>>>> conjugation;
+  // String? declineAdjective(Number n, Gender g) {
+  //   return declension[n]?[g];
+  // }
+  List<Section> getDisplayInflection() {
+    return [];
+  }
+}
 
-//   RomanceVerb({
-//     required this.infinitive,
-//     required this.auxiliaryVerb,
-//     required this.participles,
-//     required this.conjugation,
-//   });
+class RomanceNoun implements Word {
+  // final Map<Number, String> declension;
+  // final Gender gender;
+  // const RomanceNoun({
+  //   // required this.gender,
+  //   // required this.declension,
+  // });
+  @override
+  String? getLemma() {
+    return null;
+  }
 
-//   String conjugateVerb(String m, String t, String n, String p, {String g = 'm'}) {
-//     // print('hi'); //pres ind and pres cond are both simple, also all imp are simple
-//     if (m == 'imp' || t == 'pres' || t == 'imp' || t == 'fut' || t == 'perf') {
-//       return conjugation[m]?[t]?[n]?[p] ?? 'DNE';
+  // String? declineNoun(Number n) {
+  //   return declension[n];
+  // }
+  List<Section> getDisplayInflection() {
+    return [];
+  }
+}
 
-//       //else if the verb is not simple and is compound
-//     } else {
-//       String auxiliaryTense = '';
+class RomanceVerb implements Word {
+  // String infinitive;
+  // RomanceAuxiliaryVerb auxiliaryVerb;
+  // Map<Tense, RomanceAdjective> participles;
+  // Map<String, Map<String, Map<String, Map<String, String>>>> conjugation;
 
-//       if (t == 'perfc') {
-//         auxiliaryTense = 'pres';
-//       } else if (t == 'plup') {
-//         auxiliaryTense = 'imp';
-//       } else if (t == 'ant') {
-//         auxiliaryTense = 'perf';
-//       } else if (t == 'futp') {
-//         auxiliaryTense = 'fut';
-//       } else if (m == 'con' && t == 'perfc') {
-//         auxiliaryTense = 'pres';
-//       }
+  // RomanceVerb({
+  //   // required this.infinitive,
+  //   // required this.auxiliaryVerb,
+  //   // required this.participles,
+  //   // required this.conjugation,
+  // });
+  @override
+  String? getLemma() {
+    return null;
+  }
 
-//       //if it is essere it is gender dependant
+  // String? conjugateVerb(String m, String t, String n, String p, {String g = 'm'}) {
+  //   return conjugation[m]?[t]?[n]?[p];
+  // }
+  List<Section> getDisplayInflection() {
+    return [];
+  }
+}
 
-//       //mood is same,
-//       Gender participleGender = auxiliaryVerb == 'etre2' ? g : Gender.m;
+class RomanceAuxiliaryVerb implements Word {
+  // String infinitive;
+  // Map<String, RomanceAdjective> participles;
+  // Map<String, Map<String, Map<String, Map<String, String>>>> conjugation;
 
-//       String aux = auxiliaryVerb.conjugateVerb(m, auxiliaryTense, n, p);
-//       String part = participles['past']!.declineAdjective(n, participleGender);
+  // RomanceAuxiliaryVerb({
+  //   required this.infinitive,
+  //   // required this.participles,
+  //   // required this.conjugation,
+  // });
+  @override
+  String? getLemma() {
+    return null;
+  }
+  // String? conjugateVerb(String m, String t, String n, String p, {String g = 'm'}) {
 
-//       if (aux == 'DNE' || part == 'DNE') {
-//         return 'DNE';
-//       }
-//       return '$aux $part';
-//     }
-//   }
-// }
+  //     return conjugation[m]?[t]?[n]?[p];
 
-// class RomanceAuxiliaryVerb {
-//   String infinitive;
-//   Map<String, RomanceAdjective> participles;
-//   Map<String, Map<String, Map<String, Map<String, String>>>> conjugation;
-
-//   RomanceAuxiliaryVerb({
-//     required this.infinitive,
-//     required this.participles,
-//     required this.conjugation,
-//   });
-
-//   String conjugateVerb(String m, String t, String n, String p, {String g = 'm'}) {
-//     print('hi'); //pres ind and pres cond are both simple, also all imp are simple
-//     if (m == 'imp' || t == 'pres' || t == 'imp' || t == 'fut' || t == 'perf') {
-//       return conjugation[m]?[t]?[n]?[p] ?? 'DNE';
-//     }
-//     return 'DNE';
-//   }
-// }
+  // }
+}

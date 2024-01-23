@@ -14,7 +14,6 @@ List<LatinAdjective> latinAdjectives = [
   dulcis,
   longus,
   curvus,
-  novus,
   rectus,
   liber,
   latus,
@@ -504,28 +503,28 @@ LatinAdjective curvus = const LatinAdjective(
 LatinAdjective liber = const LatinAdjective(
   declension: {
     Case.nom: {
-      Number.s: {Gender.m: 'liber', Gender.f: 'libera', Gender.n: 'liberum'},
-      Number.p: {Gender.m: 'liberī', Gender.f: 'liberae', Gender.n: 'libera'}
+      Number.s: {Gender.m: 'līber', Gender.f: 'lībera', Gender.n: 'līberum'},
+      Number.p: {Gender.m: 'līberī', Gender.f: 'līberae', Gender.n: 'lībera'}
     },
     Case.acc: {
-      Number.s: {Gender.m: 'liberum', Gender.f: 'liberam', Gender.n: 'liberum'},
-      Number.p: {Gender.m: 'liberōs', Gender.f: 'liberās', Gender.n: 'libera'}
+      Number.s: {Gender.m: 'līberum', Gender.f: 'līberam', Gender.n: 'līberum'},
+      Number.p: {Gender.m: 'līberōs', Gender.f: 'līberās', Gender.n: 'lībera'}
     },
     Case.gen: {
-      Number.s: {Gender.m: 'liberī', Gender.f: 'liberae', Gender.n: 'liberī'},
-      Number.p: {Gender.m: 'liberōrum', Gender.f: 'liberārum', Gender.n: 'liberōrum'}
+      Number.s: {Gender.m: 'līberī', Gender.f: 'līberae', Gender.n: 'līberī'},
+      Number.p: {Gender.m: 'līberōrum', Gender.f: 'līberārum', Gender.n: 'līberōrum'}
     },
     Case.dat: {
-      Number.s: {Gender.m: 'liberō', Gender.f: 'liberae', Gender.n: 'liberō'},
-      Number.p: {Gender.m: 'liberīs', Gender.f: 'liberīs', Gender.n: 'liberīs'}
+      Number.s: {Gender.m: 'līberō', Gender.f: 'līberae', Gender.n: 'līberō'},
+      Number.p: {Gender.m: 'līberīs', Gender.f: 'līberīs', Gender.n: 'līberīs'}
     },
     Case.abl: {
-      Number.s: {Gender.m: 'liberō', Gender.f: 'liberā', Gender.n: 'liberō'},
-      Number.p: {Gender.m: 'liberīs', Gender.f: 'liberīs', Gender.n: 'liberīs'}
+      Number.s: {Gender.m: 'līberō', Gender.f: 'līberā', Gender.n: 'līberō'},
+      Number.p: {Gender.m: 'līberīs', Gender.f: 'līberīs', Gender.n: 'līberīs'}
     },
     Case.voc: {
-      Number.s: {Gender.m: 'liber', Gender.f: 'libera', Gender.n: 'liberum'},
-      Number.p: {Gender.m: 'liberī', Gender.f: 'liberae', Gender.n: 'libera'}
+      Number.s: {Gender.m: 'līber', Gender.f: 'lībera', Gender.n: 'līberum'},
+      Number.p: {Gender.m: 'līberī', Gender.f: 'līberae', Gender.n: 'lībera'}
     }
   },
 );

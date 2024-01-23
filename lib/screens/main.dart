@@ -1,4 +1,4 @@
-import 'package:colorguesser/screens/info_screen.dart';
+import 'package:colorguesser/screens/reference_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -23,8 +23,9 @@ void main() async {
 
 List<Widget> pages = [
   const LanguageBoxHolder(),
+  const ReferenceScreen(),
   const StoreScreen(),
-  const InfoScreen(),
+  // const InfoScreen(),
   const SettingsScreen(),
 ];
 
@@ -95,10 +96,10 @@ class _AppScreenState extends State<AppScreen> {
         return Scaffold(
           body: pages[navBarIndex],
           bottomNavigationBar: Container(
-            height: 75,
+            height: 65,
             color: darkColor,
             child: Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(8),
               child: GNav(
                 activeColor: darkColor,
                 tabBackgroundColor: lightColor,
@@ -106,8 +107,8 @@ class _AppScreenState extends State<AppScreen> {
                 textStyle: const TextStyle(
                   color: lightColor,
                 ),
-                padding: const EdgeInsets.all(13),
-                gap: 8,
+                padding: const EdgeInsets.all(8),
+                gap: 4,
                 iconSize: 30,
                 onTabChange: (index) {
                   setState(() {
@@ -121,15 +122,20 @@ class _AppScreenState extends State<AppScreen> {
                     textStyle: const TextStyle(fontFamily: 'Fraunces', color: darkColor),
                   ),
                   GButton(
+                    icon: Icons.shelves,
+                    text: 'Library'.tr(), //TODO
+                    textStyle: const TextStyle(fontFamily: 'Fraunces', color: darkColor),
+                  ),
+                  GButton(
                     icon: Icons.store,
                     text: 'textStore'.tr(),
                     textStyle: const TextStyle(fontFamily: 'Fraunces', color: darkColor),
                   ),
-                  GButton(
-                    icon: Icons.info,
-                    text: 'Information'.tr(),
-                    textStyle: const TextStyle(fontFamily: 'Fraunces', color: darkColor),
-                  ),
+                  // GButton(
+                  //   icon: Icons.info,
+                  //   text: 'Information'.tr(),
+                  //   textStyle: const TextStyle(fontFamily: 'Fraunces', color: darkColor),
+                  // ),
                   GButton(
                     icon: Icons.settings,
                     text: 'textSettings'.tr(),

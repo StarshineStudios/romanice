@@ -7,6 +7,7 @@
 
 
   "textSettings": "Impostazioni",
+  "Library": "Biblioteca",
   "textSystemLanguage": "Lingua del Sistema",
   "useSystemDefaultLanguageText": "Usare Lingua Predefinita del Sistema",
   "resetProgressText": "Azzera Progressi",
@@ -49,6 +50,13 @@
   "optative/conditional": "ottativo/condizionale",
   "conditional": "condizionale",
   "presumptive": "presuntivo",
+
+  "indicative (active)": "indicativo (attivo)",
+  "subjunctive (active)": "congiuntivo (attivo)",
+  "imperative (active)": "imperativo (attivo)",
+  "indicative (passive)": "indicativo (passivo)",
+  "subjunctive (passive)": "congiuntivo (passivo)",
+  "imperative (passive)": "imperativo (passivo)",
 
   "active": "attivo",
   "passive": "passivo",
@@ -93,5 +101,9 @@
   "conditional perfect": "condizionale passato",
 
   "completed": "completato",
-  "tap to reveal": "tocca per rivelare"
+  "tap to reveal": "tocca per rivelare",
+
+  "adjectives": "aggettivi",
+  "nouns": "sostantivi",
+  "verbs": "verbi"
 }
