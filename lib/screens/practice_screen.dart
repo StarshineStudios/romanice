@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:easy_localization/easy_localization.dart';
 
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 
 import '../core/constants.dart';
 import 'package:tinycolor2/tinycolor2.dart';
@@ -22,12 +23,15 @@ class _PracticeScreenState extends State<PracticeScreen> {
   bool answerRevealed = false;
   Question question = Question();
   int count = 0;
+  final Box<dynamic> _generalBox = Hive.box('generalBoxString');
 
   @override
   Widget build(BuildContext context) {
+    String selectedTypewriter = _generalBox.get('selectedTypewriter', defaultValue: 'defaultTypewriter');
     void refreshQuestion() {
       setState(() {
         count++;
+        _generalBox.put('coins', _generalBox.get('coins', defaultValue: 1) + 1);
         question = widget.getFunction();
         answerRevealed = false;
       });
@@ -125,7 +129,10 @@ class _PracticeScreenState extends State<PracticeScreen> {
           Expanded(
             child: GestureDetector(
               onTap: onTap,
-              child: TypeWriter(text: answerRevealed ? question.answer : question.prompt),
+              child: TypeWriter(
+                text: answerRevealed ? question.answer : question.prompt,
+                typewriterName: selectedTypewriter,
+              ),
             ),
           )
         ],
@@ -167,8 +174,9 @@ void main() {
 
 class TypeWriter extends StatelessWidget {
   final String text;
+  final String typewriterName;
 
-  const TypeWriter({Key? key, required this.text}) : super(key: key);
+  const TypeWriter({Key? key, required this.text, required this.typewriterName}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -178,8 +186,8 @@ class TypeWriter extends StatelessWidget {
       child: Stack(
         alignment: Alignment.center,
         children: [
-          const Image(
-            image: AssetImage('assets/typeBack.png'),
+          Image(
+            image: AssetImage(getTypewriter(typewriterName)['back'] as String),
           ),
           AspectRatio(
             aspectRatio: 1.0,
@@ -205,8 +213,8 @@ class TypeWriter extends StatelessWidget {
               ),
             ),
           ),
-          const Image(
-            image: AssetImage('assets/typeFront.png'),
+          Image(
+            image: AssetImage(getTypewriter(typewriterName)['front'] as String),
           ),
         ],
       ),

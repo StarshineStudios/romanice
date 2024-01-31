@@ -167,47 +167,31 @@ LatinVerb scire = LatinVerb(
       ),
     },
     Tense.perfect: {
-      Voice.act: const LatinAdjective(
-        declension: {
-          Case.nom: {
-            Number.s: {Gender.m: 'scītus', Gender.f: 'scīta', Gender.n: 'scītum'},
-          },
-          Case.acc: {
-            Number.s: {Gender.m: 'scītum', Gender.f: 'scītam', Gender.n: 'scītum'},
-          },
-          Case.gen: {
-            Number.s: {Gender.m: 'scītī', Gender.f: 'scītae', Gender.n: 'scītī'},
-          },
-          Case.dat: {
-            Number.s: {Gender.m: 'scītō', Gender.f: 'scītae', Gender.n: 'scītō'},
-          },
-          Case.abl: {
-            Number.s: {Gender.m: 'scītō', Gender.f: 'scītā', Gender.n: 'scītō'},
-          },
-          Case.voc: {
-            Number.s: {Gender.m: 'scīte', Gender.f: 'scīta', Gender.n: 'scītum'},
-          },
-        },
-      ),
       Voice.pas: const LatinAdjective(
         declension: {
           Case.nom: {
             Number.s: {Gender.m: 'scītus', Gender.f: 'scīta', Gender.n: 'scītum'},
+            Number.p: {Gender.m: 'scītī', Gender.f: 'scītae', Gender.n: 'scīta'},
           },
           Case.acc: {
             Number.s: {Gender.m: 'scītum', Gender.f: 'scītam', Gender.n: 'scītum'},
+            Number.p: {Gender.m: 'scītōs', Gender.f: 'scītās', Gender.n: 'scīta'},
           },
           Case.gen: {
             Number.s: {Gender.m: 'scītī', Gender.f: 'scītae', Gender.n: 'scītī'},
+            Number.p: {Gender.m: 'scītōrum', Gender.f: 'scītārum', Gender.n: 'scītōrum'},
           },
           Case.dat: {
             Number.s: {Gender.m: 'scītō', Gender.f: 'scītae', Gender.n: 'scītō'},
+            Number.p: {Gender.m: 'scītīs', Gender.f: 'scītīs', Gender.n: 'scītīs'},
           },
           Case.abl: {
             Number.s: {Gender.m: 'scītō', Gender.f: 'scītā', Gender.n: 'scītō'},
+            Number.p: {Gender.m: 'scītīs', Gender.f: 'scītīs', Gender.n: 'scītīs'},
           },
           Case.voc: {
             Number.s: {Gender.m: 'scīte', Gender.f: 'scīta', Gender.n: 'scītum'},
+            Number.p: {Gender.m: 'scītī', Gender.f: 'scītae', Gender.n: 'scīta'},
           },
         },
       ),
@@ -217,21 +201,55 @@ LatinVerb scire = LatinVerb(
         declension: {
           Case.nom: {
             Number.s: {Gender.m: 'scītūrus', Gender.f: 'scītūra', Gender.n: 'scītūrum'},
+            Number.p: {Gender.m: 'scītūrī', Gender.f: 'scītūrae', Gender.n: 'scītūra'},
           },
           Case.acc: {
             Number.s: {Gender.m: 'scītūrum', Gender.f: 'scītūram', Gender.n: 'scītūrum'},
+            Number.p: {Gender.m: 'scītūrōs', Gender.f: 'scītūrās', Gender.n: 'scītūra'},
           },
           Case.gen: {
             Number.s: {Gender.m: 'scītūrī', Gender.f: 'scītūrae', Gender.n: 'scītūrī'},
+            Number.p: {Gender.m: 'scītūrōrum', Gender.f: 'scītūrārum', Gender.n: 'scītūrōrum'},
           },
           Case.dat: {
             Number.s: {Gender.m: 'scītūrō', Gender.f: 'scītūrae', Gender.n: 'scītūrō'},
+            Number.p: {Gender.m: 'scītūrīs', Gender.f: 'scītūrīs', Gender.n: 'scītūrīs'},
           },
           Case.abl: {
             Number.s: {Gender.m: 'scītūrō', Gender.f: 'scītūrā', Gender.n: 'scītūrō'},
+            Number.p: {Gender.m: 'scītūrīs', Gender.f: 'scītūrīs', Gender.n: 'scītūrīs'},
           },
           Case.voc: {
             Number.s: {Gender.m: 'scītūre', Gender.f: 'scītūra', Gender.n: 'scītūrum'},
+            Number.p: {Gender.m: 'scītūrī', Gender.f: 'scītūrae', Gender.n: 'scītūra'},
+          },
+        },
+      ),
+      Voice.pas: const LatinAdjective(
+        declension: {
+          Case.nom: {
+            Number.s: {Gender.m: 'sciendus', Gender.f: 'scienda', Gender.n: 'sciendum'},
+            Number.p: {Gender.m: 'sciendī', Gender.f: 'sciendae', Gender.n: 'scienda'},
+          },
+          Case.acc: {
+            Number.s: {Gender.m: 'sciendum', Gender.f: 'sciendam', Gender.n: 'sciendum'},
+            Number.p: {Gender.m: 'sciendōs', Gender.f: 'sciendās', Gender.n: 'scienda'},
+          },
+          Case.gen: {
+            Number.s: {Gender.m: 'sciendī', Gender.f: 'sciendae', Gender.n: 'sciendī'},
+            Number.p: {Gender.m: 'sciendōrum', Gender.f: 'sciendārum', Gender.n: 'sciendōrum'},
+          },
+          Case.dat: {
+            Number.s: {Gender.m: 'sciendō', Gender.f: 'sciendae', Gender.n: 'sciendō'},
+            Number.p: {Gender.m: 'sciendīs', Gender.f: 'sciendīs', Gender.n: 'sciendīs'},
+          },
+          Case.abl: {
+            Number.s: {Gender.m: 'sciendō', Gender.f: 'sciendā', Gender.n: 'sciendō'},
+            Number.p: {Gender.m: 'sciendīs', Gender.f: 'sciendīs', Gender.n: 'sciendīs'},
+          },
+          Case.voc: {
+            Number.s: {Gender.m: 'sciende', Gender.f: 'scienda', Gender.n: 'sciendum'},
+            Number.p: {Gender.m: 'sciendī', Gender.f: 'sciendae', Gender.n: 'scienda'},
           },
         },
       ),
@@ -582,6 +600,8 @@ LatinVerb habere = LatinVerb(
     },
   },
 );
+
+//TECHNICALLY this has passive forms but they are literally NEVER USED so I will omit them in the conjugation structure
 LatinVerb ire = LatinVerb(
   infinitives: {
     Tense.present: {
@@ -627,47 +647,31 @@ LatinVerb ire = LatinVerb(
       ),
     },
     Tense.perfect: {
-      Voice.act: const LatinAdjective(
-        declension: {
-          Case.nom: {
-            Number.s: {Gender.m: 'itus', Gender.f: 'ita', Gender.n: 'itum'},
-          },
-          Case.acc: {
-            Number.s: {Gender.m: 'itum', Gender.f: 'itam', Gender.n: 'itum'},
-          },
-          Case.gen: {
-            Number.s: {Gender.m: 'itī', Gender.f: 'itae', Gender.n: 'itī'},
-          },
-          Case.dat: {
-            Number.s: {Gender.m: 'itō', Gender.f: 'itae', Gender.n: 'itō'},
-          },
-          Case.abl: {
-            Number.s: {Gender.m: 'itō', Gender.f: 'itā', Gender.n: 'itō'},
-          },
-          Case.voc: {
-            Number.s: {Gender.m: 'ite', Gender.f: 'ita', Gender.n: 'itum'},
-          },
-        },
-      ),
       Voice.pas: const LatinAdjective(
         declension: {
           Case.nom: {
             Number.s: {Gender.m: 'itus', Gender.f: 'ita', Gender.n: 'itum'},
+            Number.p: {Gender.m: 'itī', Gender.f: 'itae', Gender.n: 'ita'},
           },
           Case.acc: {
             Number.s: {Gender.m: 'itum', Gender.f: 'itam', Gender.n: 'itum'},
+            Number.p: {Gender.m: 'itōs', Gender.f: 'itās', Gender.n: 'ita'},
           },
           Case.gen: {
             Number.s: {Gender.m: 'itī', Gender.f: 'itae', Gender.n: 'itī'},
+            Number.p: {Gender.m: 'itōrum', Gender.f: 'itārum', Gender.n: 'itōrum'},
           },
           Case.dat: {
             Number.s: {Gender.m: 'itō', Gender.f: 'itae', Gender.n: 'itō'},
+            Number.p: {Gender.m: 'itīs', Gender.f: 'itīs', Gender.n: 'itīs'},
           },
           Case.abl: {
             Number.s: {Gender.m: 'itō', Gender.f: 'itā', Gender.n: 'itō'},
+            Number.p: {Gender.m: 'itīs', Gender.f: 'itīs', Gender.n: 'itīs'},
           },
           Case.voc: {
             Number.s: {Gender.m: 'ite', Gender.f: 'ita', Gender.n: 'itum'},
+            Number.p: {Gender.m: 'itī', Gender.f: 'itae', Gender.n: 'ita'},
           },
         },
       ),
@@ -677,26 +681,33 @@ LatinVerb ire = LatinVerb(
         declension: {
           Case.nom: {
             Number.s: {Gender.m: 'itūrus', Gender.f: 'itūra', Gender.n: 'itūrum'},
+            Number.p: {Gender.m: 'itūrī', Gender.f: 'itūrae', Gender.n: 'itūra'},
           },
           Case.acc: {
             Number.s: {Gender.m: 'itūrum', Gender.f: 'itūram', Gender.n: 'itūrum'},
+            Number.p: {Gender.m: 'itūrōs', Gender.f: 'itūrās', Gender.n: 'itūra'},
           },
           Case.gen: {
             Number.s: {Gender.m: 'itūrī', Gender.f: 'itūrae', Gender.n: 'itūrī'},
+            Number.p: {Gender.m: 'itūrōrum', Gender.f: 'itūrārum', Gender.n: 'itūrōrum'},
           },
           Case.dat: {
             Number.s: {Gender.m: 'itūrō', Gender.f: 'itūrae', Gender.n: 'itūrō'},
+            Number.p: {Gender.m: 'itūrīs', Gender.f: 'itūrīs', Gender.n: 'itūrīs'},
           },
           Case.abl: {
             Number.s: {Gender.m: 'itūrō', Gender.f: 'itūrā', Gender.n: 'itūrō'},
+            Number.p: {Gender.m: 'itūrīs', Gender.f: 'itūrīs', Gender.n: 'itūrīs'},
           },
           Case.voc: {
             Number.s: {Gender.m: 'itūre', Gender.f: 'itūra', Gender.n: 'itūrum'},
+            Number.p: {Gender.m: 'itūrī', Gender.f: 'itūrae', Gender.n: 'itūra'},
           },
         },
       ),
     },
   },
+  conjugationStructure: latinActiveOnlyConjugationStructure,
   conjugation: {
     Mood.ind: {
       Voice.act: {
@@ -1693,12 +1704,10 @@ LatinVerb nolle = LatinVerb(
       Voice.act: {
         Tense.present: {
           Number.s: {Person.second: 'nōlī'},
-          Number.p: {Person.second: 'nōlitō', Person.third: 'nōlitō'},
+          Number.p: {Person.second: 'nōlīte'}
         },
         Tense.future: {
-          Number.s: {
-            Person.second: 'nōlē',
-          },
+          Number.s: {Person.second: 'nōlitō', Person.third: 'nōlitō'},
           Number.p: {Person.second: 'nōnlitōte', Person.third: 'nōluntō'},
         },
       },

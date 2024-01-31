@@ -192,7 +192,7 @@ class RomanianVerb implements RomanceVerb {
         return '$first $second';
       }
     } else if (m == Mood.optcon) {
-      if (t == Tense.perfectRomanceCompound) {
+      if (t == Tense.presentRomance) {
         String? first = avea3.conjugateVerb(Mood.ind, Tense.presentRomance, n, p);
         String? second = participles[Tense.perfectRomance]?.declineAdjective(Case.nomacc, Number.s, Gender.m);
         //we use the aux form with aș	ai ar	am	ați	ar
@@ -200,7 +200,7 @@ class RomanianVerb implements RomanceVerb {
           return null;
         }
         return '$first $second';
-      } else if (t == Tense.presentRomance) {
+      } else if (t == Tense.perfectRomanceCompound) {
         String? first = avea3.conjugateVerb(Mood.ind, Tense.presentRomance, n, p);
 
         String second = 'fi';
@@ -211,7 +211,7 @@ class RomanianVerb implements RomanceVerb {
         return '$first $second $third';
       }
     } else if (m == Mood.pre) {
-      if (t == Tense.perfectRomanceCompound) {
+      if (t == Tense.presentRomance) {
         //we use the aux form of vrea with oi	oi	o	om	oți	or
         String? first = vrea3.conjugateVerb(Mood.ind, Tense.presentRomance, n, p);
         String? second = participles[Tense.perfectRomance]?.declineAdjective(Case.nomacc, Number.s, Gender.m);
@@ -219,7 +219,7 @@ class RomanianVerb implements RomanceVerb {
           return null;
         }
         return '$first $second';
-      } else if (t == Tense.presentRomance) {
+      } else if (t == Tense.perfectRomanceCompound) {
         String? first = vrea3.conjugateVerb(Mood.ind, Tense.presentRomance, n, p);
         String second = 'fi';
         String? third = participles[Tense.perfectRomance]?.declineAdjective(Case.nomacc, Number.s, Gender.m);
@@ -255,7 +255,17 @@ class RomanianVerb implements RomanceVerb {
             String? conjugatedVerb = conjugateVerb(mood, tense, number, person);
 
             if (conjugatedVerb != null) {
-              String key = getRomanianSubjectPronoun(person, number, Gender.m)!;
+              List<String> keys = [];
+
+              String key;
+              if (person == Person.third) {
+                for (Gender gender in romanianGenders) {
+                  keys.add(getRomanianSubjectPronoun(person, number, gender)!);
+                }
+                key = keys.join('/');
+              } else {
+                key = getRomanianSubjectPronoun(person, number, Gender.m)!;
+              }
               entries[key] = conjugatedVerb;
             }
           }

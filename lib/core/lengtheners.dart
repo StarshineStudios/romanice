@@ -25,6 +25,13 @@ Map<Gender, String> lengthenGender = {
   Gender.i: 'irregular', //used in italian to mean neuter-like words
 };
 
+Map<Gender, String> shortenGender = {
+  Gender.m: '(m)', //es, la, fr, it, pt, ro
+  Gender.f: '(f)', //es, la, fr, it, pt, ro
+  Gender.n: '(n)', //la
+  Gender.i: '(i)', //used in italian to mean neuter-like words
+};
+
 //only latin and romanian have cases for non pronouns.
 //nom+acc and gen+dat are same in romanian
 Map<Case, String> lengthenCase = {

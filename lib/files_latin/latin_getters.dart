@@ -3,6 +3,7 @@ import 'dart:math';
 
 import 'package:colorguesser/core/enums.dart';
 import 'package:colorguesser/files_latin/latin_constants.dart';
+import 'package:hive/hive.dart';
 
 import '../core/constants.dart';
 import 'word_data/latin_adjectives.dart';
@@ -86,7 +87,18 @@ Question getLatinAdjectiveNounQuestion() {
   //GET RANDOM VALID DECLENSION
   // Case randomCase = randomNoun.declension.keys.toList().getRandom();
   //I do not want locative
-  Case randomCase = latinCases.getRandom();
+
+  final Box<dynamic> _generalBox = Hive.box('generalBoxString');
+  bool usingVoc = _generalBox.get('usingVocativeIf', defaultValue: true);
+
+  List<Case> cases = randomNoun.declension.keys.toList();
+  if (!usingVoc) {
+    if (randomNoun.declineNoun(Case.nom, Number.s) == randomNoun.declineNoun(Case.voc, Number.s)) {
+      cases.remove(Case.voc);
+    }
+  }
+  Case randomCase = cases.getRandom();
+
   Number randomNumber = randomNoun.declension[randomCase]!.keys.toList().getRandom();
 
   LatinAdjective randomAdjective = latinAdjectives.getRandom();

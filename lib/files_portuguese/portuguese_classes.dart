@@ -141,7 +141,17 @@ class PortugueseVerb implements RomanceVerb {
             String? conjugatedVerb = conjugateVerb(mood, tense, number, person, g: Gender.m);
 
             if (conjugatedVerb != null) {
-              String key = getPortugueseSubjectPronoun(person, number, Gender.m)!;
+              List<String> keys = [];
+
+              String key;
+              if (person == Person.third) {
+                for (Gender gender in portugueseGenders) {
+                  keys.add(getPortugueseSubjectPronoun(person, number, gender)!);
+                }
+                key = keys.join('/');
+              } else {
+                key = getPortugueseSubjectPronoun(person, number, Gender.m)!;
+              }
               entries[key] = conjugatedVerb;
             }
           }

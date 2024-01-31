@@ -95,6 +95,7 @@ class _ReferenceScreenState extends State<ReferenceScreen> {
   Map<String, RomanceAdjective> selectedAdjectives = {};
   Map<String, RomanceNoun> selectedNouns = {};
   Map<String, RomanceVerb> selectedVerbs = {};
+  List<bool> downs = [true, false, false];
 
   WordTypePlural selectedWordTypePlural = WordTypePlural.adjectives;
 
@@ -205,7 +206,8 @@ class _ReferenceScreenState extends State<ReferenceScreen> {
                       children: [
                         Padding(
                           padding: const EdgeInsets.all(4.0),
-                          child: NiceButton(
+                          child: NiceButtonToggle(
+                            down: downs[0],
                             borderRadius: 16.0,
                             color: pastelRed,
                             child: Padding(
@@ -217,6 +219,7 @@ class _ReferenceScreenState extends State<ReferenceScreen> {
                             ),
                             onPressed: () {
                               setState(() {
+                                downs = [true, false, false];
                                 selectedWordTypePlural = WordTypePlural.adjectives;
                               });
                             },
@@ -224,7 +227,8 @@ class _ReferenceScreenState extends State<ReferenceScreen> {
                         ),
                         Padding(
                           padding: const EdgeInsets.all(4.0),
-                          child: NiceButton(
+                          child: NiceButtonToggle(
+                            down: downs[1],
                             borderRadius: 16.0,
                             color: pastelGreen,
                             child: Padding(
@@ -236,6 +240,8 @@ class _ReferenceScreenState extends State<ReferenceScreen> {
                             ),
                             onPressed: () {
                               setState(() {
+                                downs = [false, true, false];
+
                                 selectedWordTypePlural = WordTypePlural.nouns;
                               });
                             },
@@ -243,7 +249,8 @@ class _ReferenceScreenState extends State<ReferenceScreen> {
                         ),
                         Padding(
                           padding: const EdgeInsets.all(4.0),
-                          child: NiceButton(
+                          child: NiceButtonToggle(
+                            down: downs[2],
                             borderRadius: 16.0,
                             color: pastelBlue,
                             child: Padding(
@@ -255,6 +262,8 @@ class _ReferenceScreenState extends State<ReferenceScreen> {
                             ),
                             onPressed: () {
                               setState(() {
+                                downs = [false, false, true];
+
                                 selectedWordTypePlural = WordTypePlural.verbs;
                               });
                             },
@@ -275,6 +284,7 @@ class _ReferenceScreenState extends State<ReferenceScreen> {
                         borderRadius: BorderRadius.circular(12),
                       ),
                       child: DropdownButton<String>(
+                        dropdownColor: almostWhiteColor,
                         value: selectedWordTypePlural == WordTypePlural.adjectives
                             ? (selectedAdjectives[selectedLanguage] as Word).getLemma()
                             : selectedWordTypePlural == WordTypePlural.nouns
@@ -371,9 +381,14 @@ class SectionWidget extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text(
-              section.sectionName.tr(),
-              style: TextStyle(fontSize: 30, color: sectionColor.darken(30), fontFamily: 'Fraunces', fontWeight: FontWeight.bold),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: FittedBox(
+                child: Text(
+                  section.sectionName.tr(),
+                  style: TextStyle(fontSize: 30, color: sectionColor.darken(30), fontFamily: 'Fraunces', fontWeight: FontWeight.bold),
+                ),
+              ),
             ),
             ...section.subsections.map((subsection) => _buildSubsection(subsection, sectionColor)).toList(),
           ],
@@ -390,9 +405,12 @@ class SectionWidget extends StatelessWidget {
         children: [
           Container(
             child: subsection.subsectionName != ''
-                ? Text(
-                    subsection.subsectionName.tr(),
-                    style: TextStyle(fontSize: 25, color: sectionColor.darken(30), fontFamily: 'Fraunces', fontWeight: FontWeight.bold),
+                ? FittedBox(
+                    child: Text(
+                      subsection.subsectionName.tr(),
+                      // textAlign: TextAlign.center,
+                      style: TextStyle(fontSize: 25, color: sectionColor.darken(30), fontFamily: 'Fraunces', fontWeight: FontWeight.bold),
+                    ),
                   )
                 : null,
           ),
@@ -425,7 +443,7 @@ class SectionWidget extends StatelessWidget {
     return Text(
       entry.key.tr(),
       textAlign: TextAlign.right,
-      style: TextStyle(fontSize: 20, color: sectionColor.darken(30), fontFamily: 'Fraunces', fontWeight: FontWeight.bold),
+      style: TextStyle(fontSize: 18, color: sectionColor.darken(30), fontFamily: 'Fraunces', fontWeight: FontWeight.bold),
     );
   }
 
@@ -434,7 +452,7 @@ class SectionWidget extends StatelessWidget {
       fit: BoxFit.fitWidth,
       child: Text(
         entry.value,
-        style: const TextStyle(fontSize: 20, color: almostWhiteColor, fontFamily: 'Fraunces', fontWeight: FontWeight.bold),
+        style: const TextStyle(fontSize: 18, color: almostWhiteColor, fontFamily: 'Fraunces', fontWeight: FontWeight.bold),
       ),
     );
   }

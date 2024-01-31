@@ -114,11 +114,17 @@ class LatinVerb implements RomanceVerb {
     required this.conjugation,
     this.conjugationStructure = latinConjugationStructure,
   });
+  bool isSimple(Mood m, Voice v, Tense t, Number n, Person p) {
+    if (v == Voice.pas && (t == Tense.perfect || t == Tense.pluperfect || t == Tense.futurePerfect)) {
+      return false;
+    }
+    return true;
+  }
 
   String? conjugateVerb(Mood m, Voice v, Tense t, Number n, Person p, {Gender g = Gender.m}) {
     //passive perfect, pluperfect, and future perfect are based on the past participle
     //thus they depend on gener and number. (not case, as it goes with sum, always nominative)
-    //this is akin to compound tenses in italian or french that have a perfect active participle + etre/essere
+    //this is akin to compound tenses in italian or latin that have a perfect active participle + etre/essere
     if (v == Voice.pas && (t == Tense.perfect || t == Tense.pluperfect || t == Tense.futurePerfect)) {
       Tense? auxiliaryTense = auxiliaryTenseOf[t];
 
@@ -153,12 +159,37 @@ class LatinVerb implements RomanceVerb {
           for (Number number in conjugationStructure[mood]![voice]![tense]!.keys) {
             for (Person person in conjugationStructure[mood]![voice]![tense]![number]!) {
               // Use masculine as default gender for conjugation
-              String? conjugatedVerb = conjugateVerb(mood, voice, tense, number, person, g: Gender.m);
+              if (isSimple(mood, voice, tense, number, person)) {
+                String? conjugatedVerb = conjugateVerb(mood, voice, tense, number, person, g: Gender.m);
+                if (conjugatedVerb != null) {
+                  List<String> keys = [];
 
-              //TODO add other genders
+                  String key;
+                  if (person == Person.third) {
+                    for (Gender gender in latinGenders) {
+                      keys.add(getLatinSubjectPronoun(person, number, gender)!);
+                    }
+                    key = keys.join('/').replaceAll('(n) ', '');
+                  } else {
+                    key = getLatinSubjectPronoun(person, number, Gender.m)!;
+                  }
 
-              String key = getLatinSubjectPronoun(person, number, Gender.m)!; //"${lengthenPerson[person]}, ${lengthenNumber[number]}";
-              entries[key] = conjugatedVerb ?? '-';
+                  entries[key] = conjugatedVerb;
+                }
+              } else {
+                for (Gender gender in latinGenders) {
+                  String? conjugatedVerb = conjugateVerb(mood, voice, tense, number, person, g: gender);
+                  if (conjugatedVerb != null) {
+                    String key = getLatinSubjectPronoun(person, number, gender)!;
+
+                    //if it is not third person, gender needs to be shown
+                    if (person != Person.third) {
+                      key = '${shortenGender[gender]} $key';
+                    }
+                    entries[key] = conjugatedVerb;
+                  }
+                }
+              }
             }
           }
 
@@ -190,7 +221,7 @@ class LatinDeponentVerb extends LatinVerb {
   String? conjugateVerb(Mood m, Voice v, Tense t, Number n, Person p, {Gender g = Gender.m}) {
     //passive perfect, pluperfect, and future perfect are based on the past participle
     //thus they depend on gener and number. (not case, as it goes with sum, always nominative)
-    //this is akin to compound tenses in italian or french that have a perfect active participle + etre/essere
+    //this is akin to compound tenses in italian or latin that have a perfect active participle + etre/essere
     if (v == Voice.act && (t == Tense.perfect || t == Tense.pluperfect || t == Tense.futurePerfect)) {
       Tense? auxiliaryTense = auxiliaryTenseOf[t];
       String? part = participles[Tense.perfect]?[Voice.act]?.declineAdjective(Case.nom, n, g); //perfect passive does not exist
@@ -252,7 +283,7 @@ String? getLatinSubjectPronoun(Person person, Number number, Gender gender) {
       } else if (gender == Gender.f) {
         subject = 'Eae';
       } else {
-        subject = 'Ea';
+        subject = '(n) Ea';
       }
     }
   }

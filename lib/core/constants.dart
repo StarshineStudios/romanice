@@ -2,6 +2,33 @@ import 'package:tinycolor2/tinycolor2.dart';
 import 'package:flutter/material.dart';
 import 'dart:math';
 
+List<Map<String, Object>> typewritersList = [
+  {'name': 'redTypewriter', 'back': 'assets/typeBackRed.png', 'front': 'assets/typeFrontRed.png', 'cost': 10},
+  {'name': 'orangeTypewriter', 'back': 'assets/typeBackOrange.png', 'front': 'assets/typeFrontOrange.png', 'cost': 10},
+  {'name': 'yellowTypewriter', 'back': 'assets/typeBackYellow.png', 'front': 'assets/typeFrontYellow.png', 'cost': 40},
+  {'name': 'defaultTypewriter', 'back': 'assets/typeBack.png', 'front': 'assets/typeFront.png', 'cost': 0},
+  {'name': 'blueTypewriter', 'back': 'assets/typeBackBlue.png', 'front': 'assets/typeFrontBlue.png', 'cost': 40},
+  {'name': 'purpleTypewriter', 'back': 'assets/typeBackPurple.png', 'front': 'assets/typeFrontPurple.png', 'cost': 10},
+  {'name': 'magentaTypewriter', 'back': 'assets/typeBackMagenta.png', 'front': 'assets/typeFrontMagenta.png', 'cost': 40},
+];
+
+Map<String, Object> getTypewriter(String name) {
+  for (Map<String, Object> map in typewritersList) {
+    if (map['name'] == name) {
+      Map<String, Object> a = {};
+      a['front'] = map['front'] ?? 'assets/typeFront.png';
+      a['back'] = map['back'] ?? 'assets/typeBack.png';
+
+      return a;
+    }
+  }
+  Map<String, Object> a = {};
+  a['front'] = 'assets/typeFront.png';
+  a['back'] = 'assets/typeBack.png';
+
+  return a;
+}
+
 //GRAPHIC ELEMENTS
 const Color darkColor = Color.fromRGBO(119, 107, 93, 1);
 const Color darkColorTrans = Color.fromRGBO(119, 107, 93, 0.5);
@@ -53,6 +80,85 @@ class _NiceButtonState extends State<NiceButton> {
       onTapUp: (_) => setState(() {
         _paddingTop = 0;
         _paddingBottom = widget.height;
+
+        if (widget.active) {
+          widget.onPressed();
+        }
+      }),
+      child: AnimatedContainer(
+        padding: EdgeInsets.only(top: _paddingTop),
+        duration: const Duration(milliseconds: 100),
+        decoration: BoxDecoration(
+          color: const Color.fromARGB(0, 0, 0, 0), //transparent
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: AnimatedContainer(
+          padding: EdgeInsets.only(bottom: _paddingBottom),
+          duration: const Duration(milliseconds: 100),
+          decoration: BoxDecoration(
+            color: widget.active ? widget.color.darken(30) : widget.inactiveColor.darken(30),
+            borderRadius: BorderRadius.circular(widget.borderRadius),
+          ),
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(widget.borderRadius),
+              color: widget.active ? widget.color : widget.inactiveColor,
+            ),
+            child: widget.child,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class NiceButtonToggle extends StatefulWidget {
+  final bool down;
+  final Color color;
+  final Color inactiveColor;
+  final double borderRadius;
+  final double height;
+  final Widget child;
+  final VoidCallback onPressed;
+  final bool active;
+  const NiceButtonToggle({
+    super.key,
+    this.color = almostWhiteColor,
+    this.inactiveColor = fadedColor,
+    this.borderRadius = 8.0,
+    this.height = 6,
+    this.active = true,
+    required this.child,
+    required this.onPressed,
+    required this.down,
+  });
+
+  @override
+  State<NiceButtonToggle> createState() => _NiceButtonToggleState();
+}
+
+class _NiceButtonToggleState extends State<NiceButtonToggle> {
+  double _paddingTop = 0;
+  late double _paddingBottom = widget.height;
+
+  @override
+  Widget build(BuildContext context) {
+    if (widget.down) {
+      _paddingTop = widget.height;
+      _paddingBottom = 0;
+    } else {
+      _paddingTop = 0;
+      _paddingBottom = widget.height;
+    }
+
+    return GestureDetector(
+      onTapDown: (_) => setState(() {
+        // _paddingTop = widget.height;
+        // _paddingBottom = 0;
+      }),
+      onTapUp: (_) => setState(() {
+        // _paddingTop = 0;
+        // _paddingBottom = widget.height;
 
         if (widget.active) {
           widget.onPressed();

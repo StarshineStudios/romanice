@@ -106,6 +106,12 @@ class ItalianVerb implements RomanceVerb {
     required this.conjugation,
     this.conjugationStructure = italianConjugationStructure,
   });
+  bool isSimple(Mood m, Tense t, Number n, Person p) {
+    if (auxiliaryVerb == essere2 && italianCompoundTenses.contains(t)) {
+      return false;
+    }
+    return true;
+  }
 
   //we need the gender for forms involving participles.
   String? conjugateVerb(Mood m, Tense t, Number n, Person p, {Gender g = Gender.m}) {
@@ -156,11 +162,36 @@ class ItalianVerb implements RomanceVerb {
         for (Number number in conjugationStructure[mood]![tense]!.keys) {
           for (Person person in conjugationStructure[mood]![tense]![number]!) {
             // Use masculine as default gender for conjugation
-            String? conjugatedVerb = conjugateVerb(mood, tense, number, person, g: Gender.m);
+            if (isSimple(mood, tense, number, person)) {
+              String? conjugatedVerb = conjugateVerb(mood, tense, number, person, g: Gender.m);
+              if (conjugatedVerb != null) {
+                List<String> keys = [];
 
-            if (conjugatedVerb != null) {
-              String key = getItalianSubjectPronoun(person, number, Gender.m)!;
-              entries[key] = conjugatedVerb;
+                String key;
+                if (person == Person.third) {
+                  for (Gender gender in italianGenders) {
+                    keys.add(getItalianSubjectPronoun(person, number, gender)!);
+                  }
+                  key = keys.join('/').replaceAll('Loro/Loro', 'Loro');
+                } else {
+                  key = getItalianSubjectPronoun(person, number, Gender.m)!;
+                }
+
+                entries[key] = conjugatedVerb;
+              }
+            } else {
+              for (Gender gender in italianGenders) {
+                String? conjugatedVerb = conjugateVerb(mood, tense, number, person, g: gender);
+                if (conjugatedVerb != null) {
+                  String key = getItalianSubjectPronoun(person, number, gender)!;
+
+                  //if it is not third person, gender needs to be shown
+                  if (!(person == Person.third && number == Number.s)) {
+                    key = '${shortenGender[gender]} $key';
+                  }
+                  entries[key] = conjugatedVerb;
+                }
+              }
             }
           }
         }

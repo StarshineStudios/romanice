@@ -16,6 +16,7 @@ Question getSpanishVerbQuestion() {
   SpanishVerb randomVerb = spanishVerbs.getRandom();
   //Pick a random coordinate. Note this does not include gender
   SpanishCoordinate randomSpanishCoordinate = randomVerb.conjugationStructure.getRandomCoordinate();
+
   //Pick a random gender
   Gender randomGender = spanishGenders.getRandom();
 
@@ -83,11 +84,13 @@ String getSpanishSubject(Mood mood, Number number, Person person, Gender gender)
         // singular
         Gender.m: [
           // masculine
-          'Carlos', 'José', 'Miguel', 'Juan', 'Luis', 'Pedro', 'Jorge', 'Fernando', 'Pablo', 'Alejandro', 'él'
+          'Carlos', 'José', 'Miguel', 'Juan', 'Luis', 'Pedro', 'Jorge', 'Fernando', 'Pablo', 'Alejandro', 'él',
+          'usted'
         ],
         Gender.f: [
           // feminine
-          'María', 'Ana', 'Carmen', 'Laura', 'Isabel', 'Teresa', 'Sofía', 'Patricia', 'Lucía', 'Elena', 'ella'
+          'María', 'Ana', 'Carmen', 'Laura', 'Isabel', 'Teresa', 'Sofía', 'Patricia', 'Lucía', 'Elena', 'ella',
+          'usted'
         ],
       },
       Number.p: {
@@ -104,7 +107,8 @@ String getSpanishSubject(Mood mood, Number number, Person person, Gender gender)
           'Miguel y Carmen',
           'Juan y Laura',
           'Luis y Isabel',
-          'ellos'
+          'ellos',
+          'ustedes'
         ],
         Gender.f: [
           // feminine
@@ -113,7 +117,8 @@ String getSpanishSubject(Mood mood, Number number, Person person, Gender gender)
           'Isabel y Teresa',
           'Sofía y Patricia',
           'Lucía y Elena',
-          'ellas'
+          'ellas',
+          'ustedes'
         ],
       },
     };

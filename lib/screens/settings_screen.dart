@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:tinycolor2/tinycolor2.dart';
 // import 'package:flutter/material.dart';
 import '../core/constants.dart';
 import 'dart:io';
@@ -79,6 +80,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   ),
                   const SizedBox(height: 10),
                   Text(
+                    textAlign: TextAlign.center,
                     'useSystemDefaultLanguageText'.tr(),
                     style: const TextStyle(fontSize: 20, color: darkColor, fontFamily: 'Fraunces'),
                   ),
@@ -98,6 +100,172 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     updateContext: updateContext,
                     enabled: !_generalBox.get('usingSystemLocale', defaultValue: true),
                   ),
+                ],
+              ),
+            ),
+          ),
+
+          Padding(
+            padding: const EdgeInsets.only(left: 8.0, right: 8.0, bottom: 8.0),
+            child: Container(
+              padding: const EdgeInsets.all(8.0),
+              decoration: BoxDecoration(color: lightColor, borderRadius: BorderRadius.circular(12)),
+              child: Column(
+                children: [
+                  Text(
+                    'textLatin'.tr(),
+                    style: const TextStyle(fontSize: 30, color: darkColor, fontFamily: 'Fraunces', fontWeight: FontWeight.bold),
+                    overflow: TextOverflow.visible,
+                  ),
+                  const SizedBox(height: 10),
+                  Text(
+                    'textUseVocativeIf'.tr(),
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(fontSize: 20, color: darkColor, fontFamily: 'Fraunces'),
+                  ),
+                  Switch(
+                    focusColor: darkColor,
+                    hoverColor: darkColor,
+                    activeColor: darkColor,
+                    value: _generalBox.get('usingVocativeIf', defaultValue: true),
+                    onChanged: (newValue) {
+                      setState(() {
+                        _generalBox.put('usingVocativeIf', newValue);
+                        // updateContext();
+                      });
+                    },
+                  ),
+                  // LocaleDropdown(
+                  //   updateContext: updateContext,
+                  //   enabled: !_generalBox.get('usingSystemLocale', defaultValue: true),
+                  // ),
+                ],
+              ),
+            ),
+          ),
+
+          //SPANISH
+          Padding(
+            padding: const EdgeInsets.only(left: 8.0, right: 8.0, bottom: 8.0),
+            child: Container(
+              padding: const EdgeInsets.all(8.0),
+              decoration: BoxDecoration(color: lightColor, borderRadius: BorderRadius.circular(12)),
+              child: Column(
+                children: [
+                  Text(
+                    'textSpanish'.tr(),
+                    style: const TextStyle(fontSize: 30, color: darkColor, fontFamily: 'Fraunces', fontWeight: FontWeight.bold),
+                    overflow: TextOverflow.visible,
+                  ),
+                  const SizedBox(height: 10),
+                  Text(
+                    'textUseVosotros'.tr(),
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(fontSize: 20, color: darkColor, fontFamily: 'Fraunces'),
+                  ),
+                  Switch(
+                    focusColor: darkColor,
+                    hoverColor: darkColor,
+                    activeColor: darkColor,
+                    value: _generalBox.get('usingVosotros', defaultValue: true),
+                    onChanged: (newValue) {
+                      setState(() {
+                        _generalBox.put('usingVosotros', newValue);
+                        // updateContext();
+                      });
+                    },
+                  ),
+                  // LocaleDropdown(
+                  //   updateContext: updateContext,
+                  //   enabled: !_generalBox.get('usingSystemLocale', defaultValue: true),
+                  // ),
+                ],
+              ),
+            ),
+          ),
+
+          //DELETE
+          Padding(
+            padding: const EdgeInsets.only(left: 8.0, right: 8.0, bottom: 8.0),
+            child: Container(
+              padding: const EdgeInsets.all(8.0),
+              decoration: BoxDecoration(color: lightColor, borderRadius: BorderRadius.circular(12)),
+              child: Column(
+                children: [
+                  Text(
+                    'resetProgressText'.tr(),
+                    style: const TextStyle(fontSize: 30, color: darkColor, fontFamily: 'Fraunces', fontWeight: FontWeight.bold),
+                    overflow: TextOverflow.visible,
+                  ),
+                  const SizedBox(height: 10),
+                  Text(
+                    'resetProgressText'.tr(),
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(fontSize: 20, color: darkColor, fontFamily: 'Fraunces'),
+                  ),
+                  const SizedBox(height: 10),
+
+                  NiceButton(
+                    color: pastelRed,
+                    onPressed: () {
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            backgroundColor: mediumColor,
+                            title: Text(
+                              'Confirm'.tr(),
+                              textAlign: TextAlign.left,
+                              style: const TextStyle(fontSize: 20, color: darkColor, fontFamily: 'Fraunces'),
+                            ),
+                            content: Text(
+                              'Are you sure you want to reset all progress? This will delete all shop purchases as well.'.tr(),
+                              style: const TextStyle(fontSize: 20, color: darkColor, fontFamily: 'Fraunces'),
+                            ),
+                            actions: <Widget>[
+                              NiceButton(
+                                child: const Padding(
+                                  padding: EdgeInsets.all(8.0),
+                                  child: Text(
+                                    'Yes',
+                                    style: TextStyle(fontSize: 20, color: darkColor, fontFamily: 'Fraunces'),
+                                  ),
+                                ),
+                                onPressed: () {
+                                  _generalBox.clear(); // Perform the action
+
+                                  Navigator.of(context).pop(); // Dismiss the dialog
+                                },
+                              ),
+                              NiceButton(
+                                child: const Padding(
+                                  padding: EdgeInsets.all(8.0),
+                                  child: Text(
+                                    'Cancel',
+                                    style: TextStyle(fontSize: 20, color: darkColor, fontFamily: 'Fraunces'),
+                                  ),
+                                ),
+                                onPressed: () {
+                                  Navigator.of(context).pop(); // Dismiss the dialog
+                                },
+                              ),
+                            ],
+                          );
+                        },
+                      );
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        'resetProgressText'.tr(),
+                        style: TextStyle(fontSize: 25, color: pastelRed.darken(30), fontFamily: 'Fraunces'),
+                      ),
+                    ),
+                  ),
+                  // LocaleDropdown(
+                  //   updateContext: updateContext,
+                  //   enabled: !_generalBox.get('usingSystemLocale', defaultValue: true),
+                  // ),
                 ],
               ),
             ),
@@ -176,7 +344,7 @@ class _LocaleDropdownState extends State<LocaleDropdown> {
   Widget build(BuildContext context) {
     return DropdownButton<String>(
       value: _selectedLocaleCode,
-      dropdownColor: lightColor,
+      dropdownColor: almostWhiteColor,
       focusColor: fadedColor,
       onChanged: widget.enabled
           ? (String? newLocaleCode) {

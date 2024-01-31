@@ -3,6 +3,7 @@ import 'package:colorguesser/core/lengtheners.dart';
 import 'package:colorguesser/files_french/french_constants.dart';
 import 'package:colorguesser/files_french/french_getters.dart';
 import 'package:colorguesser/temp/romance_classes.dart';
+import 'package:easy_localization/easy_localization.dart';
 import '../core/enums.dart';
 import 'word_data/french_verbs.dart';
 
@@ -93,6 +94,12 @@ class FrenchVerb implements RomanceVerb {
     required this.conjugation,
     this.conjugationStructure = frenchConjugationStructure,
   });
+  bool isSimple(Mood m, Tense t, Number n, Person p) {
+    if (auxiliaryVerb == etre2 && frenchCompoundTenses.contains(t)) {
+      return false;
+    }
+    return true;
+  }
 
   String? conjugateVerb(Mood m, Tense t, Number n, Person p, {Gender g = Gender.m}) {
     //If it is a simple tense and the conjugation contains it.
@@ -142,15 +149,45 @@ class FrenchVerb implements RomanceVerb {
         for (Number number in conjugationStructure[mood]![tense]!.keys) {
           for (Person person in conjugationStructure[mood]![tense]![number]!) {
             // Use masculine as default gender for conjugation
-            String? conjugatedVerb = conjugateVerb(mood, tense, number, person, g: Gender.m);
 
-            if (conjugatedVerb != null) {
-              String key = getFrenchSubjectPronoun(person, number, Gender.m)!;
+            //if simple, they are all the same
 
-              if (conjugatedVerb.startsWithVowelSound() && key == 'Je') {
-                key = "J'";
+            if (isSimple(mood, tense, number, person)) {
+              String? conjugatedVerb = conjugateVerb(mood, tense, number, person, g: Gender.m);
+              if (conjugatedVerb != null) {
+                List<String> keys = [];
+
+                String key;
+                if (person == Person.third) {
+                  for (Gender gender in frenchGenders) {
+                    keys.add(getFrenchSubjectPronoun(person, number, gender)!);
+                  }
+                  key = keys.join('/');
+                } else {
+                  key = getFrenchSubjectPronoun(person, number, Gender.m)!;
+                }
+
+                if (conjugatedVerb.startsWithVowelSound() && key == 'Je') {
+                  key = "J'";
+                }
+                entries[key] = conjugatedVerb;
               }
-              entries[key] = conjugatedVerb;
+            } else {
+              for (Gender gender in frenchGenders) {
+                String? conjugatedVerb = conjugateVerb(mood, tense, number, person, g: gender);
+                if (conjugatedVerb != null) {
+                  String key = getFrenchSubjectPronoun(person, number, gender)!;
+
+                  //if it is not third person, gender needs to be shown
+                  if (person != Person.third) {
+                    key = '${shortenGender[gender]} $key';
+                  }
+                  if (conjugatedVerb.startsWithVowelSound() && key == 'Je') {
+                    key = "J'";
+                  }
+                  entries[key] = conjugatedVerb;
+                }
+              }
             }
           }
         }

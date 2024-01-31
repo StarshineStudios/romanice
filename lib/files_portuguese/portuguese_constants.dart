@@ -138,7 +138,7 @@ const Map<Mood, Map<Tense, Map<Number, List<Person>>>> portugueseConjugationStru
       Number.s: [Person.first, Person.second, Person.third],
       Number.p: [Person.first, Person.second, Person.third],
     },
-    Tense.pluperfectRomance: {
+    Tense.pluperfectRomanceCompound: {
       Number.s: [Person.first, Person.second, Person.third],
       Number.p: [Person.first, Person.second, Person.third],
     },

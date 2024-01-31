@@ -1,5 +1,6 @@
 import 'package:colorguesser/core/constants.dart';
 import 'package:colorguesser/core/enums.dart';
+import 'package:hive/hive.dart';
 
 List<Number> spanishNumbers = [Number.s, Number.p];
 List<Gender> spanishGenders = [Gender.m, Gender.f];
@@ -56,13 +57,19 @@ typedef SpanishConjugationStructure = Map<Mood, Map<Tense, Map<Number, List<Pers
 
 extension ConjugationStructureExtensions on SpanishConjugationStructure {
   SpanishCoordinate getRandomCoordinate() {
+    //check if using vosotros
+    final Box<dynamic> _generalBox = Hive.box('generalBoxString');
+    bool usingV = _generalBox.get('usingVosotros', defaultValue: true);
     List<SpanishCoordinate> coordinates = [];
 
     forEach((mood, tenses) {
       tenses.forEach((tense, numbers) {
         numbers.forEach((number, persons) {
           for (var person in persons) {
-            coordinates.add(SpanishCoordinate(mood, tense, number, person));
+            if (!usingV && person == Person.second && number == Number.p) {
+            } else {
+              coordinates.add(SpanishCoordinate(mood, tense, number, person));
+            }
           }
         });
       });

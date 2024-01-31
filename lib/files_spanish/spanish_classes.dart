@@ -140,7 +140,17 @@ class SpanishVerb implements RomanceVerb {
             String? conjugatedVerb = conjugateVerb(mood, tense, number, person);
 
             if (conjugatedVerb != null) {
-              String key = getSpanishSubjectPronoun(person, number, Gender.m)!;
+              List<String> keys = [];
+
+              String key;
+              if (person == Person.third) {
+                for (Gender gender in spanishGenders) {
+                  keys.add(getSpanishSubjectPronoun(person, number, gender)!);
+                }
+                key = keys.join('/');
+              } else {
+                key = getSpanishSubjectPronoun(person, number, Gender.m)!;
+              }
               entries[key] = conjugatedVerb;
             }
           }

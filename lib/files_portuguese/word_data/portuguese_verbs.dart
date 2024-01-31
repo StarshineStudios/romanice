@@ -4,6 +4,14 @@ import '../portuguese_classes.dart';
 List<PortugueseVerb> portugueseVerbs = [
   ser,
   ter,
+  amar,
+  ver,
+  fazer,
+  querer,
+  poder,
+  dever,
+  ir,
+  saber,
 ];
 
 PortugueseVerb ser = PortugueseVerb(

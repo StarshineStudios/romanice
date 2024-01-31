@@ -106,7 +106,15 @@
 
   "adjectives": "adjectives",
   "nouns": "nouns",
-  "verbs": "verbs"
+  "verbs": "verbs",
 
-
+  "textUseVosotros": "Use vosotros",
+  "textUseVocativeIf": "Use vocative case even if identical to nominative",
+  "textEarnCoins": "Earn coins by practicing",
+  "textConfirmPurchase": "Confirm Purchase?",
+  "textThemes": "Themes",
+  "textTypewriters": "Typewriters",
+  "textCoins": "Coins",
+  "Are you sure you want to reset all progress? This will delete all shop purchases as well.": "Are you sure you want to reset all progress? This will delete all shop purchases as well.",
+  "Confirm": "Confirm"
 }
