@@ -10,12 +10,12 @@ List<FrenchAdjective> frenchAdjectives = [
   espagnol,
   grand,
   petit,
-  nouveau,
-  vieux,
+  nouveau, //nouvel
+  vieux, //vieil
   court,
   heureux,
   triste,
-  beau,
+  beau, //bel
   bon,
 ];
 
@@ -56,24 +56,30 @@ FrenchAdjective espagnol = const FrenchAdjective(
   },
 );
 FrenchAdjective grand = const FrenchAdjective(
+  before: true,
   declension: {
     Number.s: {Gender.m: 'grand', Gender.f: 'grande'},
     Number.p: {Gender.m: 'grands', Gender.f: 'grandes'}
   },
 );
 FrenchAdjective petit = const FrenchAdjective(
+  before: true,
   declension: {
     Number.s: {Gender.m: 'petit', Gender.f: 'petite'},
     Number.p: {Gender.m: 'petits', Gender.f: 'petites'}
   },
 );
 FrenchAdjective nouveau = const FrenchAdjective(
+  before: true,
+  mascSingBeforeVowelForm: 'nouvel',
   declension: {
     Number.s: {Gender.m: 'nouveau', Gender.f: 'nouvelle'},
     Number.p: {Gender.m: 'nouveaux', Gender.f: 'nouvelles'}
   },
 );
 FrenchAdjective vieux = const FrenchAdjective(
+  before: true,
+  mascSingBeforeVowelForm: 'vieil',
   declension: {
     Number.s: {Gender.m: 'vieux', Gender.f: 'vieille'},
     Number.p: {Gender.m: 'vieux', Gender.f: 'vieilles'}
@@ -87,6 +93,7 @@ FrenchAdjective court = const FrenchAdjective(
   },
 );
 FrenchAdjective heureux = const FrenchAdjective(
+  before: true,
   declension: {
     Number.s: {Gender.m: 'heureux', Gender.f: 'heureuse'},
     Number.p: {Gender.m: 'heureux', Gender.f: 'heureuses'}
@@ -99,12 +106,15 @@ FrenchAdjective triste = const FrenchAdjective(
   },
 );
 FrenchAdjective beau = const FrenchAdjective(
+  before: true,
+  mascSingBeforeVowelForm: 'bel',
   declension: {
     Number.s: {Gender.m: 'beau', Gender.f: 'belle'},
     Number.p: {Gender.m: 'beaux', Gender.f: 'belles'}
   },
 );
 FrenchAdjective bon = const FrenchAdjective(
+  before: true,
   declension: {
     Number.s: {Gender.m: 'bon', Gender.f: 'bonne'},
     Number.p: {Gender.m: 'bons', Gender.f: 'bonnes'}

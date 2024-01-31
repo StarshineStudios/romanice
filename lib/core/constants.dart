@@ -28,13 +28,13 @@ void resetDefaultValues() {
 }
 
 List<Map<String, Object>> typewritersList = [
-  {'name': 'redTypewriter', 'back': 'assets/typeBackRed.png', 'front': 'assets/typeFrontRed.png', 'cost': 10},
-  {'name': 'orangeTypewriter', 'back': 'assets/typeBackOrange.png', 'front': 'assets/typeFrontOrange.png', 'cost': 15},
-  {'name': 'yellowTypewriter', 'back': 'assets/typeBackYellow.png', 'front': 'assets/typeFrontYellow.png', 'cost': 20},
+  {'name': 'redTypewriter', 'back': 'assets/typeBackRed.png', 'front': 'assets/typeFrontRed.png', 'cost': 50},
+  {'name': 'orangeTypewriter', 'back': 'assets/typeBackOrange.png', 'front': 'assets/typeFrontOrange.png', 'cost': 100},
+  {'name': 'yellowTypewriter', 'back': 'assets/typeBackYellow.png', 'front': 'assets/typeFrontYellow.png', 'cost': 500},
   {'name': 'defaultTypewriter', 'back': 'assets/typeBack.png', 'front': 'assets/typeFront.png', 'cost': 0},
-  {'name': 'blueTypewriter', 'back': 'assets/typeBackBlue.png', 'front': 'assets/typeFrontBlue.png', 'cost': 100},
-  {'name': 'purpleTypewriter', 'back': 'assets/typeBackPurple.png', 'front': 'assets/typeFrontPurple.png', 'cost': 500},
-  {'name': 'magentaTypewriter', 'back': 'assets/typeBackMagenta.png', 'front': 'assets/typeFrontMagenta.png', 'cost': 1000},
+  {'name': 'blueTypewriter', 'back': 'assets/typeBackBlue.png', 'front': 'assets/typeFrontBlue.png', 'cost': 1000},
+  {'name': 'purpleTypewriter', 'back': 'assets/typeBackPurple.png', 'front': 'assets/typeFrontPurple.png', 'cost': 10000},
+  {'name': 'magentaTypewriter', 'back': 'assets/typeBackMagenta.png', 'front': 'assets/typeFrontMagenta.png', 'cost': 50000},
 ];
 
 Map<String, Object> getTypewriter(String name) {

@@ -100,7 +100,7 @@
   "anterior": "anterior",
   "conditional perfect": "condicional perfecto",
 
-  "completed": "completado",
+  "completed": "completados",
   "tap to reveal": "tocar para revelar",
 
   "adjectives": "adjetivos",
@@ -119,6 +119,7 @@
   "Confirm": "Confirmar",
   "textYesButton": "Sí",
   "textNoButton": "No",
-  "textNotEnoughCoins": "No hay suficientes monedas"
+  "textNotEnoughCoins": "No hay suficientes monedas",
+  "textCodedWith": "-Codificado con amor lingüístico por Saebyul Hong"
 
 }

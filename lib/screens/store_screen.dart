@@ -3,7 +3,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
-import 'package:tinycolor2/tinycolor2.dart';
+// import 'package:tinycolor2/tinycolor2.dart';
 // import 'package:flutter/material.dart';
 import '../core/constants.dart';
 
@@ -189,7 +189,7 @@ class _StoreScreenState extends State<StoreScreen> {
                                                 child: Padding(
                                                   padding: const EdgeInsets.all(8.0),
                                                   child: Text(
-                                                    'TextNoButton'.tr(),
+                                                    'textNoButton'.tr(),
                                                     style: const TextStyle(fontSize: 20, color: darkColor, fontFamily: 'Fraunces'),
                                                   ),
                                                 ),
@@ -278,7 +278,7 @@ class _StoreScreenState extends State<StoreScreen> {
                                   ),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 5,
                               ),
                               //the coin graphic
@@ -297,12 +297,12 @@ class _StoreScreenState extends State<StoreScreen> {
                                         ),
                                       ),
                                     ),
-                                    SizedBox(
+                                    const SizedBox(
                                       width: 8,
                                     ),
                                     Text(
                                       cost.toString(),
-                                      style: const TextStyle(fontSize: 25, color: darkColor, fontFamily: 'Fraunces', fontWeight: FontWeight.bold),
+                                      style: const TextStyle(fontSize: 20, color: darkColor, fontFamily: 'Fraunces', fontWeight: FontWeight.bold),
                                     )
                                   ],
                                 ),
@@ -324,8 +324,13 @@ class _StoreScreenState extends State<StoreScreen> {
               child: Column(
                 children: [
                   Text(
-                    'more coming soon'.tr(),
+                    'textThemes'.tr(),
                     style: const TextStyle(fontSize: 30, color: darkColor, fontFamily: 'Fraunces', fontWeight: FontWeight.bold),
+                    overflow: TextOverflow.visible,
+                  ),
+                  Text(
+                    'comingSoonText'.tr(),
+                    style: const TextStyle(fontSize: 20, color: darkColor, fontFamily: 'Fraunces', fontWeight: FontWeight.bold),
                     overflow: TextOverflow.visible,
                   ),
                 ],

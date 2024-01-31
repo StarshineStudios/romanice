@@ -52,7 +52,7 @@
   "imperative (passive)": "imperātīvus (passīva)",
 
   "indicative": "indicātīvus",
-  "subjunctive": "coniūnctīvus",
+  "subjunctive": "conjūnctīvus",
   "imperative": "imperātīvus",
   "optative/conditional": "optātīvus/condītiōnālis",
   "conditional": "condītiōnālis",
@@ -65,7 +65,7 @@
   "imperfect": "imperfectum",
   "future": "fūtūrum",
   "perfect": "perfectum",
-  "pluperfect": "plūsquamperfectum",
+  "pluperfect": "plūs quam perfectum",
   "future perfect": "fūtūrum perfectum",
   
   "romance present": "praesēns",
@@ -100,7 +100,7 @@
   "anterior": "anterius",
   "conditional perfect": "condītiōnāle perfectum",
 
-  "completed": "complētum",
+  "completed": "complēta",
   "tap to reveal": "revēlāre pulsandō",
 
   "adjectives": "adjectīva",
@@ -119,5 +119,6 @@
   "Confirm": "Confirmāre",
   "textYesButton": "Sīc",
   "textNoButton": "Nōn",
-  "textNotEnoughCoins": "Nōn satis nummum"
+  "textNotEnoughCoins": "Nōn satis nummum",
+  "textCodedWith": "-Scripta amore linguisticō ā Saebyul Hong"
 }

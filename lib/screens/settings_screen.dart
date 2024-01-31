@@ -275,6 +275,35 @@ class _SettingsScreenState extends State<SettingsScreen> {
             ),
           ),
 
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Center(
+              child: Text(
+                'textCodedWith'.tr(),
+                style: const TextStyle(fontSize: 20, color: darkColor, fontFamily: 'Fraunces'),
+                textAlign: TextAlign.center,
+              ),
+            ),
+          ),
+
+          const Text(
+            'Rōmānicē!',
+            style: TextStyle(fontSize: 40, color: darkColor, fontFamily: 'Fraunces'),
+            textAlign: TextAlign.center,
+          ),
+          const Text(
+            'Ver. 1.0',
+            style: TextStyle(fontSize: 17, color: darkColor, fontFamily: 'Fraunces'),
+            textAlign: TextAlign.center,
+          ),
+          const Text(
+            'JAN•MMXXIV',
+            style: TextStyle(fontSize: 17, color: darkColor, fontFamily: 'Fraunces'),
+            textAlign: TextAlign.center,
+          ),
+          const SizedBox(
+            height: 10,
+          ),
           //DOES NOT YET WORK
           // Padding(
           //   padding: const EdgeInsets.only(left: 8.0, right: 8.0, bottom: 8.0),

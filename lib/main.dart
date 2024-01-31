@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
-import 'language_list_screen.dart';
-import 'settings_screen.dart';
-import '../core/constants.dart';
+import 'screens/language_list_screen.dart';
+import 'screens/settings_screen.dart';
+import 'core/constants.dart';
 import 'dart:io';
 
-import 'store_screen.dart';
+import 'screens/store_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -119,7 +119,7 @@ class _AppScreenState extends State<AppScreen> {
                 },
                 tabs: [
                   GButton(
-                    icon: Icons.menu_book,
+                    icon: Icons.book_sharp,
                     text: 'textGame'.tr(),
                     textStyle: const TextStyle(fontFamily: 'Fraunces', color: darkColor),
                   ),

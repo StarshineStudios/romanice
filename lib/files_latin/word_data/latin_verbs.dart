@@ -1235,6 +1235,7 @@ LatinVerb facere = LatinVerb(
       ),
     },
   },
+  conjugationStructure: latinConjugationStructureFacere,
   conjugation: {
     Mood.ind: {
       Voice.act: {
@@ -1312,7 +1313,7 @@ LatinVerb facere = LatinVerb(
         },
         Tense.future: {
           Number.s: {Person.second: 'facitō', Person.third: 'facitō'},
-          Number.p: {Person.second: 'facitōte', Person.third: 'faciantō'},
+          Number.p: {Person.second: 'facitōte', Person.third: 'faciuntō'},
         },
       },
       Voice.pas: {
@@ -1322,7 +1323,7 @@ LatinVerb facere = LatinVerb(
         },
         Tense.future: {
           Number.s: {Person.second: 'fītō', Person.third: 'fītō'},
-          Number.p: {Person.third: 'fīuntō'},
+          Number.p: {Person.second: 'fītōte', Person.third: 'fīuntō'},
         },
       },
     },

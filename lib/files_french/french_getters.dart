@@ -68,7 +68,9 @@ Question getFrenchAdjectiveNounQuestion() {
 
   //some french adjectives go before
   String prompt = randomAdjective.before ? '_____ $declinedNoun' : '$declinedNoun _____';
-  String blank = randomAdjective.declineAdjective(randomNumber, randomNoun.gender)!;
+
+  bool swv = declinedNoun.startsWithVowelSound() && randomAdjective.before;
+  String blank = randomAdjective.declineAdjective(randomNumber, randomNoun.gender, startsWithVowel: swv)!;
   String answer = prompt.replaceAll('_____', blank);
 
   return Question(lemma: lemma, demands: demands, prompt: prompt, answer: answer);

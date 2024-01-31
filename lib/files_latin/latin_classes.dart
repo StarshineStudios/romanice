@@ -70,6 +70,7 @@ class LatinNoun implements RomanceNoun {
   @override
   List<Section> getDisplayInflection() {
     List<Section> sections = [];
+    sections.add(Section(subsections: [], sectionName: lengthenGender[gender]!));
 
     // Outer loop: Iterate through numbers to create sections for each number
     for (Number number in latinNumbers) {

@@ -9,9 +9,15 @@ import 'word_data/french_verbs.dart';
 class FrenchAdjective implements RomanceAdjective {
   final Map<Number, Map<Gender, String>> declension;
   final bool before;
-  const FrenchAdjective({required this.declension, this.before = false});
+  final String? mascSingBeforeVowelForm;
 
-  String? declineAdjective(Number n, Gender g) {
+  // ignore: avoid_init_to_null
+  const FrenchAdjective({required this.declension, this.before = false, this.mascSingBeforeVowelForm = null});
+
+  String? declineAdjective(Number n, Gender g, {bool startsWithVowel = false}) {
+    if (mascSingBeforeVowelForm != null && n == Number.s && g == Gender.m && startsWithVowel) {
+      return mascSingBeforeVowelForm;
+    }
     return declension[n]?[g];
   }
 

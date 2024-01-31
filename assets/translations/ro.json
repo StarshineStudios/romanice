@@ -100,7 +100,7 @@
   "anterior": "anterior",
   "conditional perfect": "condițional perfect",
 
-  "completed": "completat",
+  "completed": "completate",
   "tap to reveal": "atinge pentru a dezvălui",
 
   "adjectives": "adjective",
@@ -119,6 +119,7 @@
   "Confirm": "Confirmă",
   "textYesButton": "Da",
   "textNoButton": "Nu",
-  "textNotEnoughCoins": "Nu sunt destule monede"
+  "textNotEnoughCoins": "Nu sunt destule monede",
+  "textCodedWith": "-Codat cu dragoste lingvistică de Saebyul Hong"
 
 }

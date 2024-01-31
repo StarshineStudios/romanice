@@ -194,6 +194,125 @@ const Map<Mood, Map<Voice, Map<Tense, Map<Number, List<Person>>>>> latinConjugat
   },
 };
 
+const Map<Mood, Map<Voice, Map<Tense, Map<Number, List<Person>>>>> latinConjugationStructureFacere = {
+  Mood.ind: {
+    Voice.act: {
+      Tense.present: {
+        Number.s: [Person.first, Person.second, Person.third],
+        Number.p: [Person.first, Person.second, Person.third],
+      },
+      Tense.imperfect: {
+        Number.s: [Person.first, Person.second, Person.third],
+        Number.p: [Person.first, Person.second, Person.third],
+      },
+      Tense.future: {
+        Number.s: [Person.first, Person.second, Person.third],
+        Number.p: [Person.first, Person.second, Person.third],
+      },
+      Tense.perfect: {
+        Number.s: [Person.first, Person.second, Person.third],
+        Number.p: [Person.first, Person.second, Person.third],
+      },
+      Tense.pluperfect: {
+        Number.s: [Person.first, Person.second, Person.third],
+        Number.p: [Person.first, Person.second, Person.third],
+      },
+      Tense.futurePerfect: {
+        Number.s: [Person.first, Person.second, Person.third],
+        Number.p: [Person.first, Person.second, Person.third],
+      },
+    },
+    Voice.pas: {
+      Tense.present: {
+        Number.s: [Person.first, Person.second, Person.third],
+        Number.p: [Person.first, Person.second, Person.third],
+      },
+      Tense.imperfect: {
+        Number.s: [Person.first, Person.second, Person.third],
+        Number.p: [Person.first, Person.second, Person.third],
+      },
+      Tense.future: {
+        Number.s: [Person.first, Person.second, Person.third],
+        Number.p: [Person.first, Person.second, Person.third],
+      },
+      //Participle dependant forms
+      Tense.perfect: {
+        Number.s: [Person.first, Person.second, Person.third],
+        Number.p: [Person.first, Person.second, Person.third],
+      },
+      Tense.pluperfect: {
+        Number.s: [Person.first, Person.second, Person.third],
+        Number.p: [Person.first, Person.second, Person.third],
+      },
+      Tense.futurePerfect: {
+        Number.s: [Person.first, Person.second, Person.third],
+        Number.p: [Person.first, Person.second, Person.third],
+      },
+    },
+  },
+  Mood.sub: {
+    Voice.act: {
+      Tense.present: {
+        Number.s: [Person.first, Person.second, Person.third],
+        Number.p: [Person.first, Person.second, Person.third],
+      },
+      Tense.imperfect: {
+        Number.s: [Person.first, Person.second, Person.third],
+        Number.p: [Person.first, Person.second, Person.third],
+      },
+      Tense.perfect: {
+        Number.s: [Person.first, Person.second, Person.third],
+        Number.p: [Person.first, Person.second, Person.third],
+      },
+      Tense.pluperfect: {
+        Number.s: [Person.first, Person.second, Person.third],
+        Number.p: [Person.first, Person.second, Person.third],
+      },
+    },
+    Voice.pas: {
+      Tense.present: {
+        Number.s: [Person.first, Person.second, Person.third],
+        Number.p: [Person.first, Person.second, Person.third],
+      },
+      Tense.imperfect: {
+        Number.s: [Person.first, Person.second, Person.third],
+        Number.p: [Person.first, Person.second, Person.third],
+      },
+      //participle dependant
+      Tense.perfect: {
+        Number.s: [Person.first, Person.second, Person.third],
+        Number.p: [Person.first, Person.second, Person.third],
+      },
+      Tense.pluperfect: {
+        Number.s: [Person.first, Person.second, Person.third],
+        Number.p: [Person.first, Person.second, Person.third],
+      },
+    },
+  },
+  Mood.imp: {
+    Voice.act: {
+      Tense.present: {
+        Number.s: [Person.second],
+        Number.p: [Person.second],
+      },
+      Tense.future: {
+        Number.s: [Person.second, Person.third],
+        Number.p: [Person.second, Person.third],
+      },
+    },
+    Voice.pas: {
+      Tense.present: {
+        Number.s: [Person.second],
+        Number.p: [Person.second],
+      },
+      Tense.future: {
+        Number.s: [Person.second, Person.third],
+        Number.p: [Person.second, Person.third],
+      },
+    },
+  },
+};
+
 const Map<Mood, Map<Voice, Map<Tense, Map<Number, List<Person>>>>> latinActiveOnlyConjugationStructure = {
   Mood.ind: {
     Voice.act: {

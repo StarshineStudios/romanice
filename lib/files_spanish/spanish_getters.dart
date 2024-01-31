@@ -84,13 +84,21 @@ String getSpanishSubject(Mood mood, Number number, Person person, Gender gender)
         // singular
         Gender.m: [
           // masculine
-          'Carlos', 'José', 'Miguel', 'Juan', 'Luis', 'Pedro', 'Jorge', 'Fernando', 'Pablo', 'Alejandro', 'él',
-          'usted'
+          'Carlos', 'José', 'Miguel', 'Juan', 'Luis', 'Pedro', 'Jorge', 'Fernando', 'Pablo', 'Alejandro', 'Él',
+          'Usted',
+          'Usted',
+          'Usted',
+          'Usted',
+          'Usted',
         ],
         Gender.f: [
           // feminine
-          'María', 'Ana', 'Carmen', 'Laura', 'Isabel', 'Teresa', 'Sofía', 'Patricia', 'Lucía', 'Elena', 'ella',
-          'usted'
+          'María', 'Ana', 'Carmen', 'Laura', 'Isabel', 'Teresa', 'Sofía', 'Patricia', 'Lucía', 'Elena', 'Ella',
+          'Usted',
+          'Usted',
+          'Usted',
+          'Usted',
+          'Usted',
         ],
       },
       Number.p: {
@@ -108,7 +116,11 @@ String getSpanishSubject(Mood mood, Number number, Person person, Gender gender)
           'Juan y Laura',
           'Luis y Isabel',
           'ellos',
-          'ustedes'
+          'Ustedes',
+          'Ustedes',
+          'Ustedes',
+          'Ustedes',
+          'Ustedes',
         ],
         Gender.f: [
           // feminine
@@ -118,12 +130,16 @@ String getSpanishSubject(Mood mood, Number number, Person person, Gender gender)
           'Sofía y Patricia',
           'Lucía y Elena',
           'ellas',
-          'ustedes'
+          'Ustedes',
+          'Ustedes',
+          'Ustedes',
+          'Ustedes',
+          'Ustedes',
         ],
       },
     };
 
-    List<String> listToChooseFrom = subjects[number]?[gender] ?? ['DNE'];
+    List<String> listToChooseFrom = subjects[number]?[gender] ?? [''];
 
     return listToChooseFrom[random.nextInt(listToChooseFrom.length)];
   }
