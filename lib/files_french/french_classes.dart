@@ -3,7 +3,6 @@ import 'package:colorguesser/core/lengtheners.dart';
 import 'package:colorguesser/files_french/french_constants.dart';
 import 'package:colorguesser/files_french/french_getters.dart';
 import 'package:colorguesser/temp/romance_classes.dart';
-import 'package:easy_localization/easy_localization.dart';
 import '../core/enums.dart';
 import 'word_data/french_verbs.dart';
 

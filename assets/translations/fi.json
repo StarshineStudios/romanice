@@ -105,5 +105,19 @@
 
   "adjectives": "adjectīva",
   "nouns": "nōmina",
-  "verbs": "verba"
+  "verbs": "verba",
+
+  "textUseVosotros": "Utī 'vosotros'",
+  "textUseVocativeIf": "Utī casū vocativō, etiamsī īdem est nominativō",
+  "textEarnCoins": "Nummōs lucrāre exercendō!",
+  "textConfirmPurchase": "Emere cōnfirmāre?",
+  "textCost": "Pretium",
+  "textThemes": "Themata",
+  "textTypewriters": "Dactylographia",
+  "textCoins": "Nummī",
+  "textResetConfirm": "Certum est tibi dēlēre omnia data? Quoque dēlēbit omnēs ēmptiōnēs dē tabernā.",
+  "Confirm": "Confirmāre",
+  "textYesButton": "Sīc",
+  "textNoButton": "Nōn",
+  "textNotEnoughCoins": "Nōn satis nummum"
 }

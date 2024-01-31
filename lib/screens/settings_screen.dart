@@ -31,9 +31,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
   Widget build(BuildContext context) {
     void updateContext() {
       setState(() {
-        String actualLocaleCode = _generalBox.get('usingSystemLocale', defaultValue: true)
+        String actualLocaleCode = _generalBox.get('usingSystemLocale', defaultValue: defaultValues['usingSystemLocale'])
             ? Platform.localeName.substring(0, 2)
-            : _generalBox.get('selectedLocaleCode', defaultValue: 'en');
+            : _generalBox.get('selectedLocaleCode', defaultValue: defaultValues['selectedLocaleCode']);
 
         context.setLocale(ifSupported(Locale(actualLocaleCode)));
       });
@@ -88,7 +88,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     focusColor: darkColor,
                     hoverColor: darkColor,
                     activeColor: darkColor,
-                    value: _generalBox.get('usingSystemLocale', defaultValue: true),
+                    value: _generalBox.get('usingSystemLocale', defaultValue: defaultValues['usingSystemLocale']),
                     onChanged: (newValue) {
                       setState(() {
                         _generalBox.put('usingSystemLocale', newValue);
@@ -98,7 +98,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   ),
                   LocaleDropdown(
                     updateContext: updateContext,
-                    enabled: !_generalBox.get('usingSystemLocale', defaultValue: true),
+                    enabled: !_generalBox.get('usingSystemLocale', defaultValue: defaultValues['usingSystemLocale']),
                   ),
                 ],
               ),
@@ -127,7 +127,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     focusColor: darkColor,
                     hoverColor: darkColor,
                     activeColor: darkColor,
-                    value: _generalBox.get('usingVocativeIf', defaultValue: true),
+                    value: _generalBox.get('usingVocativeIf', defaultValue: defaultValues['usingVocativeIf']),
                     onChanged: (newValue) {
                       setState(() {
                         _generalBox.put('usingVocativeIf', newValue);
@@ -167,7 +167,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     focusColor: darkColor,
                     hoverColor: darkColor,
                     activeColor: darkColor,
-                    value: _generalBox.get('usingVosotros', defaultValue: true),
+                    value: _generalBox.get('usingVosotros', defaultValue: defaultValues['usingVosotros']),
                     onChanged: (newValue) {
                       setState(() {
                         _generalBox.put('usingVosotros', newValue);
@@ -197,12 +197,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     style: const TextStyle(fontSize: 30, color: darkColor, fontFamily: 'Fraunces', fontWeight: FontWeight.bold),
                     overflow: TextOverflow.visible,
                   ),
-                  const SizedBox(height: 10),
-                  Text(
-                    'resetProgressText'.tr(),
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(fontSize: 20, color: darkColor, fontFamily: 'Fraunces'),
-                  ),
+                  // const SizedBox(height: 10),
+                  // Text(
+                  //   'resetProgressText'.tr(),
+                  //   textAlign: TextAlign.center,
+                  //   style: const TextStyle(fontSize: 20, color: darkColor, fontFamily: 'Fraunces'),
+                  // ),
                   const SizedBox(height: 10),
 
                   NiceButton(
@@ -219,30 +219,34 @@ class _SettingsScreenState extends State<SettingsScreen> {
                               style: const TextStyle(fontSize: 20, color: darkColor, fontFamily: 'Fraunces'),
                             ),
                             content: Text(
-                              'Are you sure you want to reset all progress? This will delete all shop purchases as well.'.tr(),
+                              'textResetConfirm'.tr(),
                               style: const TextStyle(fontSize: 20, color: darkColor, fontFamily: 'Fraunces'),
                             ),
                             actions: <Widget>[
                               NiceButton(
-                                child: const Padding(
-                                  padding: EdgeInsets.all(8.0),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
                                   child: Text(
-                                    'Yes',
-                                    style: TextStyle(fontSize: 20, color: darkColor, fontFamily: 'Fraunces'),
+                                    'textYesButton'.tr(),
+                                    style: const TextStyle(fontSize: 20, color: darkColor, fontFamily: 'Fraunces'),
                                   ),
                                 ),
                                 onPressed: () {
-                                  _generalBox.clear(); // Perform the action
+                                  setState(() {
+                                    _generalBox.clear(); // Perform the action
+                                    resetDefaultValues();
+                                    updateContext();
 
-                                  Navigator.of(context).pop(); // Dismiss the dialog
+                                    Navigator.of(context).pop(); // Dismiss the dialog
+                                  });
                                 },
                               ),
                               NiceButton(
-                                child: const Padding(
-                                  padding: EdgeInsets.all(8.0),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
                                   child: Text(
-                                    'Cancel',
-                                    style: TextStyle(fontSize: 20, color: darkColor, fontFamily: 'Fraunces'),
+                                    'textNoButton'.tr(),
+                                    style: const TextStyle(fontSize: 20, color: darkColor, fontFamily: 'Fraunces'),
                                   ),
                                 ),
                                 onPressed: () {
@@ -336,7 +340,7 @@ class _LocaleDropdownState extends State<LocaleDropdown> {
   void initState() {
     super.initState();
     // Initialize the selected locale from Hive or use a default value
-    final savedLocale = _generalBox.get('selectedLocaleCode', defaultValue: 'en');
+    final savedLocale = _generalBox.get('selectedLocaleCode', defaultValue: defaultValues['selectedLocaleCode']);
     _selectedLocaleCode = savedLocale;
   }
 

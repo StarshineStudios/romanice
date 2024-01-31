@@ -105,5 +105,20 @@
 
   "adjectives": "adjectifs",
   "nouns": "noms",
-  "verbs": "verbes"
+  "verbs": "verbes",
+
+  "textUseVosotros": "Utiliser 'vosotros'",
+  "textUseVocativeIf": "Utiliser le cas vocatif même s'il est identique au nominatif",
+  "textEarnCoins": "Gagnez des pièces en pratiquant!",
+  "textConfirmPurchase": "Confirmer l'achat?",
+  "textCost": "Coût",
+  "textThemes": "Thèmes",
+  "textTypewriters": "Machines à écrire",
+  "textCoins": "Pièces",
+  "textResetConfirm": "Êtes-vous sûr de vouloir réinitialiser l'application? Cela supprimera tous les achats en magasin.",
+  "Confirm": "Confirmer",
+  "textYesButton": "Oui",
+  "textNoButton": "Non",
+  "textNotEnoughCoins": "Pas assez de pièces"
+
 }

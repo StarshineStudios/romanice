@@ -1,8 +1,9 @@
-import 'dart:math';
+// import 'dart:math';
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
+import 'package:tinycolor2/tinycolor2.dart';
 // import 'package:flutter/material.dart';
 import '../core/constants.dart';
 
@@ -26,20 +27,19 @@ class _StoreScreenState extends State<StoreScreen> {
     super.initState();
   }
 
-//TODO im lazy so writin git hereFIX LATIN DNyE message for imperaive o somehbting
   @override
   Widget build(BuildContext context) {
-    final Box<dynamic> _generalBox = Hive.box('generalBoxString');
-    int coins = _generalBox.get('coins', defaultValue: 1);
-    String selectedTypewriter = _generalBox.get('selectedTypewriter', defaultValue: 'defaultTypewriter');
-    _generalBox.put('defaultTypewriterBought', true);
+    final Box<dynamic> generalBox = Hive.box('generalBoxString');
+    int coins = generalBox.get('coins', defaultValue: defaultValues['coins']);
+    String selectedTypewriter = generalBox.get('selectedTypewriter', defaultValue: defaultValues['selectedTypewriter']);
+    generalBox.put('defaultTypewriterBought', true);
 
     List<Map<String, Object>> boughtTypewriters = [];
     List<Map<String, Object>> unboughtTypewriters = [];
 
     Map<Object, bool> bought = {};
     for (Map<String, Object> map in typewritersList) {
-      bool b = _generalBox.get('${map['name']}Bought', defaultValue: false);
+      bool b = generalBox.get('${map['name']}Bought', defaultValue: false); //hard coding this in
       bought[map['name']!] = b;
       if (b) {
         boughtTypewriters.add(map);
@@ -81,7 +81,7 @@ class _StoreScreenState extends State<StoreScreen> {
               width: 7.5,
             ),
             Text(
-              'textCoins'.tr() + ': $coins',
+              '${'textCoins'.tr()}: $coins',
               style: const TextStyle(fontSize: 20, color: lightColor, fontFamily: 'Fraunces', fontWeight: FontWeight.bold),
             ),
           ],
@@ -125,7 +125,7 @@ class _StoreScreenState extends State<StoreScreen> {
                     overflow: TextOverflow.visible,
                   ),
                   SizedBox(
-                    height: 125,
+                    height: 160,
                     child: ListView.builder(
                       scrollDirection: Axis.horizontal,
                       itemCount: typewriters.length,
@@ -139,142 +139,174 @@ class _StoreScreenState extends State<StoreScreen> {
 
                         return Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: GestureDetector(
-                            onTap: () {
-                              //if already bought, simply select it.
+                          child: Column(
+                            children: [
+                              GestureDetector(
+                                onTap: () {
+                                  //if already bought, simply select it.
 
-                              if (isBought) {
-                                setState(() {
-                                  _generalBox.put('selectedTypewriter', typewriterName);
-                                });
-                              } else {
-                                if (coins >= cost) {
-                                  showDialog(
-                                    context: context,
-                                    builder: (BuildContext context) {
-                                      return AlertDialog(
-                                        backgroundColor: mediumColor,
-                                        title: Text(
-                                          'Confirm'.tr(),
-                                          textAlign: TextAlign.left,
-                                          style: const TextStyle(fontSize: 20, color: darkColor, fontFamily: 'Fraunces'),
-                                        ),
-                                        content: Text(
-                                          'Are you sure you want to buy this item for $cost? This cannot be refunded '.tr(),
-                                          style: const TextStyle(fontSize: 20, color: darkColor, fontFamily: 'Fraunces'),
-                                        ),
-                                        actions: <Widget>[
-                                          NiceButton(
-                                            child: const Padding(
-                                              padding: EdgeInsets.all(8.0),
-                                              child: Text(
-                                                'Yes',
-                                                style: TextStyle(fontSize: 20, color: darkColor, fontFamily: 'Fraunces'),
-                                              ),
+                                  if (isBought) {
+                                    setState(() {
+                                      generalBox.put('selectedTypewriter', typewriterName);
+                                    });
+                                  } else {
+                                    if (coins >= cost) {
+                                      showDialog(
+                                        context: context,
+                                        builder: (BuildContext context) {
+                                          return AlertDialog(
+                                            backgroundColor: mediumColor,
+                                            title: Text(
+                                              'Confirm'.tr(),
+                                              textAlign: TextAlign.left,
+                                              style: const TextStyle(fontSize: 20, color: darkColor, fontFamily: 'Fraunces'),
                                             ),
-                                            onPressed: () {
-                                              setState(() {
-                                                _generalBox.put('${typewriterName}Bought', true);
-                                                _generalBox.put('selectedTypewriter', typewriterName);
-
-                                                _generalBox.put('coins', coins - cost);
-                                              });
-
-                                              Navigator.of(context).pop(); // Dismiss the dialog
-                                            },
-                                          ),
-                                          NiceButton(
-                                            child: const Padding(
-                                              padding: EdgeInsets.all(8.0),
-                                              child: Text(
-                                                'Cancel',
-                                                style: TextStyle(fontSize: 20, color: darkColor, fontFamily: 'Fraunces'),
-                                              ),
+                                            content: Text(
+                                              '${'textCost'.tr()}: $cost',
+                                              style: const TextStyle(fontSize: 20, color: darkColor, fontFamily: 'Fraunces'),
                                             ),
-                                            onPressed: () {
-                                              Navigator.of(context).pop(); // Dismiss the dialog
-                                            },
-                                          ),
-                                        ],
+                                            actions: <Widget>[
+                                              NiceButton(
+                                                child: Padding(
+                                                  padding: const EdgeInsets.all(8.0),
+                                                  child: Text(
+                                                    'textYesButton'.tr(),
+                                                    style: const TextStyle(fontSize: 20, color: darkColor, fontFamily: 'Fraunces'),
+                                                  ),
+                                                ),
+                                                onPressed: () {
+                                                  setState(() {
+                                                    generalBox.put('${typewriterName}Bought', true);
+                                                    generalBox.put('selectedTypewriter', typewriterName);
+
+                                                    generalBox.put('coins', coins - cost);
+                                                  });
+
+                                                  Navigator.of(context).pop(); // Dismiss the dialog
+                                                },
+                                              ),
+                                              NiceButton(
+                                                child: Padding(
+                                                  padding: const EdgeInsets.all(8.0),
+                                                  child: Text(
+                                                    'TextNoButton'.tr(),
+                                                    style: const TextStyle(fontSize: 20, color: darkColor, fontFamily: 'Fraunces'),
+                                                  ),
+                                                ),
+                                                onPressed: () {
+                                                  Navigator.of(context).pop(); // Dismiss the dialog
+                                                },
+                                              ),
+                                            ],
+                                          );
+                                        },
                                       );
-                                    },
-                                  );
-                                } else {
-                                  showDialog(
-                                    context: context,
-                                    builder: (BuildContext context) {
-                                      return AlertDialog(
-                                        backgroundColor: mediumColor,
-                                        title: Text(
-                                          'Confirm'.tr(),
-                                          textAlign: TextAlign.left,
-                                          style: const TextStyle(fontSize: 20, color: darkColor, fontFamily: 'Fraunces'),
-                                        ),
-                                        content: Text(
-                                          'insufficient coins. $cost needed'.tr(),
-                                          style: const TextStyle(fontSize: 20, color: darkColor, fontFamily: 'Fraunces'),
-                                        ),
-                                        actions: <Widget>[
-                                          NiceButton(
-                                            child: const Padding(
-                                              padding: EdgeInsets.all(8.0),
-                                              child: Text(
-                                                'Ok',
-                                                style: TextStyle(fontSize: 20, color: darkColor, fontFamily: 'Fraunces'),
-                                              ),
+                                    } else {
+                                      showDialog(
+                                        context: context,
+                                        builder: (BuildContext context) {
+                                          return AlertDialog(
+                                            backgroundColor: mediumColor,
+                                            title: Text(
+                                              'textNotEnoughCoins'.tr(),
+                                              textAlign: TextAlign.left,
+                                              style: const TextStyle(fontSize: 20, color: darkColor, fontFamily: 'Fraunces'),
                                             ),
-                                            onPressed: () {
-                                              Navigator.of(context).pop(); // Dismiss the dialog
-                                            },
-                                          ),
-                                        ],
+                                            content: Text(
+                                              '${'textCost'.tr()}: $cost',
+                                              style: const TextStyle(fontSize: 20, color: darkColor, fontFamily: 'Fraunces'),
+                                            ),
+                                            actions: <Widget>[
+                                              NiceButton(
+                                                child: Padding(
+                                                  padding: const EdgeInsets.all(8.0),
+                                                  child: Text(
+                                                    'textYesButton'.tr(),
+                                                    style: const TextStyle(fontSize: 20, color: darkColor, fontFamily: 'Fraunces'),
+                                                  ),
+                                                ),
+                                                onPressed: () {
+                                                  Navigator.of(context).pop(); // Dismiss the dialog
+                                                },
+                                              ),
+                                            ],
+                                          );
+                                        },
                                       );
-                                    },
-                                  );
-                                }
-                              }
+                                    }
+                                  }
 
 //if not bought
-                              // Update the selected typewriter when a flag is tapped.
+                                  // Update the selected typewriter when a flag is tapped.
 
-                              //create a dialog based on funds.
-                            },
-                            child: Center(
-                              child: Container(
-                                padding: const EdgeInsets.all(8),
-                                width: 100,
-                                height: 100,
-                                decoration: BoxDecoration(
-                                  color: isSelected ? pastelGreen : mediumColor,
-                                  borderRadius: BorderRadius.circular(18),
-                                ),
-                                child: Container(
-                                  alignment: Alignment.bottomRight,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(16),
-                                    color: lightColor,
-                                    image: DecorationImage(
-                                      image: AssetImage(flagImagePath),
-                                      fit: BoxFit.cover,
+                                  //create a dialog based on funds.
+                                },
+                                child: Center(
+                                  child: Container(
+                                    padding: const EdgeInsets.all(8),
+                                    width: 100,
+                                    height: 100,
+                                    decoration: BoxDecoration(
+                                      color: isSelected ? niceGreen : mediumColor,
+                                      borderRadius: BorderRadius.circular(18),
+                                    ),
+                                    child: Container(
+                                      alignment: Alignment.bottomRight,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(16),
+                                        color: lightColor,
+                                        image: DecorationImage(
+                                          image: AssetImage(flagImagePath),
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                      child: !isBought! || isSelected
+                                          ? Container(
+                                              height: 40,
+                                              width: 40,
+                                              alignment: Alignment.bottomCenter,
+                                              decoration: BoxDecoration(
+                                                  borderRadius: const BorderRadius.only(topLeft: Radius.circular(16.0), bottomRight: Radius.circular(8.0)),
+                                                  color: isSelected ? niceGreen : mediumColor),
+                                              child: Icon(
+                                                isSelected ? Icons.check : Icons.lock,
+                                                color: almostWhiteColor,
+                                                size: 30,
+                                              ))
+                                          : null,
                                     ),
                                   ),
-                                  child: !isBought! || isSelected
-                                      ? Container(
-                                          height: 40,
-                                          width: 40,
-                                          alignment: Alignment.bottomCenter,
-                                          decoration: BoxDecoration(
-                                              borderRadius: BorderRadius.only(topLeft: Radius.circular(16.0), bottomRight: Radius.circular(8.0)),
-                                              color: isSelected ? pastelGreen : mediumColor),
-                                          child: Icon(
-                                            isSelected ? Icons.check : Icons.lock,
-                                            color: almostWhiteColor,
-                                            size: 30,
-                                          ))
-                                      : null,
                                 ),
                               ),
-                            ),
+                              SizedBox(
+                                height: 5,
+                              ),
+                              //the coin graphic
+
+                              if (!isBought)
+                                Row(
+                                  children: [
+                                    Container(
+                                      height: 25,
+                                      width: 25, // Adjust the size as needed
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(20),
+                                        image: const DecorationImage(
+                                          image: AssetImage('assets/Coin.png'),
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      width: 8,
+                                    ),
+                                    Text(
+                                      cost.toString(),
+                                      style: const TextStyle(fontSize: 25, color: darkColor, fontFamily: 'Fraunces', fontWeight: FontWeight.bold),
+                                    )
+                                  ],
+                                ),
+                            ],
                           ),
                         );
                       },

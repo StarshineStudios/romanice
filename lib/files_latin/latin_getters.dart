@@ -88,8 +88,8 @@ Question getLatinAdjectiveNounQuestion() {
   // Case randomCase = randomNoun.declension.keys.toList().getRandom();
   //I do not want locative
 
-  final Box<dynamic> _generalBox = Hive.box('generalBoxString');
-  bool usingVoc = _generalBox.get('usingVocativeIf', defaultValue: true);
+  final Box<dynamic> generalBox = Hive.box('generalBoxString');
+  bool usingVoc = generalBox.get('usingVocativeIf', defaultValue: true);
 
   List<Case> cases = randomNoun.declension.keys.toList();
   if (!usingVoc) {
@@ -157,7 +157,7 @@ String? getLatinSubject(Mood mood, Number number, Person person, Gender gender) 
         Gender.n: ['Nōmina', 'Animālia', 'Tempora', 'Maria', 'Bella', 'Capita', 'Corpora', 'Opera', 'Verba', 'ea'],
       },
     };
-    List<String> listToChooseFrom = subjects[number]?[gender] ?? ['DNE'];
+    List<String> listToChooseFrom = subjects[number]?[gender] ?? [''];
     return listToChooseFrom.getRandom();
   }
 
@@ -169,17 +169,17 @@ String? getLatinSubject(Mood mood, Number number, Person person, Gender gender) 
         Number.s: {
           Gender.m: ['Mārce', 'Lūcī', 'Gāī', 'Iūlī', 'Quīnte', 'Tīte', 'Aule', 'Sexte', 'Magister', 'Vīcīne', 'Tū'],
           Gender.f: ['Iūlia', 'Lūcia', 'Cornēlia', 'Aemilia', 'Claudia', 'Antōnia', 'Flāvia', 'Valeria', 'Magistra', 'Vīcīna', 'Tū'],
-          // Gender.n: ['Nōmen', 'Animal', 'Tempus', 'Mare', 'Bellum', 'Caput', 'Corpus', 'Opus', 'Verbum', 'id'],
+          Gender.n: ['Nōmen', 'Animal', 'Tempus', 'Mare', 'Bellum', 'Caput', 'Corpus', 'Opus', 'Verbum', 'id'],
         },
         Number.p: {
           //often when calling someone, we do not use 'and'
           Gender.m: [
-            'Mārce et Lūcī',
+            'Mārce, Lūcī',
             'Gāī, Iūlī',
-            'Quīnte et Tīte',
-            'Aule et Sexte',
-            'Mārce et Iūlia',
-            'Lūcī et Cornēlia',
+            'Quīnte, Tīte',
+            'Aule, Sexte',
+            'Mārce, Iūlia',
+            'Lūcī, Cornēlia',
             'Gāī, Aemilia',
             'Iūlī, Claudia',
             'Magistrī',
@@ -187,11 +187,14 @@ String? getLatinSubject(Mood mood, Number number, Person person, Gender gender) 
             'Vōs'
           ],
           Gender.f: ['Iūlia et Lūcia', 'Cornēlia et Aemilia', 'Claudia et Antōnia', 'Flāvia et Valeria', 'Magistrae', 'Vīcīnae', 'Vōs'],
-          // Gender.n: ['Nōmina', 'Animālia', 'Tempora', 'Maria', 'Bella', 'Capita', 'Corpora', 'Opera', 'Verba', 'ea'],
+          Gender.n: ['Nōmina', 'Animālia', 'Tempora', 'Maria', 'Bella', 'Capita', 'Corpora', 'Opera', 'Verba', 'ea'],
         },
       };
 
-      List<String> listToChooseFrom = vocativeSubjects[number]?[gender] ?? ['DNyE'];
+      //if it is neuter, it is weird but I will include it
+
+      List<String> listToChooseFrom = vocativeSubjects[number]?[gender] ?? [''];
+
       bool spaceBefore = random.nextBool() ? true : false;
       String vocative = listToChooseFrom[random.nextInt(listToChooseFrom.length)];
       return spaceBefore ? '_____, $vocative!' : '$vocative, _____!';

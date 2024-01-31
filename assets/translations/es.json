@@ -105,5 +105,20 @@
 
   "adjectives": "adjetivos",
   "nouns": "sustantivos",
-  "verbs": "verbos"
+  "verbs": "verbos",
+
+  "textUseVosotros": "Usar 'vosotros'",
+  "textUseVocativeIf": "Usar el caso vocativo aunque sea idéntico al nominativo",
+  "textEarnCoins": "¡Gana monedas practicando!",
+  "textConfirmPurchase": "¿Confirmar compra?",
+  "textCost": "Costo",
+  "textThemes": "Temas",
+  "textTypewriters": "Máquinas de escribir",
+  "textCoins": "Monedas",
+  "textResetConfirm": "¿Estás seguro de querer reiniciar la aplicación? Esto eliminará todas las compras de la tienda.",
+  "Confirm": "Confirmar",
+  "textYesButton": "Sí",
+  "textNoButton": "No",
+  "textNotEnoughCoins": "No hay suficientes monedas"
+
 }

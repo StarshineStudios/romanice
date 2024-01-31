@@ -58,8 +58,8 @@ typedef SpanishConjugationStructure = Map<Mood, Map<Tense, Map<Number, List<Pers
 extension ConjugationStructureExtensions on SpanishConjugationStructure {
   SpanishCoordinate getRandomCoordinate() {
     //check if using vosotros
-    final Box<dynamic> _generalBox = Hive.box('generalBoxString');
-    bool usingV = _generalBox.get('usingVosotros', defaultValue: true);
+    final Box<dynamic> generalBox = Hive.box('generalBoxString');
+    bool usingV = generalBox.get('usingVosotros', defaultValue: true);
     List<SpanishCoordinate> coordinates = [];
 
     forEach((mood, tenses) {

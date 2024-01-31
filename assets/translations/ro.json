@@ -105,5 +105,20 @@
 
   "adjectives": "adjective",
   "nouns": "substantive",
-  "verbs": "verbe"
+  "verbs": "verbe",
+
+  "textUseVosotros": "Folosește 'vosotros'",
+  "textUseVocativeIf": "Folosește cazul vocativ chiar dacă este identic cu nominativul",
+  "textEarnCoins": "Câștigă monede practicând!",
+  "textConfirmPurchase": "confirmă cumpărarea?",
+  "textCost": "Cost",
+  "textThemes": "Teme",
+  "textTypewriters": "Mașini de scris",
+  "textCoins": "Monede",
+  "textResetConfirm": "Ești sigur că doriți să resetați aplicația? Acest lucru va șterge toate achizițiile din magazin.",
+  "Confirm": "Confirmă",
+  "textYesButton": "Da",
+  "textNoButton": "Nu",
+  "textNotEnoughCoins": "Nu sunt destule monede"
+
 }

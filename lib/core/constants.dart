@@ -1,15 +1,40 @@
+import 'package:hive/hive.dart';
 import 'package:tinycolor2/tinycolor2.dart';
 import 'package:flutter/material.dart';
 import 'dart:math';
 
+//GET EVERY SINGLE DEFAULT HIVE VALUE HERE
+Map<String, Object> defaultValues = {
+  'coins': 0,
+  'selectedTypewriter': 'defaultTypewriter',
+  'selectedLocaleCode': 'en',
+  'usingVocativeIf': true,
+  'usingSystemLocale': true,
+  'usingVosotros': true,
+};
+
+void initDefaultValues() {
+  final Box<dynamic> generalBox = Hive.box('generalBoxString');
+  for (String key in defaultValues.keys) {
+    generalBox.put(key, generalBox.get(key, defaultValue: defaultValues[key]));
+  }
+}
+
+void resetDefaultValues() {
+  final Box<dynamic> generalBox = Hive.box('generalBoxString');
+  for (String key in defaultValues.keys) {
+    generalBox.put(key, defaultValues[key]);
+  }
+}
+
 List<Map<String, Object>> typewritersList = [
   {'name': 'redTypewriter', 'back': 'assets/typeBackRed.png', 'front': 'assets/typeFrontRed.png', 'cost': 10},
-  {'name': 'orangeTypewriter', 'back': 'assets/typeBackOrange.png', 'front': 'assets/typeFrontOrange.png', 'cost': 10},
-  {'name': 'yellowTypewriter', 'back': 'assets/typeBackYellow.png', 'front': 'assets/typeFrontYellow.png', 'cost': 40},
+  {'name': 'orangeTypewriter', 'back': 'assets/typeBackOrange.png', 'front': 'assets/typeFrontOrange.png', 'cost': 15},
+  {'name': 'yellowTypewriter', 'back': 'assets/typeBackYellow.png', 'front': 'assets/typeFrontYellow.png', 'cost': 20},
   {'name': 'defaultTypewriter', 'back': 'assets/typeBack.png', 'front': 'assets/typeFront.png', 'cost': 0},
-  {'name': 'blueTypewriter', 'back': 'assets/typeBackBlue.png', 'front': 'assets/typeFrontBlue.png', 'cost': 40},
-  {'name': 'purpleTypewriter', 'back': 'assets/typeBackPurple.png', 'front': 'assets/typeFrontPurple.png', 'cost': 10},
-  {'name': 'magentaTypewriter', 'back': 'assets/typeBackMagenta.png', 'front': 'assets/typeFrontMagenta.png', 'cost': 40},
+  {'name': 'blueTypewriter', 'back': 'assets/typeBackBlue.png', 'front': 'assets/typeFrontBlue.png', 'cost': 100},
+  {'name': 'purpleTypewriter', 'back': 'assets/typeBackPurple.png', 'front': 'assets/typeFrontPurple.png', 'cost': 500},
+  {'name': 'magentaTypewriter', 'back': 'assets/typeBackMagenta.png', 'front': 'assets/typeFrontMagenta.png', 'cost': 1000},
 ];
 
 Map<String, Object> getTypewriter(String name) {
@@ -43,6 +68,7 @@ const Color pastelYellow = Color.fromRGBO(255, 255, 186, 1);
 const Color pastelGreen = Color.fromRGBO(186, 255, 201, 1);
 const Color pastelBlue = Color.fromRGBO(186, 225, 255, 1);
 const Color pastelPurple = Color.fromRGBO(207, 186, 255, 1);
+const Color niceGreen = Color.fromRGBO(93, 200, 116, 1);
 
 class NiceButton extends StatefulWidget {
   final Color color;

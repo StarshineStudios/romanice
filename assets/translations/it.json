@@ -105,5 +105,19 @@
 
   "adjectives": "aggettivi",
   "nouns": "sostantivi",
-  "verbs": "verbi"
+  "verbs": "verbi",
+
+  "textUseVosotros": "Usare 'vosotros'",
+  "textUseVocativeIf": "Usa il caso vocativo anche se identico al nominativo",
+  "textEarnCoins": "Guadagna monete praticando!",
+  "textConfirmPurchase": "Confermare l'acquisto?",
+  "textCost": "Costo",
+  "textThemes": "Temi",
+  "textTypewriters": "Macchine da scrivere",
+  "textCoins": "Monete",
+  "textResetConfirm": "Sei sicuro di voler resettare l'app? Questo eliminerà tutti gli acquisti nel negozio.",
+  "Confirm": "Conferma",
+  "textYesButton": "Sì",
+  "textNoButton": "No",
+  "textNotEnoughCoins": "Monete insufficienti"
 }

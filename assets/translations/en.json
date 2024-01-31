@@ -108,13 +108,19 @@
   "nouns": "nouns",
   "verbs": "verbs",
 
-  "textUseVosotros": "Use vosotros",
+  "textUseVosotros": "Use 'vosotros'",
   "textUseVocativeIf": "Use vocative case even if identical to nominative",
-  "textEarnCoins": "Earn coins by practicing",
+  "textEarnCoins": "Earn coins by practicing!",
   "textConfirmPurchase": "Confirm Purchase?",
+  "textCost": "Cost",
   "textThemes": "Themes",
   "textTypewriters": "Typewriters",
   "textCoins": "Coins",
-  "Are you sure you want to reset all progress? This will delete all shop purchases as well.": "Are you sure you want to reset all progress? This will delete all shop purchases as well.",
-  "Confirm": "Confirm"
+  "textResetConfirm": "Are you sure you want to reset the app? This will delete all shop purchases as well.",
+  "Confirm": "Confirm",
+  "textYesButton": "Yes",
+  "textNoButton": "No",
+  "textNotEnoughCoins": "Not enough coins"
+
+
 }

@@ -15,6 +15,7 @@ void main() async {
   await EasyLocalization.ensureInitialized();
   await Hive.initFlutter();
   await Hive.openBox(generalBoxName);
+  initDefaultValues(); //this hopefully works
 
   // setInitialValues(); //This is to set initial values for Hive given they are not initialized so I dont have to depend on first time default being correct
   runApp(
