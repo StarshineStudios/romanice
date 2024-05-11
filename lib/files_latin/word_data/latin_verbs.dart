@@ -68,7 +68,7 @@ LatinVerb esse = LatinVerb(
         },
         Tense.future: {
           Number.s: {Person.first: 'erō', Person.second: 'eris', Person.third: 'erit'},
-          Number.p: {Person.first: 'erāmus', Person.second: 'erātis', Person.third: 'erunt'},
+          Number.p: {Person.first: 'erimus', Person.second: 'eritis', Person.third: 'erunt'},
         },
         Tense.perfect: {
           Number.s: {Person.first: 'fuī', Person.second: 'fuistī', Person.third: 'fuit'},
@@ -280,7 +280,7 @@ LatinVerb scire = LatinVerb(
         },
         Tense.futurePerfect: {
           Number.s: {Person.first: 'scīverō', Person.second: 'scierō', Person.third: 'scīverit'},
-          Number.p: {Person.first: 'scīverimus', Person.second: 'scierimus', Person.third: 'scīverint'},
+          Number.p: {Person.first: 'scīverimus', Person.second: 'scīveritis', Person.third: 'scīverint'},
         },
       },
       Voice.pas: {

@@ -52,8 +52,8 @@ class LanguageBox2 extends StatelessWidget {
                 Row(
                   children: [
                     Container(
-                      height: 80,
-                      width: 80, // Adjust the size as needed
+                      height: 60,
+                      width: 60, // Adjust the size as needed
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
                         image: DecorationImage(
